@@ -2,7 +2,7 @@
 
 * **Date**: 12-15.09.2018
 * **Location**: Erlangen, Germany
-* **website**: -
+* **website**: https://2018.osfc.io/
 * **social media**: -
 
 ### Presentation #1
@@ -20,7 +20,10 @@
 * **Presenters**: Piotr Król
 * **slides**: https://2018.osfc.io/uploads/talk/paper/28/How_to_enable_AMD_IOMMU_in_coreboot.pdf
 * **white papers**: -
-* **YouTube**: https://www.youtube.com/watch?time_continue=2&v=5JoEuh9qXx0I
+* **YouTube**:
+    * https://www.youtube.com/watch?time_continue=2&v=5JoEuh9qXx0I
+    * (internal triage pt.1) https://www.youtube.com/watch?v=gBsHwAjgeh0&t=7s
+    * (internal triage pt.2) https://www.youtube.com/watch?v=YlRvj2lqpHE&t=7s
 * **Misc**: -
 
 ### Presentation #3

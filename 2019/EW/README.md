@@ -2,7 +2,7 @@
 
 * **Date**: 26-28.02.2019
 * **Location**: Nuremberg, Germany
-* **website**: -
+* **website**: https://events.weka-fachmedien.de/embedded-world-conference/home.html
 * **social media**: -
 
 ### Presentation #1
@@ -12,7 +12,7 @@
 * **slides**: -
 * **white papers**: -
 * **YouTube**: https://www.youtube.com/watch?v=qJBJ2TpAu8I
-* **Misc**: -
+* **Misc**: https://cloud.3mdeb.com/index.php/s/tYPTx8yRSt53Jb5
 
 ### Presentation #2
 
@@ -21,4 +21,4 @@
 * **slides**: -
 * **white papers**: -
 * **YouTube**: https://www.youtube.com/watch?time_continue=1&v=lddSYz8PAck
-* **Misc**: -
+* **Misc**: https://cloud.3mdeb.com/index.php/s/mZZ5gEnfjJ5p82R

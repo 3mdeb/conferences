@@ -12,7 +12,9 @@
 * **slides**: https://linuxplumbersconf.org/event/4/contributions/517/attachments/395/638/Non-UEFI-aware_measured_boot_using_coreboot_GRUB_and_TPM2.0.pdf
 * **white papers**: -
 * **YouTube**: -
-* **Misc**: https://cloud.3mdeb.com/index.php/s/89TXm9AxCZFotoT
+* **Misc**:
+    * https://cloud.3mdeb.com/index.php/s/89TXm9AxCZFotoT
+    * (Etherpad) https://etherpad.net/p/LPC2019_System_Boot_and_Security
 
 ### Presentation #2
 

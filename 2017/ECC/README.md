@@ -2,7 +2,7 @@
 
 * **Date**: 26-29.10.2017
 * **Location**: Bochum, Germany
-* **website**: -
+* **website**: https://ecc2017.coreboot.org/
 * **social media**: -
 
 ### Presentation #1
