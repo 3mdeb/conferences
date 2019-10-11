@@ -25,7 +25,9 @@ Slides, white papers and agendas from various events in which 3mdeb participated
 ║ &nbsp;04-07.11&ensp;╠═ [WebSummit 2019](2019/WebSummit)<br>
 ╠═══════╣<br>
 ║ &nbsp;27-30.12&ensp;╠═ [36c3 2019](2019/36c3)<br>
+╠══2020══╣<br>
+║ &nbsp;01-02.02&ensp;╠═ [FOSDEM](2020/FOSDEM)<br>
 ╠═══════╣<br>
-║ &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; ║<br>
+║ &nbsp;25-27.02&ensp;╠═ [EW 2020](2020/EW)<br>
 ║ &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; ║<br>
 ║ &nbsp;&ensp;&ensp;TBD&ensp;&ensp;&ensp;║<br>
