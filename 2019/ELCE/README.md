@@ -16,4 +16,4 @@
 
 ### Co-Located Event #1: Automated Testing Summit
 
-### Co-Located Event #2: Open Source Summit
+### Co-Located Event #2: Linux Security Summit
