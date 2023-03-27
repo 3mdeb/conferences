@@ -1,6 +1,39 @@
-# conferences
+# Conferences
 
-Slides, white papers and agendas from various events in which 3mdeb participated
+The repository contains slides, white papers and agendas from various events in
+which 3mdeb participated in different years. The structure of the repository
+consists of folders whose name corresponds to the year in which the conference
+was held. Each of these folders contains subfolders whose name corresponds to
+the name of the conference at which the company performed in that year. Each of
+these subfolders contains materials related to that conference, such as
+presentation slides, PDF files and other documents.
+
+The repository also contains a folder named `cfp`, which contains all the Call
+for Proposals that the company has produced.
+
+## Structure of the repository
+
+```bash
+$ tree -L 2
+.
+├── 2016
+│   └── NetVision
+├── 2017
+│   └── ECC
+├── 2018
+│   └── OSFC
+├── 2019
+│   ├── 36c3
+│   ├── ELCE
+│   ├── EW
+│   ├── LPC
+│   ├── OSFC
+│   ├── PSEC
+│   ├── QubesOS-minisummit
+│   └── WebSummit
+├── cfp
+└── README.md
+```
 
 ## Events timeline
 
