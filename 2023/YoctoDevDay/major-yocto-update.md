@@ -23,11 +23,7 @@ presentation, every participant will be well aware of the challenges involved in
 upgrading a system.
 
 To bring these concepts to life, we will illustrate the topics through a real
-example: updating a system designed for RTE [1][2] devices. Specifically, we
-will explore the transition from the Dunfell to Kirkstone Yocto releases,
-representing the shift between the last two LTS versions. This tangible
-demonstration will give participants a practical perspective and actionable
-knowledge, empowering them to update their system confidently.
-
-[1] https://github.com/3mdeb/meta-rte/
-[2] https://docs.dasharo.com/transparent-validation/rte/introduction/
+example by discussing our latest work. We will explore the project transition to
+the latest Kirkstone Yocto release. This tangible demonstration will give
+participants a practical perspective and actionable knowledge, empowering them
+to update their system confidently.
