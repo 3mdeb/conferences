@@ -492,7 +492,7 @@ Early malloc usage: 1fe0 / 2000
 
 * defconfig
 
-.code-14px[```bash
+.code-15px[```bash
 + CONFIG_EXPERT=y
 + CONFIG_GPIO_SYSFS=y
 ```]
@@ -507,7 +507,7 @@ an update
 
 * device-tree I
 
-.code-14px[```bash
+.code-15px[```bash
 +	assigned-clocks = <&clk IMX8MM_CLK_PCIE1_AUX>,
 +			  <&clk IMX8MM_CLK_PCIE1_PHY>,
 +			  <&clk IMX8MM_CLK_PCIE1_CTRL>;
@@ -519,7 +519,7 @@ an update
 
 * device-tree II
 
-.code-14px[```bash
+.code-15px[```bash
 &sai2 {
         pinctrl-names = "default";
         pinctrl-0 = <&pinctrl_sai2>;
@@ -555,7 +555,7 @@ platform hang while booting
   - missed or changed PACKAGECONFIG
   - custom `do_configure` functions
 
-.code-14px[```bash
+.code-15px[```bash
 - PACKAGECONFIG += "ssl libssh2"
 + PACKAGECONFIG += "openssl libssh2"
 ```]
@@ -567,7 +567,7 @@ platform hang while booting
 
 * Compilation errors
 
-.code-14px[```bash
+.code-15px[```bash
 /tmp/(...)/python/interpreter_wrapper/interpreter_wrapper_pybind11.cc
 | /work/build-wayland/tmp/(...)/python/interpreter_wrapper/interpreter_wrapper_pybind11.cc:16:10:
     fatal error: pybind11/functional.h: No such file or
@@ -592,7 +592,7 @@ directory
   - update may introduce problems (compilator flags, deprecated variables)
   - example: using app after Qt5 update to Qt6
 
-.code-9px[```bash
+.code-13px[```bash
 | /build/tmp-glibc/(...)/git/libs/qmqtt_client/ecc/ecc_manager.cpp: At global scope:
 | /build/tmp-glibc/(...)/git/libs/qmqtt_client/ecc/ecc_manager.cpp:42:13: warning: 'bool
     writePrivateKeyToFile(const QString&, EVP_PKEY*)' defined but not used [-Wunused-function]
@@ -635,12 +635,12 @@ Summary: 1 task failed:
 
 * Examples of changes needed in tests, when we got different logs
 
-.code-14px[```bash
+.code-15px[```bash
 -   path: /usr/bin/tensorflow-lite-2.4.0/examples
 +   path: /usr/bin/tensorflow-lite-2.9.1/examples
 ```]
 
-.code-14px[```bash
+.code-15px[```bash
 -   - "PCI bridge: Synopsys, Inc. DWC_usb3 (rev 01)"
 +   - "PCI bridge: Synopsys, Inc. DWC_usb3 / PCIe bridge (rev 01)"
 ```]
