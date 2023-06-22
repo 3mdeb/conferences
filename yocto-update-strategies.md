@@ -244,13 +244,13 @@ https://docs.yoctoproject.org/ref-manual/release-process.html
 # Performing update
 
 * Build environment
-  - ensuring the build environment is up-to-date and compatible with the Yocto
-    Project requirements
+  - ensuring the build environment is up-to-date
+  - should be compatible with the Yocto Project requirements
 * External layers update
   - updating external layers used in the project to their latest versions
 * Custom layer update
-  - updating the custom layer(s) specific to the project, incorporating
-    necessary changes and improvements
+  - updating the custom layer(s) specific to the project
+  - incorporating necessary changes and improvements
 * Real-life examples
   - responsive multimedia casting device using RaspberryPi
   - Yocto BSP maintenance
