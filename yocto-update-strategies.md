@@ -287,7 +287,7 @@ allows for seamless integration of new functionalities and improvements.
     [imx-docker](https://github.com/nxp-imx/imx-docker),
     [yocto-docker](https://github.com/3mdeb/yocto-docker)
   - easier to distribute such an environment among colleagues
-* Review and update the configuration files (local.conf, bblayers.conf) to
+* Review and update the configuration files (`local.conf`, `bblayers.conf`) to
   reflect any changes or additions required for the update
   - see migration guides to check if any changes need to be applied
   - rethink the way build configuration files are stored
