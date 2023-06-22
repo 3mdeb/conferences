@@ -598,7 +598,7 @@ directory
 * Custom applications often are provided by our clients
   - they were compiled in some environment
   - we integrate them for given Yocto release
-  - update may introduce problems (compilator flags, deprecated variables)
+  - possible problems: compilator flags, deprecated variables
   - example: using app after Qt5 update to Qt6
 
 .code-13px[```bash
