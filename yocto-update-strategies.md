@@ -290,6 +290,10 @@ allows for seamless integration of new functionalities and improvements.
 ---
 # Performing update - build environment
 
+.center[.image-99[![](img/build-env.svg)]]
+
+???
+
 * Verify the compatibility of the build environment with the desired Yocto
   Project release
   - see `Build Host Packages` in Mega Manual
@@ -305,8 +309,6 @@ allows for seamless integration of new functionalities and improvements.
   reflect any changes or additions required for the update
   - see migration guides to check if any changes need to be applied
   - rethink the way build configuration files are stored
-
-???
 
 rethink the way build configuration files are stored - you may want to go back
 to the version before an update
