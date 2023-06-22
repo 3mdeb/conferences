@@ -583,6 +583,15 @@ directory
 | ninja: build stopped: subcommand failed.
 ```]
 
+* Solution
+
+.code-15px[```bash
++ PYBIND11_INCLUDE = "${PYTHON_INCLUDE_DIR}/pybind11"
++ NUMPY_INCLUDE = "${PKG_CONFIG_SYSROOT_DIR}/${PYTHON_SITEPACKAGES_DIR}/numpy/core/include"
++ OECMAKE_C_FLAGS += "-I${PYTHON_INCLUDE_DIR} -I${PYBIND11_IN} -I${NUMPY_INCLUDE}"
++ OECMAKE_CXX_FLAGS += "-I${PYTHON_INCLUDE_DIR} -I${PYBIND11_INCLUDE} -I${NUMPY_INCLUDE}"
+```]
+
 ---
 # Build troubleshooting - custom applications
 
