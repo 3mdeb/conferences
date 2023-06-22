@@ -365,7 +365,15 @@ Never modify the POKY layer. Never. Ever. - even expand it on other layers
 # Build troubleshooting
 
 * We can split up every operating system into couple pieces
-.center[<img src="img/boot-process.svg" width="400px">]
+  - every should be updated and verified
+
+.center[.image-90[![](img/boot-process.svg)]]
+* Other than that, we may also need to update our tests suites and CI/CD
+  pipelines
+
+???
+
+* We can split up every operating system into couple pieces
 * Updating whole system, means that every part needs to work correctly (meaning,
   as expected, presented in requirements)
   - bootloader - configuration, environment variables, boot script,
