@@ -64,13 +64,13 @@ class: center, middle, intro
   - requirements gathering
 * Planning
   - definining requirements
-  - clear DoD of tasks
+  - clear DoD (definition of done) of tasks
 * Development
   - preparing build environment
   - creating Yocto layer
 * Testing and documentation
-  - validate functionality
-  - verify requirements are met
+  - validating functionality
+  - verifying requirements
 * Deployment
 * Maintenance and Updates
   - ongoing support
@@ -98,15 +98,15 @@ can maintain the project's health and adapt to evolving needs.
   - documentation describing architecture, software and hardware
   - interactions between them
 * Features documentation
-  - description of the expected outcome of the given functionalities
+  - expected outcome of the given functionalities
 * Build environment
-  - good if it is automated
-  - need to fullfill requirements of Yocto Project documentation
+  - good if setting up is automated
+  - needs fullfill requirements of Yocto Project documentation
 * Tests
   - covers all custom functionalities
   - good if fully automated
 * CI/CD for build and tests
-  - automate the building and testing of the project
+  - automates building and testing of the project
   - ensuring consistent and reliable results
 
 ???
@@ -184,7 +184,7 @@ functionalities as we maintain and update our Yocto-based projects.
 ---
 # Update strategy
 
-* Remembering every project component during updates
+* Remember every element of the project during updates
   - each project component, such as architecture documentation, features
     documentation, build environment, tests, and CI/CD, plays a crucial role in
     the project's functionality and stability
@@ -279,17 +279,17 @@ allows for seamless integration of new functionalities and improvements.
 * Verify the compatibility of the build environment with the desired Yocto
   Project release
   - see `Build Host Packages` in Mega Manual
-  - use correct release
-* Prepare reproducible build environment
+  - use the correct release
+* Prepare a reproducible build environment
   - ansible can be used to put together such an environment
-  - other possibility is to prepare containeraized image; e.g.
+  - another possibility is to prepare a containeraized image; e.g.
     [kas](https://github.com/siemens/kas),
     [imx-docker](https://github.com/nxp-imx/imx-docker),
     [yocto-docker](https://github.com/3mdeb/yocto-docker)
   - easier to distribute such an environment among colleagues
 * Review and update the configuration files (local.conf, bblayers.conf) to
   reflect any changes or additions required for the update
-  - see release notes, to check if any changes need to be applied
+  - see migration guides to check if any changes need to be applied
   - rethink the way build configuration files are stored
 
 ???
@@ -302,13 +302,13 @@ to the version before an update
 
 .center[<img src="img/project-layers.svg" width="450px">]
 
-* Project consist of external and custom layers
-  - this way we follow the rule **Never modify the POKY layer. Never. Ever.**
+* Project consists of external and custom layers
+  - this way, we follow the rule **Never modify the POKY layer. Never. Ever.**
   - any customizations goes into `meta-custom_layer`: we have full control on
     what and why was changed through `.bbappends`
-* For `external` we should pick Yocto release; specific commit hash
-  - task for that should be short, e.g. when using NXP BSP as base, we should
-    follow hashes used in given BSP release
+* For `external`, we should pick Yocto release; specific commit hash
+  - task for that should be short, e.g., when using NXP BSP as a base, we should
+    follow hashes used in the given BSP release
 
 ???
 
@@ -324,13 +324,13 @@ Never modify the POKY layer. Never. Ever. - even expand it on other layers
   - updating `LAYERSERIES_COMPAT` variable
   - going through the bbappends files and verifying that they all still apply
     (whether they depended on a revised version of a recipe)
-  - verification of custom patches for used packages, perhaps some of them were
+  - verification of custom patches for used packages; perhaps some of them were
     added in the upstream
   - syntax and variables verification
   - path verification for the keywords `require` and `include`
 * Check the migration guides in case we encounter unexpected behavior
-  - there is one per every release
-  - we may found there usefull scripts, like one for override syntax change
+  - there is one per release
+  - we may found there useful scripts, like one for override syntax change
 
 ---
 # Build troubleshooting
@@ -427,11 +427,11 @@ Early malloc usage: 1fe0 / 2000
 # Build troubleshooting - kernel
 
 * Similar situation as with bootloader
-  - more often device-tree may take place in making problems, we are using more
+  - more often, device-tree may take place in making problems; we are using more
     peripherals from Linux side
-  - as in bootloader, we may face some of configurations goes from board config
-    into Kconfig files
-  - Yocto recipe compilation, but should not be a big issue as long as we are
+  - as in bootloader, we may face some of the configurations going from board
+    config into Kconfig files
+  - Yocto recipe compilation, but it should not be a big issue as long as we are
     able to compile it manually
 
 * defconfig
@@ -490,8 +490,8 @@ platform hang while booting
 ---
 # Build troubleshooting - default applications
 
-* Default applications as a part of created image
-  - by default we mean here part of systems to which we did not provide custom,
+* Default applications as a part of the created image
+  - by default, we mean here part of systems to which we did not provide custom,
     Client's source code
   - issues here: configuration changes, compilation errors
 
@@ -562,16 +562,16 @@ Summary: 1 task failed:
 
 * Solving any build problems usually leads us to a bootable image
   - it is insufficient, many functionalities may not work as they should
-* Documentation and testing are key here
-  - docs allow us to understand expecting behavior
-  - test should cover every funtionality and verify them
-  - they also should fullfill agreeded requirements
+* Documentation and testing are essential here
+  - docs allow us to understand the expected behavior
+  - test should cover every functionality and verify them
+  - they also should fulfill agreed requirements
 * This is where the most tedious work of updating begins
-  - iterations of tests, patches, rebuilds and retests
+  - iterations of tests, patches, rebuilds, and retests
   - CI/CD pipeline helps a lot
-* Tests suites needs also updates
-  - the test result based on an erroneous assumption, which was changed with the
-    update
+* Tests suites also need updates
+  - the test result was based on an erroneous assumption, which was changed with
+    the update
   - logs changed behavior
 
 ---
@@ -590,8 +590,8 @@ Summary: 1 task failed:
 ```]
 
 * Change the way how output is achieved
-  - logging level may changed so, we need to run `dmesg`
-  - other commands may not longer print anything to userspace
+  - logging level may be changed, so we need to run `dmesg`
+  - other commands may no longer print anything to userspace
 
 ---
 # Summary
@@ -602,16 +602,16 @@ Summary: 1 task failed:
   - next big problem may be how to deploy our update
 * Knowing each component that makes up a Yocto-based project makes it easier to
   perform upgrades
-  - it is important to understand the tasks that an embedded device is supposed
-    to perform and make sure that after the upgrade it is still able to perform
+  - it is crucial to understand the tasks that an embedded device is supposed
+    to perform and make sure that after the upgrade, it is still able to perform
     them
-  - correctly prepared documentation, a set of tests and a working CI/CD
+  - correctly prepared documentation, a set of tests, and a working CI/CD
     pipeline significantly facilitates the validation of the correctness of the
     update performed
-* It is also important to determine the timing of the update
+* It is also essential to determine the timing of the update
   - worth using additional tools to control the state of your image and make
     decisions based on that (e.g. CVE checks)
-  - decision can be made on the basis of Yocto release cycle
+  - decision can be made based on Yocto release cycle
 
 ---
 # Contact us
