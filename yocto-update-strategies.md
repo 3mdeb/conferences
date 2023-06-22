@@ -305,8 +305,8 @@ allows for seamless integration of new functionalities and improvements.
     [imx-docker](https://github.com/nxp-imx/imx-docker),
     [yocto-docker](https://github.com/3mdeb/yocto-docker)
   - easier to distribute such an environment among colleagues
-* Review and update the configuration files (`local.conf`, `bblayers.conf`) to
-  reflect any changes or additions required for the update
+* Review and update the configuration files (`local.conf`, `bblayers.conf`)
+  - see if there are any changes or additions required for the update
   - see migration guides to check if any changes need to be applied
   - rethink the way build configuration files are stored
 
@@ -316,22 +316,35 @@ to the version before an update
 ---
 # Performing update - external layers update
 
-.center[<img src="img/project-layers.svg" width="450px">]
+.center[.image-99[![](img/project-layers.svg)]]
+
+???
 
 * Project consists of external and custom layers
   - this way, we follow the rule **Never modify the POKY layer. Never. Ever.**
   - any customizations goes into `meta-custom_layer`: we have full control on
     what and why was changed through `.bbappends`
 * For `external`, we should pick Yocto release; specific commit hash
-  - task for that should be short, e.g., when using NXP BSP as a base, we should
-    follow hashes used in the given BSP release
-
-???
+  - work on that should not take long, e.g. when using NXP BSP as a base, we
+    should follow hashes used in the given BSP release
 
 Never modify the POKY layer. Never. Ever. - even expand it on other layers
 
 ---
 # Performing update - custom layer update
+
+* We can list some of the basic tasks carried out when updating Yocto, which
+  should be done in custom layers
+  - updating `LAYERSERIES_COMPAT` variable
+  - bbappends check
+  - custom patches
+  - syntax and variables verification
+  - path verification for the keywords `require` and `include`
+* Check the migration guides in case we encounter unexpected behavior
+  - there is one per release
+  - we may found there useful scripts, like one for override syntax change
+
+???
 
 * Most of the effort of performing updates should be implemented in custom
   layers
