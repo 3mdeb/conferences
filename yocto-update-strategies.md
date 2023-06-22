@@ -59,23 +59,7 @@ class: center, middle, intro
 ---
 # Project lifecycle
 
-* Initiation
-  - project idea
-  - requirements gathering
-* Planning
-  - definining requirements
-  - clear DoD (definition of done) of tasks
-* Development
-  - preparing build environment
-  - creating Yocto layer
-* Testing and documentation
-  - validating functionality
-  - verifying requirements
-* Deployment
-* Maintenance and Updates
-  - ongoing support
-  - addressing security vulnerabilities,
-  - minimizing technical debt, and integrating new functionalities
+.center[.image-99[![](img/proj-lifec.svg)]]
 
 ???
 
