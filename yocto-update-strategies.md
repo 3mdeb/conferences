@@ -418,10 +418,9 @@ Never modify the POKY layer. Never. Ever. - even expand it on other layers
 # Build troubleshooting - bootloader
 
 * Example problems with updating bootloader
-  - correcting bootscript
-  - properly rebasing custom drivers and defconfigs
-  - Yocto recipe compilation, but should not be a big issue as long as we are
-    able to compile it manually
+  - faulty bootscript
+  - rebasing custom drivers and defconfigs
+  - Yocto recipe compilation
 * bootscript
 
 .code-11px[
@@ -438,6 +437,12 @@ Never modify the POKY layer. Never. Ever. - even expand it on other layers
 +    #define BOOT_TARGET_DEVICES(func) \
 +    func(MMC, mmc, 1) \
 ```
+
+???
+
+recipe compilation
+
+but should not be a big issue as long as we are able to compile it manually
 
 ---
 # Build troubleshooting - bootloader
