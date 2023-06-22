@@ -387,6 +387,19 @@ Never modify the POKY layer. Never. Ever. - even expand it on other layers
 ---
 # Build troubleshooting
 
+* Real life examples
+  - most of them consist of updating to Yocto Kirkstone release
+  - describes a wide range of problems that any Yocto developer may encounter
+    when updating a custom system
+* We will discuss the following problems
+  - changes in bootloaders and kernels on i.MX based platforms
+  - proper configuration of default apps provided to our systems
+  - modifications to the source code of custom applications when updating
+    systems that use Qt
+  - going through test suites to preserve functionalities checking
+
+???
+
 * In the following slides, we want to present some of the problems we have had
   to work on in the recent past
   - most of them consist of updating to Yocto Kirkstone release
@@ -397,8 +410,9 @@ Never modify the POKY layer. Never. Ever. - even expand it on other layers
   - proper configuration of default apps provided to our systems
   - modifications to the source code of custom applications when updating
     systems that use Qt
-  - fixing CI/CD pipelines after switching to new Yocto release
+  - fixing CI/CD pipelines after switching to new Yocto release TODO MAYBE ADD
   - going through test suites to preserve functionalities checking
+
 
 ---
 # Build troubleshooting - bootloader
