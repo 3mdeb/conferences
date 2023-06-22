@@ -169,6 +169,20 @@ functionalities as we maintain and update our Yocto-based projects.
 # Update strategy
 
 * Remember every element of the project during updates
+  - each project component plays a crucial role in the project's functionality
+    and stability
+  - updates must consider all components to ensure the overall integrity of the
+    Yocto-based project
+* Importance of the update deployment method
+  - the update deployment method impacts the efficiency, scalability, and user
+    experience of the Yocto-based project
+  - having a dedicated update system allows for streamlined and controlled
+    updates, minimizing downtime and reducing the need for manual intervention
+  - in some cases reflashing devices is feasible
+
+???
+
+* Remember every element of the project during updates
   - each project component, such as architecture documentation, features
     documentation, build environment, tests, and CI/CD, plays a crucial role in
     the project's functionality and stability
@@ -183,12 +197,28 @@ functionalities as we maintain and update our Yocto-based projects.
     whether a dedicated update system is necessary or if reflashing devices is
     feasible
 
-???
-
 TBD notes
 
 ---
 # Update strategy
+
+* Yocto release cycle
+ - ensures access to the latest features, bug fixes, and security patches
+ - regularly synchronizing maintains a stable and up-to-date project
+* CVE checks and security reports
+  - integrating CVE (Common Vulnerabilities and Exposures) checks into the Yocto
+    build helps identify security vulnerabilities
+  - organizing updates based on security reports allows for timely patching and
+    protection against known vulnerabilities
+  - easily achieved by using correct bbclass
+* Feature-set requirements
+ - considering feature updates allows for tailored enhancements, ensuring the
+   project remains competitive in the market
+
+???
+
+TBD notes
+https://docs.yoctoproject.org/ref-manual/release-process.html
 
 * Yocto release cycle
  - updating based on the Yocto release cycle ensures access to the latest
