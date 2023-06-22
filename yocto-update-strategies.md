@@ -530,7 +530,7 @@ directory
 ---
 # Build troubleshooting - custom applications
 
-* Custom applications often are provided by our Clients
+* Custom applications often are provided by our clients
   - they were compiled in some environment
   - we integrate them for given Yocto release
   - update may introduce problems (compilator flags, deprecated variables)
