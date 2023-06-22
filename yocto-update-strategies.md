@@ -560,7 +560,7 @@ platform hang while booting
 + PACKAGECONFIG += "openssl libssh2"
 ```]
 
-tensorflow https://github.com/nxp-imx/meta-imx/pull/16
+.footnote[tensorflow GitHub issue: https://github.com/nxp-imx/meta-imx/pull/16]
 
 ---
 # Build troubleshooting - default applications
