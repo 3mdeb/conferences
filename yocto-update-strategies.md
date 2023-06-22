@@ -529,7 +529,7 @@ platform hang while booting
 
 * Default applications as a part of the created image
   - by default, we mean here part of systems to which we did not provide custom,
-    Client's source code
+    source code
   - issues here: configuration changes, compilation errors
 
 * Configuration changes
