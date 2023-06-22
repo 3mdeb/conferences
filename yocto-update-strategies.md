@@ -127,7 +127,7 @@ maintaining the integrity of the project throughout the update process.
 ---
 # Project components
 
-.center[<img src="img/compo-life.svg" width="550px">]
+.center[.image-75[![](img/compo-life.svg)]]
 
 ???
 
