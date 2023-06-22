@@ -403,7 +403,7 @@ Never modify the POKY layer. Never. Ever. - even expand it on other layers
 ---
 # Build troubleshooting - bootloader
 
-* Problems with updating bootloader may consist of
+* Example problems with updating bootloader
   - correcting bootscript
   - properly rebasing custom drivers and defconfigs
   - Yocto recipe compilation, but should not be a big issue as long as we are
