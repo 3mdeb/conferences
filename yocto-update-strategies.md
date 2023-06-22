@@ -53,7 +53,7 @@ class: center, middle, intro
   - kernel
   - default applications
   - custom applications
-* Veryfing update
+* Update verification
 * Summary
 
 ---
@@ -614,7 +614,7 @@ Summary: 1 task failed:
 ```]
 
 ---
-# Veryfing update
+# Update verification
 
 * Solving any build problems usually leads us to a bootable image
   - it is insufficient, many functionalities may not work as they should
@@ -631,7 +631,7 @@ Summary: 1 task failed:
   - logs changed behavior
 
 ---
-# Veryfing update
+# Update verification
 
 * Examples of changes needed in tests, when we got different logs
 
