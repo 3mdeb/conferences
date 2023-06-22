@@ -346,7 +346,7 @@ Never modify the POKY layer. Never. Ever. - even expand it on other layers
 
 ???
 
-* Most of the effort of performing updates should be implemented in custom
+* Most of the effort should be spent in custom
   layers
 * We can list some of the basic tasks carried out when updating Yocto, which
   should be done in custom layers
