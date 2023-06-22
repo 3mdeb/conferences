@@ -662,6 +662,22 @@ Summary: 1 task failed:
 # Summary
 
 * Performing Yocto metadata updates is a complex and multi-level problem
+  - we focused on issues related to just updating metadata
+  - next big problem may be how to deploy our update
+* Every project component is important
+  - it is crucial to understand the workflow of our embedded device
+  - even more crucial is to preserve that workflow after update
+* Validation
+  - documentation, tests, and a working CI/CD helps
+  - they also may need additional work after the update
+* Timing of the update
+  - worth using additional tools to control the state of your image and make
+    decisions based on that (e.g. CVE checks)
+  - decision can be made based on Yocto release cycle
+
+???
+
+* Performing Yocto metadata updates is a complex and multi-level problem
   - we presented the problems arising from the very fact of preparing a new
     version of the image
   - next big problem may be how to deploy our update
