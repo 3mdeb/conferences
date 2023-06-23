@@ -19,7 +19,7 @@ class: center, middle, intro
 - over 7 years in 3mdeb
 - Open-source contributor
 - Interested in:
-  - build systems (e.g. Yocto)
+  - build systems (e.g., Yocto)
   - embedded, OSS, OSF
   - firmware/OS security
 ]
@@ -31,7 +31,7 @@ class: center, middle, intro
 ]
 
 ---
-# Who we are ?
+# Who are we?
 
 .center[.image-15[![](remark-templates/3mdeb-presentation-template/images/coreboot-1024x1024.png)] .image-15[![](remark-templates/3mdeb-presentation-template/images/uefi-1024x1024.png)] .image-15[![](remark-templates/3mdeb-presentation-template/images/lvfs.png)] .image-15[![](remark-templates/3mdeb-presentation-template/images/yocto.png)]]
 .center[.image-35[![](remark-templates/3mdeb-presentation-template/images/openpower.svg)]]
@@ -76,7 +76,7 @@ class: center, middle, intro
   - Secure Boot (RoT for the whole server)
   - flash monitoring and protection
   - attestation of firmware and hardware components
-* ARM SoC capable of runing Linux
+* ARM SoC capable of running Linux
 
 * BMC stands for Baseboard Management Controller and is a critical component in
 server management.
@@ -109,7 +109,31 @@ grasp the significance of OpenBMC and its capabilities.
 .footnote[https://commons.wikimedia.org/wiki/File:OpenBMC_logo.png]
 
 ---
-# OpenBMC features 
+# OpenBMC status
+
+* Project in dynamic development
+* Some significant changes in the last years
+  - switching from OpenBMC REST API to Redfish API
+  - switching from phosphor-webui to webui-vue
+  - switching mechanisms for inventory, power control, ...
+* Documentation not always keeps up with the development
+  - you may come across some outdated/deprecated documents
+  - not particularly clear for a newcomer what is up to date
+  - it may be confusing at first
+
+.center[.image-40[![](img/confusedtravolta.jpg)]]
+
+.footnote[https://i.kym-cdn.com/entries/icons/original/000/019/277/confusedtravolta.jpg]
+
+???
+
+Some documents say a given feature is deprecated, but some still refer to that
+feature.
+
+The documentation structure is challenging to digest for a newcomer.
+
+---
+# OpenBMC features
 
 * Web-based user interface
 * Event logging and alerting
@@ -122,29 +146,6 @@ grasp the significance of OpenBMC and its capabilities.
 * Firmware update (BMC and host)
 * More
 
----
-# OpenBMC status
-
-* Project in dynamic development
-* Some major changes in the last years
-  - switching from OpenBMC REST API to Redfish API
-  - switching from phosphor-webui to webui-vue
-  - switching mechanisms for inventory, power control, ...
-* Documentation not always keeps up with the development
-  - you may come across some outdated / deprecated documents
-  - not pariticlarly clear for a newcomer what is up to date 
-  - it may be confusing at first
-
-.center[.image-40[![](img/confusedtravolta.jpg)]]
-
-.footnote[https://i.kym-cdn.com/entries/icons/original/000/019/277/confusedtravolta.jpg]
-
-???
-
-Some documents say given feature is deprecated, some still refer to that
-feature.
-
-The documentation structure is not easy to digest for a newcomer.
 
 ---
 # Web-based user interface
@@ -157,7 +158,7 @@ The documentation structure is not easy to digest for a newcomer.
 
 Server overview page from OpenBMC WebUI
 
-This is how modern OpenBMC interface look like. It comes from the webui-vue
+This is what the modern OpenBMC interface looks like. It comes from the webui-vue
 project.
 
 ---
@@ -172,7 +173,7 @@ project.
 You may still find older web interface on existing machines, which comes from
 already deprecated phosphor-webui project.
 
-The feature-set is mostly the same. The differences are in the underlying
+The feature set is mostly the same. The differences are in the underlying
 technologies.
 
 
@@ -224,8 +225,8 @@ Virtual media page
 ---
 
 # Firmware update
-* Exposes mechanisms for updading both host and BMC firmware
-* Multiple ways of providing / triggering update
+* Exposes mechanisms for updating both host and BMC firmware
+* Multiple ways of providing/triggering update
   - scp / TFTP and local DBus command (via cmdline)
   - OpenBMC REST API
   - Redfish API
@@ -242,7 +243,7 @@ Virtual media page
 
 * Platform Level Data Model
   - protocol and data model for BMC <-> hardware communication
-  - provides common language and messages structure 
+  - provides a common language and messages structure
   - interoperability in system management operations
 * OpenBMC implementation
   - https://github.com/openbmc/pldm 
@@ -252,7 +253,7 @@ Virtual media page
  - https://www.dmtf.org/sites/default/files/standards/documents/DSP0240_1.1.0.pdf
 * PLDM stack on OpenBMC
   - https://github.com/openbmc/docs/blob/master/designs/pldm-stack.md
-  - explains reasoning to use it, and advantages over IPMI
+  - explains reasoning for using it, and its advantages over IPMI
 
 ???
 
@@ -274,8 +275,8 @@ uniformity in system management operations.
 # SPDM
 
 * Security Protocol and Data Model 
-  - efficient access to low-level security acapabilities and operations
-  - estabilsh trust between on-board components
+  - efficient access to low-level security capabilities and operations
+  - establish trust between onboard components
   - establish encrypted/authenticated communication channel
   - can be used by other DMTF-defined mechanisms
 * Implemented in OpenBMC via libspdm
@@ -294,7 +295,7 @@ capabilities and operations
 
 The Security Protocol and Data Model (SPDM) Specification defines messages,
 data objects, and sequences for performing message exchanges between devices
-over a variety of transport and physical media. The description of message
+over various transport and physical media. The description of message
 exchanges includes authentication and provisioning of hardware identities,
 measurement for firmware identities, session key exchange protocols to enable
 confidentiality with integrity protected data communication and other related
@@ -308,12 +309,17 @@ On-board management traffic can be secured/encrypted.
 # Repository overview
 
 * A single huge repository with multiple meta-layers
-  - poky / OE layers commited directly (not as submodules)
+  - poky / OE layers committed directly (not as submodules)
 * Layers with common OpenBMC recipes (such as meta-phosphor)
 * Common BSP layers (such as meta-aspeed, meta-openpower)
 * OEM layers for specific boards (such as meta-ibm/meta-romulus)
 
 .center[.image-30[![](img/openbmc_layers.png)]]
+
+???
+
+Having all of the layers in a single repository is not obvious and quite different
+from other Yocto distributions.
 
 ---
 # Build environment
@@ -334,9 +340,6 @@ On-board management traffic can be secured/encrypted.
 
 ???
 
-Having all of layers in a single repository is not obvious and quite different
-from other Yocto distributions.
-
 ---
 # Adding Supermicro X11SSH-TF
 
@@ -348,6 +351,13 @@ from other Yocto distributions.
 .center[.image-35[![](img/X11SSH-TF.webp)]]
 
 .footnote[https://www.supermicro.com/en/products/motherboard/x11ssh-tf]
+
+???
+
+The goal was to play around with the OpenBMC with the hardware we have available.
+We have noticed some old patchsets for the SUpermicor X11SSH-TF, and also some
+X11SPI board in the OpenBMC repository. The main difference between these two
+is the BMC chip itself. The SSH uses AST2400, while the SPI uses AST2500.
 
 ---
 # Adding Supermicro X11SSH-TF
@@ -364,11 +374,11 @@ from other Yocto distributions.
 
 ???
 
-Workbook is deprecated as inventory management. It looks like there are at
-least 3 ways of doing that right now and one must select the proper one for
+The workbook is deprecated as inventory management. It looks like there are at
+least 3 ways of doing that right now, and one must select the proper one for
 their board.
 
-The old patchet used some scripts for power control. This mechnism is also
+The old patches used some scripts for power control. This mechanism is also
 deprecated. There are at least 2 ways of managing power control right now in
 OpenBMC, and one of them shall be used here.
 
@@ -423,7 +433,7 @@ qemu-system-arm -machine supermicrox11-bmc \
   - https://www.youtube.com/watch?v=i1FiOexyKTI
 * OpenBMC YouTube channel with interesting videos
   - https://www.youtube.com/@openbmc9752/videos
-* Others OpenBMC presentations
+* Other OpenBMC presentations
   - https://github.com/openbmc/openbmc/wiki/Presentations
 * Redfish talk from ELC
   - https://www.youtube.com/watch?v=nBCjuuOjxRQ
