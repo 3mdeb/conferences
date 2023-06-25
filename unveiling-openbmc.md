@@ -4,7 +4,7 @@ class: center, middle, intro
 
 ### Yocto DevDay 2023 
 
-## Your Name
+## Maciej Pijanowski
 
 <img src="remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
 
@@ -223,8 +223,8 @@ KVM page
 Virtual media page
 
 ---
-
 # Firmware update
+
 * Exposes mechanisms for updating both host and BMC firmware
 * Multiple ways of providing/triggering update
   - scp / TFTP and local DBus command (via cmdline)
@@ -234,9 +234,40 @@ Virtual media page
 * Documentation
   - https://github.com/openbmc/docs/tree/master/architecture/code-update
 
-.center[.image-80[![](img/openbmc_firmware_update.png)]]
+.center[.image-90[![](img/openbmc_firmware_update.png)]]
 
 ???
+
+---
+# Redfish
+
+* IPMI replacement standardized by the DMTF in 2015 (v1.0)
+* Aims to be interoperable (cross-vendors)
+* Provides REST API for platform management
+  - status, power control, boot order, Secure Boot, sensors, users, ...  
+* Implemented by bmcweb in OpenBMC
+  - https://github.com/openbmc/bmcweb/blob/master/Redfish.md
+* Example API call for gracefull shutdown
+
+.code-9px[```md
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" \
+  -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset \
+  -d '{"ResetType": "GracefulShutdown"}'
+```]
+
+.center[.image-30[![](img/DMTF_Redfish_logo_R.jpg)]]
+
+???
+
+Documentation in bmcweb repo provides some implementation details and API
+reference.
+
+Redfish provides REST API for many platform related actions, such as:
+- getting status of different components and services,
+- power control,
+- firmware settings, such as changing boot order, and secure boot keys
+  management
+- user accounts management for the BMC OS
 
 ---
 # PLDM
