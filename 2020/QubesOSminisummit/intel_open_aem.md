@@ -26,7 +26,7 @@ class: center, middle, intro
 
 # Introduction
 
-.center[<img src="images/miczyg.png" width="220px" style="margin-top:-50px">]
+.center[<img src="/img/miczyg.png" width="220px" style="margin-top:-50px">]
 .center[Michał Żygowski]
 .center[_Firmware Engineer_]
 .right-column50[

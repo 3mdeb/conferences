@@ -26,7 +26,7 @@ class: center, middle, intro
 
 # Introduction
 
-.center[<img src="images/miczyg.png" width="220px" style="margin-top:-50px">]
+.center[<img src="/img/miczyg.png" width="220px" style="margin-top:-50px">]
 .center[Michał Żygowski]
 .center[_Firmware Engineer_]
 .right-column50[
@@ -50,7 +50,7 @@ class: center, middle, intro
 
 # Evil Maid attacks
 
-.center[<img src="images/evil_maid.jpg" width="450px" style="centered">]
+.center[<img src="/img/evil_maid.jpg" width="450px" style="centered">]
 
 ---
 

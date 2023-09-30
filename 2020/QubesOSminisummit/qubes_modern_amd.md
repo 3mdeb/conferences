@@ -24,7 +24,7 @@ class: center, middle, intro
 
 # Introduction
 
-.center[<img src="images/miczyg.png" width="220px" style="margin-top:-50px">]
+.center[<img src="/img/miczyg.png" width="220px" style="margin-top:-50px">]
 .center[Michał Żygowski]
 .center[_Firmware Engineer_]
 .right-column50[
@@ -109,7 +109,7 @@ for a nightly Qubes build.
 - the encryption is transparent to software and CPU operation (data read from
   DRAM is automatically decrypted by cryptographic engines)
 
-.image-50[.center[<img src="images/amd_sme.jpg">]]
+.image-50[.center[<img src="/img/amd_sme.jpg">]]
 
 .footnote[
 Source: https://developer.amd.com/wordpress/media/2013/12/AMD_Memory_Encryption_Whitepaper_v7-Public.pdf
@@ -123,7 +123,7 @@ Source: https://developer.amd.com/wordpress/media/2013/12/AMD_Memory_Encryption_
   what is not (by placing the code and data on the address space where the
   C-bit is set)
 
-.image-70[.center[<img src="images/amd_sme2.jpg">]]
+.image-70[.center[<img src="/img/amd_sme2.jpg">]]
 
 .footnote[
 Source: https://developer.amd.com/wordpress/media/2013/12/AMD_Memory_Encryption_Whitepaper_v7-Public.pdf
