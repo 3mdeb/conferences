@@ -6,7 +6,7 @@ class: center, middle, intro
 
 ## Michał Żygowski
 
-<img src="remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
+<img src="/remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
 
 ---
 
@@ -25,7 +25,7 @@ class: center, middle, intro
 
 # `whoami`
 
-.center[<img src="images/miczyg.png" width="180px" style="margin-top:-60px">]
+.center[<img src="/img/miczyg.png" width="180px" style="margin-top:-60px">]
 .center[Michał Żygowski]
 .center[_Firmware Engineer_]
 .right-column50[
@@ -38,13 +38,13 @@ class: center, middle, intro
 ]
 
 .left-column50[
-- <a href="https://twitter.com/_miczyg_"><img src="remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @\_miczyg\_</a>
+- <a href="https://twitter.com/_miczyg_"><img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @\_miczyg\_</a>
 
-- <a href="mailto:michal.zygowski@3mdeb.com"><img src="remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> michal.zygowski@3mdeb.com</a>
+- <a href="mailto:michal.zygowski@3mdeb.com"><img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> michal.zygowski@3mdeb.com</a>
 
-- <a href="https://www.linkedin.com/in/miczyg"><img src="remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/in/miczyg</a>
+- <a href="https://www.linkedin.com/in/miczyg"><img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/in/miczyg</a>
 
-- <a href="https://www.facebook.com/miczyg1395"><img src="remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/miczyg1395</a>
+- <a href="https://www.facebook.com/miczyg1395"><img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/miczyg1395</a>
 ]
 
 ---
@@ -85,10 +85,10 @@ class: center, middle, intro
   * Not necessarily ;)
 
 .left-column50[
-.image-75[![](images/qubes_modern_desktop/desktop_lock.jpg)]
+.image-75[![](/img/qubes_modern_desktop/desktop_lock.jpg)]
 ]
 .right-column50[
-.image-90[![](images/qubes_modern_desktop/laptop_lock.jpg)]
+.image-90[![](/img/qubes_modern_desktop/laptop_lock.jpg)]
 ]
 
 ???
@@ -116,7 +116,7 @@ workstation at home became a need.
 * MSI PRO Z690-A has been selected as a new port target to Dasharo
 * Now what is Dasharo you may ask?
 
-.center.image-60[![](images/qubes_modern_desktop/msi_pro_z690a.png)]
+.center.image-60[![](/img/qubes_modern_desktop/msi_pro_z690a.png)]
 
 ---
 
@@ -137,7 +137,7 @@ workstation at home became a need.
 * More on [docs.dasharo.com](https://docs.dasharo.com/variants/msi_z690/overview/) (including binaries and documentation)
 * How you make it possible? Just like this:
 
-.center.image-80[![](images/qubes_modern_desktop/spiderweb_in_lab.jpg)]
+.center.image-80[![](/img/qubes_modern_desktop/spiderweb_in_lab.jpg)]
 
 ---
 
@@ -158,7 +158,7 @@ What we currently support:
 
 # Dasharo
 
-.center.image-40[![](images/qubes_modern_desktop/finding-nemo-seagull.gif)]
+.center.image-40[![](/img/qubes_modern_desktop/finding-nemo-seagull.gif)]
 
 .left-column50[
 What we WANT to support:
