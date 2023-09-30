@@ -6,7 +6,7 @@ class: center, middle, intro
 
 ## Michał Żygowski
 
-<img src="remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
+<img src="/remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
 
 ---
 
@@ -37,13 +37,13 @@ class: center, middle, intro
   - security solutions
 ]
 .left-column50[
-- <a href="https://twitter.com/_miczyg_"><img src="remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @_miczyg_</a>
+- <a href="https://twitter.com/_miczyg_"><img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @_miczyg_</a>
 
-- <a href="mailto:michal.zygowski@3mdeb.com"><img src="remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> michal.zygowski@3mdeb.com</a>
+- <a href="mailto:michal.zygowski@3mdeb.com"><img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> michal.zygowski@3mdeb.com</a>
 
-- <a href="https://www.linkedin.com/in/miczyg"><img src="remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/in/miczyg</a>
+- <a href="https://www.linkedin.com/in/miczyg"><img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/in/miczyg</a>
 
-- <a href="https://www.facebook.com/miczyg1395"><img src="remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/miczyg1395</a>
+- <a href="https://www.facebook.com/miczyg1395"><img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/miczyg1395</a>
 ]
 
 ---
