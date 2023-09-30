@@ -6,7 +6,7 @@ class: center, middle, intro
 
 ## Piotr Król
 
-<img src="remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
+<img src="/remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
 
 ---
 
@@ -28,16 +28,16 @@ class: center, middle, intro
 
 # `whoami`
 
-.center[<img src="remark-templates/3mdeb-presentation-template/images/piotr_krol.jpg" width="200px">]
+.center[<img src="/remark-templates/3mdeb-presentation-template/images/piotr_krol.jpg" width="200px">]
 
 .center[Piotr Król]
 .center[_Founder & Embedded Systems Consultant_]
 
 .right-column50[
-<img src="remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px"/> @pietrushnic<br>
-<img src="remark-templates/3mdeb-presentation-template/images/email.png" width="24px"/> piotr.krol@3mdeb.com<br>
-<img src="remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px"/> [linkedin.com/in/krolpiotr](https://www.linkedin.com/in/krolpiotr)<br>
-<img src="remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px"/> [facebook.com/piotr.krol.756859](https://www.facebook.com/piotr.krol.756859)
+<img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px"/> @pietrushnic<br>
+<img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px"/> piotr.krol@3mdeb.com<br>
+<img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px"/> [linkedin.com/in/krolpiotr](https://www.linkedin.com/in/krolpiotr)<br>
+<img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px"/> [facebook.com/piotr.krol.756859](https://www.facebook.com/piotr.krol.756859)
 ]
 
 .left-column50[
