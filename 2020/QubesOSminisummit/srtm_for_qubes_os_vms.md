@@ -69,7 +69,7 @@ class: center, middle, intro
 
 # Root of Trust family
 
-.center[.image-75[![](images/srtm_in_rot.svg)]]
+.center[.image-75[![](/img/srtm_in_rot.svg)]]
 
 * In this presentation we will focus only on S-RTM and how to use it in virtual
   machines
@@ -97,7 +97,7 @@ class: center, middle, intro
 
 # Practical use cases
 
-.center[.image-90[![](images/srtm_ttc.svg)]]
+.center[.image-90[![](/img/srtm_ttc.svg)]]
 
 * S-RTM builds foundation for transitive trust chain which establish chain of
   trust e.g. during boot process (aka measured boot)
@@ -114,7 +114,7 @@ class: center, middle, intro
 
 # Where is S-RTM on real hardware?
 
-.center[.image-50[![](images/srtm_on_real_hardware.svg)]]
+.center[.image-50[![](/img/srtm_on_real_hardware.svg)]]
 
 * After realizing where S-RTM is and how it is created on real hardware, how to
   move that to VMs?
@@ -123,7 +123,7 @@ class: center, middle, intro
 
 # Xen stub domains
 
-.center[.image-50[![](images/stubdom.svg)]]
+.center[.image-50[![](/img/stubdom.svg)]]
 
 ---
 
@@ -186,7 +186,7 @@ class: center, middle, intro
 
 # swtpm in dom0
 
-.center[.image-70[![](images/swtpm_in_dom0.svg)]]
+.center[.image-70[![](/img/swtpm_in_dom0.svg)]]
 
 * dom0 attack vector possibly increased by `swtpm` vulnerabilities
 * there is need for some mechanism managing `swtpms`
@@ -195,7 +195,7 @@ class: center, middle, intro
 
 # swtpm in stubdom
 
-.center[.image-45[![](images/swtpm_in_stubdom.svg)]]
+.center[.image-45[![](/img/swtpm_in_stubdom.svg)]]
 
 * Support only in HVM
 * Key problem at this point is that stubdom use `-machine xenfv` which cause
@@ -205,7 +205,7 @@ class: center, middle, intro
 
 # Xen vTPMs
 
-.center[.image-50[![](images/xen_vtpm.svg)]]
+.center[.image-50[![](/img/xen_vtpm.svg)]]
 
 ---
 
@@ -233,13 +233,13 @@ class: center, middle, intro
 
 # 3mdeb's dream design
 
-.center[.image-50[![](images/3mdeb_dream_vtpm.svg)]]
+.center[.image-50[![](/img/3mdeb_dream_vtpm.svg)]]
 
 ---
 
 # Threat model
 
-.center[.image-60[![](images/threat_model.png)]]
+.center[.image-60[![](/img/threat_model.png)]]
 
 * not everyone needs the same countermeasure, so either we assume
   recommended/feasible paranoia level or we implement environment flexible

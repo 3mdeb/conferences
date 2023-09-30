@@ -67,7 +67,7 @@ class: center, middle, intro
 
 # Root of Trust family
 
-.center[.image-75[![](images/drtm_in_rot.svg)]]
+.center[.image-75[![](/img/drtm_in_rot.svg)]]
 
 * 2 most well known implementations use special CPU instruction to trigger
   D-RTM (aka Dynamic Launch Event): Intel `SENTER` and AMD `SKINIT`
@@ -77,7 +77,7 @@ class: center, middle, intro
 
 # Terminology
 
-.center[.image-99[![](images/d-rtm_timeline.png)]]
+.center[.image-99[![](/img/d-rtm_timeline.png)]]
 
 * DRTM start when Dynamic Launch event call executes
 * DL Event controls PCRs 17-22, those are initialized with value -1
@@ -92,7 +92,7 @@ TCG D-RTM Architecture v1.0.0
 
 # Boot process for Qubes OS
 
-.center[.image-99[![](images/boot_process_overview.svg)]]
+.center[.image-99[![](/img/boot_process_overview.svg)]]
 
 * This is just general overview of boot process to build background for further
   slides
@@ -102,7 +102,7 @@ TCG D-RTM Architecture v1.0.0
 
 # Early Launch scenario
 
-.center[.image-99[![](images/early_launch.svg)]]
+.center[.image-99[![](/img/early_launch.svg)]]
 
 * **Early Launch** happens once each boot
 * What is the value?
@@ -116,7 +116,7 @@ TCG D-RTM Architecture v1.0.0
 
 # Late Launch scenario
 
-.center[.image-99[![](images/late_launch.svg)]]
+.center[.image-99[![](/img/late_launch.svg)]]
 
 * **Late Launch** may happen multiple times during runtime
 * Way more complex case, but give lot of flexibility
@@ -129,7 +129,7 @@ TCG D-RTM Architecture v1.0.0
 
 # Flicker
 
-.center[.image-70[![](images/flicker.png)]]
+.center[.image-70[![](/img/flicker.png)]]
 * In 2008 Jonathan M. McCune, Bryan Parno, Adrian Perrig published v0.1 version
   of Flicker, a technique for executing application code as DCE Payload
 * Their papers provide couple interesting use cases:
@@ -144,7 +144,7 @@ TCG D-RTM Architecture v1.0.0
 
 # Platform relaunch
 
-.center[.image-90[![](images/platform_relaunch.svg)]]
+.center[.image-90[![](/img/platform_relaunch.svg)]]
 
 * Since Xen can control `VMEXIT_{SKINIT,SENTER}` we have to reestablish trust
   in hypervisor before performing any further system integrity checks
@@ -168,7 +168,7 @@ TCG D-RTM Architecture v1.0.0
 
 # vTPM
 
-.center[.image-40[![](images/vtpm_and_drtm.svg)]]
+.center[.image-40[![](/img/vtpm_and_drtm.svg)]]
 
 * Any attestation of sealed secrets when using D-RTM would require TPM support
   for VMs
@@ -179,7 +179,7 @@ TCG D-RTM Architecture v1.0.0
 
 # Network booted vDLME
 
-.center[.image-70[![](images/netboot_vdlme.svg)]]
+.center[.image-70[![](/img/netboot_vdlme.svg)]]
 
 * SKINIT (or any other DL Event) instruction is emulated by hypervisor but from
   VM perspective it looks like Late Launch
