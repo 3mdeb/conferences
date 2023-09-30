@@ -4,13 +4,13 @@ class: center, middle, intro
 
 ### Day 1
 
-<img src="remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
+<img src="/remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
 
 ---
 
 # Welcome
 
-.center[.image-99[![](images/qubes_os_summit.png)]]
+.center[.image-99[![](/img/qubes_os_summit.png)]]
 
 ### .center[Thank you for coming!]
 
@@ -19,7 +19,7 @@ class: center, middle, intro
 
 # Why I care
 
-.center[.image-99[![](images/trust.png)]]
+.center[.image-99[![](/img/trust.png)]]
 
 * Defend identity.
 * We share vision.
@@ -81,15 +81,15 @@ Explain why you care about this event.
 
 # History
 
-.center[.image-99[![](images/post.png)]]
+.center[.image-99[![](/img/post.png)]]
 
 ---
 
 # History
 
-.center[.image-99[![](images/qubes_os_summit.png)]]
-.center[.image-50[![](images/2021.png)]]
-.center[.image-40[![](images/2019.png) ![](images/2020.jpeg)]]
+.center[.image-99[![](/img/qubes_os_summit.png)]]
+.center[.image-50[![](/img/2021.png)]]
+.center[.image-40[![](/img/2019.png) ![](/img/2020.jpeg)]]
 
 ???
 
@@ -275,8 +275,8 @@ Explain why you care about this event.
 
 # Social event
 
-.center[.image-30[![](images/sudblock2.png) ![](images/sudblock3.png)]]
-.center[.image-99[![](images/sudblock.png)]]
+.center[.image-30[![](/img/sudblock2.png) ![](/img/sudblock3.png)]]
+.center[.image-99[![](/img/sudblock.png)]]
 
 ---
 
@@ -299,7 +299,7 @@ Explain why you care about this event.
 
 # Organizers
 
-.center[.image-40[![](images/3mdeb.png) ![](images/itl.png)]]
+.center[.image-40[![](/img/3mdeb.png) ![](/img/itl.png)]]
 
 - It would not be possible without support and dedication of Invisible Things
   Lab and 3mdeb teams.
@@ -309,11 +309,11 @@ Explain why you care about this event.
 
 # Sponsors
 
-.center[.image-60[![](images/fpf.png)] .image-30[![](images/nlnet.png)]]
+.center[.image-60[![](/img/fpf.png)] .image-30[![](/img/nlnet.png)]]
 
-.center[.image-40[![](images/protectli.png)] &nbsp;&nbsp; .image-30[![](images/arc-compute.png)]]
-.center[.image-40[![](images/nitrokey.png)]]
-.center[.image-40[![](images/novacustom.png)]]
+.center[.image-40[![](/img/protectli.png)] &nbsp;&nbsp; .image-30[![](/img/arc-compute.png)]]
+.center[.image-40[![](/img/nitrokey.png)]]
+.center[.image-40[![](/img/novacustom.png)]]
 
 ???
 
