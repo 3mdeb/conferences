@@ -6,7 +6,7 @@ class: center, middle, intro
 
 ## Michał Żygowski
 
-<img src="remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
+<img src="/remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
 
 ---
 
@@ -25,7 +25,7 @@ class: center, middle, intro
 
 # `whoami`
 
-.center[<img src="images/miczyg.png" width="180px" style="margin-top:-60px">]
+.center[<img src="/img/miczyg.png" width="180px" style="margin-top:-60px">]
 .center[Michał Żygowski]
 .center[_Firmware Engineer_]
 .right-column50[
@@ -38,13 +38,13 @@ class: center, middle, intro
 ]
 
 .left-column50[
-- <a href="https://twitter.com/_miczyg_"><img src="remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @\_miczyg\_</a>
+- <a href="https://twitter.com/_miczyg_"><img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @\_miczyg\_</a>
 
-- <a href="mailto:michal.zygowski@3mdeb.com"><img src="remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> michal.zygowski@3mdeb.com</a>
+- <a href="mailto:michal.zygowski@3mdeb.com"><img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> michal.zygowski@3mdeb.com</a>
 
-- <a href="https://www.linkedin.com/in/miczyg"><img src="remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/in/miczyg</a>
+- <a href="https://www.linkedin.com/in/miczyg"><img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/in/miczyg</a>
 
-- <a href="https://www.facebook.com/miczyg1395"><img src="remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/miczyg1395</a>
+- <a href="https://www.facebook.com/miczyg1395"><img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/miczyg1395</a>
 ]
 
 ---
@@ -69,7 +69,7 @@ class: center, middle, intro
 * **Requires TPM and Dynamic Root of Trust for Measurement (DRTM)** technology from
   silicon vendor to be present and supported by the firmware
 
-.center.image-50[![](images/qubes_trenchboot_aem/evil_maid.png)]
+.center.image-50[![](/img/qubes_trenchboot_aem/evil_maid.png)]
 
 ---
 
@@ -162,7 +162,7 @@ Ongoing work:
 
 ### .center[TrenchBoot is a framework that allows individuals and projects to build security engines to perform launch integrity actions for their systems.]
 
-.center.image-40[![](images/qubes_trenchboot_aem/trenchboot_logo.png)]
+.center.image-40[![](/img/qubes_trenchboot_aem/trenchboot_logo.png)]
 
 * The framework builds upon Boot Integrity Technologies (BITs) that establish
   one or more Roots of Trust (RoT) from which a degree of confidence that
@@ -186,7 +186,7 @@ Ongoing work:
   * GRUB support for SKINIT
   * Secure Kernel Loader extension with TPM event log
 
-.center.image-80[![](images/qubes_trenchboot_aem/nlnet.png)]
+.center.image-80[![](/img/qubes_trenchboot_aem/nlnet.png)]
 
 ---
 
@@ -214,10 +214,10 @@ Ongoing work:
   * Lenovo Thinkpad x230 (Intel Ivybridge, TPM 1.2 legacy boot)
 
 .left-column50[
-.center.image-40[![](images/qubes_trenchboot_aem/optiplex-desktop-9010.png)]
+.center.image-40[![](/img/qubes_trenchboot_aem/optiplex-desktop-9010.png)]
 ]
 .right-column50[
-.center.image-60[![](images/qubes_trenchboot_aem/lenovo_x230.png)]
+.center.image-60[![](/img/qubes_trenchboot_aem/lenovo_x230.png)]
 ]
 
 ---
@@ -231,7 +231,7 @@ Ongoing work:
   * Protectli VP4670 (Intel Gen Comet Lake with TPM1.2 and TPM 2.0, legacy
     boot)
 
-.center.image-60[![](images/qubes_trenchboot_aem/protectli_vp46.png)]
+.center.image-60[![](/img/qubes_trenchboot_aem/protectli_vp46.png)]
 
 ---
 
@@ -245,10 +245,10 @@ Ongoing work:
   * Supermicro MS11SDV (AMD EPYC 3000 with TPM1.2 and TPM2.0, legacy boot)
 
 .left-column50[
-.center.image-85[![](images/qubes_trenchboot_aem/Asus_KGPE_D16_1.png)]
+.center.image-85[![](/img/qubes_trenchboot_aem/Asus_KGPE_D16_1.png)]
 ]
 .right-column50[
-.center.image-65[![](images/qubes_trenchboot_aem/M11SDV-8C-LN4F.png)]
+.center.image-65[![](/img/qubes_trenchboot_aem/M11SDV-8C-LN4F.png)]
 ]
 
 ---
@@ -265,7 +265,7 @@ Ongoing work:
   * Supermicro MS11SDV (AMD EPYC 3000 with TPM1.2 and TPM2.0, legacy and UEFI
     boot)
 
-.center.image-30[![](images/qubes_trenchboot_aem/M11SDV-8C-LN4F.png)]
+.center.image-30[![](/img/qubes_trenchboot_aem/M11SDV-8C-LN4F.png)]
 
 ---
 
