@@ -25,7 +25,7 @@ class: center, middle, intro
 
 # $ whoami
 
-.center[<img src="images/nk-conference.png" width="175px" style="margin-top:-50px">]
+.center[<img src="/img/nk-conference.png" width="175px" style="margin-top:-50px">]
 .center[Norbert Kamiński]
 .center[_Junior Embedded Systems Engineer_]
 
@@ -57,7 +57,7 @@ class: center, middle, intro
 
 # Standard fwupd/LVFS architecture
 
-.center[ .image-80[![architecture-plan](images/architecture-plan.png)]]
+.center[ .image-80[![architecture-plan](/img/architecture-plan.png)]]
 .footnote[Image source: https://lvfs.readthedocs.io/en/latest/intro.html]
 
 ---
@@ -72,7 +72,7 @@ firmware archives
 * Firmware update files are stored in cabinet archives files, that contain
 firmware, metadata and detached signature
 
-![architecture-plan-internet](images/architecture-plan-internet.png)
+![architecture-plan-internet](/img/architecture-plan-internet.png)
 
 ---
 
@@ -87,7 +87,7 @@ fwupd
 * The `fwupd` is a system activated daemon with a D-Bus interface, that can be
 used to perform wide upgrades and downgrades according to security policy
 
-.center[ .image-60[![architecture-plan-system](images/architecture-plan-system.png)]]
+.center[ .image-60[![architecture-plan-system](/img/architecture-plan-system.png)]]
 
 ---
 
@@ -113,13 +113,13 @@ internet connection
 
 * Building the `fwupd` from the source at the AdminVM.
 
-.center[ .image-70[![architecture-plan-qubes](images/work-in-progress.png)]]
+.center[ .image-70[![architecture-plan-qubes](/img/work-in-progress.png)]]
 
 ---
 
 # Architecture Plan
 
-.center[ .image-65[![architecture-plan-qubes](images/QubesFwupd.png)]]
+.center[ .image-65[![architecture-plan-qubes](/img/QubesFwupd.png)]]
 
 ---
 
@@ -133,7 +133,7 @@ internet connection
 
 * Then it runs `fwupd-download-updates` in the UpdateVM
 
-.center[ .image-65[![architecture-plan-qubes](images/QubesFwupd2.png)]]
+.center[ .image-65[![architecture-plan-qubes](/img/QubesFwupd2.png)]]
 
 ---
 
@@ -147,7 +147,7 @@ internet connection
 
 * Otherwise it download the `.cab` archive and it starts `qubes.ReciveUpdates`
 
-.center[ .image-65[![architecture-plan-qubes](images/QubesFwupd2.png)]]
+.center[ .image-65[![architecture-plan-qubes](/img/QubesFwupd2.png)]]
 
 ---
 
@@ -160,7 +160,7 @@ internet connection
 
 * `qubes-receive-updates` creates the update cache directory for fwupd,
 it copies the files and it performs the second step of the validation
-.center[ .image-65[![architecture-plan-qubes](images/QubesFwupd2.png)]]
+.center[ .image-65[![architecture-plan-qubes](/img/QubesFwupd2.png)]]
 
 ---
 
@@ -173,7 +173,7 @@ devices
 
 * The second daemon is placed on the sys-usb. It allows us to update the
 hardware connected via USB
-.center[ .image-65[![architecture-plan-qubes](images/QubesFwupd3.png)]]
+.center[ .image-65[![architecture-plan-qubes](/img/QubesFwupd3.png)]]
 
 ---
 
@@ -187,7 +187,7 @@ it to `qubes-fwupdmgr`
 * If the update is available `qubes-fwupdmgr` uses proper `fwupdmgr` to perform
 the firmware update process
 
-.center[ .image-65[![architecture-plan-qubes](images/QubesFwupd3.png)]]
+.center[ .image-65[![architecture-plan-qubes](/img/QubesFwupd3.png)]]
 ---
 
 # To Do's
@@ -200,7 +200,7 @@ updating firmware
 
 * `.cab` archives validation that will ensure us about the safety of the files
 
-.center[ .image-70[![architecture-plan-qubes](images/work-in-progress.png)]]
+.center[ .image-70[![architecture-plan-qubes](/img/work-in-progress.png)]]
 
 ---
 
