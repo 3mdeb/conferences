@@ -6,12 +6,12 @@ class: center, middle, intro
 
 ## Piotr Król
 
-<img src="remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
+<img src="/remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
 
 ---
 # `whoami`
 
-.center[<img src="remark-templates/3mdeb-presentation-template/images/piotr_krol.jpg" width="150px">]
+.center[<img src="/remark-templates/3mdeb-presentation-template/images/piotr_krol.jpg" width="150px">]
 
 .center[Piotr Król]
 .center[_3mdeb Founder & CEO_]
@@ -68,7 +68,7 @@ class: center, middle, intro
 
 # Why USB is hard?
 
-.center[.image-60[![](images/usb.svg)]]
+.center[.image-60[![](/img/usb.svg)]]
 
 * USB is relatively complex protocol
   - thousands pages of specs
@@ -82,7 +82,7 @@ class: center, middle, intro
 
 # USB Endpoints
 
-.center[.image-50[![](images/usb_endpoints.png)]]
+.center[.image-50[![](/img/usb_endpoints.png)]]
 
 * One USB device can have even 32 endpoints
 * There 3 types of transfers used in USB devices
@@ -95,7 +95,7 @@ class: center, middle, intro
 
 # USB devices security
 
-.center[.image-90[![](images/usb_attacks.png)]]
+.center[.image-90[![](/img/usb_attacks.png)]]
 .footnote["USB-based attacks" Nissim,Yahalom,Elovici 2017]
 
 ---
@@ -113,7 +113,7 @@ class: center, middle, intro
 
 # How Qubes OS deal with those problems?
 
-.center[.image-90[![](images/sys-usb_arch.svg)]]
+.center[.image-90[![](/img/sys-usb_arch.svg)]]
 
 * Qubes OS use USB/IP project to provide devices from sys-usb to AppVMs
 * This configuration has some limitations
@@ -146,7 +146,7 @@ class: center, middle, intro
 
 # Qubes Video Companion
 
-.center[.image-30[![](images/qvc.png)]]
+.center[.image-30[![](/img/qvc.png)]]
 
 * Project created by Elliot Killick in Sep 2020 with the goal of securely
   streaming webcams and sharing screens across VMs
@@ -159,8 +159,8 @@ class: center, middle, intro
 
 # Qubes Video Companion - features
 
-.center[.image-30[![](images/tray_icon.png)]]
-.center[.image-50[![](images/notification.png)]]
+.center[.image-30[![](/img/tray_icon.png)]]
+.center[.image-50[![](/img/notification.png)]]
 
 * system try icon and notifications while streaming or screen sharing
 * guaranteed one-way communication from video sending domain to video receiving
@@ -174,7 +174,7 @@ class: center, middle, intro
 
 # QVC architecture
 
-.center[.image-90[![](images/qvc-arch.svg)]]
+.center[.image-90[![](/img/qvc-arch.svg)]]
 
 * Qubes Video Companion create GStreamer pipline which sanitize video stream in
   `sys-usb` and expose it as file descriptor through Qrexec
