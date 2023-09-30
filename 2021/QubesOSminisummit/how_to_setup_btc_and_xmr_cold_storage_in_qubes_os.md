@@ -6,12 +6,12 @@ class: center, middle, intro
 
 ## Piotr Król
 
-<img src="remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
+<img src="/remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
 
 ---
 # `whoami`
 
-.center[<img src="remark-templates/3mdeb-presentation-template/images/piotr_krol.jpg" width="150px">]
+.center[<img src="/remark-templates/3mdeb-presentation-template/images/piotr_krol.jpg" width="150px">]
 
 .center[Piotr Król]
 .center[_3mdeb Founder & CEO_]
@@ -68,7 +68,7 @@ class: center, middle, intro
 
 # Presentation goal
 
-.center[.image-20[![](images/xmr.jpg)] .image-20[![](images/btc.png)]]
+.center[.image-20[![](/img/xmr.jpg)] .image-20[![](/img/btc.png)]]
 
 ### .center[**To demo offline wallet for BTC and XMR with Qubes OS**]
 
@@ -86,7 +86,7 @@ using following information._
 
 # What is cold storage?
 
-.center[.image-65[![](images/cold_storage.jpg)]]
+.center[.image-65[![](/img/cold_storage.jpg)]]
 
 * **Cold storage** is an offline wallet used for storing cryptocurrency.
   - no remote access, reduced attack surface
@@ -99,7 +99,7 @@ using following information._
 
 # Architecture
 
-.center[.image-50[![](images/arch.svg)]]
+.center[.image-50[![](/img/arch.svg)]]
 
 * Architecture consist of offline and online wallet
   - offline wallet can sign transactions before broadcasting online
@@ -113,7 +113,7 @@ using following information._
 
 # Electrum
 
-.center[.image-20[![](images/electrum.png)]]
+.center[.image-20[![](/img/electrum.png)]]
 
 * Thomas Voegtlin in November 2011
 * Wallet is written mostly in Python and its source code is available on
@@ -240,7 +240,7 @@ identity.
 
 # List wallets
 
-.center[.image-70[![](images/wallets.png)]]
+.center[.image-70[![](/img/wallets.png)]]
 
 ```shell
 (btc-cs)$ ./electrum-4.1.5-x86_64.AppImage --testnet list_wallets
@@ -251,7 +251,7 @@ identity.
 
 # Online wallet preparation
 
-.center[.image-60[![](images/getmpk.png)]]
+.center[.image-60[![](/img/getmpk.png)]]
 
 * Obtain Master Public Key and copy it to `anyvm`
 * Run Electron GUI:
@@ -264,25 +264,25 @@ identity.
 
 # Online wallet preparation
 
-.center[.image-70[![](images/electrum1.png)]]
+.center[.image-70[![](/img/electrum1.png)]]
 
 ---
 
 # Online wallet preparation
 
-.center[.image-70[![](images/electrum2.png)]]
+.center[.image-70[![](/img/electrum2.png)]]
 
 ---
 
 # Online wallet preparation
 
-.center[.image-70[![](images/electrum3.png)]]
+.center[.image-70[![](/img/electrum3.png)]]
 
 ---
 
 # Online wallet preparation
 
-.center[.image-70[![](images/electrum4.png)]]
+.center[.image-70[![](/img/electrum4.png)]]
 
 * Most probably `Next` will be not active, this is because of new line at end
 of MPK, when you delete it, Electrum can proceed
@@ -291,13 +291,13 @@ of MPK, when you delete it, Electrum can proceed
 
 # Online wallet preparation
 
-.center[.image-70[![](images/electrum5.png)]]
+.center[.image-70[![](/img/electrum5.png)]]
 
 ---
 
 # Online wallet preparation
 
-.center[.image-90[![](images/electrum6.png)]]
+.center[.image-90[![](/img/electrum6.png)]]
 
 * Information about wallet working in testnet
 
@@ -305,7 +305,7 @@ of MPK, when you delete it, Electrum can proceed
 
 # Online wallet preparation
 
-.center[.image-70[![](images/electrum7.png)]]
+.center[.image-70[![](/img/electrum7.png)]]
 
 * Information about watch-only mode of the wallet
 
@@ -360,7 +360,7 @@ of MPK, when you delete it, Electrum can proceed
 
 # Qrexec and Qubes RPC
 
-.center[.image-80[![](images/qrexec3.png)]]
+.center[.image-80[![](/img/qrexec3.png)]]
 
 * Qrexec framework implements communicating between domains
 * It is built on top of vchan, Xen library providing data links between VMs
@@ -525,7 +525,7 @@ unlock) (Some owned outputs have missing key images - import_key_images needed)
 
 # Send XMR manually
 
-.center[.image-80[![](images/xmr_balance.png)]]
+.center[.image-80[![](/img/xmr_balance.png)]]
 
 * Wallet run following to create transaction
 
@@ -548,11 +548,11 @@ Unsigned transaction(s) successfully written to file: unsigned_monero_tx
 
 * Copy `unsigned_monero_tx` to `xmr-cs` and sign
 
-.center[.image-60[![](images/sign_transfer.png)]]
+.center[.image-60[![](/img/sign_transfer.png)]]
 
 * Copy newly created `signed_monero_tx` back to `xmr-cs` and submit transfer
 
-.center[.image-80[![](images/submit_transfer.png)]]
+.center[.image-80[![](/img/submit_transfer.png)]]
 
 * Please note `signed_monero_tx` file was wallet current working directory
 

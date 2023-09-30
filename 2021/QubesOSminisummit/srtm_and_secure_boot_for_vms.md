@@ -6,12 +6,12 @@ class: center, middle, intro
 
 ## Piotr Król
 
-<img src="remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
+<img src="/remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
 
 ---
 # `whoami`
 
-.center[<img src="remark-templates/3mdeb-presentation-template/images/piotr_krol.jpg" width="150px">]
+.center[<img src="/remark-templates/3mdeb-presentation-template/images/piotr_krol.jpg" width="150px">]
 
 .center[Piotr Król]
 .center[_3mdeb Founder & CEO_]
@@ -100,7 +100,7 @@ class: center, middle, intro
 
 # S-CRTM
 
-.center[.image-99[![](images/s-crtm.svg)]]
+.center[.image-99[![](/img/s-crtm.svg)]]
 
 * Saying "Secure Boot" typically means all security technologies in red
 * In a reasonably secure world:
@@ -112,7 +112,7 @@ class: center, middle, intro
 
 # How is this related to VMs?
 
-.center[.image-99[![](images/scrtm_for_vms.svg)]]
+.center[.image-99[![](/img/scrtm_for_vms.svg)]]
 
 * Without chain of trust rooted in Static Root of Trust for Measurement and
   Verification both VM measured boot and verified boot adds nothing (or very
@@ -175,7 +175,7 @@ class: center, middle, intro
 
 # SRTM for Qubes OS VMS
 
-.center[.image-70[![](images/srtm_for_qubes_os_vms.png)]]
+.center[.image-70[![](/img/srtm_for_qubes_os_vms.png)]]
 
 * TCG Roots of Trust and practical use cases of those for VM environment
 * Design ideas and limitation of introducing TPM through QEMU features
@@ -218,18 +218,18 @@ class: center, middle, intro
 
 # TCG VPWG Architecture
 
-.center[.image-99[![](images/vpas_three_layer.png)]]
+.center[.image-99[![](/img/vpas_three_layer.png)]]
 
 ---
 
 # TCG VPWG Architecture
 
-.center[.image-90[![](images/vpas_attestation.png)]]
+.center[.image-90[![](/img/vpas_attestation.png)]]
 ---
 
 # Enabling UEFI Secure Boot on Xen
 
-.center[.image-40[![](images/enabling_uefi_secure_boot_on_xen.png)]]
+.center[.image-40[![](/img/enabling_uefi_secure_boot_on_xen.png)]]
 
 * Presentation discussed
   - what is Secure Boot and how it works
@@ -244,7 +244,7 @@ class: center, middle, intro
 
 # Potential configurations
 
-.center[.image-80[![](images/xen_and_shim.svg)]]
+.center[.image-80[![](/img/xen_and_shim.svg)]]
 
 * Key problem with this configuration is that it works only with xen.efi
   PE/COFF, but not with multiboot1/2, what means maintenance of multiple Xen
@@ -255,7 +255,7 @@ class: center, middle, intro
 
 # Potential configurations
 
-.center[.image-80[![](images/xen_shim_grub.svg)]]
+.center[.image-80[![](/img/xen_shim_grub.svg)]]
 
 * GRUB2 currently support GnuPG detached signatures and Shim compatible
   verifier
