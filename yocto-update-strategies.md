@@ -560,8 +560,6 @@ platform hang while booting
 + PACKAGECONFIG += "openssl libssh2"
 ```]
 
-.footnote[tensorflow GitHub issue: https://github.com/nxp-imx/meta-imx/pull/16]
-
 ---
 # Build troubleshooting - default applications
 
@@ -592,6 +590,7 @@ directory
 + OECMAKE_CXX_FLAGS += "-I${PYTHON_INCLUDE_DIR} -I${PYBIND11_INCLUDE} -I${NUMPY_INCLUDE}"
 ```]
 
+.footnote[tensorflow GitHub issue: https://github.com/nxp-imx/meta-imx/pull/16]
 ---
 # Build troubleshooting - custom applications
 
