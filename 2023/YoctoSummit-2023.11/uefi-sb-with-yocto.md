@@ -10,7 +10,7 @@ However, integrating it into a project involves challenges such as ensuring the
 level of UEFI specification compliance that UEFI BIOS implementation on a given
 hardware target provides, planning for certificate rotation to maintain
 security, and seamlessly integrating CI/CD pipelines for component signing. In
-the upcoming discussion, I will explore strategies and solutions for resolving
+the upcoming presentation, I will explore strategies and solutions for resolving
 these challenges within Yocto-based projects, demonstrating how to successfully
 implement UEFI Secure Boot to bolster platform security.
 
