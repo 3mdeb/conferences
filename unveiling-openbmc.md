@@ -63,36 +63,19 @@ class: center, middle, intro
 
 ???
 
-* BMC (Baseboard Management Controller) is a specialized microcontroller
-  embedded on a server board
-* Enables administrators to manage servers remotely, even if the firmware/OS
-  running on a server is not operational
-* Offers various features, such as:
-  - remote power control,
-  - sensors monitoring,
-  - event logging,
-  - remote console and video (KVM) access.
-* Security features
-  - Secure Boot (RoT for the whole server)
-  - flash monitoring and protection
-  - attestation of firmware and hardware components
-* ARM SoC capable of running Linux
-
-* BMC stands for Baseboard Management Controller and is a critical component in
-server management.
-* The BMC acts as a bridge between the hardware components and the system
-administrator, providing remote monitoring and control capabilities.
-* It enables administrators to manage servers even when the operating system is
-not accessible or operational.
+* BMC stands for Baseboard Management Controller 
+* It is a critical component in server management
+* It acts as a bridge between the hardware components and the system
+  administrator, providing remote monitoring and control capabilities, even if
+  the firmware / OS running on a server is not operational
 * BMC offers various features such as remote power control, sensor monitoring,
 event logging, and remote console access.
-* Understanding what a BMC is and its role in server management is essential to
-grasp the significance of OpenBMC and its capabilities.
-
-
-  - act as a Root of Trust for the whole server board
-
-
+* Security features
+  - Secure Boot (RoT for the whole server) flash monitoring and protection, attestation of firmware and hardware components
+* Hardware perspective
+  - nowadays - typically ARM SoC capable of running Linux
+  - own DRAM, flash
+  - interfaces for sensors and host
 
 ---
 # What is OpenBMC?
@@ -107,6 +90,11 @@ grasp the significance of OpenBMC and its capabilities.
 .center[.image-35[![](img/OpenBMC_logo.png)]]
 
 .footnote[https://commons.wikimedia.org/wiki/File:OpenBMC_logo.png]
+
+???
+
+* Started by IBM and after a few yars it has moved under the Linux Foundation
+  project
 
 ---
 # OpenBMC status
@@ -127,10 +115,12 @@ grasp the significance of OpenBMC and its capabilities.
 
 ???
 
-Some documents say a given feature is deprecated, but some still refer to that
-feature.
-
-The documentation structure is challenging to digest for a newcomer.
+* You may have an impression that documentation not always keeps up with the
+  pace of the development
+* Some documents say a given feature is deprecated, but some still refer to
+  that feature
+* In general, the documentation structure may be challenging to digest for a
+  newcomer, at least that was my impression
 
 ---
 # OpenBMC features
@@ -146,6 +136,9 @@ The documentation structure is challenging to digest for a newcomer.
 * Firmware update (BMC and host)
 * More
 
+???
+
+We will talk more about some of these features in following slides
 
 ---
 # Web-based user interface
@@ -158,8 +151,8 @@ The documentation structure is challenging to digest for a newcomer.
 
 Server overview page from OpenBMC WebUI
 
-This is what the modern OpenBMC interface looks like. It comes from the webui-vue
-project.
+This is what the modern OpenBMC interface looks like. It comes from the
+webui-vue project.
 
 ---
 # Event logging and alerting
@@ -176,7 +169,6 @@ already deprecated phosphor-webui project.
 The feature set is mostly the same. The differences are in the underlying
 technologies.
 
-
 ---
 # Sensors monitoring
 
@@ -184,7 +176,9 @@ technologies.
 
 ???
 
-Senors page
+* Readings from sensors
+* Most often temperature sensors and fans are present here
+* In some cases you may experience others as well
 
 ---
 # Host management  
@@ -193,7 +187,9 @@ Senors page
 
 ???
 
-Server power operations page
+* You can perform power operations
+* restart / poweroff both gracefully (wait for services on the server to shut
+  down first) or immediate
 
 ---
 # Serial over LAN console
@@ -202,7 +198,12 @@ Server power operations page
 
 ???
 
-SOL page
+* Serial over LAN console is a crucial feature of each BMC
+* It allows you to directly access serial port of you server
+* In this it is available through web interface, but you can also use SSH
+  client 
+* It is very useful to have the serial output, especially in case of debugging
+  some low-level firmware or kernel failures
 
 ---
 # KVM 
@@ -211,7 +212,9 @@ SOL page
 
 ???
 
-KVM page
+* Another way of controlling the server is via KVM
+* In this case, we are getting the video output stream and emulate keybaord and
+  mouse as an input
 
 ---
 # Virtual media 
@@ -220,7 +223,9 @@ KVM page
 
 ???
 
-Virtual media page
+* It can be useful especially if you need to install OS on your server
+* You can just upload ISO and it will be available as USB disk from the host
+  perspective
 
 ---
 # Firmware update
@@ -237,6 +242,12 @@ Virtual media page
 .center[.image-90[![](img/openbmc_firmware_update.png)]]
 
 ???
+
+* OpenBMC exposes mechanisms for updating both host and BMC FW
+* There are multiple ways of providing update packages and triggering the
+  update process 
+* You can learn more details of this process in the dedicated section of
+  documentation
 
 ---
 # Redfish
@@ -259,15 +270,19 @@ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" \
 
 ???
 
-Documentation in bmcweb repo provides some implementation details and API
-reference.
-
-Redfish provides REST API for many platform related actions, such as:
-- getting status of different components and services,
-- power control,
-- firmware settings, such as changing boot order, and secure boot keys
-  management
-- user accounts management for the BMC OS
+* Redfish is another platform management standard
+* We can say it is IPMI replacement
+* It was first release was in 2015
+* It aims to be interoerable, so the same APIs can be used for multiple vendors
+  and multiple server types
+* Redfish provides REST API for many platform related actions, such as:
+  - getting status of different components and services,
+  - power control,
+  - firmware settings, such as changing boot order, and secure boot keys
+    management
+  - user accounts management for the BMC OS
+* Documentation in bmcweb repo provides some implementation details and API
+  reference.
 
 ---
 # PLDM
@@ -288,19 +303,17 @@ Redfish provides REST API for many platform related actions, such as:
 
 ???
 
-PLDM stands for Platform Level Data Model and is a standardized protocol and
-data model used for communication between the BMC and hardware components in a
-system.
-
-PLDM plays a vital role in system management by providing a common language and
-structure for exchanging data and commands between the BMC and the platform./refer
-
-With PLDM, the BMC can query and control hardware components, retrieve sensor
-data, configure settings, manage system resources, and perform various system
-management tasks.
-
-The purpose of PLDM is to ensure interoperability, extensibility, and
-uniformity in system management operations.
+* PLDM stands for Platform Level Data Model
+* It is a standardized protocol and data model used for communication between
+  the BMC and hardware components in a system.
+* PLDM providise a common language and structure for exchanging data and
+  commands between the BMC and other platform components
+* BMC can:
+  - retreive sensor data,
+  - control hardware components,
+  - perform various management tasks on the host.
+* We can say that the purpose of PLDM is to ensure interoperability in system
+  management operations
 
 ---
 # SPDM
@@ -319,10 +332,14 @@ uniformity in system management operations.
 
 ???
 
-From spec:
-
-SPDM is designed to be an effective interface and data model that enables efficient access to low-level security
-capabilities and operations
+* SPDM stands for Security Protocol and Data Model 
+* It is desined to provide efficient access to low-level security capabilities
+  and operations
+* It is also used to establish trust between onboard components
+* Thanks to that, you can establish encrypted/authenticated communication channels
+* The SPDM intended to be used by other DMTF-defined mechanisms. Specifically,
+  the PLDM can use SPDM on top to make sure that the data being send on the
+  board (for example sensors data) are trustworthy and communication is encrypted
 
 The Security Protocol and Data Model (SPDM) Specification defines messages,
 data objects, and sequences for performing message exchanges between devices
@@ -333,8 +350,6 @@ confidentiality with integrity protected data communication and other related
 capabilities. The SPDM enables efficient access to low-level security
 capabilities and operations. Other mechanisms, including non-PMCI- and
 DMTF-defined mechanisms, can use the SPDM
-
-On-board management traffic can be secured/encrypted.
 
 ---
 # Repository overview
@@ -349,8 +364,13 @@ On-board management traffic can be secured/encrypted.
 
 ???
 
-Having all of the layers in a single repository is not obvious and quite different
-from other Yocto distributions.
+* OpenBMC is a huge repository with multiple meta-layers
+* What catched my attention was that no layer management tool was used here.
+  Even the upstream layers, such as poky or opembedded layers are committed
+  directly, not as submodules, into the main repo, so no history is preserved 
+  - it was not abious and quite different from other Yocto distributions I have
+    worked with
+* We have a couple types of layers here
 
 ---
 # Build environment
@@ -366,10 +386,22 @@ from other Yocto distributions.
   ```md
   source setup romulus
   bitbake obmc-phosphor-image
-  runqemu slirp nographic
   ```
 
 ???
+
+* The developer documentation can be found in github
+* It still recommends running VM with Ubuntu 18.04 as a build environment
+* Instead, we have successfuly proceeded with the docker container based on
+  Ubuntu 20.04
+* If you want to quickly play with OpenBMC at first, I can recommend using the
+  romulus machine
+  - this platform is well supported in QEMU, so you can check out the BMC with
+    no hardware
+* To setup the environment, you simply source the setup script with machine
+  name as an argument
+* The default target you should use is the obmc-phosphor-image
+  - it contains a collection of applicatios serving the BMC features
 
 ---
 # Adding Supermicro X11SSH-TF
@@ -385,10 +417,14 @@ from other Yocto distributions.
 
 ???
 
-The goal was to play around with the OpenBMC with the hardware we have available.
-We have noticed some old patchsets for the SUpermicor X11SSH-TF, and also some
-X11SPI board in the OpenBMC repository. The main difference between these two
-is the BMC chip itself. The SSH uses AST2400, while the SPI uses AST2500.
+* The goal was to play around with the OpenBMC with the hardware we have
+  available
+* We also develop open-source firmware for this board, so it could be an
+  opportunity to have both host and BMC firmwares open-sourced
+* We have noticed some old patchsets for the SUpermicor X11SSH-TF, and also some
+  X11SPI board in the OpenBMC repository
+* The main difference between these two is the BMC chip itself. The SSH uses
+  AST2400, while the SPI uses AST2500.
 
 ---
 # Adding Supermicro X11SSH-TF
@@ -405,13 +441,16 @@ is the BMC chip itself. The SSH uses AST2400, while the SPI uses AST2500.
 
 ???
 
-The workbook is deprecated as inventory management. It looks like there are at
-least 3 ways of doing that right now, and one must select the proper one for
-their board.
-
-The old patches used some scripts for power control. This mechanism is also
-deprecated. There are at least 2 ways of managing power control right now in
-OpenBMC, and one of them shall be used here.
+* So what kind of problems we have faced during integrating that?
+* If course some typical changes during porting older code, such as, ... 
+* There were also some OpenBMC related challenges due to the changes in the
+  OpenBMC project
+* The workbook is deprecated as inventory management. It looks
+  like there are at least 3 ways of doing that right now, and one must select
+  the proper one for their board.
+* The old patches used some scripts for power control. This mechanism is also
+  deprecated. There are at least 2 ways of managing power control right now in
+  OpenBMC, and one of them shall be used here.
 
 ---
 # Results
@@ -444,6 +483,15 @@ qemu-system-arm -machine supermicrox11-bmc \
 [    9.075967] systemd[1]: Freezing execution.
 ```]
 
+???
+
+* What are the results so far
+* Code is pushed to GitHub
+* What may be very useful here is the fact that supermicrx11-bmc machine exists
+  in QEMU
+* As you can see, right now it boots through U-Boot and kernel, but freezes on
+  some systemd dependencies
+
 ---
 # Next steps
 
@@ -454,6 +502,14 @@ qemu-system-arm -machine supermicrox11-bmc \
 * External flashing procedure
   - https://github.com/Keno/bmcnonsense/blob/master/blog/05-flashing3.md
 * Credits to Keno for leaving valuable information
+
+???
+
+* So what are the next steps?
+* Definitely we should have successful QEMU start first, to reduce the rist of
+  bricking the actual hardware
+* Once this is in place, we can try running OpenBMC on hardware board 
+* Thanks to some notes left by Keno, the flashing and debugging might be easier
 
 ---
 # Other resources
@@ -470,6 +526,14 @@ qemu-system-arm -machine supermicrox11-bmc \
   - https://www.youtube.com/watch?v=nBCjuuOjxRQ
 * Aspeed boards supported in QEMU
   - https://www.qemu.org/docs/master/system/arm/aspeed.html
+
+???
+
+* Some useful resources related to the OpenBMC project
+* The OpenBMC YouTube channel contains some in-depth video if you want to learn
+  more on the project
+* I can also recommend to take a look at the list of aspeed boards supported in
+  QEMU as running in emulation first might be useful 
 
 ---
 # Contact us
