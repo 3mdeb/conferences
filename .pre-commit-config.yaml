@@ -42,3 +42,11 @@ repos:
     hooks:
     -   id: shellcheck
         args: ["--severity=warning"]
+
+  - repo: local
+    hooks:
+      - id: remark-root-dir
+        name: Checks if the remark-templates and static content is placed in root directory
+        entry: ./scripts/check-remark-root.sh
+        language: script
+        types_or: [html, markdown]
