@@ -6,11 +6,12 @@ Dealing with UEFI Secure Boot support using Yocto Project
 
 UEFI Secure Boot, a standard within the UEFI framework, enhances embedded
 platform security by verifying signatures for loaded images in the UEFI BIOS.
-However, integrating it into a project involves challenges such as ensuring UEFI
-compliance, planning for certificate rotation to maintain security, and
-seamlessly integrating CI/CD pipelines for component signing. In the upcoming
-discussion, I will explore strategies and solutions for resolving these
-challenges within Yocto-based projects, demonstrating how to successfully
+However, integrating it into a project involves challenges such as ensuring the
+level of UEFI specification compliance that UEFI BIOS implementation on a given
+hardware target provides, planning for certificate rotation to maintain
+security, and seamlessly integrating CI/CD pipelines for component signing. In
+the upcoming discussion, I will explore strategies and solutions for resolving
+these challenges within Yocto-based projects, demonstrating how to successfully
 implement UEFI Secure Boot to bolster platform security.
 
 # Description
