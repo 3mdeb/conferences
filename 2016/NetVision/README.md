@@ -1,11 +1,11 @@
-## Conference: NetVision'16
+# Conference: NetVision'16
 
 * **Date**: 21-23.04.2016
 * **Location**: Gdańsk, Poland
 * **website**: -
 * **social media**: -
 
-### Presentation
+## Presentation
 
 * **Topic**: How to build IoT Solutions using Cloud infrastructure?
 * **Presenters**: Piotr Król, Rafał Korszuń

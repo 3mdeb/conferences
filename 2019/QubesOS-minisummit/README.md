@@ -1,11 +1,11 @@
-## Conference: Qubes OS and "3mdeb" minisummit
+# Conference: Qubes OS and "3mdeb" minisummit
 
 * **Date**: 05.2019
 * **Location**: Gdańsk, Poland
 * **website**: https://blog.3mdeb.com/2019/2019-08-07-qubes-os-and-3mdeb-minisummit/
 * **social media**: -
 
-### Presentation #1
+## Presentation #1
 
 * **Topic**: Qubes Hardware Certification
 * **Presenters**: Piotr Król
@@ -14,7 +14,7 @@
 * **YouTube**: -
 * **Misc**: -
 
-### Presentation #2
+## Presentation #2
 
 * **Topic**: Qubes build system
 * **Presenters**: Maciej Pijanowski
@@ -23,7 +23,7 @@
 * **YouTube**: -
 * **Misc**: -
 
-### Presentation #3
+## Presentation #3
 
 * **Topic**: Qubes OS and TPM 2.0
 * **Presenters**: Michał Żygowski
@@ -32,7 +32,7 @@
 * **YouTube**: -
 * **Misc**: -
 
-### Presentation #4
+## Presentation #4
 
 * **Topic**: Lightning Talks
 * **Presenters**: Piotr Król
@@ -41,7 +41,7 @@
 * **YouTube**: -
 * **Misc**: -
 
-### Presentation #5
+## Presentation #5
 
 * **Topic**: Anti Evil Maid
 * **Presenters**: Michał Żygowski

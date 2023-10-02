@@ -1,11 +1,11 @@
-## Conference: Open Source Firmware Conference
+# Conference: Open Source Firmware Conference
 
 * **Date**: 03-06.09.2019
 * **Location**: California, USA
 * **website**: https://osfc.io/
 * **social media**: #OSFC2019
 
-### Presentation #1
+## Presentation #1
 
 * **Topic**: Start trusting Your BIOS - SRTM with vboot, TPM and permanent flash
   protection
@@ -15,7 +15,7 @@
 * **YouTube**: -
 * **Misc**: https://cloud.3mdeb.com/index.php/s/YGgcgB4WYjBmyXB
 
-### Presentation #2
+## Presentation #2
 
 * **Topic**: Consideration about enabling hypervisor in open-source firmware
 * **Presenters**: Piotr Król
@@ -24,7 +24,7 @@
 * **YouTube**: -
 * **Misc**: -
 
-### Presentation #3
+## Presentation #3
 
 * **Topic**: TrenchBoot: Open DRTM implementation for AMD platforms
 * **Presenters**: Piotr Król
