@@ -1,10 +1,11 @@
 # conferences
+
 Slides, white papers and agendas from various events in which 3mdeb participated
 
 ## Events timeline
 
 ╔══2016══╗<br>
-║ &nbsp;21-23.04&ensp;╠═ [NetVision 2016 ](2016/NetVision)<br>
+║ &nbsp;21-23.04&ensp;╠═ [NetVision 2016](2016/NetVision)<br>
 ╠══2017══╣<br>
 ║ &nbsp;26-29.10&ensp;╠═ [ECC 2017](2017/ECC)<br>
 ╠══2018══╣<br>

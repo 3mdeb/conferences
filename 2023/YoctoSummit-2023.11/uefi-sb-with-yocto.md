@@ -25,7 +25,7 @@ support in production environments. The primary objective is to raise awareness
 among the audience about the comprehensive process of implementing this critical
 functionality in ongoing projects. This encompasses everything from analyzing
 the UEFI BIOS to seamless integration and long-term maintenance, all achieved
-with the support of the Yocto Project wich I will show using meta-dts [3] layer.
+with the support of the Yocto Project which I will show using meta-dts [3] layer.
 
 [1] https://pretalx.com/yocto-project-summit-2022-11/talk/KJDAFF/
 [2] https://github.com/jiazhang0/meta-secure-core

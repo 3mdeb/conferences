@@ -6,12 +6,17 @@ class: center, middle, intro
 
 ## Tomasz Żyjewski
 
-<img src="remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
+<img
+  src="/remark-templates/3mdeb-presentation-template/images/logo.png"
+  width="150px" style="margin-left:-20px">
 
 ---
+
 # `whoami`
 
-.center[<img src="remark-templates/3mdeb-presentation-template/images/tomasz_zyjewski.png" width="150px">]
+.center[<img
+  src="/remark-templates/3mdeb-presentation-template/images/tomasz_zyjewski.png"
+  width="150px">]
 
 .center[Tomasz Żyjewski]
 .center[_Embedded Systems Team Leader_]
@@ -21,45 +26,52 @@ class: center, middle, intro
 - system security
 ]
 .left-column50[
-- <a href="https://twitter.com/tomzy_0"><img src="remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @tomzy_0</a>
-- <a href="mailto:tomasz.zyjewski@3mdeb.com"><img src="remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> tomasz.zyjewski@3mdeb.com</a>
+- <a href="https://twitter.com/tomzy_0"><img
+  src="/remark-templates/3mdeb-presentation-template/images/twitter.png"
+  width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @tomzy_0</a>
+- <a href="mailto:tomasz.zyjewski@3mdeb.com"><img
+  src="/remark-templates/3mdeb-presentation-template/images/email.png"
+  width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
+  tomasz.zyjewski@3mdeb.com</a>
 ]
 
-
 ---
+
 # Who we are ?
 
-.center[.image-15[![](remark-templates/3mdeb-presentation-template/images/coreboot-1024x1024.png)] .image-15[![](remark-templates/3mdeb-presentation-template/images/uefi-1024x1024.png)] .image-15[![](remark-templates/3mdeb-presentation-template/images/lvfs.png)] .image-15[![](remark-templates/3mdeb-presentation-template/images/yocto.png)]]
-.center[.image-35[![](remark-templates/3mdeb-presentation-template/images/openpower.svg)]]
+.center[.image-15[![](/remark-templates/3mdeb-presentation-template/images/coreboot-1024x1024.png)].image-15[![](/remark-templates/3mdeb-presentation-template/images/uefi-1024x1024.png)].image-15[![](/remark-templates/3mdeb-presentation-template/images/lvfs.png)].image-15[![](/remark-templates/3mdeb-presentation-template/images/yocto.png)]]
+.center[.image-35[![](/remark-templates/3mdeb-presentation-template/images/openpower.svg)]]
 
-* coreboot licensed service providers since 2016 and leadership participants
-* UEFI Adopters since 2018
-* Yocto Participants and Embedded Linux experts since 2019
-* Official consultants for Linux Foundation fwupd/LVFS project since 2020
-* IBM OpenPOWER Foundation members since 2020
+- coreboot licensed service providers since 2016 and leadership participants
+- UEFI Adopters since 2018
+- Yocto Participants and Embedded Linux experts since 2019
+- Official consultants for Linux Foundation fwupd/LVFS project since 2020
+- IBM OpenPOWER Foundation members since 2020
 
 ---
+
 # Agenda
 
-* Project lifecycle
-* Project components
-* Update strategy
-* Performing update
-  - build environment
-  - external layers update
-  - custom layer update
-* Build troubleshooting
-  - bootloader
-  - kernel
-  - default applications
-  - custom applications
-* Update verification
-* Summary
+- Project lifecycle
+- Project components
+- Update strategy
+- Performing update
+    + build environment
+    + external layers update
+    + custom layer update
+- Build troubleshooting
+    + bootloader
+    + kernel
+    + default applications
+    + custom applications
+- Update verification
+- Summary
 
 ---
+
 # Project lifecycle
 
-.center[.image-99[![](img/proj-lifec.svg)]]
+.center[.image-99[![](/img/proj-lifec.svg)]]
 
 ???
 
@@ -76,22 +88,23 @@ efficient, and up-to-date throughout its lifespan. By prioritizing updates, we
 can maintain the project's health and adapt to evolving needs.
 
 ---
+
 # Project components
 
-* Architecture documentation
-  - documentation describing architecture, software and hardware
-  - interactions between them
-* Features documentation
-  - expected outcome of the given functionalities
-* Build environment
-  - good if setting up is automated
-  - needs fullfill requirements of Yocto Project documentation
-* Tests
-  - covers all custom functionalities
-  - good if fully automated
-* CI/CD for build and tests
-  - automates building and testing of the project
-  - ensuring consistent and reliable results
+- Architecture documentation
+    + documentation describing architecture, software and hardware
+    + interactions between them
+- Features documentation
+    + expected outcome of the given functionalities
+- Build environment
+    + good if setting up is automated
+    + needs fulfill requirements of Yocto Project documentation
+- Tests
+    + covers all custom functionalities
+    + good if fully automated
+- CI/CD for build and tests
+    + automates building and testing of the project
+    + ensuring consistent and reliable results
 
 ???
 
@@ -125,9 +138,10 @@ automating these processes, we ensure consistent and reliable results,
 maintaining the integrity of the project throughout the update process.
 
 ---
+
 # Project components
 
-.center[.image-75[![](img/compo-life.svg)]]
+.center[.image-75[![](/img/compo-life.svg)]]
 
 ???
 
@@ -166,53 +180,55 @@ security vulnerabilities, minimize technical debt, and integrate new
 functionalities as we maintain and update our Yocto-based projects.
 
 ---
+
 # Update strategy
 
-* Remember every element of the project during updates
-  - each project component plays a crucial role in the project's functionality
+- Remember every element of the project during updates
+    + each project component plays a crucial role in the project's functionality
     and stability
-  - updates must consider all components to ensure the overall integrity of the
+    + updates must consider all components to ensure the overall integrity of the
     Yocto-based project
-* Importance of the update deployment method
-  - the update deployment method impacts the efficiency, scalability, and user
+- Importance of the update deployment method
+    + the update deployment method impacts the efficiency, scalability, and user
     experience of the Yocto-based project
-  - having a dedicated update system allows for streamlined and controlled
+    + having a dedicated update system allows for streamlined and controlled
     updates, minimizing downtime and reducing the need for manual intervention
-  - in some cases reflashing devices is feasible
+    + in some cases reflashing devices is feasible
 
 ???
 
-* Remember every element of the project during updates
-  - each project component, such as architecture documentation, features
+- Remember every element of the project during updates
+    + each project component, such as architecture documentation, features
     documentation, build environment, tests, and CI/CD, plays a crucial role in
     the project's functionality and stability
-  - updates must consider all components to ensure compatibility, minimize
+    + updates must consider all components to ensure compatibility, minimize
     regressions, and maintain the overall integrity of the Yocto-based project
-* Importance of the update deployment method
-  - the update deployment method impacts the efficiency, scalability, and user
+- Importance of the update deployment method
+    + the update deployment method impacts the efficiency, scalability, and user
     experience of the Yocto-based project
-  - having a dedicated update system allows for streamlined and controlled
+    + having a dedicated update system allows for streamlined and controlled
     updates, minimizing downtime and reducing the need for manual intervention
-  - evaluating the requirements and constraints of the project helps determine
+    + evaluating the requirements and constraints of the project helps determine
     whether a dedicated update system is necessary or if reflashing devices is
     feasible
 
 TBD notes
 
 ---
+
 # Update strategy
 
-* Yocto release cycle
- - ensures access to the latest features, bug fixes, and security patches
- - regularly synchronizing maintains a stable and up-to-date project
-* CVE checks and security reports
-  - integrating CVE (Common Vulnerabilities and Exposures) checks into the Yocto
+- Yocto release cycle
+- ensures access to the latest features, bug fixes, and security patches
+- regularly synchronizing maintains a stable and up-to-date project
+- CVE checks and security reports
+    + integrating CVE (Common Vulnerabilities and Exposures) checks into the Yocto
     build helps identify security vulnerabilities
-  - organizing updates based on security reports allows for timely patching and
+    + organizing updates based on security reports allows for timely patching and
     protection against known vulnerabilities
-  - easily achieved by using correct bbclass
-* Feature-set requirements
- - considering feature updates allows for tailored enhancements, ensuring the
+    + easily achieved by using correct bbclass
+- Feature-set requirements
+- considering feature updates allows for tailored enhancements, ensuring the
    project remains competitive in the market
 
 ???
@@ -220,19 +236,19 @@ TBD notes
 TBD notes
 https://docs.yoctoproject.org/ref-manual/release-process.html
 
-* Yocto release cycle
- - updating based on the Yocto release cycle ensures access to the latest
+- Yocto release cycle
+- updating based on the Yocto release cycle ensures access to the latest
    features, bug fixes, and security patches provided by the Yocto Project.
- - regularly synchronizing with the Yocto release cycle maintains a stable and
+- regularly synchronizing with the Yocto release cycle maintains a stable and
    up-to-date project, leveraging the community's collective efforts and
    expertise
-* CVE checks and security reports
-  - integrating CVE (Common Vulnerabilities and Exposures) checks into the Yocto
+- CVE checks and security reports
+    + integrating CVE (Common Vulnerabilities and Exposures) checks into the Yocto
     build helps identify security vulnerabilities in the project's components
-  - organizing updates based on security reports allows for timely patching and
+    + organizing updates based on security reports allows for timely patching and
     protection against known vulnerabilities
-* Feature-set requirements
- - considering feature updates allows for tailored enhancements, ensuring the
+- Feature-set requirements
+- considering feature updates allows for tailored enhancements, ensuring the
    project meets evolving functional needs and remains competitive in the market
 
 ???
@@ -241,21 +257,22 @@ TBD notes
 https://docs.yoctoproject.org/ref-manual/release-process.html
 
 ---
+
 # Performing update
 
-* Build environment
-  - ensuring the build environment is up-to-date
-  - should be compatible with the Yocto Project requirements
-* External layers update
-  - updating external layers used in the project to their latest versions
-* Custom layer update
-  - updating the custom layer(s) specific to the project
-  - incorporating necessary changes and improvements
-* Real-life examples
-  - responsive multimedia casting device using RaspberryPi
-  - Yocto BSP maintenance
-  - secure gateway for IoT data transfer using i.MX6
-  - full build automation in project using Rockchip RK3399
+- Build environment
+    + ensuring the build environment is up-to-date
+    + should be compatible with the Yocto Project requirements
+- External layers update
+    + updating external layers used in the project to their latest versions
+- Custom layer update
+    + updating the custom layer(s) specific to the project
+    + incorporating necessary changes and improvements
+- Real-life examples
+    + responsive multimedia casting device using RaspberryPi
+    + Yocto BSP maintenance
+    + secure gateway for IoT data transfer using i.MX6
+    + full build automation in project using Rockchip RK3399
 
 ???
 
@@ -288,142 +305,148 @@ the risk of compatibility issues, ensures the project remains up to date, and
 allows for seamless integration of new functionalities and improvements.
 
 ---
+
 # Performing update - build environment
 
-.center[.image-99[![](img/build-env.svg)]]
+.center[.image-99[![](/img/build-env.svg)]]
 
 ???
 
-* Verify the compatibility of the build environment with the desired Yocto
+- Verify the compatibility of the build environment with the desired Yocto
   Project release
-  - see `Build Host Packages` in Mega Manual
-  - use the correct release
-* Prepare a reproducible build environment
-  - ansible can be used to put together such an environment
-  - another possibility is to prepare a containeraized image; e.g.
+    + see `Build Host Packages` in Mega Manual
+    + use the correct release
+- Prepare a reproducible build environment
+    + ansible can be used to put together such an environment
+    + another possibility is to prepare a containeraized image; e.g.
     [kas](https://github.com/siemens/kas),
     [imx-docker](https://github.com/nxp-imx/imx-docker),
     [yocto-docker](https://github.com/3mdeb/yocto-docker)
-  - easier to distribute such an environment among colleagues
-* Review and update the configuration files (`local.conf`, `bblayers.conf`)
-  - see if there are any changes or additions required for the update
-  - see migration guides to check if any changes need to be applied
-  - rethink the way build configuration files are stored
+    + easier to distribute such an environment among colleagues
+- Review and update the configuration files (`local.conf`, `bblayers.conf`)
+    + see if there are any changes or additions required for the update
+    + see migration guides to check if any changes need to be applied
+    + rethink the way build configuration files are stored
 
 rethink the way build configuration files are stored - you may want to go back
 to the version before an update
 
 ---
+
 # Performing update - external layers update
 
-.center[.image-99[![](img/project-layers.svg)]]
+.center[.image-99[![](/img/project-layers.svg)]]
 
 ???
 
-* Project consists of external and custom layers
-  - this way, we follow the rule **Never modify the POKY layer. Never. Ever.**
-  - any customizations goes into `meta-custom_layer`: we have full control on
+- Project consists of external and custom layers
+    + this way, we follow the rule **Never modify the POKY layer. Never. Ever.**
+    + any customizations goes into `meta-custom_layer`: we have full control on
     what and why was changed through `.bbappends`
-* For `external`, we should pick Yocto release; specific commit hash
-  - work on that should not take long, e.g. when using NXP BSP as a base, we
+- For `external`, we should pick Yocto release; specific commit hash
+    + work on that should not take long, e.g. when using NXP BSP as a base, we
     should follow hashes used in the given BSP release
 
 Never modify the POKY layer. Never. Ever. - even expand it on other layers
 
 ---
+
 # Performing update - custom layer update
 
-* We can list some of the basic tasks carried out when updating Yocto, which
+- We can list some of the basic tasks carried out when updating Yocto, which
   should be done in custom layers
-  - updating `LAYERSERIES_COMPAT` variable
-  - bbappends check
-  - custom patches
-  - syntax and variables verification
-  - path verification for the keywords `require` and `include`
-* Check the migration guides in case we encounter unexpected behavior
-  - there is one per release
-  - we may found there useful scripts, like one for override syntax change
+    + updating `LAYERSERIES_COMPAT` variable
+    + bbappends check
+    + custom patches
+    + syntax and variables verification
+    + path verification for the keywords `require` and `include`
+- Check the migration guides in case we encounter unexpected behavior
+    + there is one per release
+    + we may found there useful scripts, like one for override syntax change
 
 ???
 
-* Most of the effort should be spent in custom
+- Most of the effort should be spent in custom
   layers
-* We can list some of the basic tasks carried out when updating Yocto, which
+- We can list some of the basic tasks carried out when updating Yocto, which
   should be done in custom layers
-  - updating `LAYERSERIES_COMPAT` variable
-  - going through the bbappends files and verifying that they all still apply
+    + updating `LAYERSERIES_COMPAT` variable
+    + going through the bbappends files and verifying that they all still apply
     (whether they depended on a revised version of a recipe)
-  - verification of custom patches for used packages; perhaps some of them were
+    + verification of custom patches for used packages; perhaps some of them were
     added in the upstream
-  - syntax and variables verification
-  - path verification for the keywords `require` and `include`
-* Check the migration guides in case we encounter unexpected behavior
-  - there is one per release
-  - we may found there useful scripts, like one for override syntax change
+    + syntax and variables verification
+    + path verification for the keywords `require` and `include`
+- Check the migration guides in case we encounter unexpected behavior
+    + there is one per release
+    + we may found there useful scripts, like one for override syntax change
 
 ---
+
 # Build troubleshooting
 
-* We can split up every operating system into couple pieces
-  - every should be updated and verified
+- We can split up every operating system into couple pieces
+    + every should be updated and verified
 
-.center[.image-90[![](img/boot-process.svg)]]
-* Other than that, we may also need to update our tests suites and CI/CD
+.center[.image-90[![](/img/boot-process.svg)]]
+- Other than that, we may also need to update our tests suites and CI/CD
   pipelines
 
 ???
 
-* We can split up every operating system into couple pieces
-* Updating whole system, means that every part needs to work correctly (meaning,
+- We can split up every operating system into couple pieces
+- Updating whole system, means that every part needs to work correctly (meaning,
   as expected, presented in requirements)
-  - bootloader - configuration, environment variables, boot script,
+    + bootloader - configuration, environment variables, boot script,
     functionality, drivers, boot-time
-  - kernel/device-tree - hardware description, configuration, drivers, boot-time
-  - custom/default apps - configuration, compilation, installation
-  - functionalities - testing, feedback, improvements
-* Other than that, we may also need to update our tests suites and CI/CD
+    + kernel/device-tree - hardware description, configuration, drivers, boot-time
+    + custom/default apps - configuration, compilation, installation
+    + functionalities - testing, feedback, improvements
+- Other than that, we may also need to update our tests suites and CI/CD
   pipelines
 
 ---
+
 # Build troubleshooting
 
-* Real life examples
-  - most of them consist of updating to Yocto Kirkstone release
-  - describes a wide range of problems that any Yocto developer may encounter
+- Real life examples
+    + most of them consist of updating to Yocto Kirkstone release
+    + describes a wide range of problems that any Yocto developer may encounter
     when updating a custom system
-* We will discuss the following problems
-  - changes in bootloaders and kernels on i.MX based platforms
-  - proper configuration of default apps provided to our systems
-  - modifications to the source code of custom applications when updating
+- We will discuss the following problems
+    + changes in bootloaders and kernels on i.MX based platforms
+    + proper configuration of default apps provided to our systems
+    + modifications to the source code of custom applications when updating
     systems that use Qt
-  - going through test suites to preserve functionalities checking
+    + going through test suites to preserve functionalities checking
 
 ???
 
-* In the following slides, we want to present some of the problems we have had
+- In the following slides, we want to present some of the problems we have had
   to work on in the recent past
-  - most of them consist of updating to Yocto Kirkstone release
-  - our experience allows us to describe a wide range of problems that any Yocto
+    + most of them consist of updating to Yocto Kirkstone release
+    + our experience allows us to describe a wide range of problems that any Yocto
     developer may encounter when updating a custom system
-* We will discuss the following problems
-  - changes in bootloaders and kernels on i.MX based platforms
-  - proper configuration of default apps provided to our systems
-  - modifications to the source code of custom applications when updating
+- We will discuss the following problems
+    + changes in bootloaders and kernels on i.MX based platforms
+    + proper configuration of default apps provided to our systems
+    + modifications to the source code of custom applications when updating
     systems that use Qt
-  - fixing CI/CD pipelines after switching to new Yocto release TODO MAYBE ADD
-  - going through test suites to preserve functionalities checking
-
+    + fixing CI/CD pipelines after switching to new Yocto release TODO MAYBE ADD
+    + going through test suites to preserve functionalities checking
 
 ---
+
 # Build troubleshooting - bootloader
 
-* Example problems with updating bootloader
-  - faulty bootscript
-  - rebasing custom drivers and defconfigs
-  - Yocto recipe compilation
-* bootscript
+- Example problems with updating bootloader
+    + faulty bootscript
+    + rebasing custom drivers and defconfigs
+    + Yocto recipe compilation
+- bootscript
 
 .code-11px[
+
 ```bash
 -       "scriptaddr=" __stringify(CONFIG_SYS_LOAD_ADDR) "\0" \
 +       "scriptaddr=0x12000000\0" \
@@ -445,15 +468,17 @@ recipe compilation
 but should not be a big issue as long as we are able to compile it manually
 
 ---
+
 # Build troubleshooting - bootloader
 
-* defconfig I
+- defconfig I
 
 .code-11px[```bash
 - CONFIG_SPL_MMC_SUPPORT=y
 - CONFIG_SPL_SERIAL_SUPPORT=y
-+ CONFIG_SPL_MMC=y
-+ CONFIG_SPL_SERIAL=y
+- CONFIG_SPL_MMC=y
+- CONFIG_SPL_SERIAL=y
+
 ```]
 
 * defconfig II
@@ -698,13 +723,13 @@ Summary: 1 task failed:
 
 We are open to cooperate and discuss
 
-- <a href="mailto:contact@3mdeb.com"><img src="remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> contact@3mdeb.com</a>
+- <a href="mailto:contact@3mdeb.com"><img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> contact@3mdeb.com</a>
 
-- <a href="https://www.facebook.com/3mdeb"><img src="remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/3mdeb</a>
+- <a href="https://www.facebook.com/3mdeb"><img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/3mdeb</a>
 
-- <a href="https://twitter.com/3mdeb_com"><img src="remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @3mdeb_com</a>
+- <a href="https://twitter.com/3mdeb_com"><img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @3mdeb_com</a>
 
-- <a href="https://www.linkedin.com/company/3mdeb"><img src="remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/company/3mdeb</a>
+- <a href="https://www.linkedin.com/company/3mdeb"><img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/company/3mdeb</a>
 
 - <a href="https://3mdeb.com">https://3mdeb.com</a>
 

@@ -1,15 +1,18 @@
-Title:
+# Title
+
 FIDO Device Onboarding: Late-binding Provisioning & Tales from the Trenches of
 Bleeding Edge Tech
 
-Abstract:
+## Abstract
+
 This talk explores the role of FIDO Device Onboarding [1] in strengthening the
 device provisioning process, emphasizing both its security and extensibility.
 I'll also share my personal experience and challenges faced while implementing
 the fido-device-onboard-rs [2] project in the YOCTO environment, offering a
 practical perspective on working with this promising technology.
 
-Description:
+## Description
+
 In this presentation, we'll delve into how FDO [1] offers innovative solutions
 to prevalent challenges in embedded device onboarding. We'll explore existing
 implementations of this protocol and their compatibility within the Yocto

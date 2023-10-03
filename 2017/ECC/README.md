@@ -1,11 +1,11 @@
-## Conference: European Coreboot Conference
+# Conference: European Coreboot Conference
 
 * **Date**: 26-29.10.2017
 * **Location**: Bochum, Germany
 * **website**: https://ecc2017.coreboot.org/
 * **social media**: -
 
-### Presentation #1
+## Presentation #1
 
 * **Topic**: Booting UEFI-aware OS on coreboot enabled platform - "in God's
   Name, Why?"
@@ -15,7 +15,7 @@
 * **YouTube**: https://www.youtube.com/watch?v=nt0BkqVUu3w
 * **Misc**: -
 
-### Presentation #2
+## Presentation #2
 
 * **Topic**: Enabling TPM 2.0 on coreboot based devices
 * **Presenters**: Piotr Król, Kamil Wcisło

@@ -1,7 +1,9 @@
-Title:
+# Title
+
 Unveiling OpenBMC: Exploring features and preparing the build environment
 
-Description:
+## Description
+
 Join us as we explore the powerful features offered by OpenBMC, the open-source
 revolution in Baseboard Management Controllers (BMCs). In this presentation, we
 will dive into OpenBMC's main features and share our journey of enabling support
