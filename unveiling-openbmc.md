@@ -6,7 +6,7 @@ class: center, middle, intro
 
 ## Maciej Pijanowski
 
-<img src="remark-templates/3mdeb-presentation-template/images/logo.png"
+<img src="/remark-templates/3mdeb-presentation-template/images/logo.png"
   width="150px" style="margin-left:-20px">
 
 ---
@@ -14,7 +14,7 @@ class: center, middle, intro
 # `whoami`
 
 .center[<img
-  src="remark-templates/3mdeb-presentation-template/images/maciej_pijanowski.png"
+  src="/remark-templates/3mdeb-presentation-template/images/maciej_pijanowski.png"
   width="220px" style="margin-top:-50px">]
 
 .center[Maciej Pijanowski]
@@ -30,14 +30,14 @@ class: center, middle, intro
 
 .left-column50[
 - <a href="https://twitter.com/macpijan"><img
-  src="remark-templates/3mdeb-presentation-template/images/twitter.png"
+  src="/remark-templates/3mdeb-presentation-template/images/twitter.png"
   width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @macpijan</a>
 - <a href="mailto:maciej.pijanowski@3mdeb.com"><img
-  src="remark-templates/3mdeb-presentation-template/images/email.png"
+  src="/remark-templates/3mdeb-presentation-template/images/email.png"
   width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
   maciej.pijanowski@3mdeb.com</a>
 - <a href="https://www.linkedin.com/in/maciej-pijanowski-9868ab120"><img
-  src="remark-templates/3mdeb-presentation-template/images/linkedin.png"
+  src="/remark-templates/3mdeb-presentation-template/images/linkedin.png"
   width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
   linkedin.com/in/maciej-pijanowski-9868ab120</a>
 ]
@@ -46,8 +46,8 @@ class: center, middle, intro
 
 # Who are we?
 
-.center[.image-15[![](remark-templates/3mdeb-presentation-template/images/coreboot-1024x1024.png)].image-15[![](remark-templates/3mdeb-presentation-template/images/uefi-1024x1024.png)].image-15[![](remark-templates/3mdeb-presentation-template/images/lvfs.png)].image-15[![](remark-templates/3mdeb-presentation-template/images/yocto.png)]]
-.center[.image-35[![](remark-templates/3mdeb-presentation-template/images/openpower.svg)]]
+.center[.image-15[![](/remark-templates/3mdeb-presentation-template/images/coreboot-1024x1024.png)].image-15[![](remark-templates/3mdeb-presentation-template/images/uefi-1024x1024.png)].image-15[![](remark-templates/3mdeb-presentation-template/images/lvfs.png)].image-15[![](remark-templates/3mdeb-presentation-template/images/yocto.png)]]
+.center[.image-35[![](/remark-templates/3mdeb-presentation-template/images/openpower.svg)]]
 
 - coreboot licensed service providers since 2016 and leadership participants
 - UEFI Adopters since 2018
@@ -72,7 +72,7 @@ class: center, middle, intro
 
 # What is BMC?
 
-.center[.image-80[![](img/ast2500_app.jpg)]]
+.center[.image-80[![](/img/ast2500_app.jpg)]]
 
 .footnote[https://www.aspeedtech.com/server_ast2500/]
 
@@ -104,7 +104,7 @@ event logging, and remote console access.
 - Code: https://github.com/openbmc/openbmc
 - Documentation: https://github.com/openbmc/docs
 
-.center[.image-35[![](img/OpenBMC_logo.png)]]
+.center[.image-35[![](/img/OpenBMC_logo.png)]]
 
 .footnote[https://commons.wikimedia.org/wiki/File:OpenBMC_logo.png]
 
@@ -127,7 +127,7 @@ event logging, and remote console access.
     + not particularly clear for a newcomer what is up to date
     + it may be confusing at first
 
-.center[.image-40[![](img/confusedtravolta.jpg)]]
+.center[.image-40[![](/img/confusedtravolta.jpg)]]
 
 .footnote[https://i.kym-cdn.com/entries/icons/original/000/019/277/confusedtravolta.jpg]
 
@@ -165,7 +165,7 @@ We will talk more about some of these features in following slides
 
 - https://github.com/openbmc/webui-vue
 
-.center[.image-90[![](img/openbmc_vue_overview.png)]]
+.center[.image-90[![](/img/openbmc_vue_overview.png)]]
 
 ???
 
@@ -180,7 +180,7 @@ webui-vue project.
 
 - https://github.com/openbmc/phosphor-webui
 
-.center[.image-90[![](img/openbmc_events.png)]]
+.center[.image-90[![](/img/openbmc_events.png)]]
 
 ???
 
@@ -194,7 +194,7 @@ technologies.
 
 # Sensors monitoring
 
-.center[.image-90[![](img/openbmc_sensors.png)]]
+.center[.image-90[![](/img/openbmc_sensors.png)]]
 
 ???
 
@@ -206,7 +206,7 @@ technologies.
 
 # Host management
 
-.center[.image-90[![](img/openbmc_power_control.png)]]
+.center[.image-90[![](/img/openbmc_power_control.png)]]
 
 ???
 
@@ -218,7 +218,7 @@ technologies.
 
 # Serial over LAN console
 
-.center[.image-90[![](img/openbmc_sol.png)]]
+.center[.image-90[![](/img/openbmc_sol.png)]]
 
 ???
 
@@ -233,7 +233,7 @@ technologies.
 
 # KVM
 
-.center[.image-90[![](img/openbmc_kvm.png)]]
+.center[.image-90[![](/img/openbmc_kvm.png)]]
 
 ???
 
@@ -245,7 +245,7 @@ technologies.
 
 # Virtual media
 
-.center[.image-90[![](img/openbmc_virtual_media.png)]]
+.center[.image-90[![](/img/openbmc_virtual_media.png)]]
 
 ???
 
@@ -266,7 +266,7 @@ technologies.
 - Documentation
     + https://github.com/openbmc/docs/tree/master/architecture/code-update
 
-.center[.image-90[![](img/openbmc_firmware_update.png)]]
+.center[.image-90[![](/img/openbmc_firmware_update.png)]]
 
 ???
 
@@ -295,7 +295,7 @@ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" \
 
 ```]
 
-.center[.image-30[![](img/DMTF_Redfish_logo_R.jpg)]]
+.center[.image-30[![](/img/DMTF_Redfish_logo_R.jpg)]]
 
 ???
 
@@ -389,7 +389,7 @@ DMTF-defined mechanisms, can use the SPDM
 * Common BSP layers (such as meta-aspeed, meta-openpower)
 * OEM layers for specific boards (such as meta-ibm/meta-romulus)
 
-.center[.image-30[![](img/openbmc_layers.png)]]
+.center[.image-30[![](/img/openbmc_layers.png)]]
 
 ???
 
@@ -441,7 +441,7 @@ DMTF-defined mechanisms, can use the SPDM
 - Existing code for X11SPI
     + https://github.com/openbmc/openbmc/tree/master/meta-supermicro/meta-x11spi
 
-.center[.image-35[![](img/X11SSH-TF.webp)]]
+.center[.image-35[![](/img/X11SSH-TF.webp)]]
 
 .footnote[https://www.supermicro.com/en/products/motherboard/x11ssh-tf]
 
@@ -574,13 +574,13 @@ qemu-system-arm -machine supermicrox11-bmc \
 
 We are open to cooperate and discuss
 
-- <a href="mailto:contact@3mdeb.com"><img src="remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> contact@3mdeb.com</a>
+- <a href="mailto:contact@3mdeb.com"><img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> contact@3mdeb.com</a>
 
-- <a href="https://www.facebook.com/3mdeb"><img src="remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/3mdeb</a>
+- <a href="https://www.facebook.com/3mdeb"><img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/3mdeb</a>
 
-- <a href="https://twitter.com/3mdeb_com"><img src="remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @3mdeb_com</a>
+- <a href="https://twitter.com/3mdeb_com"><img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @3mdeb_com</a>
 
-- <a href="https://www.linkedin.com/company/3mdeb"><img src="remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/company/3mdeb</a>
+- <a href="https://www.linkedin.com/company/3mdeb"><img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/company/3mdeb</a>
 
 - <a href="https://3mdeb.com">https://3mdeb.com</a>
 

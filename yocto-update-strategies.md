@@ -7,7 +7,7 @@ class: center, middle, intro
 ## Tomasz Żyjewski
 
 <img
-  src="remark-templates/3mdeb-presentation-template/images/logo.png"
+  src="/remark-templates/3mdeb-presentation-template/images/logo.png"
   width="150px" style="margin-left:-20px">
 
 ---
@@ -15,7 +15,7 @@ class: center, middle, intro
 # `whoami`
 
 .center[<img
-  src="remark-templates/3mdeb-presentation-template/images/tomasz_zyjewski.png"
+  src="/remark-templates/3mdeb-presentation-template/images/tomasz_zyjewski.png"
   width="150px">]
 
 .center[Tomasz Żyjewski]
@@ -27,10 +27,10 @@ class: center, middle, intro
 ]
 .left-column50[
 - <a href="https://twitter.com/tomzy_0"><img
-  src="remark-templates/3mdeb-presentation-template/images/twitter.png"
+  src="/remark-templates/3mdeb-presentation-template/images/twitter.png"
   width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @tomzy_0</a>
 - <a href="mailto:tomasz.zyjewski@3mdeb.com"><img
-  src="remark-templates/3mdeb-presentation-template/images/email.png"
+  src="/remark-templates/3mdeb-presentation-template/images/email.png"
   width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
   tomasz.zyjewski@3mdeb.com</a>
 ]
@@ -39,8 +39,8 @@ class: center, middle, intro
 
 # Who we are ?
 
-.center[.image-15[![](remark-templates/3mdeb-presentation-template/images/coreboot-1024x1024.png)].image-15[![](remark-templates/3mdeb-presentation-template/images/uefi-1024x1024.png)].image-15[![](remark-templates/3mdeb-presentation-template/images/lvfs.png)].image-15[![](remark-templates/3mdeb-presentation-template/images/yocto.png)]]
-.center[.image-35[![](remark-templates/3mdeb-presentation-template/images/openpower.svg)]]
+.center[.image-15[![](/remark-templates/3mdeb-presentation-template/images/coreboot-1024x1024.png)].image-15[![](/remark-templates/3mdeb-presentation-template/images/uefi-1024x1024.png)].image-15[![](/remark-templates/3mdeb-presentation-template/images/lvfs.png)].image-15[![](/remark-templates/3mdeb-presentation-template/images/yocto.png)]]
+.center[.image-35[![](/remark-templates/3mdeb-presentation-template/images/openpower.svg)]]
 
 - coreboot licensed service providers since 2016 and leadership participants
 - UEFI Adopters since 2018
@@ -71,7 +71,7 @@ class: center, middle, intro
 
 # Project lifecycle
 
-.center[.image-99[![](img/proj-lifec.svg)]]
+.center[.image-99[![](/img/proj-lifec.svg)]]
 
 ???
 
@@ -141,7 +141,7 @@ maintaining the integrity of the project throughout the update process.
 
 # Project components
 
-.center[.image-75[![](img/compo-life.svg)]]
+.center[.image-75[![](/img/compo-life.svg)]]
 
 ???
 
@@ -308,7 +308,7 @@ allows for seamless integration of new functionalities and improvements.
 
 # Performing update - build environment
 
-.center[.image-99[![](img/build-env.svg)]]
+.center[.image-99[![](/img/build-env.svg)]]
 
 ???
 
@@ -335,7 +335,7 @@ to the version before an update
 
 # Performing update - external layers update
 
-.center[.image-99[![](img/project-layers.svg)]]
+.center[.image-99[![](/img/project-layers.svg)]]
 
 ???
 
@@ -388,7 +388,7 @@ Never modify the POKY layer. Never. Ever. - even expand it on other layers
 - We can split up every operating system into couple pieces
     + every should be updated and verified
 
-.center[.image-90[![](img/boot-process.svg)]]
+.center[.image-90[![](/img/boot-process.svg)]]
 - Other than that, we may also need to update our tests suites and CI/CD
   pipelines
 
@@ -723,13 +723,13 @@ Summary: 1 task failed:
 
 We are open to cooperate and discuss
 
-- <a href="mailto:contact@3mdeb.com"><img src="remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> contact@3mdeb.com</a>
+- <a href="mailto:contact@3mdeb.com"><img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> contact@3mdeb.com</a>
 
-- <a href="https://www.facebook.com/3mdeb"><img src="remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/3mdeb</a>
+- <a href="https://www.facebook.com/3mdeb"><img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/3mdeb</a>
 
-- <a href="https://twitter.com/3mdeb_com"><img src="remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @3mdeb_com</a>
+- <a href="https://twitter.com/3mdeb_com"><img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @3mdeb_com</a>
 
-- <a href="https://www.linkedin.com/company/3mdeb"><img src="remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/company/3mdeb</a>
+- <a href="https://www.linkedin.com/company/3mdeb"><img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/company/3mdeb</a>
 
 - <a href="https://3mdeb.com">https://3mdeb.com</a>
 
