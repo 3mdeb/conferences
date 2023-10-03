@@ -72,8 +72,28 @@ class: center, middle, intro
 
 # Agenda
 
-- lorem ipsum 1
-- lorem ipsum 2
+- AEM in QubesOS (what it is, what is the current support)
+- TrenchBoot (what it is, what are the components)
+    + Refer to the presentation from last year
+- Project plan (Roadmap)
+    + Show phases P1-P4
+    + The current content of phases is different than showed last year
+- Challenges
+    + Building and installing QubesOS packages
+    + Reproducing OpenQA setup
+    + HW selection
+    + HW automation (remote access)
+    + Enabling TXT on Protectli VP4670
+    + locked AMT on HP
+    + Undocumented TXT error on Lenovo
+- Status (Advancements)
+- Status of P1 - link to blog, etc.
+- Status of P2 - show some specific deliverables that we have implemented
+    + TPM2 in Xen
+    + TPM2 in AEM scripts
+    + AEM test in in QubesOS OpenQA
+    + AEM test in QubesOS
+    + CI in TrenchBoot repositories
 - Q&A
 
 ---
