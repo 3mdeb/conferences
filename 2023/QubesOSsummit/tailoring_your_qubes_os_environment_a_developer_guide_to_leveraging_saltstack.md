@@ -211,6 +211,9 @@ https://www.qubes-os.org/news/2022/10/28/how-to-organize-your-qubes/
   downloading means some curl/wget or other software.
 * Cloning from private repo would require some previous configuration.
 * Easiest way seem to be to deliver on USB stck and then copy content to dom0.
+  - connect USB/storage with SaltStack scripts
+  - connect USB/stotage to untrusted VM
+  - copy scripts from untrusted VM to dom0
 * Before running anything let's start with making sure that dom0's and domU's
   is up to date:
   ```shell
@@ -245,6 +248,8 @@ https://www.qubes-os.org/news/2022/10/28/how-to-organize-your-qubes/
 * I don't like to blow up my template, it already has too much, I can have
   multiple template but this is expensive in terms of maintenece time
   - Starting from debian-minimal would be great in many situations
+* Dealing with Qubes OS UI without keyboard: [Xfce Cheat
+  Sheet](https://defkey.com/xfce-shortcuts?orientation=landscape&cellAlternateColor=%23d6ffef&showPageNumber=true&pdf=True&showPageNumber=false)
 
 ---
 
