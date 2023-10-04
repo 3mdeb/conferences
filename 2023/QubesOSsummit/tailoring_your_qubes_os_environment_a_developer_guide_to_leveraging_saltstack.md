@@ -117,6 +117,14 @@ TODO: explain top and sls files
 
 ---
 
+# SaltStack in Qubes OS basics
+
+* `qubesctl` is a tool used to manage and configure Qubes OS using SaltStack.
+   In essence it is inter-changeable and an alias for `salt-call --local` and
+   contains additional code to apply any required patches.
+
+---
+
 # Declarative configuration
 
 * **Desired outcome** - You specify what you want the final configujration to
@@ -199,9 +207,16 @@ https://www.qubes-os.org/news/2022/10/28/how-to-organize-your-qubes/
 
 * Since nothing is configured on your cleanly installed Qubes OS you have to
   deploy SaltStack scripts somehow.
-* CaaC typically won't be public, so there is no way to download it.
+* CaaC typically won't be public, so there is no way to download it and even
+  downloading means some curl/wget or other software.
 * Cloning from private repo would require some previous configuration.
-* Easiest way seem to be to deliver on USB stck and then copy content to dom0
+* Easiest way seem to be to deliver on USB stck and then copy content to dom0.
+* Before running anything let's start with making sure that dom0's and domU's
+  is up to date:
+  ```shell
+  sudo qubesctl --show-output state.sls update.qubes-dom0
+  sudo qubesctl --show-output --skip-dom0 --templates state.sls update.qubes-vm
+  ```
 
 ---
 
@@ -233,7 +248,16 @@ https://www.qubes-os.org/news/2022/10/28/how-to-organize-your-qubes/
 
 ---
 
+# Other projects
+
+* https://github.com/unman/shaker
+* https://github.com/unman/qubes.3isec.org/blob/main/tasks.html
+
+
+
+---
+
 class: center, middle, intro
 
-Q&A
+# Q&A
 
