@@ -39,15 +39,16 @@ _Use the information at your own risk._
 </center>
 
 * **SaltStack** is Apache 2.0 licensed, written in Python configuration management
-  and automation for managing and scaling server infrastructure.
+  and automation tool.
 * Utilizes a central management server (Salt Master) to communicate with and
   control target systems (Salt Minions), with an option for masterless
   operation.
+  - Masterless configurtion is used by Qubes OS
 * Employs a declarative language in YAML to define desired system
   configurations, ensuring consistency and compliance across the
   infrastructure.
 * **SaltStack** was aquired by VMware in 2020
-* SaltStack integration was introducted to Qubes R3.1 (Q1'2016)
+* **SaltStack** integration was introducted to Qubes R3.1 (Q1'2016)
 
 ---
 
@@ -98,16 +99,16 @@ TODO: meme
 
 # SaltStack basics
 
-* I will not talk about, pillars, formulas and grains, because I have no idea
-  about those and how to apply those in practice. 
-* state
+* Pillars, formulas and grains and other Salt terminology make learning curve
+  steep.
+* States are defined in `*.sls` files.
 
 ```yaml
 stateid:
   cmd.run:
     - name: echo 'hello world'
 ```
-
+* Top files define which states should be applied to which targets.
 * Most usage of SaltStack in Qubes OS is not related to Qubes OS specific
   modules and libraries.
 
@@ -192,18 +193,189 @@ https://www.qubes-os.org/news/2022/10/28/how-to-organize-your-qubes/
 
 # Dom0 customization
 
-* Apply predefined SaltStack states
+* Apply formulas
+* Install templates
 * Change Qubes OS defaults
 * Install packages
 * Setup policy
-* Enable/disable(?) services
-* Configure Xfce
+* Xfce configuration
 * Create VMs
+* Enable/disable services
 * Update templates
 
 ---
 
-# Standard operation procedure
+# Apply formulas
+
+* There are already quite a lot of them in Qubes 4.2-rc3
+  - located in /srv/formulas/base
+  - GPLv2 licensed
+  - download, install and configure VMs using pillar data to define deault nams
+    and configuration details
+  - update dom0, TemplateVMs and AppVMs
+* Some examples:
+  - usb-keyboard - setup policy, modify Xen boot params, modify GRUB boot
+    params, regenerate grub config
+  - vault - install vault AppVM
+
+```shell
+sudo qubesctl --show-output state.sls update.qubes-dom0
+sudo qubesctl --show-output state.sls qvm.usb-keyboard
+```
+
+---
+
+# Install templates
+
+* If we do it from command line it would be `qvm-template install
+  TEMPLATESPEC`
+* AFAIK there is no `qvm-template` command, so we have to run regular
+  command:
+
+```yaml
+install debian-12-minimal template:
+  cmd.run:
+    - name: qvm-template install debian-12-minimal
+```
+
+---
+
+# Change Qubes OS defaults
+
+```yaml
+set default template:
+  cmd.run:
+    - name: qubes-prefs --set default_template debian-12-minimal
+    - runas: pietrushnic
+```
+
+* There are bunch of other options to deal with:
+  - clockvm
+  - default_kernel
+  - default_netvm
+  - update_vm
+  - others
+
+---
+
+# Install packages
+
+* Packages you may find worth of installing
+  - qubes-video-companion-dom0
+  - kernel-latest
+
+```yaml
+install qubes-video-companion:
+  pkg.installed:
+    - name: qubes-video-companion-dom0
+    - fromrepo: fedora,updates,qubes-dom0-current-testing
+    - refresh: True
+install other dom0 packages:
+  pkg.installed:
+    - pkgs:
+      - kernel-latest
+    - fromrepo: fedora,updates,qubes-dom0-current-testing
+    - refresh: True
+```
+
+* `pkg` documentation is extensive but most used, are: `pkg.installed`,
+  `pkg.removed`, `pkg.managed`, `pkg.latest`
+
+---
+
+# Setup policy
+
+* Policies defining which VMs can communicate via RPC.
+* Some of the popular one:
+  - SshAgent
+  - SplitGpg
+  - InputKeyboard/Mouse
+
+```yaml
+add SshAgent policy:
+  file.prepend:
+    - name: /etc/qubes-rpc/policy/qubes.SshAgent
+    - text:
+      - work vault ask,default_target=vault
+      - dev vault allow notify=yes
+```
+
+---
+
+# Xfce configuration
+
+* Xfce configuration as code is PITA
+  - finding correct property is not easy task
+  - naming scheme of properties is not self-explaining
+* Best what I was able to find is `xfconf-query` a tool created for
+  querying and setting Xfce configuration database.
+
+```yaml
+enable left-handed mouse:
+  cmd.run:
+    - name: xfconf-query -c pointers -p
+    /sys-usb_Logitech_USB_Optical_Mouse/Properties/libinput_Left_Handed_Enabled
+    -n -t int -s 1
+    - runas: pietrushnic
+```
+
+* Content of `name` should be one line it was changed for presentation
+  readability.
+
+---
+
+# Create VMs
+
+* Clean Qubes OS installation has some VMs created (personal, work,
+  vault, untrusted).
+* We may have to modify those or create new one.
+
+```yaml
+dev vm present:
+  qvm.present:
+    - name: dev
+    - label: blue
+    - klass: AppVM
+    - template: debian-12-minimal
+dev vm prefs:
+  qvm.prefs:
+    - name: dev
+    - autostart: True
+dev increase storage size:
+  cmd.run:
+    - name: qvm-volume resize dev:private 32G
+    - runas: pietrushnic
+```
+
+* Aparently 32G translate to `32*10^9`, but `qvm-volume` set power of two,
+  so calling this second time return error: `32*10^9 < 32002539520`
+  - incidental sefty check, but IDK how to handle that correctly
+
+---
+
+# Enable/disable services
+
+* `qvm.service` is used in similar way as `qvm-service` to manage Qubes
+  OS specific services srted in VMs
+
+```yaml
+enable split-gpg2 service in email:
+  qvm.service:
+    - name: email
+    - enable: split-gpg2-client
+```
+
+```yaml
+set service for company-vpn VM:
+  qvm.service:
+    - name: company-vpn
+    - enable:
+      - network-manager
+```
+
+---
+
+# Standard operation procedure (SOP)
 
 * Since nothing is configured on your cleanly installed Qubes OS you have to
   deploy SaltStack scripts somehow.
@@ -214,12 +386,135 @@ https://www.qubes-os.org/news/2022/10/28/how-to-organize-your-qubes/
   - connect USB/storage with SaltStack scripts
   - connect USB/stotage to untrusted VM
   - copy scripts from untrusted VM to dom0
-* Before running anything let's start with making sure that dom0's and domU's
-  is up to date:
+
+---
+
+# SOP: Updates
+
+* Before kick any Salt script let's make sure that dom0's and AppVM
+  templates are up to date:
+
   ```shell
   sudo qubesctl --show-output state.sls update.qubes-dom0
   sudo qubesctl --show-output --skip-dom0 --templates state.sls update.qubes-vm
   ```
+* The same thing should happen after executing CaaC.
+* Logs from template and VM configuration can be found in `/var/log/qubes/mgmy-VMNAME.log`
+
+---
+
+# SOP: Structure of script package
+
+* `*.sls` and `*.top` are named after the target names: dom0,
+  debian-12-minimal, dev, etc.
+  - this simplify tree organization, but cause some limitation
+
+???
+
+* configure dom0
+* install template
+* modify template
+* create VMs based on template
+
+---
+
+# init.sh
+
+* Following is an example:
+
+```bash
+#!/bin/bash
+
+for f in *.{sls,top};do
+	sudo ln -sf $PWD/${f} /srv/salt/${f}
+done
+
+sudo mkdir /srv/salt/files
+for f in files/*;do
+	sudo ln -sf $PWD/${f} /srv/salt/${f}
+done
+
+sudo qubesctl top.enable ${1}
+# sudo qubesctl --targets ${1} state.highstate -l debug
+sudo qubesctl --targets ${1} state.highstate
+sudo qubesctl top.disable ${1}
+
+
+for f in *.{sls,top};do
+	sudo unlink /srv/salt/${f}
+done
+for f in files/*;do
+	sudo unlink /srv/salt/${f}
+done
+sudo rm -rf /srv/salt/files
+```
+
+---
+
+# init-all.sh
+
+```bash
+sudo qubesctl --show-output state.sls update.qubes-dom0
+sudo qubesctl --show-output --templates state.sls update.qubes-vm
+
+for vm in dom0 my-vms-list;do
+	./init.sh ${vm}
+done
+
+# make sure that after template modification everything will continue to be up
+# to date
+sudo qubesctl --show-output --templates state.sls update.qubes-vm
+```
+
+---
+
+# Issues on Qubes OS 4.2.0-rc2
+
+.center[_No Top file or master_tops data matches found. Please see master log for details.]
+
+* There is nothing in `/var/log/salt/master`
+* It seems that new Qubes OS consume top files differently because there
+  is no `/srv/salt/_tops/base/topd.top` symlink to
+  `/srv/salt/topd/init.top`
+* Despite that there are more issue running scripts using above method.
+
+---
+
+# TemplateVMs customizations
+
+* To really minimize storage footprint, configuration time and bandwith
+  required for package installation we should first modify
+  `debian-12-minimal` with all necessary common packages between `comm`
+  and `dev`.
+* TemplateVMs commons can be added by include in sls:
+
+```yaml
+include:
+  - template_common
+```
+
+* _template_common.sls_:
+
+```yaml
+set zsh as default shell:
+  user.present:
+    - name: user
+    - shell: /bin/zsh
+    - groups: 
+      - user
+      - qubes
+```
+
+???
+
+---
+
+# TemplateVMs customizations
+
+* What actions we may want to perform in TemplateVMs
+  - debian-12-comm
+    - add gpg keys for custom communication app repos
+    - install communication apps (element, wire, keybase etc.)
 
 ---
 
@@ -250,6 +545,20 @@ https://www.qubes-os.org/news/2022/10/28/how-to-organize-your-qubes/
   - Starting from debian-minimal would be great in many situations
 * Dealing with Qubes OS UI without keyboard: [Xfce Cheat
   Sheet](https://defkey.com/xfce-shortcuts?orientation=landscape&cellAlternateColor=%23d6ffef&showPageNumber=true&pdf=True&showPageNumber=false)
+* organization of SLS and TOP files could be way better, especially considering
+  fact that top file can refernce multiple individual states from multiple sls
+  files
+  - in that context it may mean init.sh is redundant
+* Things change between Qubes OS releases
+  * Description of VMs (`qvm-prefs`)
+  * Template names
+* Order in which we apply states does matter.
+* Do things in a way that new version of Qubes OS will not break it.
+
+???
+
+* Why we should base on debian-12-xfce?
+  - isnt it bloated by default?
 
 ---
 
