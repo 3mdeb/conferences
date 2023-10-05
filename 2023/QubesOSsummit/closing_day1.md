@@ -18,16 +18,6 @@ class: center, middle, intro
 
 ---
 
-# Sponsors
-
-.center[.image-100[![](/img/qubes_2023_sponsors.png)]]
-
----
-
-.center[.image-99[![](/img/qubes_2023_organizers.png)]]
-
----
-
 # TBD: Why I care
 
 .center[.image-99[![](/img/trust.png)]]
@@ -140,7 +130,7 @@ Explain why you care about this event.
 	- initial support for AMD platforms
 	- founded effort of replacing tboot with TrenchBoot
 	- support for legacy (Intel 3rd gen) platforms
-- Fobanil Project was established and founded by NLNet
+- Fobanila Project was established and founded by NLNet
 	- Attestation in your pocket
 - MSI Z690-A DDR4 and ASUS KGPE-D16 - Dasharo and Qubes OS support
 - coreboot and Heads for Raptor Engineering Talos II (IBM POWER9)
@@ -157,6 +147,16 @@ Explain why you care about this event.
 * We were able to get more talks from community members and Qubes OS Team
 * Talks touch other areas then security, we will talk about Qubes OS future,
   UX, backups, cryptocurrency and many more
+
+---
+
+# Challanges and opportunities - 2019-2022
+
+- Confidential VMs.
+- New Golden Age of computing (aka firmware everywhere).
+- UEFI BIOS for Arm and RISC-V.
+- Reproducible toolchains.
+- Hardware compatibility and trustworthiness.
 
 ???
 
@@ -256,93 +256,72 @@ Explain why you care about this event.
 
 # So what you can expect this year
 
-* ### October 6th 2023: Conference Day 1 and Afterparty
-* ### October 7th 2023: Conference Day 2
-* ### October 8th 2023: Hackathon
+* This is 3 day event
+  - October 6th 2023: Conference Day 1 and Afterparty
+  - October 7th 2023: Conference Day 2
+  - October 8th 2023: Hackathon
 
 ---
 
-# Day 1 agenda
+# [TBD] Day 1 agenda
 
-### 10:00-10:25 
-- **_Welcome to Qubes OS Summit 2023 Day 1_** - Piotr (3mdeb), Marek (ITL) 
-
-### 10:30-11:00 
-- **_Qubes OS development status update_** - Marek (ITL)
-
-### 11:10-11:40 
-- **_ A Collaborative Endeavor: Our Journey Towards Enhancing Trustworthiness of Computing Devices_** - Piotr (3mdeb)
-
----
-
-# Day 1 agenda
-
-### 11:50-12:50 
-- **_Qubes OS and Ecosystem Changes: How Can We Change With Them?_** - Demi (ITL)
-
-### 13:00-14:00 
-- Lunch break
-
-### 14:10-14:40 
-- **_Bad UX is Bad Security: Adventures in Qubes OS UX Design _** - Marta (ITL)
-
----
-
-# Day 1 agenda
-
-### 14:50-15:20 
-- **_From Zero to Hero: Video Tutorials for Qubes OS (fully recorded & edited on Qubes)_** - Deeplow
-
-### 15:30-16:00 
-- **_Device UX Redesign_** - Marta (ITL)
-
-### 16:10-17:40 
-- 16:10-17:40 - **_Device UX Design Session_** - Marta (ITL)
-
----
-
-# Day 1 agenda
-
-### 17:50
-- **_Day 1 Closing Notes_** - Piotr (3mdeb), Marek (ITL) 
-
-### 17:50
-- **_Afterparty_**
+* 10:00-10:25 - **_Welcome to Qubes OS Summit 2023 Day 1_**, Piotr (3mdeb), Marek (ITL) 
+* 10:30-11:30 - **_Qubes OS development status update_**, Marek (ITL)
+* 11:10-11:50 - **_ A Collaborative Endeavor: Our Journey Towards Enhancing Trustworthiness of Computing Devices_**, Piotr (3mdeb)
+* 12:00-12:20 - **_Qubes OS and Ecosystem Changes: How Can We Change With Them?_**, Demi (ITL)
+* 12:30-13:00 - **__**, Jan (NitroKey)
+* 13:00-14:00 - Lunch break
+* 14:00-14:30 - **__**, 
+* 14:40-15:10 - **__**,
+* 15:20-15:50 - **__**,
+* 16:00-16:30 - **__**,
+* 16:40-17:40 - **__**,
+* 17:50 - Day 1 closing notes
+* 19:30 - Afterparty
 
 ---
 
 # Afterparty
 
+.center[.image-30[![](/img/sudblock2.png) ![](/img/sudblock3.png)]]
 .center[.image-99[![](/img/sudblock.png)]]
-
-???
-
-* TODO: Last year pictures?
 
 ---
 
 # General Rules
 
-.center[.image-80[![](/img/qubes_os_format.png)]]
-
 .center[https://qubesos.3mdeb.com]
 
 * Respect Code of Conduct.
-* Please follow Safety and Health protocols and respect others.
-* Talks are streamed and recorded and will be published on Youtube.
-* Drinks and sweets are free.
+* Please follow Safety and Health protocols.
+* Recording.
+* Food and drinks.
 * Matrix `#qubes-summit:matrix.org` will be used for communication during
   event.
 * In case of any issues please contact with organizers.
 
+???
+
+- [ ] logistics topics
+
 ---
 
-# Merchandise
+# Organizers
 
-.center[.image-99[![](/img/merchandise.png)]]
+.center[.image-40[![](/img/3mdeb.png) ![](/img/itl.png)]]
 
-* Paid and free merchandise available (at location and in 3mdeb Shop).
-* There are also partners selling their merchadise.
+- It would not be possible without support and dedication of Invisible Things
+  Lab and 3mdeb teams.
+
+---
+
+# Sponsors
+
+.center[.image-60[![](/img/fpf.png) .image-60[![](/img/mullvad.png)]
+
+.center[.image-40[![](/img/nitrokey.png) ![](/img/novacustom.png)]]
+
+???
 
 ---
 
