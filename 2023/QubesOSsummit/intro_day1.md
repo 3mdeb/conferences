@@ -2,9 +2,10 @@ class: center, middle, intro
 
 # Welcome to Qubes OS Summit 2023
 
-## Day 1
+### Day 1
 
 ## Piotr Król and Marek Marczykowski Górecki
+
 
 <img src="/remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
 
@@ -26,7 +27,7 @@ class: center, middle, intro
 
 .center[.image-99[![](/img/qubes_2023_organizers.png)]]
 
----
+???
 
 # TBD: Why I care
 
@@ -37,8 +38,6 @@ class: center, middle, intro
 	- Tactics and strategy difference.
 * Operating System and Firmware synergy.
 * Sustainability.
-
-???
 
 Qubes OS Vision:
 Dasharo Vision:
@@ -128,24 +127,28 @@ Explain why you care about this event.
 
 ---
 
-# Accomplishments - 2019-2022
+# Accomplishments - 2022-2023
 
-- Initial fwupd/LVFS support for Qubes OS was developed.
-- Qubes OS over last years gained 3 certified laptops (one from
-  Insurgo, and 2 from NitroKey).
-- Xen contributions: AMD Secure Startup via SKINIT
-- TrenchBoot Project was established and AMD implementation was founded by NLNet
-	- Open-source D-RTM support
-- Anti Evil Maid support for Qubes OS
-	- initial support for AMD platforms
-	- founded effort of replacing tboot with TrenchBoot
-	- support for legacy (Intel 3rd gen) platforms
-- Fobanil Project was established and founded by NLNet
-	- Attestation in your pocket
-- MSI Z690-A DDR4 and ASUS KGPE-D16 - Dasharo and Qubes OS support
-- coreboot and Heads for Raptor Engineering Talos II (IBM POWER9)
+* Recap of vision and challanges presented last year.
+* We double the number of Qubes OS Certified Hardware (from 3 to 6)
+  - All newly certified hardware use Dasharo open-source firmware distribution
+    to boot Qubes OS
+* Qubes HCL statistics: 994 (+138)
+* Intel SMI Transfer Monitor and PPAM
+  - There are plans to present STM at DUG#4/vPub 0x9
+  - We also discuss potential for opening information regarding PPAM for
+    integration with TrenchBoot and Dasharo needs
+* Use safeboot approach to improve UEFI Secure Boot integration
+  - safeboot is no longer mainteined
+  - we will discuss wider approach and plan to Plaform Security features
+    integration during Day 2 design session
+* Intel Boot Guard shim
+  - very likely not feasible, wider discussion on Framework forum
+  - we already combined quite a lot of features in Dasharo Enterprise
 
 ???
+
+Qubes HCL snapshot date 05/10/2023
 
 - [ ] what was accomplished so far
 	- 4 events gathering Qubes OS community
@@ -157,8 +160,6 @@ Explain why you care about this event.
 * We were able to get more talks from community members and Qubes OS Team
 * Talks touch other areas then security, we will talk about Qubes OS future,
   UX, backups, cryptocurrency and many more
-
-???
 
 - [ ] what problems we still have to face
 	- unfrotunately we getting more firmware and more blobs with every new platform
@@ -192,22 +193,57 @@ Explain why you care about this event.
 
 ---
 
-# Vision and challanges - 2022-2025
+# Accomplishments - 2022-2023
 
-* Provide solutions that will improve trustworthiness of every computing device.
-	- vertical integration of Qubes OS and Dasharo based-on Certified Hardware
-* Extend hardware compatibility
+.center[.image-90[![](/img/qubes_2023_stats.png)]]
+
+---
+
+# Accomplishments - 2022-2023
+
+.center[.image-70[![](/img/dasharo_net_opts.jpeg)]]
+
+* PoC was creted during Qubes OS Summit 2022
+
+---
+
+# Accomplishments - 2022-2023
+
+.center[.image-70[![](/img/dasharo_usb_opts.jpeg)]]
+
+---
+
+# Accomplishments - 2022-2023
+
+.center[.image-60[![](/img/dasharo_sec_opts.jpeg)]]
+
 * Provide incident protection, detection and recovery
-* Support attestation based on TCG RIM and FIM standards
-* Leverage hardware-asisted features
-	- Intel SMI Transfer Monitor and PPAM
-	- Use safeboot approach to improve UEFI Secure Boot integration
-	- Intel Boot Guard shim?
-	- Intel MKTME and AMD SEV guest encryption
-* Innovation in operating systems and virtualization
-	- Unikernels as first class citizens
-	- Lightweight VMs
-* Accelerate awareness buidling and influencing industry
+  - https://docs.dasharo.com/dasharo-menu-docs/dasharo-system-features/
+
+---
+
+# Accomplishments - 2022-2023
+
+* TrenchBoot as Anti-Evil Maid for Qubes OS slowly move forward
+  - ITL decided to sponsor P1 and P5
+  - We received grant from NLNet for P2-P4
+  - Maciej will present that in more details tomorrow
+
+---
+
+# Vision and challanges - 2023-2025
+
+* Continue growth of number of Qubes OS Certified Hardware
+  - Add platforms from Dasharo Roadmap: Dell OptiPlex, Lenovo M920Q
+  - HP Compaq Elite 8300
+* Work on improving Qubes HCL statistics
+  - Run campaign encouraging users to send reports
+* Challanges not yet addressed:
+  * Support attestation based on TCG RIM and FIM standards
+  * Intel MKTME and AMD SEV guest encryption
+  * Innovation in operating systems and virtualization
+  	- Unikernels as first class citizens
+  	- Lightweight VMs
 
 ???
 
@@ -313,6 +349,7 @@ Explain why you care about this event.
 
 # Afterparty
 
+.center[.image-50[![](/img/qubes_2022_sudblock.jpg)]]
 .center[.image-99[![](/img/sudblock.png)]]
 
 ???
