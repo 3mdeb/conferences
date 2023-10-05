@@ -8,12 +8,25 @@ class: center, middle, intro
 
 ---
 
+# Welcome
+
+<center>
+<img src="/img/qubes_2023.png" width="800px" style="margin-left:-20px;margin-top:-20px">
+</center>
+
+---
+
+# Sponsors
+
+.center[.image-100[![](/img/qubes_2023_sponsors.png)]]
+
+---
+
 # Event organization
 
-* This is 3 day event
-  - September 9th 2022: conference day 1 and social event
-  - September 10th 2022: conferene day 2
-  - September 11th 2022: hackathon
+* ### October 6th 2023: Conference Day 1 and Afterparty
+* ### October 7th 2023: Conference Day 2
+* ### October 8th 2023: Hackathon
 
 ---
 
@@ -25,18 +38,36 @@ class: center, middle, intro
 
 # Day 2 agenda
 
-* 10:00-10:10 - **_Welcome to Qubes OS Summit 2022 Day 2_**,Piotr (3mdeb) 
-* 10:20-10:35 - **_ How Dasharo coreboot based firmware helps NovaCustom's customers _**, Wessel (NovaCustom)
-* 10:45-11:15 - **_Qubes User Support Stories _**, nastire
-* 11:30-12:00 - **_Qubes OS Documentation Localization _**, m, Tobias (Spectrum OS)
-- 12:10-12:40 - **_Qubes OS on modern Alder Lake desktop _**, Michał Ż. (3mdeb)
-- 12:50-14:00 - Lunch break
-- 14:00-14:30 - **_Qubes OS: Towards Being a Reasonably Learnable System _**, Deeplow
-- 14:40-15:10 - **_TrenchBoot - the only AEM-way to boot Qubes OS _**, Michał Ż. (3mdeb) 
-- 15:20-15:50 - **_Secure hardware for a secure operating system _**, Brent (Protectli)
-- 16:00-16:30 - **_Design session: hardware requirements, firmware security _**, Marek (ITL)
-- 17:10-17:40 - **_Dasharo vs vendor firmware performance on QubesOS - a comparison _**, Michał K. (3mdeb)
-- 17:50 - Day 2 closing notes
+* 10:00-10:10 - **_Welcome to Qubes OS Summit 2023 Day 2_**
+  - Piotr (3mdeb), Marek (ITL) 
+* 10:15-10:45 - **_Qubes OS contributing process_**
+  - Marek (ITL) 
+* 10:45-11:15 - **_S0ix support for Qubes OS: A quick update_**
+  - Simon (ITL) 
+* 11:20-11:50 - **_TrenchBoot Anti Evil Maid: Roadmap, Challenges, and Advancements_**
+  - Maciej (3mdeb)
+- 12:00-12:25 - **_NovaCustom October 2023 update, anti-tamper solutions and Heads firmware demonstration_**
+  - Wessel (NovaCustom)
+* 12:35-13:05 - **_Tailoring Your Qubes OS Environment: A Developer’s Guide to Leveraging SaltStack_**
+  - Piotr (3mdeb)
+
+---
+
+# Day 2 agenda
+
+- 13:10-14:10 - Lunch break
+- 14:20-14:50 - **_Universal Second Factor and Qubes OS 4.2: can we still use our old U2F keys?_**
+  - Piotr (ITL)
+- 15:00-15:30 - **_vGPUs Unscripted_**
+  - Arthur (Arc Compute)
+- 15:40-16:10 - **_Qubes OS Documentation Localization_**
+  - m
+- 16:20-16:30 - **_Creating a Tool to Check Platform Security Features for Qubes OS_**
+  - Piotr (3mdeb)
+- 16:40-17:50 - **_Platform Security Design Session_**
+  - Piotr (3mdeb)
+* 17:55 - **_Day 2 Closing Notes_**
+  - Piotr (3mdeb), Marek (ITL) 
 
 ---
 
