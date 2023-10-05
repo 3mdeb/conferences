@@ -723,8 +723,16 @@ remove vpn keys:
 
 # Other projects
 
-* https://github.com/unman/shaker
-* https://github.com/unman/qubes.3isec.org/blob/main/tasks.html
+* [Qubes Salt Beginner's
+  Guide](https://forum.qubes-os.org/t/qubes-salt-beginners-guide/20126) -
+  Community Guide by leo
+* unman projects
+  * https://qubes.3isec.org/tasks.html
+    - UI application that leverage shaker set of SaltStack scripts
+    - why should I trust unman's signature for dom0 applications?
+  * https://github.com/unman/shaker
+    - Set of unman's SaltStack scripts
+    - GPLv3+
 
 ---
 
