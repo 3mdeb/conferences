@@ -2,7 +2,7 @@ class: center, middle, intro
 
 # Closing Qubes OS Summit 2023
 
-## Day 1
+## Day 2
 
 ## Piotr Król
 

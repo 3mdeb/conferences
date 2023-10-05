@@ -1,8 +1,11 @@
 class: center, middle, intro
 
-# Welcome to Qubes OS Summit 2022
+# Welcome to Qubes OS Summit 2023
 
 ### Day 2
+
+## Piotr Król and Marek Marczykowski Górecki
+
 
 <img src="/remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
 
