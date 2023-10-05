@@ -37,8 +37,20 @@ class: center, middle, intro
 
 # Agenda
 
-
-* lorem ipsum
+* Disclaimer
+* Qubes OS and SaltStack
+* SaltStack vs Backup
+* SaltStack basics
+* Declarative configuration
+* How to start?
+* Qubes organization
+* Dom0 customization
+* Standard operation procedure
+* Issues on Qubes OS 4.2.0-rc3
+* TemplateVMs/AppVMs/NetVMs customizations
+* Developer workflow
+* Challanges
+* Other projects
 
 ---
 
