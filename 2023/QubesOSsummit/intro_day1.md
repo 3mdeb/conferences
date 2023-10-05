@@ -2,7 +2,9 @@ class: center, middle, intro
 
 # Welcome to Qubes OS Summit 2023
 
-### Day 1
+## Day 1
+
+## Piotr Król and Marek Marczykowski Górecki
 
 <img src="/remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
 
@@ -10,14 +12,13 @@ class: center, middle, intro
 
 # Welcome
 
-.center[.image-99[![](/img/qubes_os_summit.png)]]
-
-### .center[Thank you for coming!]
-
+<center>
+<img src="/img/qubes_2023.png" width="800px" style="margin-left:-20px;margin-top:-20px">
+</center>
 
 ---
 
-# Why I care
+# TBD: Why I care
 
 .center[.image-99[![](/img/trust.png)]]
 
@@ -28,6 +29,17 @@ class: center, middle, intro
 * Sustainability.
 
 ???
+
+Qubes OS Vision:
+Dasharo Vision:
+
+What are the main struggles we have to realize our vision?
+- competent engineering resources
+  - should be function of community size
+
+It is already
+
+## Qubes OS Summit 2022
 
 - [ ] personally important thing, that I care about
 
@@ -81,15 +93,11 @@ Explain why you care about this event.
 
 # History
 
-.center[.image-99[![](/img/post.png)]]
-
----
-
-# History
-
-.center[.image-99[![](/img/qubes_os_summit.png)]]
+.center[.image-70[![](/img/qubes_2023_logo.png)]]
+.center[.image-80[![](/img/qubes_os_summit.png)]]
 .center[.image-50[![](/img/2021.png)]]
-.center[.image-40[![](/img/2019.png) ![](/img/2020.jpeg)]]
+.center[.image-35[![](/img/2020.jpeg) ![](/img/2019.png)]]
+
 
 ???
 
