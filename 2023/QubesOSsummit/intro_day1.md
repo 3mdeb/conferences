@@ -27,6 +27,7 @@ class: center, middle, intro
 
 .center[.image-99[![](/img/qubes_2023_organizers.png)]]
 
+
 ???
 
 # TBD: Why I care
@@ -228,6 +229,9 @@ Qubes HCL snapshot date 05/10/2023
   - ITL decided to sponsor P1 and P5
   - We received grant from NLNet for P2-P4
   - Maciej will present that in more details tomorrow
+* Release of Dasharo (coreboot+Heads) for Raptor Computing Systems Talos
+  II
+  - In the backgroun Timothy from RCS develop support for Xen
 
 ---
 
@@ -244,6 +248,7 @@ Qubes HCL snapshot date 05/10/2023
   * Innovation in operating systems and virtualization
   	- Unikernels as first class citizens
   	- Lightweight VMs
+  * Open ISA (POWER, RISC-V) Xen support is more and more mautre
 
 ???
 
