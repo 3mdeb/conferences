@@ -52,40 +52,22 @@ class: center, middle, intro
 
 ---
 
-# Who we are ?
-
-.center[
-  .image-15[![](/remark-templates/3mdeb-presentation-template/images/coreboot-1024x1024.png)]
-  .image-15[![](/remark-templates/3mdeb-presentation-template/images/uefi-1024x1024.png)]
-  .image-15[![](/remark-templates/3mdeb-presentation-template/images/lvfs.png)]
-  .image-15[![](/remark-templates/3mdeb-presentation-template/images/yocto.png)]
-]
-.center[.image-35[![](/remark-templates/3mdeb-presentation-template/images/openpower.svg)]]
-
-- coreboot licensed service providers since 2016 and leadership participants
-- UEFI Adopters since 2018
-- Yocto Participants and Embedded Linux experts since 2019
-- Official consultants for Linux Foundation fwupd/LVFS project since 2020
-- IBM OpenPOWER Foundation members since 2020
-
----
-
 # Agenda
 
-- AEM in QubesOS (what it is, what is the current support)
-- TrenchBoot (what it is, what are the components)
+- AEM in QubesOS
+- TrenchBoot
 - Project plan
 - Challenges
-- Current Status (Advancements)
+- Current Status
 - Q&A
 
 ---
 
 # Intro
 
+- Focus and plan and current state
 - Short overview of the AEM and TrenchBoot
 - Already presented last year in the QubesOS summit
-    + Michał Żygowski
     + TrenchBoot - the only AEM-way to boot Qubes OS
     + https://www.youtube.com/watch?v=A9GrlQsQc7Q&t=17441s
 
@@ -93,7 +75,11 @@ class: center, middle, intro
 
 ???
 
-It was already presented last year, so no need to duplicate this.
+In this presentation I want to focus on presenting the current plan, status,
+and problems.
+
+I will just briefly explain what AEM and TB is. It was already explained in the
+last year's summit
 
 ---
 
@@ -108,7 +94,15 @@ It was already presented last year, so no need to duplicate this.
     + technology from silicon vendor
     + needs to be present in hardware and supported by the firmware
 
-TBD: Some AEM / TPM image?
+.center.image-80[![](/img/tb_aem_attack.png)]
+
+.footnote[https://blog.f-secure.com/de/evil-maid-attacken-wenn-die-putzfrau-den-pc-hackt/]
+
+???
+
+AEM attack is ...
+
+In the current QubesOS implementation it reuiqres TPM and DRTM technology
 
 ---
 
@@ -119,7 +113,10 @@ TBD: Some AEM / TPM image?
 security engines to perform launch integrity actions for their systems.**
 ]
 
-.center.image-50[![](/img/trenchboot_logo.png)]
+- Uses DRTM as well
+- The goal is to replace current solution in AEM (tboot) with TrenchBoot
+
+.center.image-40[![](/img/trenchboot_logo.png)]
 
 - https://trenchboot.org/
 
@@ -150,6 +147,8 @@ presentation - TB
 
 ???
 
+What are  the most important components
+
 In the context of AEM support, we are now focused on QubesOS and Intel
 platforms. So we are interested in the GRUB and Xen repositories.
 
@@ -164,6 +163,9 @@ platforms. So we are interested in the GRUB and Xen repositories.
 - https://github.com/TrenchBoot/trenchboot-issues/milestones
 
 ???
+
+The project is split into phases, where each phase builds on the previous one
+and enables more usage scenarios.
 
 - Phase 1
     + Intel TXT and TPM1.2
@@ -188,6 +190,10 @@ platforms. So we are interested in the GRUB and Xen repositories.
     + No GH milestone
 
 ???
+
+The third phase is a new one, not presented last year. The goal is to update
+the solution to the most recent TrenchBoot boot protocol. More details in the
+next slide.
 
 - Phase 3
     + Update to the newest TrenchBoot boot protocol
@@ -239,6 +245,8 @@ A few more details on the P3 and P4 which are next in our schedule
 
 ???
 
+Now we will talk about some challenges we have faced
+
 Maybe for many of you here this does not look like a challenge, but it is
 really not that trivial to ramp-up non-QubesOS users to into QubesOS
 development.
@@ -285,7 +293,7 @@ libxl_domain.c:1589:devices_destroy_cb: Domain 4:libxl__devices_destroy failed
 - Wanted to run QubesOS OpenQA test (especially AEM) on these
 - Wanted to retain the functionality of the PiKVM
 - QubesOS setup uses OpenQA worker installed directly on the RPI
-  + The /dev/video is exposed directly to the worker
+  + The `/dev/video` is exposed directly to the worker
 - Not trivial to make the video stream work over network
 - OpenQA can accept VNC, but requires RAW or ZRLE encoding
 - PiKVM exposes VNC, but supports TightJPEG and H.264 encoding
@@ -296,7 +304,7 @@ libxl_domain.c:1589:devices_destroy_cb: Domain 4:libxl__devices_destroy failed
 
 **Hardware selection for P2 (legacy boot, Intel, TPM2.0)**
 
-- Legacy BIOS (or in reality - proper CSM support in UEFI firmware)
+- Legacy boot support (such as proper CSM support in UEFI firmware)
 - TPM2.0 discrete module
 - TXT supported by the CPU
 - TXT supported by the PCH
@@ -304,7 +312,7 @@ libxl_domain.c:1589:devices_destroy_cb: Domain 4:libxl__devices_destroy failed
 - TXT supported by the firmware
 - ACM provided in the firmware
   + if not, we can still load it from GRUB
-- **Physical serial port**
+- **Physical serial port** - for GRUB/Xen development
   + BIOS serial console redirection is a plus
 
 ---
@@ -325,6 +333,9 @@ libxl_domain.c:1589:devices_destroy_cb: Domain 4:libxl__devices_destroy failed
   + https://github.com/TrenchBoot/trenchboot-issues/issues/16#issuecomment-1693399379
 
 ???
+
+We have started with Supermicro X11 SSH, as was presented last year.
+Unfortunately we have not been able to reliably work on this platform.
 
 Some reports in the link below
 
@@ -367,7 +378,7 @@ Xen booting.
 - Lenovo ThinkCentre M920q (M920 Tiny)
   + i5-8500T (vPro), TPM2.0
   + Some lower models have TXT support in CPU, but not in PCH 🤯
-  + No ACM in the firmware image
+  + No ACM in the firmware image (despite BIOS option is there)
   + ACM exits with undocumented error: `0xC00014A1`
 
 .center.image-60[![](/img/tb_aem_lenovo_m920q_front.png)]
@@ -376,6 +387,9 @@ Xen booting.
 ???
 
 ACM loaded manually via GRUB
+
+It was the first device we have faced, where TXT option in BIOS is there, but
+ACM is not available in the firmware image.
 
 ---
 
@@ -388,6 +402,7 @@ ACM loaded manually via GRUB
   + (Almost) a success
   + AMT came locked and there was no way to reset password
   + No graphical output from BIOS via PiKVM (tried various EDIDs) 🙁
+  + Some USB ports do not work (could be issue of this particular unit)
   + Gave up on automation, implementing with hardware on a desk
 
 .center.image-60[![](/img/hp_elitedesk_800_g2.jpg)]
@@ -420,7 +435,7 @@ desk - thankfully it is so small
 
 - Hardware used for testing
     + Dell OptiPlex 9010 SFF (Intel Ivybridge, TPM 1.2)
-    + dev-build of Dasharo with TXT and SeaBios
+    + Dev-build of Dasharo with TXT and SeaBios
 
 .center.image-30[![](/img/tb_aem_optiplex.png)]
 
@@ -430,7 +445,7 @@ desk - thankfully it is so small
 
 ### Phase 2
 
-- The main development is finalized
+- The main development is finalized 🏁
 - We are working on integration and testing
 
 ---
@@ -516,7 +531,7 @@ functions that serve equivalent roles of the existing TPM1.2 functions.
 
 **OpenQA test for AEM**
 
-.center.image-75[![](/img/tb_aem_openqa_screen.png)]
+.center.image-65[![](/img/tb_aem_openqa_screen.png)]
 
 ---
 
