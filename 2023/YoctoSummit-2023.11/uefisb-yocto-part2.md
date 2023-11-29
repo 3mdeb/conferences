@@ -69,6 +69,10 @@ class: center, middle, intro
 
 # Recap from first part
 
+* Previous presentation: https://www.youtube.com/watch?v=OA9TKkwFFIE
+  - enabling UEFI Secure Boot on x86 platform with Yocto: getting started with
+    meta-secure-core
+
 .center[<img src="../../img/secure_boot.svg" width="720px">]
 
 ???
@@ -142,6 +146,26 @@ class: center, middle, intro
 
 # Build improvements
 
+* Building `iso` image
+  - one of the requirements of base image
+  - introduces regression
+* Error
+
+.code-11px[
+```bash
+| install: cannot stat '/build/tmp/deploy/images/genericx86-64/grub-efi-bootx64.efi':
+  No such file or directory
+| WARNING: exit code 1 from a shell command.
+| DEBUG: Python function do_bootimg finished
+ERROR: Task (/repo/meta-dts-distro/recipes-dts/images/dts-base-sb-image.bb:do_bootimg)
+  failed with exit code '1'
+```
+]
+
+* Solution
+  - temporary: `IMAGE_FSTYPES:remove = "iso"`
+  - cause of issue: `live-vm-common.bbclass` and `efi_populate_common` function
+
 ???
 
 remove manual steps
@@ -149,6 +173,18 @@ remove manual steps
 ---
 
 # Build improvements
+
+* Corect binaries in `/boot` partition
+  - we need signed `grubx64.efi`
+  - BIOS looks for `bootx64.efi`
+* Signed `grubx64.efi`
+  - signed by `grub-efi-efi-secure-boot.inc`
+  - other binary provided while creating rootfs
+  - workaround to deploy proper binary
+* Signed `bootx64.efi`
+  - signed by `shim_git.bb`
+  - `bootx64.efi` deployed to DEPLOY_DIR
+  - add `bootx64.efi;EFI/BOOT/ \` to `IMAGE_EFI_BOOT_FILES`
 
 ???
 
@@ -158,6 +194,21 @@ sbctl
 
 # Build improvements
 
+* sbctl
+  - Secure Boot key manager
+  - dependencies: `util-linux`, `binutils`, `Go`, asciidoc
+  - another tool for Secure Boot management (similar to mokutil)
+* Features
+  - user-friendly
+  - manages secure boot keys
+  - live enrollment of keys
+  - signing database to help keep track of files to sign
+  - JSON output
+* Recipe `sbctl_0.12.bb`
+  - binary release installation
+  - do not want to add golang to Yocto cache yet
+  - missing in Yocto recipe index
+
 ???
 
 integrating more meta-signing-keys
@@ -166,7 +217,36 @@ integrating more meta-signing-keys
 
 # Build improvements
 
-
+* meta-signing-key
+  - `create-user-key-store.sh` execution
+  - creates user keys
+* Output
+.code-11px[
+```bash
+MASTER_KEYS_DIR = "/home/tzyjewski/projects/dts/meta-secure-core/meta-signing-key/scripts/user-keys"
+IMA_KEYS_DIR = "${MASTER_KEYS_DIR}/ima_keys"
+IMA_EVM_KEY_DIR = "${MASTER_KEYS_DIR}/ima_keys"
+RPM_KEYS_DIR = "${MASTER_KEYS_DIR}/rpm_keys"
+BOOT_KEYS_DIR = "${MASTER_KEYS_DIR}/boot_keys"
+MOK_SB_KEYS_DIR = "${MASTER_KEYS_DIR}/mok_sb_keys"
+SYSTEM_TRUSTED_KEYS_DIR = "${MASTER_KEYS_DIR}/system_trusted_keys"
+SECONDARY_TRUSTED_KEYS_DIR = "${MASTER_KEYS_DIR}/secondary_trusted_keys"
+MODSIGN_KEYS_DIR = "${MASTER_KEYS_DIR}/modsign_keys"
+UEFI_SB_KEYS_DIR = "${MASTER_KEYS_DIR}/uefi_sb_keys"
+GRUB_PUB_KEY = "${MASTER_KEYS_DIR}/boot_keys/boot_pub_key"
+GRUB_PW_FILE = "${MASTER_KEYS_DIR}/boot_keys/boot_cfg_pw"
+OSTREE_GPGDIR = "${MASTER_KEYS_DIR}/rpm_keys"
+RPM_GPG_NAME = "PKG-Prod"
+RPM_GPG_PASSPHRASE = "root"
+RPM_FSK_PASSWORD = "root"
+BOOT_GPG_NAME = "BOOT-Prod"
+BOOT_GPG_PASSPHRASE = "root"
+OSTREE_GPGID = "PKG-Prod"
+OSTREE_GPG_PASSPHRASE = "root"
+OSTREE_GRUB_PW_FILE = "${GRUB_PW_FILE}"
+```
+]
+* Add to kas config file
 
 ---
 
@@ -333,7 +413,7 @@ integrating more meta-signing-keys
      Certificate Provision
   1. Boot custom Linux-based operating system, signed with generated keys
   1. Generate new keypair, build another image, try to boot on platform
-* Presentation
+* Next slides will present the results
 
 ???
 
@@ -342,6 +422,100 @@ integrating more meta-signing-keys
    Provision
 3. Try to boot Ubuntu
 4. Try to boot signed image
+
+---
+
+# Demo
+
+* Generate custom keypair
+  - `create-user-key-store.sh`
+  - take a list of inputs
+
+.code-11px[
+```bash
+λ ./scripts/create-user-key-store.sh
+KEYS_DIR: /home/tzyjewski/projects/dts/meta-secure-core/meta-signing-key/scripts/user-keys
+Enter RPM/OSTree GPG keyname (use dashes instead of spaces) [default: PKG-SecureCore]: PKG-Sec
+Enter RPM/OSTree GPG e-mail address [default: SecureCore@foo.com]: tomasz.zyjewski@3mdeb.com
+Enter RPM/OSTREE GPG comment [default: Signing Key]: Prod Key
+Using boot loader gpg name: BOOT-Sec
+Using boot loader gpg email: tomasz.zyjewski@3mdeb.com
+Using boot loader gpg comment: Prod Key
+    Press control-c now if and use -bn -bm -bc arguments if you want
+    different values other than listed above
+Enter RPM/OSTREE passphrase: root
+Enter IMA passphrase: root
+Enter boot loader GPG passphrase: root
+Enter boot loader locked configuration password(e.g. grub pw): root
+```
+]
+
+* Creates `key.conf` mentioned earlier, need to be put in `local.conf`
+
+---
+
+# Demo
+
+* For `Automatic Certificate Provision` process mention manual certs removal
+  - go inside BIOS Menu
+  - remove KEK, PK certs and databases
+  - we cannot enable Secure Boot with PK removed
+* With Secure Boot disabled boot image from USB
+
+.code-11px[
+```bash
+Booting `Automatic Certificate Provision`
+/EndEntire
+file path: /ACPI(a0341d0.0)/PCI(0.14)/USB(0.0)
+  /HD(1.800.14bfc.b030108e00000)/File(\EFI\BOOT)/File(\LockDown.efi)/EndEntire
+Platform is in Setup Mode
+Created KEK Cert
+Created db Cert
+Created dbx Cert
+Created PL Cert
+Platform is in User Mode
+Platform is set to boot securely
+Prepare to execute system warm reset after 3 seconds...
+```
+]
+
+---
+
+# Demo
+
+* Boot testing
+  - we removed default certs, so we should not be able to run Ubuntu/Windows
+  - only our image should be able to boot
+* Ubuntu/Windows
+.code-11px[
+```bash
+SecureBoot is enabled
+Booting `Windows Boot Manager` failed due to `Access Denied`.
+Press any key to continue...
+```
+]
+* Custom image
+  - boots `grub`
+  - enabling `UEFI_SB` add password protection, e.g. to change cmdline
+  - here `root/root`
+
+---
+
+# Demo
+
+* Scenario where we want to rotate our certificate
+  - rerun script to generate new keys
+  - rebuild images
+* Any of images could not be boot (Ubuntu/Windows/custom)
+.code-11px[
+```bash
+SecureBoot is enabled
+Booting `Windows Boot Manager` failed due to `Access Denied`.
+Press any key to continue...
+```
+]
+* We could rerun `Automatic Certificate Provision` or investigate `sbctl` to
+  rotate certs on live image
 
 ---
 
@@ -360,8 +534,10 @@ integrating more meta-signing-keys
 ---
 # Resources
 
+* https://p.ost2.fyi/
+* https://uefi.org/specs/UEFI/2.10/
 * https://docs.oracle.com/en/operating-systems/oracle-linux/notice-sboot/OL-NOTICE-SBOOT.pdf
-
+* https://github.com/Wind-River/meta-secure-core
 
 ---
 
