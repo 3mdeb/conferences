@@ -349,11 +349,11 @@ OSTREE_GRUB_PW_FILE = "${GRUB_PW_FILE}"
 
 Now let's look into UEFI Secure Boot compliance. Basically if any platform is
 UEFI Secure Boot compatible it mean that we can enable that future on given
-platform. Compliance is rather checked with a bunch of tests. Importing it ensures that the
-computer's firmware and boot process are protected against unauthorized or
-malicious code execution. This heightened security reduces the risk of malware
-infections and boot-level attacks, making the system more resistant to cyber
-threats.
+platform. Compliance is rather checked with a bunch of tests. Importing it
+ensures that the computer's firmware and boot process are protected against
+unauthorized or malicious code execution. This heightened security reduces the
+risk of malware infections and boot-level attacks, making the system more
+resistant to cyber threats.
 
 Many industries and regulatory bodies require UEFI Secure Boot compliance as a
 security best practice. Importing compliance helps organizations meet these
@@ -377,7 +377,7 @@ the list of trusted keys, and configure Secure Boot settings. Accessing the UEFI
 setup utility usually involves pressing a specific key (e.g., F2, Del, F12)
 during system startup.
 
-We have also a cmdlines utilites, both on linux (like `sbctl` or `mokutil`) and
+We have also a cmdlines utilities, both on linux (like `sbctl` or `mokutil`) and
 Windows (e.g. `bdedit`).
 
 There are also third-party software tools designed specifically for checking
@@ -409,7 +409,7 @@ When checking UEFI Secure Boot complaince we need to prepare a test environment
 which consist of software and hardware parts.
 
 Software part is a set of tests that logically check and verify if given scenario
-in context of Secure Boot can be succesfully ended.
+in context of Secure Boot can be successfully ended.
 
 Hardware part of tests environment consist of providing two key functionalities
 that are used in testing.
@@ -682,7 +682,7 @@ Press any key to continue...
 # Summary
 
 * As on Yocto Summit 2022.11, we again leaned into the meta-secure-core and UEFI
-  Secure Boot intergration in Yocto-based projects
+  Secure Boot integration in Yocto-based projects
 * We have fixed several bugs and integrated another UEFI Secure Boot status tool
   into the system
 * We devoted this year's presentation to additional aspects of maintaining a
@@ -705,4 +705,5 @@ Press any key to continue...
 <br>
 <br>
 <br>
+
 ## .center[Q&A]
