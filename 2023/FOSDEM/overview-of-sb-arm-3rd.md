@@ -4,9 +4,9 @@ Overview of Secure Boot state in the ARM-based SoCs: 3rd edition
 
 # Abstract
 
-In the ARM world, Secure Boot is typically a BootROM feature, which allows for
+In the ARM world, Secure Boot (aka Verified Boot) is typically a BootROM feature, which allows for
 verification of the loaded binaries (firmware, bootloader, Linux kernel) before
-executing it. The main idea is to prevent untrusted code from running on our
+executing it. The main idea is to prevent aunauthorized code from running on our
 platform. The general approach is similar across vendors, but this area has no
 standardization.
 
