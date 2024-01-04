@@ -371,11 +371,12 @@ flags
 <br>
 <br>
 
-.code-13px[
+.code-11px[
 ```bitbake
 # By default pkg-config variables point to aarch64 libraries which are picked up
 # during x86_64 builds, this causes aarch64 include directories and linker
 # search paths to into x86_64 builds, causing problems.
+#
 # Host libraries already use absolute paths so set sysroot to /
 export PKG_CONFIG_SYSROOT_DIR="/"
 export PKG_CONFIG_PATH="${RECIPE_SYSROOT_NATIVE}/usr/lib/pkgconfig:${RECIPE_SYSROOT_NATIVE}/usr/share/pkgconfig"
@@ -384,10 +385,16 @@ export PKG_CONFIG_DIR="${RECIPE_SYSROOT_NATIVE}/usr/lib/pkgconfig"
 
 # Those variables are handled internally by pkg-config crate.
 # All paths are relative to sysroot, so set PKG_CONFIG_SYSROOT_DIR
-export PKG_CONFIG_SYSROOT_DIR_${TARGET_SYS}="${RECIPE_SYSROOT}"
-export PKG_CONFIG_PATH_${TARGET_SYS}="${RECIPE_SYSROOT}/usr/lib/pkgconfig:${RECIPE_SYSROOT}/usr/share/pkgconfig"
-export PKG_CONFIG_LIBDIR_${TARGET_SYS}="${RECIPE_SYSROOT}/usr/lib/pkgconfig"
-export PKG_CONFIG_DIR_${TARGET_SYS}="${RECIPE_SYSROOT}/usr/lib/pkgconfig"
+# The PKG_CONFIG_*_{TARGET} needs underscores in it's triple instead of hyphens
+
+export PKG_CONFIG_TARGET_VAR = "${@d.getVar('TARGET_SYS').replace('-','_')}"
+
+do_compile:prepend() {
+    export PKG_CONFIG_SYSROOT_DIR_${PKG_CONFIG_TARGET_VAR}="${RECIPE_SYSROOT}"
+    export PKG_CONFIG_PATH_${PKG_CONFIG_TARGET_VAR}="${RECIPE_SYSROOT}/usr/lib/pkgconfig:${RECIPE_SYSROOT}/usr/share/pkgconfig"
+    export PKG_CONFIG_LIBDIR_${PKG_CONFIG_TARGET_VAR}="${RECIPE_SYSROOT}/usr/lib/pkgconfig"
+    export PKG_CONFIG_DIR_${PKG_CONFIG_TARGET_VAR}="${RECIPE_SYSROOT}/usr/lib/pkgconfig"
+}
 ```
 ]
 
@@ -479,6 +486,23 @@ fn read_header(lib: &pkg_config::Library, path_rel: &str) -> std::io::Result<Str
 <br>
 
 ## .center[Live Demo]
+
+???
+
+- systemctl restart fdo-client-linuxapp
+- journalctl -u fdo-client-linuxapp
+---
+
+# meta-fdo
+
+<br>
+<br>
+<br>
+<br>
+
+### [3mdeb/meta-fdo](https://github.com/3mdeb/meta-fdo)
+
+### [Image used for demo](https://cloud.3mdeb.com/index.php/s/8ofCq3MNGzR7Z79)
 
 ---
 
