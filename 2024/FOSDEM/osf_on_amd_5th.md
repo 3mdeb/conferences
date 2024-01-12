@@ -257,7 +257,12 @@ Thus building cross toolchain.
 ]
 
 .right-column45[
-- The OpenSIL is constantly developed and improved by AMD and partners
+- coreboot uses an [OpenSIL
+  fork](https://review.coreboot.org/plugins/gitiles/opensil_genoa_poc) which
+  is [4 commits behind](https://github.com/openSIL/openSIL/compare/0f39fbc2454af9a67fc84a88093bcd2f2c8dd887...ccd340b7266d88b6cd78333130eda75cdf42a0ea)
+  upstream repository and has [1 additional commit fixing clang build](https://review.coreboot.org/plugins/gitiles/opensil_genoa_poc/+/0411c75e1787a0d2dc18d168def7352cef9e8c12)
+- The OpenSIL is constantly developed and improved by AMD and partners on a
+  private repository
 - Planned to go **production in 2026** with the 6th generation of AMD EPYC
   processors
 - AMD plans to cover the **client segment with OpenSIL support** too (Ryzen
