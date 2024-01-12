@@ -175,6 +175,7 @@ SMU.
   with anything but soldered memory and ChromeOS type devices
 - FSP binaries: hardcoded CPUID checks for the mobile variants, which need
   patching or a wholly different compilation parameters.
+- AMD OpenSIL would be the way forward here
 
 ---
 
