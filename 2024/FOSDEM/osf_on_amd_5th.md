@@ -81,7 +81,7 @@ facebook.com/miczyg1395</a> ]
 
 ---
 
-# AMD coreboot status - last year
+# AMD coreboot status
 
 - family14, Trinity and Kabini removed from the master branch and moved to 4.18
   branch
@@ -98,7 +98,7 @@ facebook.com/miczyg1395</a> ]
 
 ---
 
-# AMD coreboot status - last year
+# AMD coreboot status
 
 - Starlabs could build coreboot firmware for their AMD laptops thanks to the
   publication of Cezanne FSP to
@@ -108,7 +108,7 @@ facebook.com/miczyg1395</a> ]
       I](https://review.coreboot.org/c/coreboot/+/69404/)
     * [mb/starlabs/cezanne: Add Cezanne StarBook Mk VI
       variant](https://review.coreboot.org/c/coreboot/+/68338/)
-    * **NO UPDATE TO THE PATCHES**
+    * **There is no update to the patches unfortunately**
 - AMD Mendocino and Phoenix still in development with the former being in more
   advanced state, FSP not published yet
     * **FSP published for Mendocino, but not for Phoenix**
@@ -126,15 +126,17 @@ terms of release date.
 
 ---
 
-# AMD coreboot status - now
+# AMD coreboot status
 
 - [patches covering KGPE-D16 bootblock support are out
   there](https://review.coreboot.org/q/topic:kgpe-d16-bootblock)
     * they have been abandoned because of lack of activity
     * KGPE-D16 needs some love and attention, which, unfortunately, 3mdeb
       can't humbly provide right now without any support from community
-- Marty Plummer ("hanetzer") is working on adapting AMD FSP for
-  Picasso/Cezanne to work on a non-Chromebook device ASRock x370 Killer SLI
+- Marty Plummer ("hanetzer") is working on adapting Picasso/Cezanne AMD FSP for
+  on a non-Chromebook device ASRock x370 Killer SLI
+    * [Dasharo vPub 0x8 recording](https://www.youtube.com/watch?v=LYPH2Oc6xqU&list=PLuISieMwVBpKevqcC9qEav9ZnCTwkZVW2&index=8&t=393s)
+    * [Dasharo vPub 0x9 recording](https://www.youtube.com/watch?v=gAZw0fTKdYg)
     * Join [Dasharo Matrix Space](https://matrix.to/#/#dasharo:matrix.org) or
       [Dasharo vPubs](https://vpub.dasharo.com/o/1) to know more
 
@@ -147,6 +149,24 @@ by Fritzchens Fritz, CC0 1.0 Universal Public Domain Dedication
 
 ???
 
+We tried to contact Immunefi to redirect funds; redirection was needed because
+the whole plan fell apart when it was realized upstreaming was not feasible.
+Unfortunately, we haven't gotten any response from them so far, so we assume
+that some resources are stalled. We also get medium interest from testers;
+some bugs were reported (maybe labeled to Dasharo issues about that), but no
+developers activity from the community. Also, some configurations and bugs
+were exotic enough. We could not invest in reproduction. We contacted NLNet,
+and they said this is too old hardware to support. We also contacted Vikings,
+offering the Dasharo Revenue Sharing Program, but we didn't get a response.
+
+Also, most of the community seems to be interested in free support of that
+platform, which means someone else would have to have serious business
+interests. The last path we could consider is selling SPI chips with Dasharo
+for KGPE-D16, but it is unlikely to render volumes, which could seriously
+impact development.
+
+The platform is still on Dasharo Roadmap but most likely would be removed.
+
 hanetzer is putting some serous efforts here using SerialICE to trace the
 hardware accesses in FSP and PSP. Observes hangs around accesses to PSP and
 SMU.
@@ -158,52 +178,74 @@ SMU.
 
 ---
 
-# AMD server status - last year vs now
+# AMD server status
 
-.center[.image-30[![](/img/EpycProcessor.jpg)]]
+.left-column45[
+.center[.image-60[![](/img/EpycProcessor.jpg)]]
+
+- PoC for Genoa-based (AMD EPYC 9004) reference board Onyx on
+  [GitHub](https://github.com/openSIL/openSIL)
+- [coreboot source also available and merged to upstream
+  repository]((https://review.coreboot.org/q/topic:%22amd_genoa_opensil%22)
+- UEFI EDK2-based PoC code also available on GitHub:
+    * [opensil-uefi-interface](https://github.com/openSIL/opensil-uefi-interface)
+    * [EDK2 Platforms](https://github.com/openSIL/EDKII-Platform)
+]
+
+.right-column55[
+- In the beginning of 2023 no news on official OSF support on servers from AMD
+- Porting AGESA to AMD FSP and maintaining it was too costly
+- New approach to open-source firmware on AMD server - OpenSIL
+- OpenSIL announced on [OCP Regional Summit 2023
+  Prague](https://www.youtube.com/watch?v=q_y6Y1JTq0I) (April 2023)
+- OpenSIL - open-source Silicon Initialization Library
+    * Scalable with any host firmware interface/framework
+- More about OpenSIL:
+    * [OCP Global Summit 2023](https://www.youtube.com/watch?v=nSVKKMkcIPE)
+    * [OSFC 2023](https://vimeo.com/878219919)
+
+]
 
 .center.footnote[
 [AMD EPYC photo](https://upload.wikimedia.org/wikipedia/commons/7/7d/EpycProcessor.jpg)
 by Raysonho @ Open Grid Scheduler / Grid Engine, CC0, via Wikimedia Commons
 ]
 
-.left-column50[
-
-### Early 2023
-
-- Some new initiative from Oxide on OSF for AMD Milan (EPYC 7002 series)
-  server platform presented at [OSFC
-  2022](https://www.osfc.io/2022/talks/i-have-come-to-bury-the-bios-not-to-open-it-the-need-for-holistic-systems/)
-- Nothing new on official OSF support on servers from AMD
-]
-
-.right-column50[
-
-### Now
-
-- New approach to open-source firmware on AMD server - OpenSIL
-- Porting AGESA to AMD FSP and maintaining it was too costly
-- OpenSIL announced on [OCP Regional Summit 2023
-  Prague](https://www.youtube.com/watch?v=q_y6Y1JTq0I)
-]
-
 ---
 
-# AMD server status - OpenSIL
+# AMD OpenSIL coreboot
 
-- OpenSIL - open-source Silicon Initialization Library
-    * Scalable with any host firmware interface/framework
-    * Proof of Concept code for Genoa-based (AMD EPYC 9004 processors)
-      reference board Onyx available on
-      [GitHub](https://github.com/openSIL/openSIL)
-- [coreboot source also available and merged to upstream
-  repository](https://review.coreboot.org/q/topic:%22amd_genoa_opensil%22)
-- UEFI EDK2-based PoC code also available on GitHub:
-    * [opensil-uefi-interface](https://github.com/openSIL/opensil-uefi-interface)
-    * [EDK2 Platforms](https://github.com/openSIL/EDKII-Platform)
-- More about OpenSIL:
-    * [OCP Global Summit 2023](https://www.youtube.com/watch?v=nSVKKMkcIPE)
-    * [OSFC 2023](https://vimeo.com/878219919)
+.left-column55[
+- Building is quite trivial
+    * Build toolchain: **`make crossgcc-i386 && make crossgcc-x64`**
+    * Select mainboard **`AMD/Onyx_poc`** with **`make menuconfig`**
+    * Run **`make`** to build
+<br>
+]
+
+.right-column45[
+.center[.image-80[![](/img/coreboot_logo.png)]]
+]
+
+- coreboot takes around 1MB in total (decompressed)
+    * Although blobs' size is notable:
+    ```console
+    Name                           Offset     Type           Size   Comp
+    ...
+    apu/amdfw                      00x1ffc0    amdfw         4317184 none
+    ```
+- Not all blobs are present though:
+    ```console
+      ** WARNING **
+    coreboot has been built without an APCB.
+    This image will not boot.
+    ```
+
+???
+
+OpenSIL requires meson to build, so it is impossible to use coreboot-sdk
+docker container. Latest version from 2023-11-24 does not have meson yet.
+Thus building cross toolchain.
 
 ---
 
@@ -243,30 +285,29 @@ by Raysonho @ Open Grid Scheduler / Grid Engine, CC0, via Wikimedia Commons
 
 ---
 
-# Dasharo
+# TrenchBoot DRTM on AMD platforms
 
-- In [Dasharo](https://dasharo.com) we carefully select hardware platforms,
-  which are quite popular
-    * Of course most such boards will be community-driven effort and the work
-    would be done in free time thus the releases may not be that frequent
-- Value offered by Dasharo:
-    * [high quality documentation](https://docs.dasharo.com) explaining:
-      initial deployment, firmware update and recovery
-    * hardware and software tools available
-    * active and helpful community on Matrix
-    * binary releases
-    * transparent validation
-- Sign up to [Dasharo
-  newsletter](https://newsletter.3mdeb.com/subscription/wwL90UkXP) to get up
-  to date information about supported platforms and the their status
+.center[.image-50[![](/img/trenchboot_logo.png)]]
 
-???
-
-Briefly explain what Dasharo is
+- Early attempts on SuperMicro M11SDV in 2020 on [Qubes OS Summit](https://www.youtube.com/watch?v=rM0vRi6qABE)
+    * Only legacy boot mode, no UEFI support for booting Xen
+- This years the effort will be continued to cover UEFI boot mode for both
+  Linux and Xen
+- More details on the **TrenchBoot status presentation at 16:20 CET (UTC+1)**
+  in this room
+    * Make sure you do not miss it!
 
 ---
 
 # Dasharo
+
+.center.image-99[![](/img/des_value_prop.png)]
+
+.center.footnote[Sign up to [Dasharo
+newsletter](https://newsletter.3mdeb.com/subscription/wwL90UkXP) to get up to
+date information about supported platforms and the their status.]
+
+???
 
 - We have also introduced subscription model for selected platforms to help
   gather funds for development
@@ -276,6 +317,40 @@ Briefly explain what Dasharo is
   laptops](https://novacustom.com/forum/d/15-call-for-beta-testers)
     * Beta testers are given access to pre-release firmware to assist with
       testing features and reporting bugs
+
+- Dasharo would like to be a central point for open-source firmware
+  development for customers and embedded devices. Open-source firmware for
+  mere mortals and species with reasonable budget? The goal is to create
+  sustainable ecosystem by leveraging programs like Dasharo Revenue Sharing
+  (worth to mention briefly how it works) and Dasharo Supporting Partner.
+
+- Special Dasharo Updates.
+- Exclusive newsletter.
+- Access to Dasharo Primer Support invite-only Matrix channel.
+- Direct access to Dasharo Team with ability to influence features roadmap.
+- Formerly known as Dasharo Supporters Entrance
+- Sustainable long-term development and maintenance of open-source firmware for
+  your hardware.
+- Meaningful release notes - no more "improved performance" or "fix for #4242"
+  in release notes
+- links to publicly available continuously improving documentation
+- links to fixed issues
+- clear description of know issues
+- basic SBOM information, which we plan to extend with US executive order
+- compliant supply chain information
+- signed binaries with clear information about update procedure
+- access to detailed test results spreadsheet
+- and more
+
+---
+
+# Bonus
+
+.center[AMD open-sourced the AMD PSP code for Secure Encrypted Virtualization (SEV)]
+
+.center[[AMD PSP SEV FW on GitHub](https://github.com/amd/AMD-ASPFW)]
+
+.center.image-80[![](/img/amd_psp_sev_github.png)]
 
 ---
 
