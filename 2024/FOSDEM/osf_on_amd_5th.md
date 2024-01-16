@@ -1,8 +1,8 @@
 class: center, middle, intro
 
-# Open Source Firmware status on AMD platforms 2023 - 4th edition
+# Open Source Firmware status on AMD platforms 2024 - 4th edition
 
-### FOSDEM'23 - Open Source Firmware, BMC and Bootloader devroom
+### FOSDEM'24 - Open Source Firmware, BMC and Bootloader devroom
 
 ## Michał Żygowski
 
@@ -17,9 +17,9 @@ width="150px" style="margin-left:-20px">
 .center[Michał Żygowski]
 .center[_Firmware Engineer_]
 .right-column50[
-- Braswell SoC, PC Engines and Protectli maintainer in coreboot
-- OpenPOWER System Software Technical Workgroup chair
-- dedicated to the open-source firmware since 2017
+- Braswell SoC, PC Engines, Protectli, MSI PRO Z690-A boards maintainer in
+  coreboot
+- dedicated to open-source firmware since 2017
 - interested in advanced hardware and firmware security features
 ]
 .left-column50[
@@ -84,7 +84,7 @@ facebook.com/miczyg1395</a> ]
 # AMD coreboot status
 
 - family14, Trinity and Kabini removed from the master branch and moved to 4.18
-  branch
+  branch (January 2023)
 - [boards
   affected](https://doc.coreboot.org/releases/coreboot-4.19-relnotes.html#removed-mainboards):
     * PC Engines apu1
@@ -108,16 +108,17 @@ facebook.com/miczyg1395</a> ]
       I](https://review.coreboot.org/c/coreboot/+/69404/)
     * [mb/starlabs/cezanne: Add Cezanne StarBook Mk VI
       variant](https://review.coreboot.org/c/coreboot/+/68338/)
-    * **There is no update to the patches unfortunately**
+    * **NEW: There is no update to the patches unfortunately**
 - AMD Mendocino and Phoenix still in development with the former being in more
   advanced state, FSP not published yet
-    * **FSP published for Mendocino, but not for Phoenix**
+    * **NEW: FSP published for Mendocino, but not for Phoenix**
 - The FSP publication interval is quite long (1.5 a year between Picasso FSP
   and Cezanne FSP release to public, and 1.25 a year after Cezanne APU release
   FSP has been published)
-    * **Interval between Cezanne and Mendocino is only 5 months**
-    * **Mendocino is Zen2 while Cezanne is Zen3, so maybe not so big update**
-    * **Mendocino has been released to the market at the end of 2022**
+    * **NEW: Interval between Cezanne and Mendocino is only 5 months**
+    * **NEW: Mendocino is Zen2 while Cezanne is Zen3, so maybe not so big
+      update**
+    * **NEW: Mendocino has been released to the market at the end of 2022**
 
 ???
 
@@ -188,9 +189,9 @@ SMU.
   [GitHub](https://github.com/openSIL/openSIL)
 - [coreboot source also available and merged to upstream
   repository]((https://review.coreboot.org/q/topic:%22amd_genoa_opensil%22)
-- UEFI EDK2-based PoC code also available on GitHub:
+- UEFI EDKII-based PoC code also available on GitHub:
     * [opensil-uefi-interface](https://github.com/openSIL/opensil-uefi-interface)
-    * [EDK2 Platforms](https://github.com/openSIL/EDKII-Platform)
+    * [EDKII Platform](https://github.com/openSIL/EDKII-Platform)
 ]
 
 .right-column55[
@@ -252,11 +253,11 @@ Thus building cross toolchain.
 
 # AMD OpenSIL future
 
-.left-column55[
-.center[.image-90[![](/img/opensil_github.png)]]
+.left-column45[
+.center[.image-99[![](/img/opensil_github.png)]]
 ]
 
-.right-column45[
+.right-column55[
 - coreboot uses an [OpenSIL
   fork](https://review.coreboot.org/plugins/gitiles/opensil_genoa_poc) which
   is [4 commits behind](https://github.com/openSIL/openSIL/compare/0f39fbc2454af9a67fc84a88093bcd2f2c8dd887...ccd340b7266d88b6cd78333130eda75cdf42a0ea)
@@ -267,6 +268,9 @@ Thus building cross toolchain.
   processors
 - AMD plans to cover the **client segment with OpenSIL support** too (Ryzen
   desktop and mobile processors)
+- The Genoa POC will also be available as AGESA+EDKII based UEFI firmware with
+  the help of AGESA Compatibility Layer - Reduced
+  ([AGCL-R](https://github.com/openSIL/AGCL-R))
 ]
 
 ---
@@ -288,6 +292,10 @@ Thus building cross toolchain.
 ]
 
 ???
+
+Felix Held status:
+- ECC seems inactive
+- IOMMU causes the Linux to stall for 20 seconds
 
 ---
 
