@@ -1,3 +1,5 @@
+# CfP proposition
+
 Title: "Securing Embedded Systems with fTPM implemented as Trusted Application
 in TEE"
 
@@ -14,14 +16,14 @@ understanding of how to leverage TEE and fTPM, as well as the knowledge and
 tools needed to implement fTPM on their embedded systems and enhance their
 security.
 
-[1] https://elixir.bootlin.com/linux/latest/source/drivers/char/tpm/tpm_ftpm_tee.h
-[2] https://github.com/microsoft/ms-tpm-20-ref/tree/main/Samples/ARM32-FirmwareTPM
+[1] <https://elixir.bootlin.com/linux/latest/source/drivers/char/tpm/tpm_ftpm_tee.h>
+[2] <https://github.com/microsoft/ms-tpm-20-ref/tree/main/Samples/ARM32-FirmwareTPM>
 
 Agenda:
 
-1.  Introduction
-2.  Trusted Execution Environment (TEE)
-3.  Firmware Trusted Platform Module (fTPM)
-4.  Implementing fTPM using TEE
-5.  Example of implementation, PoC demo
-6.  Conclusion
+1. Introduction
+2. Trusted Execution Environment (TEE)
+3. Firmware Trusted Platform Module (fTPM)
+4. Implementing fTPM using TEE
+5. Example of implementation, PoC demo
+6. Conclusion
