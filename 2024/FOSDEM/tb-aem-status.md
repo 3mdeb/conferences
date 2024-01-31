@@ -1,6 +1,6 @@
 class: center, middle, intro
 
-# TrenchBoot AEM Project Status
+# TrenchBoot AEM - Project Status
 
 ### FOSDEM 2024
 
@@ -78,15 +78,14 @@ class: center, middle, intro
 * Qubes OS AEM
 * Current state
 * Further plans
-* Dasharo integrations (?)
 * Q&A
 
 ---
 
 # Intro
 
-* Today we will current state since Oct 2023 and further plans
-* Qubes OS AEM project already discussed in past Qubes OS summits
+* Today we will cover current state since Oct 2023 and further plans
+* Project has been already discussed during past Qubes OS summits
     - https://www.youtube.com/watch?v=A9GrlQsQc7Q&t=17441s
     - https://www.youtube.com/live/xo2BVTn7ohs?si=BVUnKccSe-saRf2b&t=5441
 
@@ -113,7 +112,7 @@ last year's summit
     - technology from silicon vendor
     - needs to be present in hardware and supported by the firmware
 
-.center.image-80[![](/img/tb_aem_attack.png)]
+.center.image-75[![](/img/tb_aem_attack.png)]
 
 .footnote[https://blog.f-secure.com/de/evil-maid-attacken-wenn-die-putzfrau-den-pc-hackt/]
 
@@ -128,8 +127,19 @@ In the current QubesOS implementation it reuiqres TPM and DRTM technology
 # Current status
 
 * Phase 2 released
+    - https://github.com/TrenchBoot/trenchboot-issues/milestone/2
 * Phase 3 released
+    - https://github.com/TrenchBoot/trenchboot-issues/milestone/3
 * Phase 4 started
+    - https://github.com/TrenchBoot/trenchboot-issues/milestone/4
+
+.center.image-80[![](/img/tb_aem_milestones_23_2024.png)]
+
+.center[.image-30[![](/img/logo/nlnet.svg)]]
+
+???
+
+TBD: show graphic roadmap instead?
 
 ---
 
@@ -143,6 +153,12 @@ In the current QubesOS implementation it reuiqres TPM and DRTM technology
 * Blog post
     - https://blog.3mdeb.com/2023/2023-09-27-aem_phase2/
 
+.center.image-50[![](/img/hp_elitedesk_800_g2.jpg)]
+
+???
+
+TBD: photo of supported HW?
+
 ---
 
 # Phase 3 - released
@@ -153,10 +169,8 @@ In the current QubesOS implementation it reuiqres TPM and DRTM technology
     - Xen: https://github.com/TrenchBoot/xen/releases/tag/aem_v0.3
     - Qubes OS AEM: https://github.com/TrenchBoot/qubes-antievilmaid/releases/tag/aem_v0.3
 * Upstreaming into Qubes OS still in progress
-    - Xen
-        + https://github.com/QubesOS/qubes-vmm-xen/pull/160
-    - GRUB
-        + https://github.com/QubesOS/qubes-grub2/pull/13
+    - Xen: https://github.com/QubesOS/qubes-vmm-xen/pull/160
+    - GRUB: https://github.com/QubesOS/qubes-grub2/pull/13
 * Blog post
     - https://blog.3mdeb.com/2024/2024-01-12-aem_phase3/
 
@@ -166,7 +180,13 @@ In the current QubesOS implementation it reuiqres TPM and DRTM technology
 
 * Qubes OS AEM on AMD boards with TPM 1.2 and TPM 2.0
 * HW selection
-    - TBD
+    - Asus KGPE-D16
+    - Supermicro M11SDV-4C-LN4F (QubesOS 4.2 install issue)
+    - subject to change
+        + we had some success with HP thin client for Intel, considering AMD alternatives
+
+.center.image-30[![](/img/kgpe-d16.jpeg) ![](/img/M11SDV-4C-LN4F_spec.webp)]
+.footnote[QubesOS installation issue: https://github.com/QubesOS/qubes-issues/issues/8322#issuecomment-1904423204]
 
 ---
 
@@ -175,6 +195,8 @@ In the current QubesOS implementation it reuiqres TPM and DRTM technology
 * Phase 5
 * Testing and documentation improvements
 * Upstream TrenchBoot AMD support to the Linux kernel
+* More Dasharo synergies
+* Early adopters
 
 ---
 
@@ -185,23 +207,87 @@ In the current QubesOS implementation it reuiqres TPM and DRTM technology
         + so far we focused on legacy boot
         + both Intel and AMD
         + both TPM 1.2 and TPM 2.0
+    - Finalizing scope
+    - To be presented as another GH milestone
+    - Opens up wider hardware variety
+
+.center[.image-30[![](/remark-templates/3mdeb-presentation-template/images/uefi-1024x1024.png)]]
 
 ---
 
 # Testing and documentation improvements
 
-TBD
+* Project consists of multiple moving parts
+* Installation of custom packages under QubesOS can be challenging
+* A lot of manual work was required
+* We have started some automation effort as shown in the last status
+
+.center.image-70[![](/img/qubes_aem_installation.png)]
 
 ---
 
-# Upstream TrenchBoot AMD support to the Linux kernel
+# Testing and documentation improvements
 
-* Intel series
-    - TBD link
-* nlnet grant
+* The goal is to move that forward
+    - Run tests on hardware, not only QEMU
+    - Automatically install artifacts from Github Actions
+
+.center.image-60[![](/img/tb_aem_openqa_screen.png)]
+
+---
+
+# Upstream TrenchBoot AMD Linux patches
+
+* Intel series in progress
+    - v7 and counting
+    - https://lore.kernel.org/lkml/20231110222751.219836-1-ross.philipson@oracle.com/
+* nlnet grant for AMD equivalent
     - https://nlnet.nl/project/TrenchBoot-AMD/
+* Sync with Oracle latest work
+* Will need some more time to start this effort
+    - ideally if some Intel part is already merged
 
-TBD
+.center[.image-40[![](/img/logo/nlnet.svg)] .image-20[![](/img/Tux.png)]]
+
+---
+
+# More Dasharo synergies
+
+.left-column50[
+.center[
+  .image-40[![](/img/tb_aem_optiplex.png)]
+  <br>
+  .image-80[![](/img/NV4x-front-1.png)]]
+]
+.right-column-50[
+.center[
+  .image-30[![](/img/VP4600.jpg)]
+  <br>
+  .image-35[![](/img/dasharo-logo-3.png)]]
+]
+
+???
+
+We already use some engineering release of Dasharo on Dell OptiPlex on one of
+the development platforms.
+
+With UEFI support in place, more Dasharo targets can take advantage of the
+TrenchBoot AEM.
+
+Because of full(*) control over firmware, we can ensure TXT compatibility and
+fix problems in that area.
+
+---
+
+# Early Adopters
+
+.center[.image-80[![](/img/tb_aem_early_adopter.drawio.svg)]]
+
+???
+
+TBD: call to action?
+* becoming one
+* reporting feedback
 
 ---
 
