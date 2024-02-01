@@ -306,7 +306,22 @@ Felix Held status:
 
 DES:
 - get it while it's hot, 10% off
+The following features are planned for the upcoming v0.9.0 release of the PC Engines apu2/apu3/apu6 boards:
 
+- Support for all available hardware interfaces, such as:
+- USB, SD card reader (MMC), mPCIe supporting WiFi modems, mSATA storage, Gigabit Ethernet, serial port
+- Configurable boot order
+- Boot logo customization
+- Network boot via iPXE with integrated Dasharo Tools Suite entry for firmware update
+- UEFI Secure Boot
+- UEFI shell
+- UEFI setup password
+- TPM 2.0 support
+- TPM Measured Boot
+- Vboot Verified Boot
+- AMD Core Performance Boot switch in Dasharo firmware setup menu
+- Watchdog configuration in Dasharo firmware setup menu
+- PCIe power management features in Dasharo firmware setup menu
 ---
 
 # TrenchBoot DRTM on AMD platforms
