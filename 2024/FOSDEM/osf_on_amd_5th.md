@@ -283,8 +283,14 @@ Thus building cross toolchain.
 - We tried to gather community interested in the open-source firmware for apu2
   board and launch a subscription model, however the response was very little
   and we didn't succeed
-- This year we see another chance to revive the project under
-  [Dasharo](https://dasharo.com) brand
+- This year we see another chance to revive the project with [Dasharo](https://dasharo.com)
+- Starting with backorder of the TPMs for
+  [APU2](https://shop.3mdeb.com/shop/modules/dasharo-tpm-2x10-pin-for-pc-engines-apu2/)
+  and
+  [APU3/4/6](https://shop.3mdeb.com/shop/modules/dasharo-tpm-2x5-pin-for-pc-engines-apu6/)
+  as well as [Dasharo Entry
+  Subscription](https://shop.3mdeb.com/shop/dasharo-entry-subscription/1-year-dasharo-entry-subscription-for-network-appliance/)
+  to support the project
 
 .center.image-40[![](/img/pcengines_logo.png)]
 .center[
