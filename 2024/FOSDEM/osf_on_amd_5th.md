@@ -78,6 +78,7 @@ facebook.com/miczyg1395</a> ]
   with RDNA3 graphics, formerly **Morgana**, AMD Family 19h, Models 70h-7Fh?
 - **Glinda** - very new and very little information about it, also probably a
   temporary codename
+- **Genoa** - Zen4 core architecture, EPYC 9004 server processors
 
 ---
 
@@ -365,6 +366,15 @@ date information about supported platforms and the their status.]
 .center[[AMD PSP SEV FW on GitHub](https://github.com/amd/AMD-ASPFW)]
 
 .center.image-80[![](/img/amd_psp_sev_github.png)]
+
+---
+
+**Special thanks to:**
+
+- Paul Grimes (AMD)
+- Felix Held (AMD)
+
+For insights, review and suggestions to the presentation.
 
 ---
 
