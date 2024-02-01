@@ -304,6 +304,9 @@ Felix Held status:
 - ECC seems inactive
 - IOMMU causes the Linux to stall for 20 seconds
 
+DES:
+- get it while it's hot, 10% off
+
 ---
 
 # TrenchBoot DRTM on AMD platforms
