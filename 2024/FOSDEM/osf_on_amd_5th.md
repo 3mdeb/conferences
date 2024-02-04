@@ -1,6 +1,6 @@
 class: center, middle, intro
 
-# Open Source Firmware status on AMD platforms 2024 - 4th edition
+# Open Source Firmware status on AMD platforms 2024 - 5th edition
 
 ### FOSDEM'24 - Open Source Firmware, BMC and Bootloader devroom
 
@@ -305,14 +305,16 @@ Felix Held status:
 - IOMMU causes the Linux to stall for 20 seconds
 
 DES:
-- get it while it's hot, 10% off
-The following features are planned for the upcoming v0.9.0 release of the PC Engines apu2/apu3/apu6 boards:
+- get it while it's hot, 10% off The following features are planned for the
+  upcoming v0.9.0 release of the PC Engines apu2/apu3/apu6 boards:
 
 - Support for all available hardware interfaces, such as:
-- USB, SD card reader (MMC), mPCIe supporting WiFi modems, mSATA storage, Gigabit Ethernet, serial port
+- USB, SD card reader (MMC), mPCIe supporting WiFi modems, mSATA storage,
+  Gigabit Ethernet, serial port
 - Configurable boot order
 - Boot logo customization
-- Network boot via iPXE with integrated Dasharo Tools Suite entry for firmware update
+- Network boot via iPXE with integrated Dasharo Tools Suite entry for firmware
+  update
 - UEFI Secure Boot
 - UEFI shell
 - UEFI setup password
