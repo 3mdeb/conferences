@@ -9,6 +9,8 @@ ci:
   # docker is not supported on pre-commit.ci
   skip: [shellcheck]
 
+exclude: ^.*\.svg$
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
