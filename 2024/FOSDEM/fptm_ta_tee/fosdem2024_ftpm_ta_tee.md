@@ -266,6 +266,7 @@ some scenarios
 <br>
 <br>
 
+<!-- markdownlint-disable-next-line MD013 -->
 ### The best protected systems have dedicated hardware security measures included from the beginning of their design process, starting with the specification for the processor core and the SoC infrastructure
 
 ---
@@ -464,15 +465,20 @@ always open to cooperate and discuss
 
 # Resources
 
+<!-- markdownlint-disable-next-line MD013 -->
 - ##### Will Arthur, David Challener, and Kenneth Goldman. _A Practical Guide to TPM 2.0: Using the Trusted Platform Module in the New Age of Security_. Apress Berkeley, CA, 2015. DOI: 10.1007/978-1-4302-6584-9
 
+<!-- markdownlint-disable-next-line MD013 -->
 - ##### Sandro Pinto and Nuno Santos. 2019. _Demystifying Arm TrustZone: A Comprehensive Survey._ ACM Comput. Surv. 51, 6, Article 130 (January 2019), 36 pages. https://doi.org/10.1145/3291047
 
+<!-- markdownlint-disable-next-line MD013 -->
 - #### [fTPM: A Software-only Implementation of a TPM Chip](https://www.usenix.org/system/files/conference/usenixsecurity16/sec16_paper_raj.pdf)
 
-##### Himanshu Raj, ContainerX; Stefan Saroiu, Alec Wolman, Ronald Aigner, Jeremiah Cox, Paul England, Chris Fenner, Kinshuman Kinshumann, Jork Loeser, Dennis Mattoon, Magnus Nystrom, David Robinson, Rob Spiger, Stefan Thom, and David Wooten, Microsoft
+<!-- markdownlint-disable-next-line MD013 MD023 MD046 -->
+    ##### Himanshu Raj, ContainerX; Stefan Saroiu, Alec Wolman, Ronald Aigner, Jeremiah Cox, Paul England, Chris Fenner, Kinshuman Kinshumann, Jork Loeser, Dennis Mattoon, Magnus Nystrom, David Robinson, Rob Spiger, Stefan Thom, and David Wooten, Microsoft
 
-#### [USENIX Security '16 presentation by Stefan Saroiu](https://www.youtube.com/watch?v=VdqOc4Rv7QQ)
+<!-- markdownlint-disable-next-line MD013 MD023 MD046-->
+    #### [USENIX Security '16 presentation by Stefan Saroiu](https://www.youtube.com/watch?v=VdqOc4Rv7QQ)
 
 - #### [Trusted Computing Group - TPM 2.0 A Brief Introduction](https://trustedcomputinggroup.org/wp-content/uploads/2019_TCG_TPM2_BriefOverview_DR02web.pdf)
 
@@ -484,6 +490,7 @@ always open to cooperate and discuss
 
 - #### [Develop Secure Cortex-M Applications with Trustzone - Kristoffer Martinsson](https://www.youtube.com/watch?v=TkFC4Q2BwCM)
 
+<!-- markdownlint-disable-next-line MD013 -->
 - #### [jbech-linaro/manifest](https://github.com/jbech-linaro/manifest/tree/ftpm) and [jbech-linaro/docker_optee](https://github.com/jbech-linaro/docker_optee)
 
 ---
