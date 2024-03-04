@@ -10,8 +10,11 @@ The presentation will briefly describe the recent development and progress of
 enabling TrenchBoot in Xen hypervisor, the challenges we had to overcome and
 resulting changes to the Xen hypervisor project. The security properties of a
 system running Xen with TrenchBoot support will be explained. A short demo of
-running DRTM with Xen hypervisor will be shown. Also, the incoming UEFI support
-and the impact on Xen UEFI boot process shall be discussed.
+running DRTM with Xen hypervisor will be shown. Also, the incoming UEFI
+support and the impact on Xen UEFI boot process shall be discussed. The
+planned reference software stack is the Qubes OS Anti Evil Maid running on top
+of preferably open-source firmware, like coreboot-based Dasharo, where
+possible.
 
 ## Topic
 
