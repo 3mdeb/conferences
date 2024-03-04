@@ -63,7 +63,7 @@ Yes/**No**
 (Please note travel funding requests are not guaranteed. The Xen project will
 review all travel requests.)
 
-Yes???
+**No**
 
 ## Additional notes
 
