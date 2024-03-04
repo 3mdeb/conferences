@@ -72,7 +72,7 @@ Yes???
 ## Speaker biography
 
 Michał Żygowski is a versatile engineer with a strong focus on system
-firmware. Works as a firmware engineer at 3mdeb. Active contributor of
+firmware. Works as a Firmware Engineer at 3mdeb. Active contributor of
 coreboot and other open-source projects. Core coreboot developer, maintainer
 of Braswell SoC, PC Engines, Protectli, Libretrend, MSI MS-7D25 and MS-7E06
 platforms. Loves traveling and attending conferences, which actively speaks
