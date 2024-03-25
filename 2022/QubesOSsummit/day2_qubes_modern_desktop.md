@@ -29,22 +29,22 @@ class: center, middle, intro
 .center[Michał Żygowski]
 .center[_Firmware Engineer_]
 .right-column50[
-- Braswell SoC, PC Engines and Protectli maintainer in coreboot
-- OpenPOWER System Software Technical Workgroup chair
-- 5 years in Open Source Firmware
-- interested in advanced hardware and firmware security features
-- OST2 instructor
-- TrenchBoot developer
+* Braswell SoC, PC Engines and Protectli maintainer in coreboot
+* OpenPOWER System Software Technical Workgroup chair
+* 5 years in Open Source Firmware
+* interested in advanced hardware and firmware security features
+* OST2 instructor
+* TrenchBoot developer
 ]
 
 .left-column50[
-- <a href="https://twitter.com/_miczyg_"><img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @\_miczyg\_</a>
+* <a href="https://twitter.com/_miczyg_"><img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @\_miczyg\_</a>
 
-- <a href="mailto:michal.zygowski@3mdeb.com"><img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> michal.zygowski@3mdeb.com</a>
+* <a href="mailto:michal.zygowski@3mdeb.com"><img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> michal.zygowski@3mdeb.com</a>
 
-- <a href="https://www.linkedin.com/in/miczyg"><img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/in/miczyg</a>
+* <a href="https://www.linkedin.com/in/miczyg"><img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/in/miczyg</a>
 
-- <a href="https://www.facebook.com/miczyg1395"><img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/miczyg1395</a>
+* <a href="https://www.facebook.com/miczyg1395"><img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/miczyg1395</a>
 ]
 
 ---
@@ -68,7 +68,7 @@ class: center, middle, intro
 * Sometimes with security come sacrifices
 * Qubes OS heavily depends on virtualization which has a non-zero performance
   penalty
-  * This can be noticeable on laptops (especially the older ones like Lenovo
+    - This can be noticeable on laptops (especially the older ones like Lenovo
     x230)
 * Keeping the old machines well supported by fully open-source firmware, like
   coreboot for Lenovo Thinkpad x230 is great, but at some point we have to move
@@ -82,7 +82,7 @@ class: center, middle, intro
   all-in-one devices ready to use, but...
 * Desktops outperform mobile devices
 * Are they less secure?
-  * Not necessarily ;)
+    - Not necessarily ;)
 
 .left-column50[
 .image-75[![](/img/qubes_modern_desktop/desktop_lock.jpg)]
@@ -125,7 +125,9 @@ workstation at home became a need.
 .center[.image-30[![](remark-templates/dasharo-presentation-template/images/dasharo-sygnet.svg)]]
 
 .center[
-### Dasharo is open source firmware distribution, we prefer clean and simple code, long term maintenance, privacy-respecting implementation, liberty for the owners, and trustworthiness for all.
+
+### Dasharo is open source firmware distribution, we prefer clean and simple code, long term maintenance, privacy-respecting implementation, liberty for the owners, and trustworthiness for all
+
 ]
 
 ---
@@ -171,7 +173,9 @@ What we WANT to support:
 * And many many more...
 ]
 .right-column50[
-### But what we would really like is to meet Qubes certification requirements.
+
+### But what we would really like is to meet Qubes certification requirements
+
 ]
 
 ---
@@ -184,10 +188,10 @@ What we WANT to support:
 * The thread describes 7 security aspects of the hardware and firmware that
   must be met to be eligible for certification
 * These mostly touch the following:
-  * PCI devices state
-  * DMA
-  * USB and Network controllers
-  * and PCI Option ROMs
+    - PCI devices state
+    - DMA
+    - USB and Network controllers
+    - and PCI Option ROMs
 
 ---
 
@@ -206,11 +210,11 @@ What we WANT to support:
   ```
 
 * Other features included:
-  * Codebase rebased on recent coreboot tree with various Alder Lake support
+    - Codebase rebased on recent coreboot tree with various Alder Lake support
     improvements and fixes
-  * [Bugfix for Ventoy delay bug](https://github.com/Dasharo/dasharo-issues/issues/160)
-  * Bugfix for incorrectly parsed PCI aperture above 4G
-  * Implement network boot enable/disable option
+    - [Bugfix for Ventoy delay bug](https://github.com/Dasharo/dasharo-issues/issues/160)
+    - Bugfix for incorrectly parsed PCI aperture above 4G
+    - Implement network boot enable/disable option
 
 ---
 
@@ -220,9 +224,9 @@ What we WANT to support:
   compared to MSI firmware
 * However these settings are SKU dependent and their change may be dangerous on
   different CPU:
-  * Custom AC/DC loadline for voltage regulator
-  * Custom power limits
-  * Custom IccMax (current limit)
+    - Custom AC/DC loadline for voltage regulator
+    - Custom power limits
+    - Custom IccMax (current limit)
 * Dasharo provides Intel recommended defaults for these
 * In the future it will be possible to tune these parameters when overclocking
   setup options become available
@@ -278,8 +282,8 @@ Cinebench R23 results after applying same settings for i5-12600K CPU:
   project
 * What do you need more?
 * More Hz on the CPU cores? Sure go ahead.
-  * But this machine already boots Qubes OS insanely fast!
-  * Actually typing disk password takes longer than loading whole system :)
+    - But this machine already boots Qubes OS insanely fast!
+    - Actually typing disk password takes longer than loading whole system :)
 
 ---
 
@@ -289,4 +293,4 @@ Cinebench R23 results after applying same settings for i5-12600K CPU:
 
 class: center, middle, intro
 
-# Thank you!
+# Thank you

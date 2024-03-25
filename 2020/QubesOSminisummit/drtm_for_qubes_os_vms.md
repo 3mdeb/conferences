@@ -40,9 +40,9 @@ class: center, middle, intro
 ]
 
 .left-column50[
-- open-source firmware
-- platform security
-- trusted computing
+* open-source firmware
+* platform security
+* trusted computing
 ]
 
 ---
@@ -106,9 +106,9 @@ TCG D-RTM Architecture v1.0.0
 
 * **Early Launch** happens once each boot
 * What is the value?
-  - in STM-enabled configurations we can remove UEFI/coreboot from TCB
-  - we can avoid complexity of S-RTM (NDAs, convoluted specs and manufacturing process)
-  - we can leverage PCRs 17-22 for secret unsealing or attestation
+    - in STM-enabled configurations we can remove UEFI/coreboot from TCB
+    - we can avoid complexity of S-RTM (NDAs, convoluted specs and manufacturing process)
+    - we can leverage PCRs 17-22 for secret unsealing or attestation
 
 .footnote[STM - _SMI Transfer Monitor_]
 
@@ -121,9 +121,9 @@ TCG D-RTM Architecture v1.0.0
 * **Late Launch** may happen multiple times during runtime
 * Way more complex case, but give lot of flexibility
 * What is the value?
-  - depends on DCE (D-RTM Configuration Environment) Payload
-  - D-RTM provides on-demand secure execution environment
-  - we will discuss further in the presentation
+    - depends on DCE (D-RTM Configuration Environment) Payload
+    - D-RTM provides on-demand secure execution environment
+    - we will discuss further in the presentation
 
 ---
 
@@ -133,10 +133,10 @@ TCG D-RTM Architecture v1.0.0
 * In 2008 Jonathan M. McCune, Bryan Parno, Adrian Perrig published v0.1 version
   of Flicker, a technique for executing application code as DCE Payload
 * Their papers provide couple interesting use cases:
-  - remote rootkit detector (hash of: kernel text segment, system call table and loaded modules)
-  - attested results for distributed applications
-  - ssh password protection against malicious server
-  - private key secure storage
+    - remote rootkit detector (hash of: kernel text segment, system call table and loaded modules)
+    - attested results for distributed applications
+    - ssh password protection against malicious server
+    - private key secure storage
 
 .footnote[https://web.archive.org/web/20160323022110/https://sparrow.ece.cmu.edu/group/flicker.html]
 
@@ -158,9 +158,9 @@ TCG D-RTM Architecture v1.0.0
   be helpful in debugging or forensics analysis
 * Use VMI for VM process table (or other running system properties)
   attestation:
-  - critical system component periodic audits/relaunch (e.g. vault, gpg, sys-vtpm)
-  - rootkit and malware detection
-  - checks before performing administrative tasks
+    - critical system component periodic audits/relaunch (e.g. vault, gpg, sys-vtpm)
+    - rootkit and malware detection
+    - checks before performing administrative tasks
 * VMI when connected with secure execution environment provided by D-RTM can
   bring additional use cases, which will be described later
 
@@ -193,8 +193,8 @@ TCG D-RTM Architecture v1.0.0
 * Apply VM colors according to trust level established based on VM process
   table attestation
 * various policies possible depending on threat model
-  - if all processes are known and measured then give black
-  - gradually go down to red
+    - if all processes are known and measured then give black
+    - gradually go down to red
 * early launch - color assigned at boot, also S-RTM can be used
 * late launch - color change while system is running
 
@@ -203,17 +203,17 @@ TCG D-RTM Architecture v1.0.0
 # Future ideas
 
 * Trusted system backups and migration
-  - run critical system actions only in vDLME/DLME
+    - run critical system actions only in vDLME/DLME
 * Trusted firmware update
-  - running critical piece of fwupd as DCE Payload or in trusted VM
+    - running critical piece of fwupd as DCE Payload or in trusted VM
 * Dynamic RPC policy
-  - let give ability to run some workloads only in VM that meet required trust level
-  - pools of VMs meeting certain policy may change over time
-  - most probably would involve developing Qubes RPC extension
+    - let give ability to run some workloads only in VM that meet required trust level
+    - pools of VMs meeting certain policy may change over time
+    - most probably would involve developing Qubes RPC extension
 * Secure storage
-  - it is possible to seal secret in TPM and make it available only to certain
+    - it is possible to seal secret in TPM and make it available only to certain
     DCE Payload
-  - this may help in implementing per-VM password manager, most probably simpler
+    - this may help in implementing per-VM password manager, most probably simpler
     and faster solution then vault VM
 
 ---
@@ -227,7 +227,6 @@ TCG D-RTM Architecture v1.0.0
 
 ---
 
-# 
+#
 
 ## .center[Q&A]
-

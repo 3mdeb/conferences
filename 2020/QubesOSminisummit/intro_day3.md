@@ -22,6 +22,6 @@ class: center, middle, intro
 
 ---
 
-# 
+#
 
 ## .center[Q&A]

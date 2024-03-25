@@ -41,9 +41,9 @@ class: center, middle, intro
 ]
 
 .left-column50[
-- open-source firmware
-- platform security
-- trusted computing
+* open-source firmware
+* platform security
+* trusted computing
 ]
 
 ---
@@ -105,10 +105,9 @@ class: center, middle, intro
   or unlocking secret when measurements are correct&trade; (aka Sealed Storage)
 * Both attestation and sealed storage may have interesting use cases in virtual
   machine world
-  - hardened ChallengerVM that attest AppVMs measurement
-  - LUKS2 encrypted disk of AppVMs that decrypts only in light of correct PCR
+    - hardened ChallengerVM that attest AppVMs measurement
+    - LUKS2 encrypted disk of AppVMs that decrypts only in light of correct PCR
     value
-
 
 ---
 
@@ -174,7 +173,7 @@ class: center, middle, intro
     - the same as for regular processes in hosting OS, hooking strace or gdb may reveal sensitive information
     - process running in stubdomain expose limited protocol to QEMU, which use device model to expose device to OS in VM
     - no protection against malicious hypervisor or administrator
-    - using hardware features like IOMMU, SGX or SEM/SEV 
+    - using hardware features like IOMMU, SGX or SEM/SEV
 * Adoption:
     - Packaged by most popular distros
     - Keylime for testing
@@ -272,12 +271,12 @@ class: center, middle, intro
 # Future ideas and discussion
 
 * Availability of reasonably trusted TPM to VM enables additional use cases:
-    * **VM identity** - this enables various use cases including authentication,
+    - **VM identity** - this enables various use cases including authentication,
       policy enforcement and remediation
-    * **Shielded location for secret** - public key certificate protection, VPN credentials storage
-    * **PKCS#11** - standard and programming interface which can use TPM as smart
+    - **Shielded location for secret** - public key certificate protection, VPN credentials storage
+    - **PKCS#11** - standard and programming interface which can use TPM as smart
       card opening another universe of use cases (e.g. payment, telecom)
-    * all of those may sound like `vault-vm` or `tpm-vm`
+    - all of those may sound like `vault-vm` or `tpm-vm`
 * coreboot as default firmware for VMs
     - why? Because we consider it simpler then UEFI/edk2
 * Qubes OS should have ability to choose, audit and attest VM boot firmware -
@@ -298,7 +297,6 @@ class: center, middle, intro
 
 ---
 
-# 
+#
 
 ## .center[Q&A]
-

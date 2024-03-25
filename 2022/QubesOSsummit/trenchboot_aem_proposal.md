@@ -6,7 +6,7 @@ Speaker at location 30 minutes
 
 ## Abstract
 
-Qubes OS Anti Evil Maid (AEM)[1] heavily depends on the availability of the
+Qubes OS Anti Evil Maid [AEM](1) heavily depends on the availability of the
 Dynamic Root of Trust for Measurement (D-RTM) technologies to prevent the Evil
 Maid attacks[2]. However, the project hasn't evolved much since the beginning
 of 2018 and froze on the support of TPM 1.2 with Intel TXT in legacy boot mode

@@ -29,22 +29,22 @@ class: center, middle, intro
 .center[Michał Żygowski]
 .center[_Firmware Engineer_]
 .right-column50[
-- Braswell SoC, PC Engines and Protectli maintainer in coreboot
-- OpenPOWER System Software Technical Workgroup chair
-- 5 years in Open Source Firmware
-- interested in advanced hardware and firmware security features
-- OST2 instructor
-- TrenchBoot developer
+* Braswell SoC, PC Engines and Protectli maintainer in coreboot
+* OpenPOWER System Software Technical Workgroup chair
+* 5 years in Open Source Firmware
+* interested in advanced hardware and firmware security features
+* OST2 instructor
+* TrenchBoot developer
 ]
 
 .left-column50[
-- <a href="https://twitter.com/_miczyg_"><img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @\_miczyg\_</a>
+* <a href="https://twitter.com/_miczyg_"><img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @\_miczyg\_</a>
 
-- <a href="mailto:michal.zygowski@3mdeb.com"><img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> michal.zygowski@3mdeb.com</a>
+* <a href="mailto:michal.zygowski@3mdeb.com"><img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> michal.zygowski@3mdeb.com</a>
 
-- <a href="https://www.linkedin.com/in/miczyg"><img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/in/miczyg</a>
+* <a href="https://www.linkedin.com/in/miczyg"><img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/in/miczyg</a>
 
-- <a href="https://www.facebook.com/miczyg1395"><img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/miczyg1395</a>
+* <a href="https://www.facebook.com/miczyg1395"><img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/miczyg1395</a>
 ]
 
 ---
@@ -87,15 +87,16 @@ class: center, middle, intro
 * Protection by ensuring the state of the platform
 * Additional TOTP codes and secret sealing in TPM
 * Trusted Execution / Trusted Computing:
-  * TPM module by TCG
-  * Intel TXT (DRTM)
-  * AMD Secure Startup (DRTM)
+    - TPM module by TCG
+    - Intel TXT (DRTM)
+    - AMD Secure Startup (DRTM)
 
 ---
 
 # AEM AMD vs Intel
 
 .left-column50[
+
 ### Intel TXT
 
 * TPM required (discrete or integrated)
@@ -107,6 +108,7 @@ class: center, middle, intro
 ]
 
 .right-column50[
+
 ### AMD Secure Startup
 
 * Discrete TPM required (integrated not supported?)
@@ -173,18 +175,18 @@ Ongoing work:
 
 # TrenchBoot project
 
-*  Boot Integrity Technologies (BITs):
-  * Intel TXT
-  * AMD Secure Startup
+* Boot Integrity Technologies (BITs):
+* Intel TXT
+* AMD Secure Startup
 * Currently targets Linux and GRUB
-  * Patches for Intel TXT on [grub-devel](https://mail.gnu.org/archive/html/grub-devel/2020-05/msg00011.html)
-  * Patches for Intel TXT on [lkml](https://lwn.net/Articles/860350/)
+    - Patches for Intel TXT on [grub-devel](https://mail.gnu.org/archive/html/grub-devel/2020-05/msg00011.html)
+    - Patches for Intel TXT on [lkml](https://lwn.net/Articles/860350/)
 * 3mdeb implemented AMD Secure Startup Support thanks to
   [NlNet NGI ZERO PET](https://nlnet.nl/project/OpenDRTM/)
-  * Linux Secure Launch
-  * Xen Secure Launch
-  * GRUB support for SKINIT
-  * Secure Kernel Loader extension with TPM event log
+    - Linux Secure Launch
+    - Xen Secure Launch
+    - GRUB support for SKINIT
+    - Secure Kernel Loader extension with TPM event log
 
 .center.image-80[![](/img/qubes_trenchboot_aem/nlnet.png)]
 
@@ -210,8 +212,8 @@ Ongoing work:
 * Support for Intel TXT and TPM 1.2
 * Remove tboot kernel
 * Reference hardware for testing:
-  * Dell OptiPlex 9010 SFF (Intel Ivybridge, TPM 1.2 legacy boot)
-  * Lenovo Thinkpad x230 (Intel Ivybridge, TPM 1.2 legacy boot)
+    - Dell OptiPlex 9010 SFF (Intel Ivybridge, TPM 1.2 legacy boot)
+    - Lenovo Thinkpad x230 (Intel Ivybridge, TPM 1.2 legacy boot)
 
 .left-column50[
 .center.image-40[![](/img/qubes_trenchboot_aem/optiplex-desktop-9010.png)]
@@ -228,7 +230,7 @@ Ongoing work:
 
 * Extend AEM scripts with TPM 2.0 support
 * Reference hardware for testing:
-  * Protectli VP4670 (Intel Gen Comet Lake with TPM1.2 and TPM 2.0, legacy
+    - Protectli VP4670 (Intel Gen Comet Lake with TPM1.2 and TPM 2.0, legacy
     boot)
 
 .center.image-60[![](/img/qubes_trenchboot_aem/protectli_vp46.png)]
@@ -240,9 +242,9 @@ Ongoing work:
 ### Phase 3
 
 * Integrate AMD Secure Startup support in AEM
-* Reference hardware for testing: 
-  * ASUS KGPE-D16 (AMD OPtoren 15h family with TPM 1.2 and TPM 2.0, legacy boot)
-  * Supermicro MS11SDV (AMD EPYC 3000 with TPM1.2 and TPM2.0, legacy boot)
+* Reference hardware for testing:
+    - ASUS KGPE-D16 (AMD OPtoren 15h family with TPM 1.2 and TPM 2.0, legacy boot)
+    - Supermicro MS11SDV (AMD EPYC 3000 with TPM1.2 and TPM2.0, legacy boot)
 
 .left-column50[
 .center.image-85[![](/img/qubes_trenchboot_aem/Asus_KGPE_D16_1.png)]
@@ -262,7 +264,7 @@ Ongoing work:
   between firmware and Qubes OS
 * Make GRUB pass all information required by Xen via multiboot tags
 * Reference hardware for testing:
-  * Supermicro MS11SDV (AMD EPYC 3000 with TPM1.2 and TPM2.0, legacy and UEFI
+    - Supermicro MS11SDV (AMD EPYC 3000 with TPM1.2 and TPM2.0, legacy and UEFI
     boot)
 
 .center.image-30[![](/img/qubes_trenchboot_aem/M11SDV-8C-LN4F.png)]
@@ -280,7 +282,7 @@ Ongoing work:
 * Anti Evil Maid is an awesome feature of Qubes OS
 * Not easy to maintain and improve (mainly due to complexity of DRTM
   technologies and/or firmware stacks - UEFI vs legacy)
-  * Probably the main reason why it hasn't moved forward much for the past few
+    - Probably the main reason why it hasn't moved forward much for the past few
     years
 * AEM requires DRTM technology to be present and supported by firmware, which
   limits the hardware choice drastically (at least Intel-based)
@@ -297,4 +299,4 @@ Ongoing work:
 
 class: center, middle, intro
 
-# Thank you!
+# Thank you

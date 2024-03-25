@@ -28,20 +28,20 @@ class: center, middle, intro
 .center[Michał Żygowski]
 .center[_Firmware Engineer_]
 .right-column50[
-- Braswell SoC, PC Engines and Protectli maintainer in coreboot
-- interested in:
-  - advanced hardware and firmware features
-  - coreboot
-  - security solutions
+* Braswell SoC, PC Engines and Protectli maintainer in coreboot
+* interested in:
+    - advanced hardware and firmware features
+    - coreboot
+    - security solutions
 ]
 .left-column50[
-- <a href="https://twitter.com/_miczyg_"><img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @_miczyg_</a>
+* <a href="https://twitter.com/_miczyg_"><img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @_miczyg_</a>
 
-- <a href="mailto:michal.zygowski@3mdeb.com"><img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> michal.zygowski@3mdeb.com</a>
+* <a href="mailto:michal.zygowski@3mdeb.com"><img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> michal.zygowski@3mdeb.com</a>
 
-- <a href="https://www.linkedin.com/in/miczyg"><img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/in/miczyg</a>
+* <a href="https://www.linkedin.com/in/miczyg"><img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/in/miczyg</a>
 
-- <a href="https://www.facebook.com/miczyg1395"><img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/miczyg1395</a>
+* <a href="https://www.facebook.com/miczyg1395"><img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/miczyg1395</a>
 ]
 
 ---
@@ -74,10 +74,10 @@ However, in the time of COVID-19 it occurred useful during the remote work._
 Although the initial launch of Qubes OS was successful, there were significant
 issues stemming from the follow two root causes:
 
-- The xHCI USB controller broke and my USB sticks with Qubes installation image
+* The xHCI USB controller broke and my USB sticks with Qubes installation image
   could neither be detected by BIOS nor by Dom0. Dom0 dmesg was spammed with
   USB errors
-- Xen 4.8.4 is quite old and reported many firmware bugs and issues with APIC
+* Xen 4.8.4 is quite old and reported many firmware bugs and issues with APIC
   and interrupt vectors
 
 Considering the above issues and the need to check the SME and SEV, I decided
@@ -93,20 +93,20 @@ for a nightly Qubes build.
 
 # Modern AMD security features
 
-### Secure Memory Encryption (SME):
+### Secure Memory Encryption (SME)
 
-- divides into SME and TSME (Transparent SME)
+* divides into SME and TSME (Transparent SME)
 
-- encrypts the DRAM content
+* encrypts the DRAM content
 
-- TSME is enabled at BIOS level and encrypts whole memory without any
+* TSME is enabled at BIOS level and encrypts whole memory without any
   interaction from software (thus transparent to OS)
 
 ---
 
 # Modern AMD security features - SME
 
-- the encryption is transparent to software and CPU operation (data read from
+* the encryption is transparent to software and CPU operation (data read from
   DRAM is automatically decrypted by cryptographic engines)
 
 .image-50[.center[<img src="/img/amd_sme.jpg">]]
@@ -119,7 +119,7 @@ Source: https://developer.amd.com/wordpress/media/2013/12/AMD_Memory_Encryption_
 
 # Modern AMD security features - SME
 
-- SME can be enabled by operating system, which decides what is encrypted and
+* SME can be enabled by operating system, which decides what is encrypted and
   what is not (by placing the code and data on the address space where the
   C-bit is set)
 
@@ -133,40 +133,40 @@ Source: https://developer.amd.com/wordpress/media/2013/12/AMD_Memory_Encryption_
 
 # Modern AMD security features - SEV
 
-### Secure Encrypted Virtualization (SEV):
+### Secure Encrypted Virtualization (SEV)
 
-- requires memory encryption to be available but is orthogonal to SME
-- encrypts the guest VM data and code
-- protects against accidental data leaks
-- has two extensions:
-  - SEV-ES - Secure Encrypted Virtualization - Encrypted State
-  - SEV-SNP - Secure Encrypted Virtualization - Secure Nested Paging
+* requires memory encryption to be available but is orthogonal to SME
+* encrypts the guest VM data and code
+* protects against accidental data leaks
+* has two extensions:
+    - SEV-ES - Secure Encrypted Virtualization - Encrypted State
+    - SEV-SNP - Secure Encrypted Virtualization - Secure Nested Paging
 
-### Secure Encrypted Virtualization - Encrypted state:
+### Secure Encrypted Virtualization - Encrypted state
 
-- extends SEV to provide register encryption for even stricter guest protection
-- created to protect from malicious hypervisors
+* extends SEV to provide register encryption for even stricter guest protection
+* created to protect from malicious hypervisors
 
 ---
 
 # Modern AMD security features - SEV-SNP
 
-### Secure Encrypted Virtualization - Secure Nested Paging:
+### Secure Encrypted Virtualization - Secure Nested Paging
 
-- builds upon SEV-ES to provide more guest security mechanisms and reduce the
+* builds upon SEV-ES to provide more guest security mechanisms and reduce the
   trust in hypervisor
 
-- features:
+* features:
 
-  - VM privilege levels,
+    - VM privilege levels,
 
-  - interrupt injection restriction,
+    - interrupt injection restriction,
 
-  - memory page protection from corruption,
+    - memory page protection from corruption,
 
-  - data replay attack protection,
+    - data replay attack protection,
 
-  - memory re-mapping and aliasing attacks protection
+    - memory re-mapping and aliasing attacks protection
 
 ---
 
@@ -176,13 +176,13 @@ While SME does not give any particular protection for Qubes OS except cold boot
 memory attack protection, SEV may occur useful. However, one must take
 following aspects into consideration:
 
-- AMD encryption features rely on the AMD Security Processor (PSP/AMD-SP)
-- AMD-SP/PSP on newer systems is tightly coupled to the memory controller, it
+* AMD encryption features rely on the AMD Security Processor (PSP/AMD-SP)
+* AMD-SP/PSP on newer systems is tightly coupled to the memory controller, it
   is responsible for memory initialization and managing the memory encryption
   keys for SME and SEV
-- AMD-SP/PSP is very similar to Intel ME , it runs closed firmware and CPU
+* AMD-SP/PSP is very similar to Intel ME , it runs closed firmware and CPU
   cannot properly operate without it
-- SEV requires its own firmware loaded by SEV driver - yet another example of
+* SEV requires its own firmware loaded by SEV driver - yet another example of
   security by obscurity (BIOS and security ecosystem is already full of blobs
   and closed solutions)
 
@@ -193,12 +193,12 @@ following aspects into consideration:
 Using [nightly Qubes OS 4.1 build](https://openqa.qubes-os.org/tests/7612/asset/iso/Qubes-4.1-20200416-x86_64.iso)
 I tried to check the SEV support status in Xen and Linux kernel.
 
-- The build contained Xen 4.13.0 and Linux 5.4.31
-- AMD EPYC 3151 should support SME, SEV and SEV-ES
-- Memory Encryption was enabled in BIOS
-- Despite that, the dmesg from Dom0 conatained:<br>
+* The build contained Xen 4.13.0 and Linux 5.4.31
+* AMD EPYC 3151 should support SME, SEV and SEV-ES
+* Memory Encryption was enabled in BIOS
+* Despite that, the dmesg from Dom0 conatained:<br>
   _**ccp 0000:06:00.2: SEV: failed to INIT error 0x8003**_
-- Found an issue about it for exactly the same board:
+* Found an issue about it for exactly the same board:
   https://github.com/AMDESE/AMDSEV/issues/36
 
 Despite trying my best I could not do anything with SEV. It is not surprising
@@ -214,57 +214,57 @@ option is to tweak the kernel.
 
 # Current status of SEV in open-source
 
-- it is currently possible to run SEV-enabled guests using open-source tools
-- AMD has prepared guides how to launch SEV guests:
+* it is currently possible to run SEV-enabled guests using open-source tools
+* AMD has prepared guides how to launch SEV guests:
   https://github.com/AMDESE/AMDSEV
-- requires libvirt >= 4.5 and qemu >= 2.12
-- SUSE Linux Enterprise Server already has support for SEV
-- guests must run OVMF (SeaBIOS is not supported)
-- hypervisor and guest must support GHCB structures
-- there are limitations about intercepting certain events by the host
-- new #VC exception added that requires special consideration when writing a
+* requires libvirt >= 4.5 and qemu >= 2.12
+* SUSE Linux Enterprise Server already has support for SEV
+* guests must run OVMF (SeaBIOS is not supported)
+* hypervisor and guest must support GHCB structures
+* there are limitations about intercepting certain events by the host
+* new #VC exception added that requires special consideration when writing a
   handler
-- handling Automatic Exits (AE) and Non-Automatic Exits (NAE)
+* handling Automatic Exits (AE) and Non-Automatic Exits (NAE)
 
 .footnote[
 References:
-- https://github.com/AMDESE/ovmf
-- https://github.com/AMDESE/AMDSEV
-- https://github.com/AMDESE/sev-tool
-- https://developer.amd.com/sev/
-- https://www.amd.com/system/files/TechDocs/24593.pdf
-- https://developer.amd.com/wp-content/resources/56421.pdf
+* https://github.com/AMDESE/ovmf
+* https://github.com/AMDESE/AMDSEV
+* https://github.com/AMDESE/sev-tool
+* https://developer.amd.com/sev/
+* https://www.amd.com/system/files/TechDocs/24593.pdf
+* https://developer.amd.com/wp-content/resources/56421.pdf
 ]
 
 ---
 
 # Current status of SEV in open-source
 
-- There is still much work to do on Xen side to support SEV guests
+* There is still much work to do on Xen side to support SEV guests
   (restricted event intercepting, AE and NAE, GHCB, AMD-SP/PSP driver)
 
-- SEV introduces new API to the firmware and SEV-SNP introduces new ABI, which
+* SEV introduces new API to the firmware and SEV-SNP introduces new ABI, which
   needs to be implemented in Xen or Linux
 
-- Lack of AMD's Xen maintainer which postpones implementation of new features
+* Lack of AMD's Xen maintainer which postpones implementation of new features
   in Xen
 
-- Using SME or SEV hits the performance, which may not always be acceptable for
+* Using SME or SEV hits the performance, which may not always be acceptable for
   all users
 
-- SEV is available in Linux kernel for KVM guests and new qemu
+* SEV is available in Linux kernel for KVM guests and new qemu
 
 ---
 
 # Qubes OS future on AMD processors
 
-- Encrypted qubes for most critical applications (vault, personal, work)
+* Encrypted qubes for most critical applications (vault, personal, work)
 
-- Optional support to launch a qube using OVMF with SEV (SeaBIOS cannot be
+* Optional support to launch a qube using OVMF with SEV (SeaBIOS cannot be
   supported, since SEV requires PAE paging or long mode, but SeaBIOS is an 16
   bit environment)
 
-- Those who have SME option in BIOS, can utilize TSME feature in Xen and Linux
+* Those who have SME option in BIOS, can utilize TSME feature in Xen and Linux
   right now. The memory will be encrypted by default without software
   intervention protecting from cold boot memory attacks.
 

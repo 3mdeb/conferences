@@ -1,6 +1,6 @@
 class: center, middle, intro
 
-# Tailoring Your Qubes OS Environment: A Developer’s Guide to Leveraging SaltStack 
+# Tailoring Your Qubes OS Environment: A Developer’s Guide to Leveraging SaltStack
 
 ## Qubes OS Summit 2023
 
@@ -77,7 +77,7 @@ _Use the information at your own risk._
 * Utilizes a central management server (Salt Master) to communicate with and
   control target systems (Salt Minions), with an option for masterless
   operation.
-  - Masterless configurtion is used by Qubes OS
+    - Masterless configurtion is used by Qubes OS
 * Employs a declarative language in YAML to define desired system
   configurations, ensuring consistency and compliance across the
   infrastructure.
@@ -91,8 +91,8 @@ _Use the information at your own risk._
 .center.image-20[![](/img/bw_vs_zz.png)]
 
 * We typically face two situations?
-  - clean new deployment
-  - migration from previously working configuration
+    - clean new deployment
+    - migration from previously working configuration
 * In case of migration **CaaC (_Configuration as a Code_)** have to face its
   natural opponent: **recovery from backup**.
 * There is no officially supported recovery from backup for whole dom0.
@@ -101,9 +101,9 @@ _Use the information at your own risk._
 
 * There is no officially supported way to rollback whole dom0, just home
   directory
-  - there are many threads and complex discussion aroudnd dom0 lvm and
+    - there are many threads and complex discussion aroudnd dom0 lvm and
     snapshotting
-  - `tasket` and `tlaurion` have some success, which leverage `wyng-backup`,
+    - `tasket` and `tlaurion` have some success, which leverage `wyng-backup`,
     but whole solution is not described well enough, so casual user like me
     could leverage that
 
@@ -114,15 +114,15 @@ _Use the information at your own risk._
 .center.image-10[![](/img/appvm-black.svg) ![](/img/templatevm-black.svg) ![](/img/adminvm-black.svg)]
 
 * In case of AppVMs, TemplateVMs and dom0 home directory:
-  - Recovery from backup for VMs requiring complex manual provisoning, which is
+    - Recovery from backup for VMs requiring complex manual provisoning, which is
     hard to write code for, could be better.
-  - Both TemplateVM and AppVM need appropriate backup to be in sync.
-  - Backups take disk space, save space with CaaC
-  - Applying changes which we track in version control is less error prone,
+    - Both TemplateVM and AppVM need appropriate backup to be in sync.
+    - Backups take disk space, save space with CaaC
+    - Applying changes which we track in version control is less error prone,
     stable and reproducible than content of the backup.
-  - CaaC is portable between target OSes, backups typically not.
-  - CaaC maybe more time consuming to be prepared.
-  - CaaC may take less time in execution than recovery.
+    - CaaC is portable between target OSes, backups typically not.
+    - CaaC maybe more time consuming to be prepared.
+    - CaaC may take less time in execution than recovery.
 
 ???
 
@@ -130,7 +130,6 @@ _Use the information at your own risk._
   upgrade which is is not compatible with what we have in appvm. This maybe not
   an issue if difference in versions is small, but for big difference upgrade
   may be impossible.
-
 
 ---
 
@@ -152,10 +151,9 @@ stateid:
   modules and libraries.
 * `qubesctl` is a tool used to manage and configure Qubes OS using SaltStack.
    In essence it is inter-changeable and an alias for `salt-call --local`.
-   - Contains additional code to apply any required patches.
+    - Contains additional code to apply any required patches.
 
 ???
-
 
 ---
 
@@ -167,10 +165,10 @@ stateid:
 * **Idempotency** - Declarative states are idempotent, meaning you can apply
   them multiple times without changing the result beyond the initial
   application.
-  - This can be annoying when we we would like to remove some state, we have to
+    - This can be annoying when we we would like to remove some state, we have to
     make sure it is reverted first, otherwise that state is still in the target
     VM.
-  - We have to consider system properties itself, because indempotency is more
+    - We have to consider system properties itself, because indempotency is more
     of theory, which works most of the time except those time it doesn't work.
 
 ---
@@ -184,9 +182,9 @@ stateid:
 * What software I need in AppVMs?
 * Group software required in AppVMs and plan TemplateVMs, which will be used.
 * Plan networking (e.g. VPN?)
-* Code, Test, Repeat 
-  - Documentation, trying, breaking, reading others code.
-  - How to code SaltStack states? Some basics can be found in documentation:
+* Code, Test, Repeat
+    - Documentation, trying, breaking, reading others code.
+    - How to code SaltStack states? Some basics can be found in documentation:
     https://www.qubes-os.org/doc/salt/
 
 ---
@@ -224,14 +222,14 @@ stateid:
 * Formulas are files consisting set of states leading to some configuration.
 * Download, install and configure VMs using pillar data to define deault names
   and configuration details
-  - update dom0, TemplateVMs and AppVMs
+    - update dom0, TemplateVMs and AppVMs
 * There are already some in Qubes OS 4.2.0-rc3
-  - located in `/srv/formulas/base`
-  - GPLv2 licensed
+    - located in `/srv/formulas/base`
+    - GPLv2 licensed
 * Some examples:
-  - usb-keyboard - setup policy, modify Xen boot params, modify GRUB boot
+    - usb-keyboard - setup policy, modify Xen boot params, modify GRUB boot
     params, regenerate grub config
-  - vault - install vault AppVM
+    - vault - install vault AppVM
 
 ```shell
 sudo qubesctl --show-output state.sls update.qubes-dom0
@@ -268,19 +266,19 @@ set default template:
 ```
 
 * There are bunch of other options to deal with:
-  - clockvm
-  - default_kernel
-  - default_netvm
-  - update_vm
-  - others
+    - clockvm
+    - default_kernel
+    - default_netvm
+    - update_vm
+    - others
 
 ---
 
 # Install packages
 
 * Packages you may find worth of installing
-  - qubes-video-companion-dom0
-  - kernel-latest
+    - qubes-video-companion-dom0
+    - kernel-latest
 
 ```yaml
 install qubes-video-companion:
@@ -305,9 +303,9 @@ install other dom0 packages:
 
 * Policies defining which VMs can communicate via RPC.
 * Some of the popular one:
-  - SshAgent
-  - SplitGpg
-  - InputKeyboard/Mouse
+    - SshAgent
+    - SplitGpg
+    - InputKeyboard/Mouse
 
 ```yaml
 add SshAgent policy:
@@ -323,8 +321,8 @@ add SshAgent policy:
 # Configure Xfce
 
 * Xfce configuration as code is PITA
-  - finding correct property is not easy task
-  - naming scheme of properties is not self-explaining
+    - finding correct property is not easy task
+    - naming scheme of properties is not self-explaining
 * Best what I was able to find is `xfconf-query` a tool created for
   querying and setting Xfce configuration database.
 
@@ -365,7 +363,7 @@ dev increase storage size:
 
 * Aparently 32G translate to `32*10^9`, but `qvm-volume` set power of two,
   so calling this second time return error: `32*10^9 < 32002539520`
-  - incidental sefty check, but IDK how to handle that correctly
+    - incidental sefty check, but IDK how to handle that correctly
 
 ---
 
@@ -399,9 +397,9 @@ set service for company-vpn VM:
   downloading means some curl/wget or other software.
 * Cloning from private repo would require some previous configuration.
 * Easiest way seem to be to deliver on USB/storage and then copy content to dom0.
-  - connect USB/storage with SaltStack scripts
-  - connect USB/stotage to untrusted VM
-  - copy scripts from untrusted VM to dom0
+    - connect USB/storage with SaltStack scripts
+    - connect USB/stotage to untrusted VM
+    - copy scripts from untrusted VM to dom0
 
 ---
 
@@ -424,7 +422,7 @@ set service for company-vpn VM:
 
 * `*.sls` and `*.top` are named after the target names: dom0,
   debian-12-minimal, dev, etc.
-  - this simplify tree organization, but cause some limitation
+    - this simplify tree organization, but cause some limitation
 
 ```shell
 qubes-os-2023-demo
@@ -520,9 +518,9 @@ sudo qubesctl --show-output --templates state.sls update.qubes-vm
 * Despite that there are more issue running scripts using above method.
 * Most of SaltStack problems are hard to debug, because of not intuitive error
   messages.
-  - In Qubes OS it is wrappen even more.
+    - In Qubes OS it is wrappen even more.
 * Other issues:
-  - Please note `init.sh` rely on symlinks, if `files` or other of your
+    - Please note `init.sh` rely on symlinks, if `files` or other of your
     directory already contain broken symlinks it can lead to very wierd and
     hard to track errors.
 
@@ -548,7 +546,7 @@ set zsh as default shell:
   user.present:
     - name: user
     - shell: /bin/zsh
-    - groups: 
+    - groups:
       - user
       - qubes
 ```
@@ -597,7 +595,7 @@ create packages:
     - cwd: /tmp/qubesos/qubes-app-linux-split-gpg2
     - runas: user
     - hide_output: true
-    - require: 
+    - require:
       - split-gpg2
     - creates:
       - /tmp/qubesos/split-gpg2_1.0.0_all.deb
@@ -605,11 +603,11 @@ create packages:
       - /tmp/qubesos/python3-splitgpg2_1.0.0_amd64.deb
 install split-gpg2 packages:
   pkg.installed:
-    - sources: 
+    - sources:
       - python3-splitgpg2: /tmp/qubesos/python3-splitgpg2_1.0.0_amd64.deb
       - split-gpg2: /tmp/qubesos/split-gpg2_1.0.0_all.deb
     - reinstall: True
-    - require: 
+    - require:
       - create packages
 ```
 
@@ -685,16 +683,16 @@ remove vpn keys:
 # Developer workflow
 
 * Scripts are typically modified in dom0
-  - whenver you need to improve TemplateVM you apply change and test it, if it
+    - whenver you need to improve TemplateVM you apply change and test it, if it
     works you would like to add changes to version control
-  - you don't want version control nor keys in dom0, that's why changes have to
+    - you don't want version control nor keys in dom0, that's why changes have to
     be synced to dev VM
-  - archive scripts and copy to vm designated to development
-  - when in development vm: 
-    - unpack archive, 
-    - fetch changes just in case you introduced some changes on other machine, 
-    - checkout on branch commit changes and rebase based on newest top of tree, 
-    - push changes
+    - archive scripts and copy to vm designated to development
+    - when in development vm:
+        + unpack archive,
+        + fetch changes just in case you introduced some changes on other machine,
+        + checkout on branch commit changes and rebase based on newest top of tree,
+        + push changes
 
 ---
 
@@ -708,26 +706,26 @@ remove vpn keys:
 * For changes which are persistent it is an issue if we forgot what we changed.
 * I don't like to blow up my template, it already has too much, I can have
   multiple template but this is expensive in terms of maintenece time
-  - Starting from debian-minimal would be great in many situations
+    - Starting from debian-minimal would be great in many situations
 * Organization of `*.sls` and `*.top` files could be way better, especially
   considering fact that top file can refernce multiple individual states from
   multiple sls files
-  - in that context it may mean init.sh is redundant
+    - in that context it may mean init.sh is redundant
 
 ---
 
 # Challanges
 
 * Things change between Qubes OS releases
-  * Description of VMs (`qvm-prefs`)
-  * Template names
+    - Description of VMs (`qvm-prefs`)
+    - Template names
 * Order in which we apply states does matter.
 * Do things in a way that new version of Qubes OS will not break it.
 
 ???
 
 * Why we should base on debian-12-xfce?
-  - isnt it bloated by default?
+    - isnt it bloated by default?
 * Dealing with Qubes OS UI without mouse: [Xfce Cheat
   Sheet](https://defkey.com/xfce-shortcuts?orientation=landscape&cellAlternateColor=%23d6ffef&showPageNumber=true&pdf=True&showPageNumber=false)
 
@@ -739,16 +737,15 @@ remove vpn keys:
   Guide](https://forum.qubes-os.org/t/qubes-salt-beginners-guide/20126) -
   Community Guide by leo
 * unman projects
-  * https://qubes.3isec.org/tasks.html
-    - UI application that leverage shaker set of SaltStack scripts
-    - why should I trust unman's signature for dom0 applications?
-  * https://github.com/unman/shaker
-    - Set of unman's SaltStack scripts
-    - GPLv3+
+    - https://qubes.3isec.org/tasks.html
+        + UI application that leverage shaker set of SaltStack scripts
+        + why should I trust unman's signature for dom0 applications?
+    - https://github.com/unman/shaker
+        + Set of unman's SaltStack scripts
+        + GPLv3+
 
 ---
 
 class: center, middle, intro
 
 # Q&A
-

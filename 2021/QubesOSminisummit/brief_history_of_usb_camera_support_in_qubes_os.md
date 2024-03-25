@@ -9,6 +9,7 @@ class: center, middle, intro
 <img src="/remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
 
 ---
+
 # `whoami`
 
 .center[<img src="/remark-templates/3mdeb-presentation-template/images/piotr_krol.jpg" width="150px">]
@@ -33,6 +34,7 @@ class: center, middle, intro
 ]
 
 ---
+
 # Who we are ?
 
 .center[.image-15[![](remark-templates/3mdeb-presentation-template/images/coreboot-1024x1024.png)] .image-15[![](remark-templates/3mdeb-presentation-template/images/uefi-1024x1024.png)] .image-15[![](remark-templates/3mdeb-presentation-template/images/lvfs.png)] .image-15[![](remark-templates/3mdeb-presentation-template/images/yocto.png)]]
@@ -43,9 +45,10 @@ class: center, middle, intro
 * Yocto Participants and Embedded Linux experts since 2019
 * Official consultants for Linux Foundation fwupd/LVFS project since 2020
 * IBM OpenPOWER Foundation members since 2020
-  - Our Firmware Engineer Michał is chair of SSWG since 2021
+    - Our Firmware Engineer Michał is chair of SSWG since 2021
 
 ---
+
 # Agenda
 
 * Presentation goal
@@ -71,9 +74,9 @@ class: center, middle, intro
 .center[.image-60[![](/img/usb.svg)]]
 
 * USB is relatively complex protocol
-  - thousands pages of specs
-  - multiple host controller implementations both hardware and software wise
-  - massive amount of devices on the market, where some of them weakly comply to the spec
+    - thousands pages of specs
+    - multiple host controller implementations both hardware and software wise
+    - massive amount of devices on the market, where some of them weakly comply to the spec
 * OSFV perspective: USB is the area causing most problems even in stable projects
 * There are multiple endpoints with various requirements based on transferred
   data types
@@ -86,9 +89,9 @@ class: center, middle, intro
 
 * One USB device can have even 32 endpoints
 * There 3 types of transfers used in USB devices
-  - **bulk** - large sporadic data transfers typical for storage devices
-  - **interrupt** - devices requiring quick response e.g. mouse, keyboard
-  - **isochronous** - devices requiring guaranteed data rate e.g. video, audio
+    - **bulk** - large sporadic data transfers typical for storage devices
+    - **interrupt** - devices requiring quick response e.g. mouse, keyboard
+    - **isochronous** - devices requiring guaranteed data rate e.g. video, audio
 * Some devices combine multiple endpoints e.g. camera with microphone
 
 ---
@@ -103,7 +106,7 @@ class: center, middle, intro
 # USB support in Qubes OS
 
 * Qubes 2.0 added experimental support for PV USB
-  - it caused some problems from the beginning being unstable and unmaintained code
+    - it caused some problems from the beginning being unstable and unmaintained code
 * Qubes 3.1 added out of the box setup for USB VM, mouse support was included
 * Qubes 3.2 support for `qvm-usb` and with it USB pass through was added, what
   allowed to deliver better USB isolation through improved `sys-usb`
@@ -117,12 +120,12 @@ class: center, middle, intro
 
 * Qubes OS use USB/IP project to provide devices from sys-usb to AppVMs
 * This configuration has some limitations
-  - USB/IP stack is primitive and despite handling bulk endpoints reliably,
+    - USB/IP stack is primitive and despite handling bulk endpoints reliably,
     some isochronous endpoints cause problem to it
-  - e.g. `vhci_get_frame_number` is not yet implemented
-  - handling multi-endpoint devices rise the complexity
-  - some users complain on performance
-  - finally, there is security risk exposing USB device without modification to AppVM
+    - e.g. `vhci_get_frame_number` is not yet implemented
+    - handling multi-endpoint devices rise the complexity
+    - some users complain on performance
+    - finally, there is security risk exposing USB device without modification to AppVM
 
 ---
 
@@ -130,17 +133,17 @@ class: center, middle, intro
 
 * Because of remote work priority of correct support for wide range of USB
   cameras in Qubes OS has grown
-  - There are even some comments that people resigned from using Qubes because
+    - There are even some comments that people resigned from using Qubes because
     of issues with camera [1](https://forum.qubes-os.org/t/i-cannot-use-my-good-logitech-922-usb-webcam/1448/47?u=pietrushnic)
 * Historical Qubes OS issues
-  - [Cannot use a USB camera](https://github.com/QubesOS/qubes-issues/issues/4035) - created in
+    - [Cannot use a USB camera](https://github.com/QubesOS/qubes-issues/issues/4035) - created in
     Jun 2018, 26 participants, 68 comments, initially created for Logitech C270
-  - [Feature: Trusted stream for webcam input](https://github.com/QubesOS/qubes-issues/issues/2079) - feature
+    - [Feature: Trusted stream for webcam input](https://github.com/QubesOS/qubes-issues/issues/2079) - feature
     request by tasket submitted in 2016
-  - [I cannot use my (good) Logitech 922 USB Webcam](https://forum.qubes-os.org/t/i-cannot-use-my-good-logitech-922-usb-webcam/1448) - 48 replies, 1.1k views
+    - [I cannot use my (good) Logitech 922 USB Webcam](https://forum.qubes-os.org/t/i-cannot-use-my-good-logitech-922-usb-webcam/1448) - 48 replies, 1.1k views
 * Security papers
-  - [iSeeYou: Disabling the MacBook Webcam Indicator LED](https://www.usenix.org/system/files/conference/usenixsecurity14/sec14-paper-brocker.pdf)
-  - [Preventing Covert Webcam Hacking in the Civilian and Governmental Sectors](https://courses.csail.mit.edu/6.857/2014/files/03-jayaram-lui-nguyen-zakarian-preventing-covert-webcam-hacking)
+    - [iSeeYou: Disabling the MacBook Webcam Indicator LED](https://www.usenix.org/system/files/conference/usenixsecurity14/sec14-paper-brocker.pdf)
+    - [Preventing Covert Webcam Hacking in the Civilian and Governmental Sectors](https://courses.csail.mit.edu/6.857/2014/files/03-jayaram-lui-nguyen-zakarian-preventing-covert-webcam-hacking)
 
 ---
 
@@ -151,7 +154,7 @@ class: center, middle, intro
 * Project created by Elliot Killick in Sep 2020 with the goal of securely
   streaming webcams and sharing screens across VMs
 * MIT-licensed source code available on Github:
-   - https://github.com/elliotkillick/qubes-video-companion
+    - https://github.com/elliotkillick/qubes-video-companion
 * Initially written in BASH, now rewritten with support of Demi to Python
 * Candidate for being part of core Qubes OS
 
@@ -211,10 +214,10 @@ class: center, middle, intro
 
 * Jitsi (in Chrome 91) and OBS v0.0.1 works like a charm in 4 vCPUs and 12GB RAM VM
 * In case of performance issues
-  - use minimal size preview window
-  - in OBS preview can be disabled by by unchecking `Enable preview` in context menu
-  - do not play videos in other VMs at the same time
-  - assign as many vCPUs as possible to receiving VM
+    - use minimal size preview window
+    - in OBS preview can be disabled by by unchecking `Enable preview` in context menu
+    - do not play videos in other VMs at the same time
+    - assign as many vCPUs as possible to receiving VM
 
 ---
 
@@ -230,13 +233,13 @@ src="https://www.youtube.com/embed/crFcGGVkvro?rel=0&hd=1">
 # How you can help?
 
 * test, test, test
-  - we need test reports for various hardware
-  - we need more information about users configurations in context of
+    - we need test reports for various hardware
+    - we need more information about users configurations in context of
     performance (what CPUs it worked fine)
 * potential issues
-  - wouldn't v4l2loopback compilation be needed every time debian-10 kernel will be updated?
+    - wouldn't v4l2loopback compilation be needed every time debian-10 kernel will be updated?
 * future ideas
-  - integrate with sys-usb tray icon
+    - integrate with sys-usb tray icon
 
 ---
 

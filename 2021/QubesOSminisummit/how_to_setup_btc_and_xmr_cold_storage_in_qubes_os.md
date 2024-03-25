@@ -9,6 +9,7 @@ class: center, middle, intro
 <img src="/remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
 
 ---
+
 # `whoami`
 
 .center[<img src="/remark-templates/3mdeb-presentation-template/images/piotr_krol.jpg" width="150px">]
@@ -33,6 +34,7 @@ class: center, middle, intro
 ]
 
 ---
+
 # Who we are ?
 
 .center[.image-15[![](remark-templates/3mdeb-presentation-template/images/coreboot-1024x1024.png)] .image-15[![](remark-templates/3mdeb-presentation-template/images/uefi-1024x1024.png)] .image-15[![](remark-templates/3mdeb-presentation-template/images/lvfs.png)] .image-15[![](remark-templates/3mdeb-presentation-template/images/yocto.png)]]
@@ -43,24 +45,25 @@ class: center, middle, intro
 * Yocto Participants and Embedded Linux experts since 2019
 * Official consultants for Linux Foundation fwupd/LVFS project since 2020
 * IBM OpenPOWER Foundation members since 2020
-  - Our Firmware Engineer Michał is chair of SSWG since 2021
+    - Our Firmware Engineer Michał is chair of SSWG since 2021
 
 ---
+
 # Agenda
 
 * Presentation goal
 * Terminology
 * Architecture
 * BTC
-  - wallet
-  - btc-cs VM preparing
-  - online watch-only wallet preparing
-  - rx/tx coins
-* Qrexec and Qubes RPC 
+    - wallet
+    - btc-cs VM preparing
+    - online watch-only wallet preparing
+    - rx/tx coins
+* Qrexec and Qubes RPC
 * SendToSign and SignTxn RPC services
 * BTC Demo
 * XMR
-  - a/a
+    - a/a
 * Future ideas
 * Q&A
 
@@ -77,7 +80,6 @@ not rely on this presentation as source of secure offline wallet configuration.
 Please consult domain experts. We are not responsible for any damage caused by
 using following information._
 
-
 .footnote["cryptocurrency monero XMR" by bastamanography CC BY-NC-SA 2.0.]
 <br>
 .footnote["File:Bitcoin Cash.png" by Amaury Sechet CC0 1.0]
@@ -89,9 +91,9 @@ using following information._
 .center[.image-65[![](/img/cold_storage.jpg)]]
 
 * **Cold storage** is an offline wallet used for storing cryptocurrency.
-  - no remote access, reduced attack surface
-  - public key is used for watching-only wallet
-  - every transaction is signed in cold wallet
+    - no remote access, reduced attack surface
+    - public key is used for watching-only wallet
+    - every transaction is signed in cold wallet
 
 .footnote["Diagram of a Cold Storage System (1920)" by Eric Fischer CC BY 2.0]
 
@@ -102,11 +104,11 @@ using following information._
 .center[.image-50[![](/img/arch.svg)]]
 
 * Architecture consist of offline and online wallet
-  - offline wallet can sign transactions before broadcasting online
-  - offline wallet can generate payment requests
-  - online wallet is watch-only to see transaction history
+    - offline wallet can sign transactions before broadcasting online
+    - offline wallet can generate payment requests
+    - online wallet is watch-only to see transaction history
 * Limitation
-  - definitely not the setup for high frequency traders, although there is
+    - definitely not the setup for high frequency traders, although there is
     place for improvements
 
 ---
@@ -121,10 +123,10 @@ using following information._
 https://github.com/spesmilo/electrum
 * For following tutorial we used v4.1.5 AppImage version
 * Meet our requirements
-  - OS: Linux
-  - Knowledge: Experienced User
-  - License: Open Source
-  - Lightweight
+    - OS: Linux
+    - Knowledge: Experienced User
+    - License: Open Source
+    - Lightweight
 * We decided that Electrum meets all those criteria with great balance between
   privacy, transparency and feature-richness
 
@@ -133,8 +135,8 @@ https://github.com/spesmilo/electrum
 # `btc-cs` vm using minimal template
 
 * Minimal templates contain only most important packages
-  - save resources
-  - reduce attack surface
+    - save resources
+    - reduce attack surface
 
 ```shell
 (dom0)$ sudo qubes-dom0-update qubes-template-debian-10-minimal
@@ -172,7 +174,6 @@ ELECTRUM_KEYS=https://raw.githubusercontent.com/spesmilo/electrum/master/pubkeys
 * Fingerprint can be compared with https://electrum.org/#about and Github
 identity.
 
-
 ```shell
 (trustedvm) $ gpg --verify electrum-4.1.5-x86_64.AppImage.ThomasV.asc \
 electrum-4.1.5-x86_64.AppImage
@@ -181,7 +182,6 @@ electrum-4.1.5-x86_64.AppImage
 ```
 
 * `trustedvm` should be sufficiently trusted by user to verify signatures
-
 
 ???
 
@@ -366,10 +366,10 @@ of MPK, when you delete it, Electrum can proceed
 * It is built on top of vchan, Xen library providing data links between VMs
 * communication between VMs is set up by dom0
 * thanks to the framework RPC client/server are simple scripts
-  - `qrexec-client-vm` makes RPC calls to target VM
-  - call gets through dom0 and policy is checked
-  - script in target VM is executed
-  - stdin/stdout can be used to exchange data between client and target VMs
+    - `qrexec-client-vm` makes RPC calls to target VM
+    - call gets through dom0 and policy is checked
+    - script in target VM is executed
+    - stdin/stdout can be used to exchange data between client and target VMs
 
 .footnote[https://www.qubes-os.org/doc/qrexec/]
 
@@ -428,10 +428,10 @@ src="https://www.youtube.com/embed/FBtL8tP33U4?rel=0&hd=1">
   https://github.com/monero-project/monero
 * For the following tutorial we will use Oxygen Orion v0.17.2.0
 * Meet our requirements
-  - OS: Linux
-  - Knowledge: Experienced User
-  - License: Open Source
-  - Lightweight
+    - OS: Linux
+    - Knowledge: Experienced User
+    - License: Open Source
+    - Lightweight
 
 ---
 
@@ -514,9 +514,9 @@ unlock) (Some owned outputs have missing key images - import_key_images needed)
 
 * Because XMR has different mechanics then BTC it requires synchronization to
   keep track of balance on watch-only and cold storage
-  -  transfers can be monitored by `export_outputs` on watch-only and
+    - transfers can be monitored by `export_outputs` on watch-only and
      `import_output` on cold storage
-  - spent can be monitored by `export_key_images` on cold storage and
+    - spent can be monitored by `export_key_images` on cold storage and
     `import_key_images` on watch-only
 * You have to wait to see some XMR on `unlocked balance` this may take time (in
   my case 1.5h)
@@ -608,7 +608,7 @@ src="https://www.youtube.com/embed/e0WJk1AHOVo?rel=0&hd=1">
 * Combining presented configuration using multisig and keeping one of the keys
   in hardware wallet may improve security of the solution
 * Offline wallet software update can be a problem
-  - official suggestions saying about complete reinstall
+    - official suggestions saying about complete reinstall
 * XMR: improve password handling
 * XMR: use RPC instead of cli
 

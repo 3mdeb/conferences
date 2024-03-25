@@ -1,6 +1,6 @@
 class: center, middle, intro
 
-#  Creating a Tool to Check Platform Security Features for Qubes OS 
+# Creating a Tool to Check Platform Security Features for Qubes OS
 
 ## Piotr Król
 
@@ -10,27 +10,27 @@ class: center, middle, intro
 
 # Goal
 
-### Create tool containing set of tests, which will assess how well different hardware support platform security features like D-RTM, S-RTM, Intel Boot Guard, AMD Platform Secure Boot, and UEFI Secure Boot, and how they align with Qubes OS security standards.
+### Create tool containing set of tests, which will assess how well different hardware support platform security features like D-RTM, S-RTM, Intel Boot Guard, AMD Platform Secure Boot, and UEFI Secure Boot, and how they align with Qubes OS security standards
 
 ---
 
 # Requirement
 
-### Parts of the tools or results reported by it could be presented directly within the Qubes OS User Interface, so users can easily understand the security readiness of their system.
+### Parts of the tools or results reported by it could be presented directly within the Qubes OS User Interface, so users can easily understand the security readiness of their system
 
 ---
 
 # Problems
 
 * What technology we can asses and how
-  - D-RTM 
-  - S-RTM
-  - Intel Boot Guar
-  - AMD Platform Secure Boot
-  - UEFI Secure Boot
+    - D-RTM
+    - S-RTM
+    - Intel Boot Guar
+    - AMD Platform Secure Boot
+    - UEFI Secure Boot
 * How to present results to maximize usability
-  - Qubes HCL
-  - Dasharo HCL
+    - Qubes HCL
+    - Dasharo HCL
 
 ---
 

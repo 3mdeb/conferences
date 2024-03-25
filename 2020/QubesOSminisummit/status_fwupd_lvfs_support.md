@@ -1,6 +1,7 @@
 class: center, middle, intro
 
 # Status fwupd/LVFS support
+
 # for Qubes OS
 
 ### Qubes OS and 3mdeb minisummit 2020
@@ -31,25 +32,25 @@ class: center, middle, intro
 
 .left-column50[
 
-- open-source contributor:
-  - meta-pcengines
-  - meta-virtualization
-- scope of interests:
-  - embedded Linux
-  - virtualization
-  - bootloaders
+* open-source contributor:
+    - meta-pcengines
+    - meta-virtualization
+* scope of interests:
+    - embedded Linux
+    - virtualization
+    - bootloaders
 
 ]
 
 .right-column50[
 
-- <a href="mailto:norbert.kaminski@3mdeb.com"><img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> norbert.kaminski@3mdeb.com </a>
+* <a href="mailto:norbert.kaminski@3mdeb.com"><img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> norbert.kaminski@3mdeb.com </a>
 
-- <a href="https://www.linkedin.com/in/norbert-kami%C5%84ski/"><img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/in/norbert-kami%C5%84ski/ </a>
+* <a href="https://www.linkedin.com/in/norbert-kami%C5%84ski/"><img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/in/norbert-kami%C5%84ski/ </a>
 
-- <a href="https://www.facebook.com/nkaminski3"><img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/nkaminski3 </a>
+* <a href="https://www.facebook.com/nkaminski3"><img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/nkaminski3 </a>
 
-- <a href="https://twitter.com/asiderr"><img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @asiderr </a>
+* <a href="https://twitter.com/asiderr"><img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @asiderr </a>
 
 ]
 
@@ -192,7 +193,6 @@ the firmware update process
 
 # To Do's
 
-
 * Custom fwupd plugin that will use information from all VMs
 
 * `qubes-fwupdmgr` script that will connect the downloading and
@@ -205,4 +205,3 @@ updating firmware
 ---
 
 ## .center[Q&A]
-

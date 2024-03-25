@@ -13,16 +13,16 @@ class: center, middle, intro
 # Mini-summit history
 
 * First mini-summit happen in 2019 in Gdansk 3mdeb office
-  - by coincidence it happen Marek came to 3mdeb as trainer to teach our Linux
+    - by coincidence it happen Marek came to 3mdeb as trainer to teach our Linux
     Kernel developers
-  - we had to leverage that situation and quickly decided about creating what
+    - we had to leverage that situation and quickly decided about creating what
     is now called Qubes OS mini-summit
-  - there was no recordings, but presentations area available on our website:
+    - there was no recordings, but presentations area available on our website:
     https://3mdeb.com/events/#Qubes-OS-and-3mdeb-minisummit
 * Second event was held virtually in 2020
-  - it was purely virtual event, videos and presentations can be found here:
+    - it was purely virtual event, videos and presentations can be found here:
   https://3mdeb.com/events/#Qubes-OS-and-3mdeb-minisummit
-  - we expand our reach through public Youtube stream and AMA at the
+    - we expand our reach through public Youtube stream and AMA at the
   end of each minisummit day
 
 ---
@@ -36,18 +36,18 @@ class: center, middle, intro
 * Talks touch other areas then security, we will talk about Qubes OS future,
   UX, backups, cryptocurrency and many more
 * Overall we hope you will enjoy this event
-  - feel free to provide feedback
+    - feel free to provide feedback
 
 ---
 
 # Event organization
 
 * This is 2 day event
-  - August 3rd 2021
-  - August 10th 2021
+    - August 3rd 2021
+    - August 10th 2021
 * Each day has 2 parts:
-  - 6PM-9:45PM UTC - lectures and discussion focused on presented topics and not only
-  - 9:45PM UTC - vPub, informal after-party with adult beverages allowed
+    - 6PM-9:45PM UTC - lectures and discussion focused on presented topics and not only
+    - 9:45PM UTC - vPub, informal after-party with adult beverages allowed
 
 ---
 
@@ -70,16 +70,16 @@ class: center, middle, intro
 
 # Notes
 
-- Any wireguard VPN support in sys-net for 4.1?
-- any ideas an AMD-SEV for securing VMs?
-- What about mirageOS firewall?
-- what is the most-tested modern laptop for running Qubes on (a) Intel and (b) AMD Ryzen?
+* Any wireguard VPN support in sys-net for 4.1?
+* any ideas an AMD-SEV for securing VMs?
+* What about mirageOS firewall?
+* what is the most-tested modern laptop for running Qubes on (a) Intel and (b) AMD Ryzen?
     - Lenovo X1 Carbon
     - S0ix is problem
     - Thinkpads tXXX
     - System76 looking for Qubes OS support
     - HP - random laptop with AMD
-- What is the future of Snaps, Flatpak, and AppImage features to make them easier and efficient?
+* What is the future of Snaps, Flatpak, and AppImage features to make them easier and efficient?
 
 ???
 
@@ -115,27 +115,27 @@ the case at hand."
 https://www.sli.do/pricing?plan=annual
 
 Qubes OS 4.1
-- is it possible and make sense to have some authorization of policy calls? (e.g. TOTP)
-- what are the most used policies?
-- how long was 4.1 release cycle?
-- when new release is planned?
-- what is the purpose of audio subsystem isolation?
+* is it possible and make sense to have some authorization of policy calls? (e.g. TOTP)
+* what are the most used policies?
+* how long was 4.1 release cycle?
+* when new release is planned?
+* what is the purpose of audio subsystem isolation?
     - does it help to support some specific audio hw configs?
-- USBIP: this was quite popular in the past, but what is the development of it right now? What is the future of it?
-- GRUB2: enables also trenchboot, what may make sense in Qubes OS context
-- what is the support of debian for GUI qube
+* USBIP: this was quite popular in the past, but what is the development of it right now? What is the future of it?
+* GRUB2: enables also trenchboot, what may make sense in Qubes OS context
+* what is the support of debian for GUI qube
 
 deeplow first try o Qubes OS
-- we should always think if what we talking about is not too complex
-- maybe OST2 is also the place for Qubes OS training?
-- Electron based application should have little memory and lot of swap
+* we should always think if what we talking about is not too complex
+* maybe OST2 is also the place for Qubes OS training?
+* Electron based application should have little memory and lot of swap
 
 wyng:
-- what is the security of backups
-- what are the concerns about SHA256?
+* what is the security of backups
+* what are the concerns about SHA256?
 
 What we should improve next time:
-- respect timeline
-- youtube for questions is not the best place since it requires google account
+* respect timeline
+* youtube for questions is not the best place since it requires google account
 
 ---
