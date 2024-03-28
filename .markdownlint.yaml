@@ -31,7 +31,7 @@ MD006: true
 # MD007/ul-indent - Unordered list indentation
 MD007:
   # Spaces for indent
-  indent: 4
+  indent: 2
   # Whether to indent the first level of the list
   start_indented: false
 
@@ -63,8 +63,6 @@ MD012:
 MD013:
   # Number of characters
   line_length: 80
-  # Number of characters for headings
-  heading_line_length: 80
   # Number of characters for code blocks
   code_block_line_length: 160
   # Include code blocks
@@ -72,7 +70,7 @@ MD013:
   # Include tables
   tables: false
   # Include headings
-  headings: true
+  headings: false
   # Strict length checking (e.g. allow for longer URLs)
   strict: false
   # Stern length checking
