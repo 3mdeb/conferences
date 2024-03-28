@@ -1,2 +1,5 @@
 crate
 challener
+capabable
+covert
+TXT capabable

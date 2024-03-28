@@ -14,69 +14,66 @@ class: center, middle, intro
 
 # Agenda
 
-* `whoami`
-* Who we are?
-* Recap from first part
-    - booting secure embedded device
-    - UEFI Secure Boot
-    - meta-secure-core
-    - running image with UEFI Secure Boot integrated
-* Build improvements
-* UEFI Secure Boot compliance
-* Keys management
-* CI/CD integration
-* Demo
+- `whoami`
+- Who we are?
+- Recap from first part
+  + booting secure embedded device
+  + UEFI Secure Boot
+  + meta-secure-core
+  + running image with UEFI Secure Boot integrated
+- Build improvements
+- UEFI Secure Boot compliance
+- Keys management
+- CI/CD integration
+- Demo
 
 ???
 
 Ok, so let me start with the agenda. First, I will introduce myself and the
 company I work in. Next I will do quick recap about the content of the similar
-topic that I present one year ago at Yocto Summit 2022.11 edition. After that
-I will discuss about what changed from the last year and cover more topics.
-First of which will be the importance of UEFI Secure Boot compliance, including its
+topic that I present one year ago at Yocto Summit 2022.11 edition. After that I
+will discuss about what changed from the last year and cover more topics. First
+of which will be the importance of UEFI Secure Boot compliance, including its
 role in ensuring the integrity and security of the boot process. This topic will
 shed light on the requirements and practices that need to be followed for UEFI
 Secure Boot compliance. Then I will go into keys management process in context
 of UEFI Secure Boot and how we can provide that while we integrate
-meta-secure-core layer. Next I will quickly talk about CI/CD integration and
-how we can do that while working with Yocto. At the end I will present the
-effect of our changes that were presented in build improvements section.
+meta-secure-core layer. Next I will quickly talk about CI/CD integration and how
+we can do that while working with Yocto. At the end I will present the effect of
+our changes that were presented in build improvements section.
 
 ---
 
 # `whoami`
 
 .center[<img
-  src="/remark-templates/3mdeb-presentation-template/images/tomasz_zyjewski.png"
-  width="150px">]
+src="/remark-templates/3mdeb-presentation-template/images/tomasz_zyjewski.png"
+width="150px">]
 
-.center[Tomasz Żyjewski]
-.center[_Embedded Systems Team Leader_]
+.center[Tomasz Żyjewski] .center[_Embedded Systems Team Leader_]
 .right-column50[
-* over 4 years in 3mdeb
-* integration of update systems and OS creation for embedded devices
-* system security
-]
-.left-column50[
-* <a href="https://twitter.com/tomzy_0"><img
+
+- over 4 years in 3mdeb
+- integration of update systems and OS creation for embedded devices
+- system security ] .left-column50[
+- <a href="https://twitter.com/tomzy_0"><img
   src="/remark-templates/3mdeb-presentation-template/images/twitter.png"
   width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @tomzy_0</a>
-* <a href="mailto:tomasz.zyjewski@3mdeb.com"><img
-  src="/remark-templates/3mdeb-presentation-template/images/email.png"
-  width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
-  tomasz.zyjewski@3mdeb.com</a>
-]
+- <a href="mailto:tomasz.zyjewski@3mdeb.com"><img
+    src="/remark-templates/3mdeb-presentation-template/images/email.png"
+    width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
+  tomasz.zyjewski@3mdeb.com</a> ]
 
 ???
 
-Okay, so here is something about me. I am an Embedded Systems Engineer at
-3mdeb. I am working here for over four years during which I gained knowledge
-related to Yocto. I have quite a lot of experience in integrating update systems
-(mostly based on swupdate). I also enjoy working on security aspects of embedded
-devices with topics like Secure and Verified Boot, hardening kernel and
-bootloader, encrypting partitions. In my spare time, I try to find Yocto layers
-that seem to provide interesting functionalities and test them. If you would
-like to contact me, you can use e-mail listed here or just hit me on twitter.
+Okay, so here is something about me. I am an Embedded Systems Engineer at 3mdeb.
+I am working here for over four years during which I gained knowledge related to
+Yocto. I have quite a lot of experience in integrating update systems (mostly
+based on swupdate). I also enjoy working on security aspects of embedded devices
+with topics like Secure and Verified Boot, hardening kernel and bootloader,
+encrypting partitions. In my spare time, I try to find Yocto layers that seem to
+provide interesting functionalities and test them. If you would like to contact
+me, you can use e-mail listed here or just hit me on twitter.
 
 ---
 
@@ -85,11 +82,11 @@ like to contact me, you can use e-mail listed here or just hit me on twitter.
 .center[.image-15[![](/remark-templates/3mdeb-presentation-template/images/coreboot-1024x1024.png)].image-15[![](/remark-templates/3mdeb-presentation-template/images/uefi-1024x1024.png)].image-15[![](/remark-templates/3mdeb-presentation-template/images/lvfs.png)].image-15[![](/remark-templates/3mdeb-presentation-template/images/yocto.png)]]
 .center[.image-35[![](/remark-templates/3mdeb-presentation-template/images/openpower.svg)]]
 
-* coreboot licensed service providers since 2016 and leadership participants
-* UEFI Adopters since 2018
-* Yocto Participants and Embedded Linux experts since 2019
-* Official consultants for Linux Foundation fwupd/LVFS project since 2020
-* IBM OpenPOWER Foundation members since 2020
+- coreboot licensed service providers since 2016 and leadership participants
+- UEFI Adopters since 2018
+- Yocto Participants and Embedded Linux experts since 2019
+- Official consultants for Linux Foundation fwupd/LVFS project since 2020
+- IBM OpenPOWER Foundation members since 2020
 
 ???
 
@@ -103,8 +100,8 @@ security of the devices around us in today's world, and thus also ours.
 
 # Recap from first part
 
-* Previous presentation: <https://www.youtube.com/watch?v=OA9TKkwFFIE>
-    - enabling UEFI Secure Boot on x86 platform with Yocto: getting started with
+- Previous presentation: <https://www.youtube.com/watch?v=OA9TKkwFFIE>
+  + enabling UEFI Secure Boot on x86 platform with Yocto: getting started with
     meta-secure-core
 
 .center[<img src="../../img/secure_boot.svg" width="720px">]
@@ -122,9 +119,9 @@ that no one can interrupt the boot process to upload their firmware.
 
 Now we can introduce more security terms. RoT and CoT. Root of trust is a source
 we can trust to be secure. In the case of UEFI Secure Boot, this is the Platform
-Key. The point is that the trust state of a given
-boot element must be based on something that we have no doubts about. RoT can be
-hardware (TPM for example) or provided by a previous item from the boot process.
+Key. The point is that the trust state of a given boot element must be based on
+something that we have no doubts about. RoT can be hardware (TPM for example) or
+provided by a previous item from the boot process.
 
 Chain of Trust is achieved when every previous element verifies each element of
 the platform's boot. To achieve this, many components are used to cover the
@@ -136,18 +133,18 @@ OS.
 
 # Recap from first part
 
-* Explained in chapter 32 of UEFI Specification
-    - information from there should always take precedence over other documents
-* Key goal
-    - provide infrastructure for UEFI Image load time authentication
-    - UEFI Secure Boot authenticates OS Loaders and UEFI drivers
-    - Platform Owner manage platfrom's security policy and can check integrity and
+- Explained in chapter 32 of UEFI Specification
+  + information from there should always take precedence over other documents
+- Key goal
+  + provide infrastructure for UEFI Image load time authentication
+  + UEFI Secure Boot authenticates OS Loaders and UEFI drivers
+  + Platform Owner manage platfrom's security policy and can check integrity and
     security of a given UEFI Image
-* The subject of UEFI Secure Boot is very complex and multi-level
-    - we will cover about 1%
-    - want to focus on integrating that within Yocto Project
-* Worth to check available training courses
-    - <https://p.ost2.fyi/>
+- The subject of UEFI Secure Boot is very complex and multi-level
+  + we will cover about 1%
+  + want to focus on integrating that within Yocto Project
+- Worth to check available training courses
+  + <https://p.ost2.fyi/>
 
 ???
 
@@ -168,9 +165,9 @@ determine which images and certificates are allowed and which are not.
 
 # Recap from first part
 
-* meta-secure-core overview:
-    - provides couple of common and platform-specific security features
-    - repository: <https://github.com/jiazhang0/meta-secure-core>
+- meta-secure-core overview:
+  + provides couple of common and platform-specific security features
+  + repository: <https://github.com/jiazhang0/meta-secure-core>
 
 .center[<img src="../../img/meta-sec-core-over.svg" width="720px">]
 
@@ -189,9 +186,9 @@ our project.
 
 # Recap from first part
 
-* For test we used `meta-dts` layer
-    - repository: <https://github.com/Dasharo/meta-dts>
-* Status
+- For test we used `meta-dts` layer
+  + repository: <https://github.com/Dasharo/meta-dts>
+- Status
 
 .center[<img src="../../img/poc-state.svg" width="720px">]
 
@@ -211,10 +208,10 @@ Diagram presents our effor we managed to achieve last year.
 
 # Build improvements
 
-* Building `iso` image
-    - one of the requirements of base image
-    - introduces regression
-* Error
+- Building `iso` image
+  + one of the requirements of base image
+  + introduces regression
+- Error
 
 .code-11px[
 
@@ -229,9 +226,9 @@ ERROR: Task (/repo/meta-dts-distro/recipes-dts/images/dts-base-sb-image.bb:do_bo
 
 ]
 
-* Solution
-    - temporary: `IMAGE_FSTYPES:remove = "iso"`
-    - cause of issue: `live-vm-common.bbclass` and `efi_populate_common` function
+- Solution
+  + temporary: `IMAGE_FSTYPES:remove = "iso"`
+  + cause of issue: `live-vm-common.bbclass` and `efi_populate_common` function
 
 ???
 
@@ -246,23 +243,24 @@ Our solution was to remove the iso image compilation, but we performed debugging
 to find the cause of the error. It turned out that the problem was with custom
 modifications to the grub-efi recipe in meta-secure-core, which were not
 compatible with the live-vm-common class found in poky. Once this issue is
-resolved, we are happy to introduce a contribution to the meta-secure-core layer.
+resolved, we are happy to introduce a contribution to the meta-secure-core
+layer.
 
 ---
 
 # Build improvements
 
-* Correct binaries in `/boot` partition
-    - we need signed `grubx64.efi`
-    - BIOS looks for `bootx64.efi`
-* Signed `grubx64.efi`
-    - signed by `grub-efi-efi-secure-boot.inc`
-    - other binary provided while creating rootfs
-    - workaround to deploy proper binary
-* Signed `bootx64.efi`
-    - signed by `shim_git.bb`
-    - `bootx64.efi` deployed to DEPLOY_DIR
-    - add `bootx64.efi;EFI/BOOT/ \` to `IMAGE_EFI_BOOT_FILES`
+- Correct binaries in `/boot` partition
+  + we need signed `grubx64.efi`
+  + BIOS looks for `bootx64.efi`
+- Signed `grubx64.efi`
+  + signed by `grub-efi-efi-secure-boot.inc`
+  + other binary provided while creating rootfs
+  + workaround to deploy proper binary
+- Signed `bootx64.efi`
+  + signed by `shim_git.bb`
+  + `bootx64.efi` deployed to DEPLOY_DIR
+  + add `bootx64.efi;EFI/BOOT/ \` to `IMAGE_EFI_BOOT_FILES`
 
 ???
 
@@ -272,20 +270,20 @@ sbctl
 
 # Build improvements
 
-* sbctl
-    - Secure Boot key manager
-    - dependencies: `util-linux`, `binutils`, `Go`, asciidoc
-    - another tool for Secure Boot management (similar to mokutil)
-* Features
-    - user-friendly
-    - manages secure boot keys
-    - live enrollment of keys
-    - signing database to help keep track of files to sign
-    - JSON output
-* Recipe `sbctl_0.12.bb`
-    - binary release installation
-    - do not want to add golang to Yocto cache yet
-    - missing in Yocto recipe index
+- sbctl
+  + Secure Boot key manager
+  + dependencies: `util-linux`, `binutils`, `Go`, asciidoc
+  + another tool for Secure Boot management (similar to mokutil)
+- Features
+  + user-friendly
+  + manages secure boot keys
+  + live enrollment of keys
+  + signing database to help keep track of files to sign
+  + JSON output
+- Recipe `sbctl_0.12.bb`
+  + binary release installation
+  + do not want to add golang to Yocto cache yet
+  + missing in Yocto recipe index
 
 ???
 
@@ -295,11 +293,10 @@ integrating more meta-signing-keys
 
 # Build improvements
 
-* meta-signing-key
-    - `create-user-key-store.sh` execution
-    - creates user keys
-* Output
-.code-11px[
+- meta-signing-key
+  + `create-user-key-store.sh` execution
+  + creates user keys
+- Output .code-11px[
 
 ```bash
 MASTER_KEYS_DIR = "/home/tzyjewski/projects/dts/meta-secure-core/meta-signing-key/scripts/user-keys"
@@ -326,24 +323,25 @@ OSTREE_GRUB_PW_FILE = "${GRUB_PW_FILE}"
 ```
 
 ]
-* Add to kas config file
+
+- Add to kas config file
 
 ---
 
 # UEFI Secure Boot compliance
 
-* Importance of UEFI Secure Boot compliance
-    - enhanced system security
-    - regulatory and industry standards
-    - system reliability and trust
-* Tools
-    - built-in UEFI menu
-    - cmdlines utilities; e.g. `sbctl` on Linux, `bcdedit` on Windows
-    - third-party tools
-* Key management in context of compliance
-    - verification not only of the implementation itself but also of maintenance
-    - maintaining trust and integrity
-    - adaptability and control
+- Importance of UEFI Secure Boot compliance
+  + enhanced system security
+  + regulatory and industry standards
+  + system reliability and trust
+- Tools
+  + built-in UEFI menu
+  + cmdlines utilities; e.g. `sbctl` on Linux, `bcdedit` on Windows
+  + third-party tools
+- Key management in context of compliance
+  + verification not only of the implementation itself but also of maintenance
+  + maintaining trust and integrity
+  + adaptability and control
 
 ???
 
@@ -361,11 +359,10 @@ standards and demonstrate their commitment to data security and regulatory
 compliance, which can be crucial in sectors like healthcare, finance, and
 government.
 
-It also builds trust in the integrity of the system's boot
-process. It verifies that only trusted and digitally signed software components
-are allowed to run during boot-up, contributing to the reliability and stability
-of the computing environment, especially in critical applications and enterprise
-settings.
+It also builds trust in the integrity of the system's boot process. It verifies
+that only trusted and digitally signed software components are allowed to run
+during boot-up, contributing to the reliability and stability of the computing
+environment, especially in critical applications and enterprise settings.
 
 There are tools and utilities available for checking UEFI Secure Boot compliance
 on a computer system.
@@ -394,45 +391,43 @@ in the future.
 
 # UEFI Secure Boot compliance
 
-* Test environment
-.center[<img src="../../img/hw-sw-setup.svg" width="360px">]
+- Test environment .center[<img src="../../img/hw-sw-setup.svg" width="360px">]
 
-* Remote Testing Environment
-.left-column50[
-* docs: <https://docs.dasharo.com/transparent-validation/rte/introduction>
-* layer: <https://github.com/3mdeb/meta-rte>]
-.right-column50[.center[<img src="../../img/rte-v1.1.0-trans.jpg" width="240px">]]
+- Remote Testing Environment .left-column50[
+- docs: <https://docs.dasharo.com/transparent-validation/rte/introduction>
+- layer: <https://github.com/3mdeb/meta-rte>] .right-column50[.center[<img
+  src="../../img/rte-v1.1.0-trans.jpg" width="240px">]]
 
 ???
 
 When checking UEFI Secure Boot complaince we need to prepare a test environment
 which consist of software and hardware parts.
 
-Software part is a set of tests that logically check and verify if given scenario
-in context of Secure Boot can be successfully ended.
+Software part is a set of tests that logically check and verify if given
+scenario in context of Secure Boot can be successfully ended.
 
 Hardware part of tests environment consist of providing two key functionalities
 that are used in testing.
 
-* Power management
-* Serial logging
+- Power management
+- Serial logging
 
 ---
 
 # UEFI Secure Boot compliance
 
-* UEFI Secure Boot compliance for Dasharo
-    - <https://docs.dasharo.com/unified-test-documentation/dasharo-security/206-secure-boot>
-    - verifies basic functionality against UEFI specifications
-    - can be used for different BIOS but need proper setup
-* Tests logic
-    - list of steps
-    - simple, unambiguous actions to be carried out
-    - every test verifies one isolated scenario
-* Robot Framework
-    - generic open source automation framework
-    - implemented in Python
-    - tests code: <https://github.com/Dasharo/open-source-firmware-validation>
+- UEFI Secure Boot compliance for Dasharo
+  + <https://docs.dasharo.com/unified-test-documentation/dasharo-security/206-secure-boot>
+  + verifies basic functionality against UEFI specifications
+  + can be used for different BIOS but need proper setup
+- Tests logic
+  + list of steps
+  + simple, unambiguous actions to be carried out
+  + every test verifies one isolated scenario
+- Robot Framework
+  + generic open source automation framework
+  + implemented in Python
+  + tests code: <https://github.com/Dasharo/open-source-firmware-validation>
 
 ???
 
@@ -448,20 +443,20 @@ that are used in testing.
 
 # UEFI Secure Boot compliance
 
-* Future improvements
-    - we can come up with a lot of different scenarios
-    - should comply with the UEFI Secure Boot specification
-* Additional tests to consider
-    - testing the execution of correctly signed firmware when the built-in RTC
+- Future improvements
+  + we can come up with a lot of different scenarios
+  + should comply with the UEFI Secure Boot specification
+- Additional tests to consider
+  + testing the execution of correctly signed firmware when the built-in RTC
     (Real-Time Clock) is malfunctioning, affecting certificate date verification
-    - testing the execution of file signed for intermediate certificate
-    - testing the range of supported cryptographic algorithms in the firmware
+  + testing the execution of file signed for intermediate certificate
+  + testing the range of supported cryptographic algorithms in the firmware
 
 ---
 
 # Keys management
 
-* Investigating meta-signing-key
+- Investigating meta-signing-key
 
 .code-11px[
 
@@ -501,8 +496,8 @@ that are used in testing.
 
 .center[<img src="../../img/using-dev-keys.png" width="720px">]
 
-* Last time we used dev keys provided in meta-signing-key
-    - investigate `create-user-key-store.sh` script
+- Last time we used dev keys provided in meta-signing-key
+  + investigate `create-user-key-store.sh` script
 
 ---
 
@@ -510,27 +505,27 @@ that are used in testing.
 
 .center[<img src="../../img/uefi_sb_cert_rotation.svg" width="720px">]
 
-* Certificate rotation using meta-secure-core
-    - on host, generate certs, update build environment, rebuild and sign
+- Certificate rotation using meta-secure-core
+  + on host, generate certs, update build environment, rebuild and sign
     components
-    - on target, apply update, enroll certificate
+  + on target, apply update, enroll certificate
 
 ---
 
 # CI/CD integration
 
-* Speed-up processes
-.center[<img src="../../img/ci_cd-icons.png" width="450px">]
-* Presentation example
-    - automatic release on tag pushed
-    - setup with KAS tool
-    - Yocto sstate-cache integrated
+- Speed-up processes .center[<img src="../../img/ci_cd-icons.png"
+  width="450px">]
+- Presentation example
+  + automatic release on tag pushed
+  + setup with KAS tool
+  + Yocto sstate-cache integrated
 
 ---
 
 # CI/CD integration
 
-* Current solution
+- Current solution
 
 .center[<img src="../../img/ci_cd-setup.svg" width="720px">]
 
@@ -538,7 +533,7 @@ that are used in testing.
 
 # CI/CD integration
 
-* Target solution
+- Target solution
 
 .center[<img src="../../img/ci_cd-setup-target.svg" width="720px">]
 
@@ -546,13 +541,13 @@ that are used in testing.
 
 # Demo
 
-* Demo scenario
+- Demo scenario
   1. Generate custom keypair
   1. Build signed image to provision UEFI Secure Boot certificates via Automatic
      Certificate Provision
   1. Boot custom Linux-based operating system, signed with generated keys
   1. Generate new keypair, build another image, try to boot on platform
-* Next slides will present the results
+- Next slides will present the results
 
 ???
 
@@ -566,9 +561,9 @@ that are used in testing.
 
 # Demo
 
-* Generate custom keypair
-    - `create-user-key-store.sh`
-    - take a list of inputs
+- Generate custom keypair
+  + `create-user-key-store.sh`
+  + take a list of inputs
 
 .code-11px[
 
@@ -591,17 +586,17 @@ Enter boot loader locked configuration password(e.g. grub pw): root
 
 ]
 
-* Creates `key.conf` mentioned earlier, need to be put in `local.conf`
+- Creates `key.conf` mentioned earlier, need to be put in `local.conf`
 
 ---
 
 # Demo
 
-* For `Automatic Certificate Provision` process mention manual certs removal
-    - go inside BIOS Menu
-    - remove KEK, PK certs and databases
-    - we cannot enable Secure Boot with PK removed
-* With Secure Boot disabled boot image from USB
+- For `Automatic Certificate Provision` process mention manual certs removal
+  + go inside BIOS Menu
+  + remove KEK, PK certs and databases
+  + we cannot enable Secure Boot with PK removed
+- With Secure Boot disabled boot image from USB
 
 .code-11px[
 
@@ -626,10 +621,11 @@ Prepare to execute system warm reset after 3 seconds...
 
 # Demo
 
-* Boot testing
-    - we removed default certs, so we should not be able to run Ubuntu/Windows
-    - only our image should be able to boot
-* Ubuntu/Windows
+- Boot testing
+  + we removed default certs, so we should not be able to run Ubuntu/Windows
+  + only our image should be able to boot
+- Ubuntu/Windows
+
 .code-11px[
 
 ```bash
@@ -639,10 +635,12 @@ Press any key to continue...
 ```
 
 ]
-* Custom image
-    - boots `grub`
-    - enabling `UEFI_SB` adds password protection, e.g. to change cmdline
-    - here `root/root`
+
+- Custom image
+  + boots `grub`
+  + enabling `UEFI_SB` adds password protection, e.g. to change cmdline
+  + here `root/root`
+
 .code-11px[
 
 ```bash
@@ -661,11 +659,10 @@ Vendor Keys:    none
 
 # Demo
 
-* Scenario where we want to rotate our certificate
-    - rerun script to generate new keys
-    - rebuild images
-* Any of images could not be boot (Ubuntu/Windows/custom)
-.code-11px[
+- Scenario where we want to rotate our certificate
+  + rerun script to generate new keys
+  + rebuild images
+- Any of images could not be boot (Ubuntu/Windows/custom) .code-11px[
 
 ```bash
 SecureBoot is enabled
@@ -674,31 +671,32 @@ Press any key to continue...
 ```
 
 ]
-* We could rerun `Automatic Certificate Provision` or investigate `sbctl` to
+
+- We could rerun `Automatic Certificate Provision` or investigate `sbctl` to
   rotate certs on live image
 
 ---
 
 # Summary
 
-* As on Yocto Summit 2022.11, we again leaned into the meta-secure-core and UEFI
+- As on Yocto Summit 2022.11, we again leaned into the meta-secure-core and UEFI
   Secure Boot integration in Yocto-based projects
-* We have fixed several bugs and integrated another UEFI Secure Boot status tool
+- We have fixed several bugs and integrated another UEFI Secure Boot status tool
   into the system
-* We devoted this year's presentation to additional aspects of maintaining a
+- We devoted this year's presentation to additional aspects of maintaining a
   project with UEFI Secure Boot enabled
-    - testing of the compliance
-    - keys management
-    - CI/CD integration
+  + testing of the compliance
+  + keys management
+  + CI/CD integration
 
 ---
 
 # Resources
 
-* <https://p.ost2.fyi/>
-* <https://uefi.org/specs/UEFI/2.10/>
-* <https://docs.oracle.com/en/operating-systems/oracle-linux/notice-sboot/OL-NOTICE-SBOOT.pdf>
-* <https://github.com/Wind-River/meta-secure-core>
+- <https://p.ost2.fyi/>
+- <https://uefi.org/specs/UEFI/2.10/>
+- <https://docs.oracle.com/en/operating-systems/oracle-linux/notice-sboot/OL-NOTICE-SBOOT.pdf>
+- <https://github.com/Wind-River/meta-secure-core>
 
 ---
 

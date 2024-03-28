@@ -14,22 +14,24 @@ class: center, middle, intro
 # `whoami`
 
 .center[<img
-  src="/remark-templates/3mdeb-presentation-template/images/maciej_pijanowski.png"
-  width="220px" style="margin-top:-50px">
-]
+src="/remark-templates/3mdeb-presentation-template/images/maciej_pijanowski.png"
+width="220px" style="margin-top:-50px"> ]
 
-.center[Maciej Pijanowski]
-.center[_Engineering Manager_]
+.center[Maciej Pijanowski] .center[_Engineering Manager_]
+
 .right-column50[
+
 - over 7 years in 3mdeb
 - Open-source contributor
 - Interested in:
-    + build systems (e.g., Yocto)
-    + embedded, OSS, OSF
-    + firmware/OS security
+  + build systems (e.g., Yocto)
+  + embedded, OSS, OSF
+  + firmware/OS security
+
 ]
 
 .left-column50[
+
 - <a href="https://twitter.com/macpijan">
     <img
       src="/remark-templates/3mdeb-presentation-template/images/twitter.png"
@@ -48,7 +50,8 @@ class: center, middle, intro
       width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
       linkedin.com/in/maciej-pijanowski-9868ab120
   </a>
-]
+
+  ]
 
 ---
 
@@ -68,15 +71,15 @@ class: center, middle, intro
 - Focus and plan and current state
 - Short overview of the AEM and TrenchBoot
 - Already presented last year in the QubesOS summit
-    + TrenchBoot - the only AEM-way to boot Qubes OS
-    + https://www.youtube.com/watch?v=A9GrlQsQc7Q&t=17441s
+  + TrenchBoot - the only AEM-way to boot Qubes OS
+  + https://www.youtube.com/watch?v=A9GrlQsQc7Q&t=17441s
 
 .center.image-80[![](/img/tb_aem_2022_yt.png)]
 
 ???
 
-In this presentation I want to focus on presenting the current plan, status,
-and problems.
+In this presentation I want to focus on presenting the current plan, status, and
+problems.
 
 I will just briefly explain what AEM and TB is. It was already explained in the
 last year's summit
@@ -86,13 +89,13 @@ last year's summit
 # Qubes OS Anti Evil Maid
 
 - A set of software packages and utilities
-    + https://github.com/QubesOS/qubes-antievilmaid
+  + https://github.com/QubesOS/qubes-antievilmaid
 - The goal to protect against
   [Evil Maid attacks](https://theinvisiblethings.blogspot.com/2009/10/evil-maid-goes-after-truecrypt.html)
 - Requires **TPM**
 - Requires **Dynamic Root of Trust for Measurement (DRTM)**
-    + technology from silicon vendor
-    + needs to be present in hardware and supported by the firmware
+  + technology from silicon vendor
+  + needs to be present in hardware and supported by the firmware
 
 .center.image-80[![](/img/tb_aem_attack.png)]
 
@@ -108,9 +111,8 @@ In the current QubesOS implementation it reuiqres TPM and DRTM technology
 
 # TrenchBoot
 
-.center[
-**TrenchBoot is a framework that allows individuals and projects to build
-security engines to perform launch integrity actions for their systems.**
+.center[ **TrenchBoot is a framework that allows individuals and projects to
+build security engines to perform launch integrity actions for their systems.**
 ]
 
 - Uses DRTM as well
@@ -130,24 +132,21 @@ presentation - TB
 # TrenchBoot components
 
 - Secure Kernel Loader (SKL)
-    + Secure Loader for AMD Secure Startup
-    + https://github.com/TrenchBoot/secure-kernel-loader
+  + Secure Loader for AMD Secure Startup
+  + https://github.com/TrenchBoot/secure-kernel-loader
 - GRUB
-    + https://github.com/TrenchBoot/grub
+  + https://github.com/TrenchBoot/grub
 - Xen
-    + https://github.com/TrenchBoot/xen
+  + https://github.com/TrenchBoot/xen
 - Linux
-    + https://github.com/TrenchBoot/linux
+  + https://github.com/TrenchBoot/linux
 
-.center[
-.image-20[![](/img/logo/grub.png)]
-.image-40[![](/img/logo/xen.png)]
-.image-15[![](/img/logo/linux.png)]
-]
+.center[ .image-20[![](/img/logo/grub.png)] .image-40[![](/img/logo/xen.png)]
+.image-15[![](/img/logo/linux.png)] ]
 
 ???
 
-What are  the most important components
+What are the most important components
 
 In the context of AEM support, we are now focused on QubesOS and Intel
 platforms. So we are interested in the GRUB and Xen repositories.
@@ -168,14 +167,14 @@ The project is split into phases, where each phase builds on the previous one
 and enables more usage scenarios.
 
 - Phase 1
-    + Intel TXT and TPM1.2
-    + https://github.com/TrenchBoot/trenchboot-issues/milestone/1
-    + Replace existing tboot implementation with TrenchBoot equivalent
-    + Support for Intel TXT and TPM 1.2
+  + Intel TXT and TPM1.2
+  + https://github.com/TrenchBoot/trenchboot-issues/milestone/1
+  + Replace existing tboot implementation with TrenchBoot equivalent
+  + Support for Intel TXT and TPM 1.2
 - Phase 2
-    + Intel TXT and TPM2.0
-    + Extend AEM scripts with TPM 2.0 support
-    + https://github.com/TrenchBoot/trenchboot-issues/milestone/2
+  + Intel TXT and TPM2.0
+  + Extend AEM scripts with TPM 2.0 support
+  + https://github.com/TrenchBoot/trenchboot-issues/milestone/2
 
 ---
 
@@ -186,25 +185,25 @@ and enables more usage scenarios.
 .center[.image-40[![](/img/logo/nlnet.svg)]]
 
 - Phase 5
-    + UEFI support, scope to be precised
-    + No GH milestone
+  + UEFI support, scope to be precised
+  + No GH milestone
 
 ???
 
-The third phase is a new one, not presented last year. The goal is to update
-the solution to the most recent TrenchBoot boot protocol. More details in the
-next slide.
+The third phase is a new one, not presented last year. The goal is to update the
+solution to the most recent TrenchBoot boot protocol. More details in the next
+slide.
 
 - Phase 3
-    + Update to the newest TrenchBoot boot protocol
-    + https://github.com/TrenchBoot/trenchboot-issues/milestone/3
+  + Update to the newest TrenchBoot boot protocol
+  + https://github.com/TrenchBoot/trenchboot-issues/milestone/3
 - Phase 4
-    + AMD support for Qubes OS AEM with TrenchBoot
-    + https://github.com/TrenchBoot/trenchboot-issues/milestone/4
+  + AMD support for Qubes OS AEM with TrenchBoot
+  + https://github.com/TrenchBoot/trenchboot-issues/milestone/4
 - Phase 5
-    + No GH milestone yet
-    + This work is less precise right now
-    + Not yet scheduled
+  + No GH milestone yet
+  + This work is less precise right now
+  + Not yet scheduled
 
 ---
 
@@ -213,9 +212,9 @@ next slide.
 ### Phase 3
 
 - Specification
-    + https://trenchboot.org/specifications/Secure_Launch/
-    + Currently, it is focused on booting Linux only
-    + We need to extend specification with Xen boot flow
+  + https://trenchboot.org/specifications/Secure_Launch/
+  + Currently, it is focused on booting Linux only
+  + We need to extend specification with Xen boot flow
 - Adjust our GRUB patches to the latest version of boot protocol
 
 ### Phase 4
@@ -235,21 +234,20 @@ A few more details on the P3 and P4 which are next in our schedule
 
 - It is not trivial to ramp-up non-QubesOS developers
 - Building GRUB/Xen with custom TrenchBoot changes
-    + Creating patches from TrenchBoot changes
-    + Applying them on top of the QubesOS GRUB/Xen patches
+  + Creating patches from TrenchBoot changes
+  + Applying them on top of the QubesOS GRUB/Xen patches
 - AEM/TB packages need to be installed into dom0
-    + copying to dom0 is hard
-    + https://www.qubes-os.org/doc/how-to-copy-from-dom0/#copying-to-dom0
+  + copying to dom0 is hard
+  + https://www.qubes-os.org/doc/how-to-copy-from-dom0/#copying-to-dom0
 - Some dev notes
-    + https://gist.github.com/krystian-hebel/4359297e4ca3d9e9e3da01f9695d0e27
+  + https://gist.github.com/krystian-hebel/4359297e4ca3d9e9e3da01f9695d0e27
 
 ???
 
 Now we will talk about some challenges we have faced
 
-Maybe for many of you here this does not look like a challenge, but it is
-really not that trivial to ramp-up non-QubesOS users to into QubesOS
-development.
+Maybe for many of you here this does not look like a challenge, but it is really
+not that trivial to ramp-up non-QubesOS users to into QubesOS development.
 
 It is an additional challenge that AEM/TB packages must be installed into dom0.
 
@@ -262,17 +260,21 @@ It is an additional challenge that AEM/TB packages must be installed into dom0.
 - Reproducing https://openqa.qubes-os.org/ would be useful
 - Testing changes from TrenchBoot repository, before pushing to QubesOS
 - Added some documentation on basic OpenQA setup
-    + https://github.com/QubesOS/openqa-tests-qubesos/pull/21/files
+  + https://github.com/QubesOS/openqa-tests-qubesos/pull/21/files
 - Faced several problems, discussing with Marek in the Matrix chat
 - Could not get the full QubesOS installation test (in VM) to work
 - Latest problem
 
 .code-12px[
-```md
-libxl_device.c:1200:device_backend_callback: Domain 4:unable to add device with path /local/domain/2/backend/vif/4/0
+
+````md
+libxl_device.c:1200:device_backend_callback: Domain 4:unable to add device with
+path /local/domain/2/backend/vif/4/0
 libxl_create.c:2000:domcreate_attach_devices: Domain 4:unable to add vif devices
-libxl_device.c:1200:device_backend_callback: Domain 4:unable to remove device with path /local/domain/2/backend/vif/4/0
-libxl_domain.c:1589:devices_destroy_cb: Domain 4:libxl__devices_destroy failed
+libxl_device.c:1200:device_backend_callback: Domain 4:unable to remove device
+with path /local/domain/2/backend/vif/4/0
+libxl_domain.c:1589:devices_destroy_cb: Domain 4:libxl\_\_devices_destroy failed
+
 ```]
 
 ---
@@ -616,3 +618,5 @@ always open to cooperate and discuss.
 <br>
 
 ## .center[Q&A]
+```
+````
