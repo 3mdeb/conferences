@@ -1,42 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <title>Introduction Day 3</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <script>
-        classTitle = "Qubes OS and 3mdeb minisummit 2020";
-        courseAuthor = "Piotr Król";
+      classTitle = "Qubes OS and 3mdeb minisummit 2020";
+      courseAuthor = "Piotr Król";
     </script>
-    <link rel="stylesheet" type="text/css" href="/remark-templates/3mdeb-presentation-template/slides.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/remark-templates/3mdeb-presentation-template/css/slides.css"
+    />
 
-    <style>
-    </style>
+    <style></style>
   </head>
   <body>
-    <script src="/remark-templates/3mdeb-presentation-template/js/remark.js">
-    </script>
-    <script src="/remark-templates/3mdeb-presentation-template/js/jquery.js">
-    </script>
+    <script src="/remark-templates/3mdeb-presentation-template/js/remark.js"></script>
+    <script src="/remark-templates/3mdeb-presentation-template/js/jquery.js"></script>
     <script>
       var slideshow = remark.create({
-	sourceUrl: 'intro_day3.md',
-        countIncrementalSlides: false
+        sourceUrl: "intro_day3.md",
+        countIncrementalSlides: false,
       });
 
-      slideshow.on('afterShowSlide', function (slide) {
-       if ($(".bottomBar")[0]){
-        $( ".bottomBar" ).remove();
-      } else {
-        // Do something if class does not exist
-      }
+      slideshow.on("afterShowSlide", function (slide) {
+        if ($(".bottomBar")[0]) {
+          $(".bottomBar").remove();
+        } else {
+          // Do something if class does not exist
+        }
 
-       $('.remark-slide-content').append(
-           "<div class='bottomBar'>"+ classTitle +
-           " <br> CC BY | "
-           + courseAuthor + "</div>"
-           );
+        $(".remark-slide-content").append(
+          "<div class='bottomBar'>" +
+            classTitle +
+            " <br> CC BY | " +
+            courseAuthor +
+            "</div>",
+        );
       });
-
     </script>
   </body>
 </html>

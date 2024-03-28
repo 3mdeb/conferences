@@ -8,49 +8,61 @@ class: center, middle, intro
 
 ## Norbert Kamiński
 
-<img src="/remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
+<img src="/remark-templates/3mdeb-presentation-template/images/logo.png"
+  width="150px" style="margin-left:-20px">
 
 ---
 
 # Agenda
 
-* fwupd/LVFS - overall information
-* Qubes OS support challenges and architecture solutions
-* What is done
-* Downloading firmware
-* Updating firmware
-* To Do's
-* Q&A
+- fwupd/LVFS - overall information
+- Qubes OS support challenges and architecture solutions
+- What is done
+- Downloading firmware
+- Updating firmware
+- To Do's
+- Q&A
 
 ---
 
 # $ whoami
 
-.center[<img src="/img/nk-conference.png" width="175px" style="margin-top:-50px">]
-.center[Norbert Kamiński]
-.center[_Junior Embedded Systems Engineer_]
+.center[<img src="/img/nk-conference.png" width="175px"
+style="margin-top:-50px">] .center[Norbert Kamiński] .center[_Junior Embedded
+Systems Engineer_]
 
 .left-column50[
 
-* open-source contributor:
-    - meta-pcengines
-    - meta-virtualization
-* scope of interests:
-    - embedded Linux
-    - virtualization
-    - bootloaders
+- open-source contributor:
+  + meta-pcengines
+  + meta-virtualization
+- scope of interests:
+  + embedded Linux
+  + virtualization
+  + bootloaders
 
 ]
 
 .right-column50[
 
-* <a href="mailto:norbert.kaminski@3mdeb.com"><img src="/remark-templates/3mdeb-presentation-template/images/email.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> norbert.kaminski@3mdeb.com </a>
+- <a href="mailto:norbert.kaminski@3mdeb.com"><img
+  src="/remark-templates/3mdeb-presentation-template/images/email.png"
+  width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
+  norbert.kaminski@3mdeb.com </a>
 
-* <a href="https://www.linkedin.com/in/norbert-kami%C5%84ski/"><img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> linkedin.com/in/norbert-kami%C5%84ski/ </a>
+- <a href="https://www.linkedin.com/in/norbert-kami%C5%84ski/"><img
+  src="/remark-templates/3mdeb-presentation-template/images/linkedin.png"
+  width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
+  linkedin.com/in/norbert-kami%C5%84ski/ </a>
 
-* <a href="https://www.facebook.com/nkaminski3"><img src="/remark-templates/3mdeb-presentation-template/images/facebook.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> facebook.com/nkaminski3 </a>
+- <a href="https://www.facebook.com/nkaminski3"><img
+  src="/remark-templates/3mdeb-presentation-template/images/facebook.png"
+  width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
+  facebook.com/nkaminski3 </a>
 
-* <a href="https://twitter.com/asiderr"><img src="/remark-templates/3mdeb-presentation-template/images/twitter.png" width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @asiderr </a>
+- <a href="https://twitter.com/asiderr"><img
+  src="/remark-templates/3mdeb-presentation-template/images/twitter.png"
+  width="24px" style="margin-bottom:-5px; margin-left:-15px"/> @asiderr </a>
 
 ]
 
@@ -65,13 +77,13 @@ class: center, middle, intro
 
 # Linux Vendor Firmware Service (LVFS)
 
-* The LVFS is a secure web service that can be used by hardware vendors to upload
-firmware archives
+- The LVFS is a secure web service that can be used by hardware vendors to
+  upload firmware archives
 
-* Customers can securely download metadata about the available updates.
+- Customers can securely download metadata about the available updates.
 
-* Firmware update files are stored in cabinet archives files, that contain
-firmware, metadata and detached signature
+- Firmware update files are stored in cabinet archives files, that contain
+  firmware, metadata and detached signature
 
 ![architecture-plan-internet](/img/architecture-plan-internet.png)
 
@@ -79,40 +91,40 @@ firmware, metadata and detached signature
 
 # fwupdmgr and fwupd
 
-* The `fwupdmgr` is a CLI client tool, that allows user to preform the update
-process manually
+- The `fwupdmgr` is a CLI client tool, that allows user to perform the update
+  process manually
 
-* It takes the role of connector between LVFS database and the
-fwupd
+- It takes the role of connector between LVFS database and the fwupd
 
-* The `fwupd` is a system activated daemon with a D-Bus interface, that can be
-used to perform wide upgrades and downgrades according to security policy
+- The `fwupd` is a system activated daemon with a D-Bus interface, that can be
+  used to perform wide upgrades and downgrades according to security policy
 
-.center[ .image-60[![architecture-plan-system](/img/architecture-plan-system.png)]]
+.center[
+.image-60[![architecture-plan-system](/img/architecture-plan-system.png)]]
 
 ---
 
 # Qubes OS support challenges
 
-* Virtual machines ( AdminVM (dom0), sys-usb) which handle devices to be flashed have no
-internet connection
+- Virtual machines ( AdminVM (dom0), sys-usb) which handle devices to be flashed
+  have no internet connection
 
-* UpdateVM must check metadata and provide a update archive for a device
+- UpdateVM must check metadata and provide a update archive for a device
 
-* Update files must be verified at all steps of the download process
+- Update files must be verified at all steps of the download process
 
-* `fwupd` must support the firmware update process divided into three VMs
-(UpdateVM, AdminVM , sys-usb)
+- `fwupd` must support the firmware update process divided into three VMs
+  (UpdateVM, AdminVM , sys-usb)
 
 ---
 
 # What is done
 
-* Architecture plan of the fwupd/LVFS support for Qubes OS
+- Architecture plan of the fwupd/LVFS support for Qubes OS
 
-* Frame of the update process
+- Frame of the update process
 
-* Building the `fwupd` from the source at the AdminVM.
+- Building the `fwupd` from the source at the AdminVM.
 
 .center[ .image-70[![architecture-plan-qubes](/img/work-in-progress.png)]]
 
@@ -126,27 +138,13 @@ internet connection
 
 # Downloading firmware
 
-* dom0 and sys-usb are isolated from the network
+- dom0 and sys-usb are isolated from the network
 
-* Download process is initiated via `qubes-dom0-update`
+- Download process is initiated via `qubes-dom0-update`
 
-* `qubes-dom0-update` creates download directory in the UpdateVM
+- `qubes-dom0-update` creates download directory in the UpdateVM
 
-* Then it runs `fwupd-download-updates` in the UpdateVM
-
-.center[ .image-65[![architecture-plan-qubes](/img/QubesFwupd2.png)]]
-
----
-
-# Downloading firmware
-
-* `fwupd-download-updates` downloads metadata and firmware from the LVFS
-
-* Script performs the first step of the validation
-
-* If it is running with `check-only`, it sends only meta data
-
-* Otherwise it download the `.cab` archive and it starts `qubes.ReciveUpdates`
+- Then it runs `fwupd-download-updates` in the UpdateVM
 
 .center[ .image-65[![architecture-plan-qubes](/img/QubesFwupd2.png)]]
 
@@ -154,51 +152,66 @@ internet connection
 
 # Downloading firmware
 
-* `qubes.ReciveUpdates` is a symbolic link to the python script </br>
-`qubes-receive-updates`
+- `fwupd-download-updates` downloads metadata and firmware from the LVFS
 
-* The script t is responsible for receiving the update files from the UpdateVM
+- Script performs the first step of the validation
 
-* `qubes-receive-updates` creates the update cache directory for fwupd,
-it copies the files and it performs the second step of the validation
+- If it is running with `check-only`, it sends only meta data
+
+- Otherwise it download the `.cab` archive and it starts `qubes.ReciveUpdates`
+
 .center[ .image-65[![architecture-plan-qubes](/img/QubesFwupd2.png)]]
 
 ---
 
-# Updating firmware
+# Downloading firmware
 
-* We need two `fwupd` daemons to provide the updates to every type of device
+- `qubes.ReciveUpdates` is a symbolic link to the python script </br>
+  `qubes-receive-updates`
 
-* The first daemon is installed to AdminVM and It provides updates to non-USB
-devices
+- The script t is responsible for receiving the update files from the UpdateVM
 
-* The second daemon is placed on the sys-usb. It allows us to update the
-hardware connected via USB
-.center[ .image-65[![architecture-plan-qubes](/img/QubesFwupd3.png)]]
+- `qubes-receive-updates` creates the update cache directory for fwupd, it
+  copies the files and it performs the second step of the validation .center[
+  .image-65[![architecture-plan-qubes](/img/QubesFwupd2.png)]]
 
 ---
 
 # Updating firmware
 
-* The update process is managed by `qubes-fwupdmgr`
+- We need two `fwupd` daemons to provide the updates to every type of device
 
-* The `fwupdmgr` takes the hardware information from the daemon and pass
-it to `qubes-fwupdmgr`
+- The first daemon is installed to AdminVM and It provides updates to non-USB
+  devices
 
-* If the update is available `qubes-fwupdmgr` uses proper `fwupdmgr` to perform
-the firmware update process
+- The second daemon is placed on the sys-usb. It allows us to update the
+  hardware connected via USB .center[
+  .image-65[![architecture-plan-qubes](/img/QubesFwupd3.png)]]
 
-.center[ .image-65[![architecture-plan-qubes](/img/QubesFwupd3.png)]]
+---
+
+# Updating firmware
+
+- The update process is managed by `qubes-fwupdmgr`
+
+- The `fwupdmgr` takes the hardware information from the daemon and pass it to
+  `qubes-fwupdmgr`
+
+- If the update is available `qubes-fwupdmgr` uses proper `fwupdmgr` to perform
+  the firmware update process
+
+## .center[ .image-65[![architecture-plan-qubes](/img/QubesFwupd3.png)]]
+
 ---
 
 # To Do's
 
-* Custom fwupd plugin that will use information from all VMs
+- Custom fwupd plugin that will use information from all VMs
 
-* `qubes-fwupdmgr` script that will connect the downloading and
-updating firmware
+- `qubes-fwupdmgr` script that will connect the downloading and updating
+  firmware
 
-* `.cab` archives validation that will ensure us about the safety of the files
+- `.cab` archives validation that will ensure us about the safety of the files
 
 .center[ .image-70[![architecture-plan-qubes](/img/work-in-progress.png)]]
 

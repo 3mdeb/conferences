@@ -6,66 +6,72 @@ class: center, middle, intro
 
 ## Piotr Król
 
-<img src="/remark-templates/3mdeb-presentation-template/images/logo.png" width="150px" style="margin-left:-20px">
+<img src="/remark-templates/3mdeb-presentation-template/images/logo.png"
+  width="150px" style="margin-left:-20px">
 
 ---
 
 # `whoami`
 
-.center[<img src="/remark-templates/3mdeb-presentation-template/images/piotr_krol.jpg" width="150px">]
+.center[<img
+src="/remark-templates/3mdeb-presentation-template/images/piotr_krol.jpg"
+width="150px">]
 
-.center[Piotr Król]
-.center[_3mdeb Founder & CEO_]
+.center[Piotr Król] .center[_3mdeb Founder & CEO_]
 
 .left-column55[
-* coreboot contributor and maintainer
-* Conference speaker and organizer
-* Trainer for military, government and industrial organizations
-* Former Intel BIOS SW Engineer
-]
+
+- coreboot contributor and maintainer
+- Conference speaker and organizer
+- Trainer for military, government and industrial organizations
+- Former Intel BIOS SW Engineer ]
 
 .left-column45[
-* 12yrs in business
-* Qubes OS user since 2016
-* C-level positions in<br>
-.image-30[![](remark-templates/3mdeb-presentation-template/images/3mdeb.svg)]
-.image-30[![](remark-templates/3mdeb-presentation-template/images/lpnplant.png)]
-.image-30[![](remark-templates/3mdeb-presentation-template/images/vitro.svg)]
-]
+
+- 12yrs in business
+- Qubes OS user since 2016
+- C-level positions in<br>
+  .image-30[![](/remark-templates/3mdeb-presentation-template/images/3mdeb.svg)]
+  .image-30[![](/remark-templates/3mdeb-presentation-template/images/lpnplant.png)]
+  .image-30[![](/remark-templates/3mdeb-presentation-template/images/vitro.svg)]
+  ]
 
 ---
 
 # Who we are ?
 
-.center[.image-15[![](remark-templates/3mdeb-presentation-template/images/coreboot-1024x1024.png)] .image-15[![](remark-templates/3mdeb-presentation-template/images/uefi-1024x1024.png)] .image-15[![](remark-templates/3mdeb-presentation-template/images/lvfs.png)] .image-15[![](remark-templates/3mdeb-presentation-template/images/yocto.png)]]
-.center[.image-35[![](remark-templates/3mdeb-presentation-template/images/openpower.svg)]]
+.center[.image-15[![](/remark-templates/3mdeb-presentation-template/images/coreboot-1024x1024.png)]
+.image-15[![](/remark-templates/3mdeb-presentation-template/images/uefi-1024x1024.png)]
+.image-15[![](/remark-templates/3mdeb-presentation-template/images/lvfs.png)]
+.image-15[![](/remark-templates/3mdeb-presentation-template/images/yocto.png)]]
+.center[.image-35[![](/remark-templates/3mdeb-presentation-template/images/openpower.svg)]]
 
-* coreboot licensed service providers since 2016 and leadership participants
-* UEFI Adopters since 2018
-* Yocto Participants and Embedded Linux experts since 2019
-* Official consultants for Linux Foundation fwupd/LVFS project since 2020
-* IBM OpenPOWER Foundation members since 2020
-    - Our Firmware Engineer Michał is chair of SSWG since 2021
+- coreboot licensed service providers since 2016 and leadership participants
+- UEFI Adopters since 2018
+- Yocto Participants and Embedded Linux experts since 2019
+- Official consultants for Linux Foundation fwupd/LVFS project since 2020
+- IBM OpenPOWER Foundation members since 2020
+  + Our Firmware Engineer Michał is chair of SSWG since 2021
 
 ---
 
 # Agenda
 
-* Presentation goal
-* Terminology
-* Architecture
-* BTC
-    - wallet
-    - btc-cs VM preparing
-    - online watch-only wallet preparing
-    - rx/tx coins
-* Qrexec and Qubes RPC
-* SendToSign and SignTxn RPC services
-* BTC Demo
-* XMR
-    - a/a
-* Future ideas
-* Q&A
+- Presentation goal
+- Terminology
+- Architecture
+- BTC
+  + wallet
+  + btc-cs VM preparing
+  + online watch-only wallet preparing
+  + rx/tx coins
+- Qrexec and Qubes RPC
+- SendToSign and SignTxn RPC services
+- BTC Demo
+- XMR
+  + a/a
+- Future ideas
+- Q&A
 
 ---
 
@@ -75,13 +81,12 @@ class: center, middle, intro
 
 ### .center[**To demo offline wallet for BTC and XMR with Qubes OS**]
 
-* _**Disclaimer**: We are by no means cryptocurrency experts and you should
-not rely on this presentation as source of secure offline wallet configuration.
-Please consult domain experts. We are not responsible for any damage caused by
-using following information._
+- _**Disclaimer**: We are by no means cryptocurrency experts and you should not
+  rely on this presentation as source of secure offline wallet configuration.
+  Please consult domain experts. We are not responsible for any damage caused by
+  using following information._
 
-.footnote["cryptocurrency monero XMR" by bastamanography CC BY-NC-SA 2.0.]
-<br>
+.footnote["cryptocurrency monero XMR" by bastamanography CC BY-NC-SA 2.0.] <br>
 .footnote["File:Bitcoin Cash.png" by Amaury Sechet CC0 1.0]
 
 ---
@@ -90,10 +95,10 @@ using following information._
 
 .center[.image-65[![](/img/cold_storage.jpg)]]
 
-* **Cold storage** is an offline wallet used for storing cryptocurrency.
-    - no remote access, reduced attack surface
-    - public key is used for watching-only wallet
-    - every transaction is signed in cold wallet
+- **Cold storage** is an offline wallet used for storing cryptocurrency.
+  + no remote access, reduced attack surface
+  + public key is used for watching-only wallet
+  + every transaction is signed in cold wallet
 
 .footnote["Diagram of a Cold Storage System (1920)" by Eric Fischer CC BY 2.0]
 
@@ -103,13 +108,13 @@ using following information._
 
 .center[.image-50[![](/img/arch.svg)]]
 
-* Architecture consist of offline and online wallet
-    - offline wallet can sign transactions before broadcasting online
-    - offline wallet can generate payment requests
-    - online wallet is watch-only to see transaction history
-* Limitation
-    - definitely not the setup for high frequency traders, although there is
-    place for improvements
+- Architecture consist of offline and online wallet
+  + offline wallet can sign transactions before broadcasting online
+  + offline wallet can generate payment requests
+  + online wallet is watch-only to see transaction history
+- Limitation
+  + definitely not the setup for high frequency traders, although there is place
+    for improvements
 
 ---
 
@@ -117,26 +122,25 @@ using following information._
 
 .center[.image-20[![](/img/electrum.png)]]
 
-* Thomas Voegtlin in November 2011
-* Wallet is written mostly in Python and its source code is available on
-  Github:
-https://github.com/spesmilo/electrum
-* For following tutorial we used v4.1.5 AppImage version
-* Meet our requirements
-    - OS: Linux
-    - Knowledge: Experienced User
-    - License: Open Source
-    - Lightweight
-* We decided that Electrum meets all those criteria with great balance between
+- Thomas Voegtlin in November 2011
+- Wallet is written mostly in Python and its source code is available on Github:
+  https://github.com/spesmilo/electrum
+- For following tutorial we used v4.1.5 AppImage version
+- Meet our requirements
+  + OS: Linux
+  + Knowledge: Experienced User
+  + License: Open Source
+  + Lightweight
+- We decided that Electrum meets all those criteria with great balance between
   privacy, transparency and feature-richness
 
 ---
 
 # `btc-cs` vm using minimal template
 
-* Minimal templates contain only most important packages
-    - save resources
-    - reduce attack surface
+- Minimal templates contain only most important packages
+  + save resources
+  + reduce attack surface
 
 ```shell
 (dom0)$ sudo qubes-dom0-update qubes-template-debian-10-minimal
@@ -144,13 +148,15 @@ https://github.com/spesmilo/electrum
 (dom0)$ qvm-run -u root debian-10-minimal xterm
 ```
 
-* Install Electrum dependencies
+- Install Electrum dependencies
+
 ```shell
 (debian-10-minimal)$ apt update
 (debian-10-minimal)$ apt install fuse
 ```
 
-* Create `bt-cs` VM
+- Create `bt-cs` VM
+
 ```shell
 (dom0)$ qvm-create --label black --property memory=128 --property maxmem=256
 --template debian-10-minimal btc-cs
@@ -171,8 +177,8 @@ ELECTRUM_KEYS=https://raw.githubusercontent.com/spesmilo/electrum/master/pubkeys
 (trustedvm)$ gpg --fetch ${ELECTRUM_KEYS}/sombernight_releasekey.asc
 ```
 
-* Fingerprint can be compared with https://electrum.org/#about and Github
-identity.
+- Fingerprint can be compared with https://electrum.org/#about and Github
+  identity.
 
 ```shell
 (trustedvm) $ gpg --verify electrum-4.1.5-x86_64.AppImage.ThomasV.asc \
@@ -181,7 +187,7 @@ electrum-4.1.5-x86_64.AppImage
 electrum-4.1.5-x86_64.AppImage
 ```
 
-* `trustedvm` should be sufficiently trusted by user to verify signatures
+- `trustedvm` should be sufficiently trusted by user to verify signatures
 
 ???
 
@@ -212,24 +218,28 @@ identity.
 
 # Deploy Electrum to `btc-cs`
 
-* Copy Electrum from `anyvm`
+- Copy Electrum from `anyvm`
+
 ```shell
 (anyvm)$ qvm-copy electrum-4.1.5-x86_64.AppImage
 ```
 
-* Choose `btc-cs` as target, and click OK
-* Run `btc-cs`
+- Choose `btc-cs` as target, and click OK
+- Run `btc-cs`
+
 ```shell
 (dom0)$ qvm-run btc-cs xterm
 ```
 
-* In `btc-cs` you should be able to run Electrum
+- In `btc-cs` you should be able to run Electrum
+
 ```shell
 (btc-cs)$ cd ~/QubesIncoming/<anyvm>
 (btc-cs)$ chmod +x electrum-4.1.5-x86_64.AppImage
 ```
 
-* Run Electrum in testnet
+- Run Electrum in testnet
+
 ```shell
 (btc-cs)$ ./electrum-4.1.5-x86_64.AppImage --testnet daemon -d
 (btc-cs)$ ./electrum-4.1.5-x86_64.AppImage --testnet create | tee seed
@@ -253,8 +263,9 @@ identity.
 
 .center[.image-60[![](/img/getmpk.png)]]
 
-* Obtain Master Public Key and copy it to `anyvm`
-* Run Electron GUI:
+- Obtain Master Public Key and copy it to `anyvm`
+- Run Electron GUI:
+
 ```shell
 (btc-cs)$ ./electrum-4.1.5-x86_64.AppImage --testnet getmpk | tee mpk
 (btc-cs)$ qvm-copy mpk
@@ -284,8 +295,8 @@ identity.
 
 .center[.image-70[![](/img/electrum4.png)]]
 
-* Most probably `Next` will be not active, this is because of new line at end
-of MPK, when you delete it, Electrum can proceed
+- Most probably `Next` will be not active, this is because of new line at end of
+  MPK, when you delete it, Electrum can proceed
 
 ---
 
@@ -299,7 +310,7 @@ of MPK, when you delete it, Electrum can proceed
 
 .center[.image-90[![](/img/electrum6.png)]]
 
-* Information about wallet working in testnet
+- Information about wallet working in testnet
 
 ---
 
@@ -307,13 +318,14 @@ of MPK, when you delete it, Electrum can proceed
 
 .center[.image-70[![](/img/electrum7.png)]]
 
-* Information about watch-only mode of the wallet
+- Information about watch-only mode of the wallet
 
 ---
 
 # Obtain some coins from testnet
 
-* Create request payment transaction
+- Create request payment transaction
+
 ```shell
 (btc-cs)$ ./electrum-4.1.5-x86_64.AppImage --testnet add_request 0.001
 {
@@ -330,28 +342,33 @@ of MPK, when you delete it, Electrum can proceed
 }
 ```
 
-* Go to testnet faucet e.g.: https://testnet-faucet.mempool.co/ and send
-0.001BTC to the address from request `tb1q22vafahlyg7ndx6t25qkl0nwle9x9pytn72znd`
-* You should receive tBTC in online wallet
+- Go to testnet faucet e.g.: https://testnet-faucet.mempool.co/ and send
+  0.001BTC to the address from request
+  `tb1q22vafahlyg7ndx6t25qkl0nwle9x9pytn72znd`
+- You should receive tBTC in online wallet
 
 ---
 
 # Send coins manually
 
-* Click `Pay...->Send`
-* Export partial transaction using: `Export->Export to file` from transaction menu
-* Copy to `btc-cs`
+- Click `Pay...->Send`
+- Export partial transaction using: `Export->Export to file` from transaction
+  menu
+- Copy to `btc-cs`
+
 ```shell
 (anyvm)$ qvm-copy default_wallet-<txid>.psbt
 ```
 
-* Sign transaction
+- Sign transaction
+
 ```shell
 (btc-cs)$ cat ~/QubesIncoming/<anyvm>/default_wallet-<txid>.psbt|base64 \
 | ./electrum-4.1.5-x86_64.AppImage --testnet signtransaction - > signed_<txid>.txn
 ```
 
-* Transfer back to `anyvm`
+- Transfer back to `anyvm`
+
 ```shell
 (btc-cs)$ qvm-copy signed_<txid>.txn
 ```
@@ -362,14 +379,14 @@ of MPK, when you delete it, Electrum can proceed
 
 .center[.image-80[![](/img/qrexec3.png)]]
 
-* Qrexec framework implements communicating between domains
-* It is built on top of vchan, Xen library providing data links between VMs
-* communication between VMs is set up by dom0
-* thanks to the framework RPC client/server are simple scripts
-    - `qrexec-client-vm` makes RPC calls to target VM
-    - call gets through dom0 and policy is checked
-    - script in target VM is executed
-    - stdin/stdout can be used to exchange data between client and target VMs
+- Qrexec framework implements communicating between domains
+- It is built on top of vchan, Xen library providing data links between VMs
+- communication between VMs is set up by dom0
+- thanks to the framework RPC client/server are simple scripts
+  + `qrexec-client-vm` makes RPC calls to target VM
+  + call gets through dom0 and policy is checked
+  + script in target VM is executed
+  + stdin/stdout can be used to exchange data between client and target VMs
 
 .footnote[https://www.qubes-os.org/doc/qrexec/]
 
@@ -381,7 +398,7 @@ of MPK, when you delete it, Electrum can proceed
 (dom0)$ qvm-run -u root btc-cs xterm
 ```
 
-* Create `/etc/qubes-rpc/test.SignTxn` in `btc-cs`
+- Create `/etc/qubes-rpc/test.SignTxn` in `btc-cs`
 
 ```shell
 #!/bin/sh
@@ -398,12 +415,14 @@ ${ELECTRUM} --testnet signtransaction -- "$argument"
 
 # Create RPC service
 
-* Create `/etc/qubes-rpc/test.SignTxn` in `dom0`
+- Create `/etc/qubes-rpc/test.SignTxn` in `dom0`
+
 ```shell
 $anyvm btc-cs ask
 ```
 
-* Create `/etc/qubes-rpc/test.SendToSign` in `anyvm`
+- Create `/etc/qubes-rpc/test.SendToSign` in `anyvm`
+
 ```shell
 #!/bin/sh
 cat "$1"
@@ -415,42 +434,49 @@ exec cat >&$SAVED_FD_1
 # BTC Demo
 
 .center[
+
+<!-- markdownlint-disable-next-line MD033 -->
 <iframe allow="fullscreen;" frameborder="0" width="600" height="480"
 src="https://www.youtube.com/embed/FBtL8tP33U4?rel=0&hd=1">
-</iframe>]
+</iframe>
+]
 
 ---
 
 # Monero CLI Wallet
 
-* Developed by Monero Community
-* Written mostly in C++ with source code available on Github:
+- Developed by Monero Community
+- Written mostly in C++ with source code available on Github:
   https://github.com/monero-project/monero
-* For the following tutorial we will use Oxygen Orion v0.17.2.0
-* Meet our requirements
-    - OS: Linux
-    - Knowledge: Experienced User
-    - License: Open Source
-    - Lightweight
+- For the following tutorial we will use Oxygen Orion v0.17.2.0
+- Meet our requirements
+  + OS: Linux
+  + Knowledge: Experienced User
+  + License: Open Source
+  + Lightweight
 
 ---
 
 # `xmr-cs`
 
-* Create `xmr-cs` based on `debian-10-minimal` template
-* Signature verification according to XMR wallet documentation:
+- Create `xmr-cs` based on `debian-10-minimal` template
+- Signature verification according to XMR wallet documentation:
   https://monerodocs.org/interacting/verify-monero-binaries/
-* Copy XMR CLI wallet to `xmr-cs`
-* Start daemon in stagenet mode
+- Copy XMR CLI wallet to `xmr-cs`
+- Start daemon in stagenet mode
+
 ```shell
 (xmr-cs)$ ./monerod --stagenet
 ```
-* Create wallet by getting following instructions after running
+
+- Create wallet by getting following instructions after running
+
 ```shell
 (xmr-cs)$ ./monero-cli-wallet --stagenet
 ```
 
-* Set following options in wallet
+- Set following options in wallet
+
 ```shell
 set ask-passsword 0
 ```
@@ -459,7 +485,8 @@ set ask-passsword 0
 
 # XMR watch-only wallet
 
-* Obtain address
+- Obtain address
+
 ```shell
 (xmr-cs)$ ./monero-wallet-cli --stagenet \
 --wallet-file=/home/user/xmr_stagenet --password "" address \
@@ -467,33 +494,37 @@ set ask-passsword 0
 (xmr-cs)$ qvm-copy address
 ```
 
-* Obtain private view key
+- Obtain private view key
+
 ```shell
 (xmr-cs)$ ./monero-wallet-cli --stagenet \
 --wallet-file=/home/user/xmr_stagenet viewkey
 ```
 
-* copy private view key from output and transfer to vm where watch-only wallet
+- copy private view key from output and transfer to vm where watch-only wallet
   will be created
 
 ---
 
 # XMR watch-only wallet
 
-* Use CLI to create watch-only wallet
+- Use CLI to create watch-only wallet
+
 ```shell
 (anyvm)$ ./monerod --stagenet --prune-blockchain
 (anyvm)$ ./monero-wallet-cli --stagenet --generate-from-view-key xmr_watch-only_wallet
 ```
 
-* When asked provide address and privet view key
-* Wait to synchronize stagenet blockchain
-* After synchronizing blockchain you can start mining in `monerod`
+- When asked provide address and privet view key
+- Wait to synchronize stagenet blockchain
+- After synchronizing blockchain you can start mining in `monerod`
+
 ```shell
 start_mining <address>
 ```
 
-* When XMR will be mined following message will appear:
+- When XMR will be mined following message will appear:
+
 ```shell
 2021-08-09 08:54:12.965 I Found block
 <155085fe8df9a587467a5e6cce82b61512fbaef90fb8e669468b2d288a9e10d0> at height
@@ -504,7 +535,8 @@ start_mining <address>
 
 # XMR balance
 
-* `balance` command in wallet should give something like this:
+- `balance` command in wallet should give something like this:
+
 ```shell
 Currently selected account: [0] Primary account
 Tag: (No tag assigned)
@@ -512,13 +544,13 @@ Balance: 6.577195618595, unlocked balance: 0.000000000000 (56 block(s) to
 unlock) (Some owned outputs have missing key images - import_key_images needed)
 ```
 
-* Because XMR has different mechanics then BTC it requires synchronization to
+- Because XMR has different mechanics then BTC it requires synchronization to
   keep track of balance on watch-only and cold storage
-    - transfers can be monitored by `export_outputs` on watch-only and
-     `import_output` on cold storage
-    - spent can be monitored by `export_key_images` on cold storage and
+  + transfers can be monitored by `export_outputs` on watch-only and
+    `import_output` on cold storage
+  + spent can be monitored by `export_key_images` on cold storage and
     `import_key_images` on watch-only
-* You have to wait to see some XMR on `unlocked balance` this may take time (in
+- You have to wait to see some XMR on `unlocked balance` this may take time (in
   my case 1.5h)
 
 ---
@@ -527,7 +559,7 @@ unlock) (Some owned outputs have missing key images - import_key_images needed)
 
 .center[.image-80[![](/img/xmr_balance.png)]]
 
-* Wallet run following to create transaction
+- Wallet run following to create transaction
 
 ```shell
 [wallet 56m3Uc]: transfer 55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUX6aQbBcovzDPyrQF9KXF9tV(..) 1
@@ -546,15 +578,15 @@ Unsigned transaction(s) successfully written to file: unsigned_monero_tx
 
 # Send XMR manually
 
-* Copy `unsigned_monero_tx` to `xmr-cs` and sign
+- Copy `unsigned_monero_tx` to `xmr-cs` and sign
 
 .center[.image-60[![](/img/sign_transfer.png)]]
 
-* Copy newly created `signed_monero_tx` back to `xmr-cs` and submit transfer
+- Copy newly created `signed_monero_tx` back to `xmr-cs` and submit transfer
 
 .center[.image-80[![](/img/submit_transfer.png)]]
 
-* Please note `signed_monero_tx` file was wallet current working directory
+- Please note `signed_monero_tx` file was wallet current working directory
 
 ---
 
@@ -564,7 +596,8 @@ Unsigned transaction(s) successfully written to file: unsigned_monero_tx
 (dom0)$ qvm-run -u root xmr-cs xterm
 ```
 
-* Create `/etc/qubes-rpc/test.SignXfer` in `xmr-cs`
+- Create `/etc/qubes-rpc/test.SignXfer` in `xmr-cs`
+
 ```shell
 #!/bin/sh
 XMR_WALLET="/home/user/monero-wallet-cli"
@@ -573,12 +606,14 @@ xterm -e "${XMR_WALLET} --stagenet --wallet-file=/home/user/xmr_stagenet --passw
 cat signed_monero_tx
 ```
 
-* Create `/etc/qubes-rpc/test.SignXfer` in `dom0`
+- Create `/etc/qubes-rpc/test.SignXfer` in `dom0`
+
 ```shell
 $anyvm xmr-cs ask
 ```
 
-* Create `/etc/qubes-rpc/test.SendToSign` in `anyvm`
+- Create `/etc/qubes-rpc/test.SendToSign` in `anyvm`
+
 ```shell
 #!/bin/sh
 cat "$1"
@@ -590,6 +625,8 @@ exec cat >&$SAVED_FD_1
 # XMR Demo
 
 .center[
+
+<!-- markdownlint-disable-next-line MD033 -->
 <iframe allow="fullscreen;" frameborder="0" width="600" height="480"
 src="https://www.youtube.com/embed/e0WJk1AHOVo?rel=0&hd=1">
 </iframe>]
@@ -598,19 +635,19 @@ src="https://www.youtube.com/embed/e0WJk1AHOVo?rel=0&hd=1">
 
 # Future ideas
 
-* Confirmation of explicit amount spent in transaction to be signed
-* Autostart wallet in daemon mode for real transactions
-* Consider VM protection mechanisms
-* Private key backups
-* Disaster recovery
-* Signing PBST vs TXN - recognize with what type of file we dealing with
-* Salt stack automation of VM creation
-* Combining presented configuration using multisig and keeping one of the keys
+- Confirmation of explicit amount spent in transaction to be signed
+- Autostart wallet in daemon mode for real transactions
+- Consider VM protection mechanisms
+- Private key backups
+- Disaster recovery
+- Signing PBST vs TXN - recognize with what type of file we dealing with
+- Salt stack automation of VM creation
+- Combining presented configuration using multisig and keeping one of the keys
   in hardware wallet may improve security of the solution
-* Offline wallet software update can be a problem
-    - official suggestions saying about complete reinstall
-* XMR: improve password handling
-* XMR: use RPC instead of cli
+- Offline wallet software update can be a problem
+  + official suggestions saying about complete reinstall
+- XMR: improve password handling
+- XMR: use RPC instead of cli
 
 ---
 
