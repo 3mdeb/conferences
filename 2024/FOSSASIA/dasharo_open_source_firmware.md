@@ -16,7 +16,7 @@ class: center, middle, intro
 src="/remark-templates/3mdeb-presentation-template/images/piotr_krol.jpg"
 width="200px">]
 
-.center[Piotr Król] .center[_Founder_] .center[@pietrushnic@fosstodon.org]
+.center[Piotr Król] .center[_Founder_] .center[@pietrushnic]
 
 .left-column55[
 
@@ -74,19 +74,22 @@ Enterprise Training.
 
 # Dasharo Impact
 
-.center.image-110[![](/img/dasharo_impact.svg)]
+.center[<img src="/img/dasharo_impact.svg" width="850px"
+style="margin-left:-50px; margin-top:-40px">]
 
 ---
 
 # Dasharo Impact
 
-.center.image-110[![](/img/dasharo-msi-z690a-press-releases.png)]
+.center[<img src="/img/dasharo-msi-z690a-press-releases.png" width="850px"
+style="margin-left:-50px; margin-top:-40px">]
 
 ---
 
 # Dasharo Value Proposition
 
-.center.image-110[![](/img/dasharo_comparison_table.png)]
+.center[<img src="/img/dasharo_comparison_table.png" width="850px"
+style="margin-left:-50px; margin-top:-40px">]
 
 ???
 
@@ -100,19 +103,50 @@ Enterprise Training.
 
 ---
 
-# Dasharo Business Model
+# Dasharo TrustRoot
 
-???
+.center.image-99[![](/img/zarhus_trustroot_ecosystem.png)]
 
-Dasharo Revenue Streams:
+---
 
-- PET
-- Dasharo Support Package
-- Dasharo Entry Subscription
-  + Dasharo Revenue Sharing with Resellers and Supporting Partners
-  + 3mdeb own sales
-- Advanced and Dedicated Consulting Support
-- Zarhus
+# Dasharo Revenue Streams
+
+.center.image-80[![](/img/dasharo_revenue_streams.png)]
+
+---
+
+# Where users can get it?
+
+.center.image-50[![](/img/take_my_money.jpg)]
+
+.left-column50[ .center.image-60[![](/img/des_url_qrcode.png)] ]
+
+.right-column50[ .center.image-60[![](/img/des_hw_url_qrcode.png)] ]
+
+---
+
+# Where OEMs/board designers can get it?
+
+### .center[<span style="color: #3498db; font-weight: bold;">💌 A Special Invitation for OEMs & Board Designers 🏭🔧</span>]
+
+### .center[<span style="color: #2ecc71;">💬 Let's have a face-to-face conversation about BIOS wishlists and optimizations of Dasharo for your hardware. 💻🔐</span>]
+
+.left-column50[ .center.image-80[![](/img/pietrushnic_t.png)] ] .right-column50[
+
+- Telegram:
+  ```text
+  t.me/pietrushnic
+  ```
+- E-mail:
+  ```text
+  piotr.krol@3mdeb.com
+  ```
+- X/Twitter:
+  ```text
+  @pietrushnic
+  ```
+
+]
 
 ---
 
