@@ -127,9 +127,13 @@ style="margin-left:-50px; margin-top:-40px">]
 
 # Where OEMs/board designers can get it?
 
+<!-- markdownlint-disable MD033 -->
+
 ### .center[<span style="color: #3498db; font-weight: bold;">💌 A Special Invitation for OEMs & Board Designers 🏭🔧</span>]
 
 ### .center[<span style="color: #2ecc71;">💬 Let's have a face-to-face conversation about BIOS wishlists and optimizations of Dasharo for your hardware. 💻🔐</span>]
+
+<!-- markdownlint-enable MD033 -->
 
 .left-column50[ .center.image-80[![](/img/pietrushnic_t.png)] ] .right-column50[
 
