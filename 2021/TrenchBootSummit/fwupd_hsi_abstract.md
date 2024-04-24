@@ -4,8 +4,8 @@
 
 ### Abstract
 
-With the ever-increasing number of platform security features, determining
-the level of secruity of a given machine is not an easy task. For various cost
+With the ever-increasing number of platform security features, determining the
+level of security of a given machine is not an easy task. For various cost
 saving or market segmentation reasons, different tiers of devices may have
 different sets of security features implemented.
 
