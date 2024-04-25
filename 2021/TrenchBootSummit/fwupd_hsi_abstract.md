@@ -16,4 +16,3 @@ D-RTM - Dynamic Root of Trust for Measurement - helps provide a trusted
 computing platform without the complexity and inflexibility of an S-RTM solution
 such as Intel Boot Guard or AMD HVB. In this talk, we will discuss the ideas
 behind HSI and how we can incorporate D-RTM compliance tests into it.
-
