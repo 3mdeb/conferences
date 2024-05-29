@@ -51,6 +51,8 @@ class: center, middle, intro
 
 .center[.image-90[![](/img/DRTM_flow.png)]]
 
+<!-- Source: diagrams/DRTM_flow.drawio.xml -->
+
 ???
 
 S-RTM complexity
@@ -90,8 +92,8 @@ S-RTM complexity
 .center[.image-50[![](/img/tb_logo.svg)]]
 
 - [TrenchBoot Mailing List](https://groups.google.com/forum/#!forum/trenchboot-devel)
-- The `#trenchboot` channel on [OSFW Slack](https://slack.osfw.dev)
-  * Also bridged to Matrix as [#OSFW-Trenchboot:matrix.org](https://matrix.to/#/#OSFW-Trenchboot:matrix.org)
+- The `#OSFW-Trenchboot` channel on [Matrix](https://matrix.to/#/#OSFW-Trenchboot:matrix.org)
+  * Bridged with `#trenchboot` channel on [OSFW Slack](https://slack.osfw.dev)
 - Twitter [@TrenchBoot](https://twitter.com/trenchboot)
 
 ???
@@ -115,6 +117,8 @@ The first TrenchBoot D-RTM implementation has been made for GRUB+Linux
 - TrustedBoot (tboot) supports only Intel TXT
 - Is an exokernel and Xen (or any other kernel) has to be aware of its
   presence
+- Supports Linux and multiboot protocols
+- Requires a couple of lines to be added to GRUB menu configuration file
 ]
 .right-column50[
 
@@ -124,6 +128,8 @@ The first TrenchBoot D-RTM implementation has been made for GRUB+Linux
   processors
 - The goal is to implement a native support for D-RTM to let Xen have full
   control without any exokernels
+- Potential to boot with any protocol/bootloader
+- Needs just 1 or 2 lines to be added to perform DRTM launch
 ]
 
 ???
@@ -152,32 +158,119 @@ matter of handling power state transitions and event log.
 
 # Demo: Qubes OS Anti Evil Maid
 
-.center[ <a href="https://asciinema.org/a/661348?cols=96&rows=24"
-target="_blank"> <img src="https://asciinema.org/a/661348.svg" width="400px"/>\
-</a> ]
+.left-column50[
+
+<a href="https://asciinema.org/a/661622?cols=80&rows=24"
+target="_blank"> <img src="https://asciinema.org/a/661622.svg" width="400px"/></a>
+
+]
+
+.right-column45[
+
+- **Hardware**: Protectli VP4670
+- **TPM**: Infineon SLB9665 LPC TPM 2.0
+- **Firmware**: Dasharo (coreboot+SeaBIOS) v0.9.0
+  * coreboot 24.02.01
+  * SeaBIOS rel-1.16.3
+- **Issue**: [Xen is booting very slowly after Dynamic
+  Launch](https://github.com/TrenchBoot/xen/issues/16)
+
+]
 
 .footnote[
-Watch on [asciinema](https://asciinema.org/a/661348?cols=96&rows=24)
+Watch on [asciinema](https://asciinema.org/a/661622?cols=80&rows=24)
 ]
 
 ---
 
 # Current status of the work
 
+.center[.image-99[![](/img/aem_progress_2024.png)]]
+
+.center[.image-40[![](/img/logo/nlnet.svg)]]
+
+- https://github.com/TrenchBoot/trenchboot-issues/milestones
+
+???
+
+The project, sponsored by NLnet, is split into phases, where each phase builds
+on the previous one and enables more usage scenarios.
+
+Since the last year we progressed pretty significantly and finalize subsequent
+3 phases.
+
+---
+
+# Phase 2 - TPM 2.0 support
+
+.center[.image-80[![](/img/tb_aem_phase2.png)]]
+
+???
+
 - Added TPM 2.0 support for dom0 kernel and initrd measurements
 - Added eventlog extraction and parsing
-- Rebased changes onto the most recent TrenchBoot support patches to Linux
-  kernel introducing a unified TrenchBoot boot protocol
-- Final shape of patches is not yet known, the work on finalizing the boot
-  protocol including UEFI is pending on the [Linux kernel mailing list,
-  currently patchset
-  v8](https://lore.kernel.org/lkml/8d543a15-af62-4403-b2e0-3b395edfe9e4@amd.com/T/)
-- Simplified installation of the required packages by providing a RPM
-  repository for QubesOS
 - Implemented support for booting with Intel TXT and TPM 2.0 in legacy BIOS
   boot mode
+
+---
+
+# Phase 3 - TrenchBoot boot protocol
+
+.center[.image-99[![](/img/tb_aem_phase3.png)]]
+
+???
+
+- Rebased changes onto the most recent TrenchBoot support patches to Linux
+  kernel introducing a unified TrenchBoot boot protocol
+- Final shape of patches is not yet determined, the work on finalizing the
+  boot protocol including UEFI boot mode is pending on the [Linux kernel
+  mailing list, currently patchset
+  v8](https://lore.kernel.org/lkml/8d543a15-af62-4403-b2e0-3b395edfe9e4@amd.com/T/)
+
+---
+
+# Phase 4 - AMD support
+
+.center[.image-90[![](/img/tb_aem_phase4.png)]]
+
+???
+
 - Implemented support for booting with AMD SKINIT and TPM 1.2/2.0 in legacy
   BIOS boot mode
+- Implemented the newest TrenchBoot boot protocol in the Secure Kernel Loader
+- Simplified installation of the required packages by providing a RPM
+  repository for QubesOS
+
+---
+
+# Try TenchBoot
+
+It is relatively easy to get a hardware which supports DRTM:
+
+- Intel-based tested and known to work:
+  * Protectli VP4670
+  * HP EliteDesk 800 G2 Desktop Mini
+
+.center[.image-30[![](/img/VP4600.png)].image-30[![](/img/hp_elitedesk_800_g2.jpg)]]
+
+- AMD-based tested and known to work:
+  * Terminal HP T630
+
+.center[.image-30[![](/img/hp_t630.png)]]
+
+???
+
+These are the tested platforms that are working well. We have also faced
+issues with other platforms with BIOS bugs, which could not be workarounded,
+like Lenovo M920 or SUpermicro M11SDV
+
+Not all Intel platform support DRTM technology - Intel TXT. It requires a
+capable CPU and chipset. Typically vPro platforms satisfy these requirements,
+although it is still possible to have a Intel TXT initialization bug in BIOS,
+which prevents using DRTM unless a BIOS fix is issued.
+
+For AMD platforms, almost every CPU supports AMD SKINIT (CPU needs to supports
+SVM basically and BIOS must not disable it).
 
 ---
 
@@ -193,24 +286,7 @@ Watch on [asciinema](https://asciinema.org/a/661348?cols=96&rows=24)
 
 ---
 
-# Try TenchBoot
-
-It is relatively easy to get a hardware which supports DRTM:
-
-- Intel-based tested and known to work:
-  * Protectli VP4670
-  * HP EliteDesk 800 G2 Desktop Mini
-- Any Intel vPro laptop/desktop should generally work, but DRTM is sensitive
-  to BIOS bugs related to Intel TXT initialization (some platforms simply do
-  not set it up properly)
-
-- AMD-based
-  * Terminal HP T630
-- Almost any pre-Zen3 should work out of the box
-
----
-
-# Xen as DLME for UEFI
+# Phase 5 - Xen as DLME for UEFI boot mode
 
 ### Future planned work
 
