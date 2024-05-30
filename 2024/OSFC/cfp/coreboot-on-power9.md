@@ -20,4 +20,5 @@ because SoC is much more than just the main, OS-visible cores) are reused by
 coreboot. Those will be briefly described, along with how coreboot interacts
 with them and what debugging options are available. Obstacles (not always
 technical) encountered along the way and how we dealt with them will also be
-discussed.
+discussed. To sum things up, current status of upstreaming process will be
+presented.
