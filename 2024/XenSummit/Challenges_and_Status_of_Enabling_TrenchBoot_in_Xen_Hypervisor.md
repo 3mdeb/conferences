@@ -171,13 +171,19 @@ target="_blank"> <img src="https://asciinema.org/a/661622.svg" width="400px"/></
 - **Firmware**: Dasharo (coreboot+SeaBIOS) v0.9.0
   * coreboot 24.02.01
   * SeaBIOS rel-1.16.3
+- **Software**:
+  * [Qubes OS R4.2.1](https://www.qubes-os.org/downloads/#qubes-release-4-2-1)
+  * [Xen 4.17.4 (AEM v0.4.1)](https://github.com/TrenchBoot/xen/releases/tag/v0.4.1)
+  * [GRUB2 2.06 (AEM v0.4.1](https://github.com/TrenchBoot/grub/releases/tag/v0.4.1)
+  * [Anti-Evil-Maid v0.4.1](https://github.com/TrenchBoot/qubes-antievilmaid/releases/tag/aem_v0.4.1)
 - **Issue**: [Xen is booting very slowly after Dynamic
   Launch](https://github.com/TrenchBoot/xen/issues/16)
 
 ]
 
 .footnote[
-Watch on [asciinema](https://asciinema.org/a/661622?cols=80&rows=24)
+Watch on [asciinema](https://asciinema.org/a/661622?cols=80&rows=24)<br>
+Installation instructions on [3mdeb blog](https://blog.3mdeb.com/2024/2024-04-11-aem_phase4/)
 ]
 
 ---
@@ -238,7 +244,7 @@ Since the last year we progressed pretty significantly and finalize subsequent
   BIOS boot mode
 - Implemented the newest TrenchBoot boot protocol in the Secure Kernel Loader
 - Simplified installation of the required packages by providing a RPM
-  repository for QubesOS
+  repository for Qubes OS
 
 ---
 
@@ -266,7 +272,7 @@ It is relatively easy to get a hardware which supports DRTM:
 
 These are the tested platforms that are working well. We have also faced
 issues with other platforms with BIOS bugs, which could not be workarounded,
-like Lenovo M920 or SUpermicro M11SDV
+like Lenovo M920 or Supermicro M11SDV.
 
 Not all Intel platform support DRTM technology - Intel TXT. It requires a
 capable CPU and chipset. Typically vPro platforms satisfy these requirements,
@@ -283,7 +289,7 @@ SVM basically and BIOS must not disable it).
 - Provide package repositories for other major distros (Debian, Ubuntu Fedora)
 - Prepare tools for assessing the readiness of the system and BIOS to perform
   Dynamic Launch
-- Adding DRTM Ready indicator to the system security reports: QubesOS Security
+- Adding DRTM Ready indicator to the system security reports: Qubes OS Security
   Report, [fwupd HSI](https://fwupd.github.io/libfwupdplugin/hsi.html)
 
 .center[.image-40[![](/img/qubes-sec-report.png)]]
