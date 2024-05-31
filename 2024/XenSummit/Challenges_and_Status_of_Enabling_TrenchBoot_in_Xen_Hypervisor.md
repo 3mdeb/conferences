@@ -292,7 +292,11 @@ SVM basically and BIOS must not disable it).
 
 # Phase 5 - Xen as DLME for UEFI boot mode
 
-### Future planned work
+.center[.image-85[![](/img/tb_roadmap.png)]]
+
+More details about Secure Launch on [trenchboot.org](https://trenchboot.org/specifications/Secure_Launch/)
+
+???
 
 - Xen will be able to initiate the DL Event via the code module exposed by DCE
   Preamble (GRUB)
@@ -303,8 +307,6 @@ SVM basically and BIOS must not disable it).
   in the EFI System Table Configuration Tables
 - Xen will fill the necessary information for the DCE (like Xen address in
   memory to be measured) and call the module
-
-More details on [trenchboot.org](https://trenchboot.org/specifications/Secure_Launch/)
 
 ---
 
