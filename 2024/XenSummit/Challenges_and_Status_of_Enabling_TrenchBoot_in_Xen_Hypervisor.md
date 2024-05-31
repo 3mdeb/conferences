@@ -68,7 +68,7 @@ S-RTM complexity
   uptime
 - The only prerequisite is the BIOS to initialize the D-RTM technology
   properly (only applicable to Intel TXT, AMD does not need special
-  initialization from BIOS side)
+  initialization from BIOS side, except keeping SVM enabled)
 - Performs secure measurement of the environment responsible for launching the
   target software/operating system
   * Lesser complexity -> less things can go wrong
@@ -124,8 +124,7 @@ The first TrenchBoot D-RTM implementation has been made for GRUB+Linux
 
 ### TrenchBoot
 
-- Aims for unified approach supporting both AMD and Intel
-  processors
+- Aims for unified approach supporting AMD, Intel and ARM processors
 - The goal is to implement a native support for D-RTM to let Xen have full
   control without any exokernels
 - Potential to boot with any protocol/bootloader
@@ -203,7 +202,7 @@ Since the last year we progressed pretty significantly and finalize subsequent
 
 # Phase 2 - TPM 2.0 support
 
-.center[.image-80[![](/img/tb_aem_phase2.png)]]
+.center[.image-90[![](/img/tb_aem_phase2.png)]]
 
 ???
 
@@ -216,7 +215,7 @@ Since the last year we progressed pretty significantly and finalize subsequent
 
 # Phase 3 - TrenchBoot boot protocol
 
-.center[.image-99[![](/img/tb_aem_phase3.png)]]
+.center[.image-90[![](/img/tb_aem_phase3.png)]]
 
 ???
 
@@ -225,13 +224,13 @@ Since the last year we progressed pretty significantly and finalize subsequent
 - Final shape of patches is not yet determined, the work on finalizing the
   boot protocol including UEFI boot mode is pending on the [Linux kernel
   mailing list, currently patchset
-  v8](https://lore.kernel.org/lkml/8d543a15-af62-4403-b2e0-3b395edfe9e4@amd.com/T/)
+  v9](https://lkml.org/lkml/2024/5/30/1226)
 
 ---
 
 # Phase 4 - AMD support
 
-.center[.image-90[![](/img/tb_aem_phase4.png)]]
+.center[.image-80[![](/img/tb_aem_phase4.png)]]
 
 ???
 
@@ -243,20 +242,25 @@ Since the last year we progressed pretty significantly and finalize subsequent
 
 ---
 
-# Try TenchBoot
+# Try TrenchBoot
 
 It is relatively easy to get a hardware which supports DRTM:
 
 - Intel-based tested and known to work:
-  * Protectli VP4670
+  * Protectli VP4670 (open-source-firmware supported)
+  * Dell OptiPlex 7010/9010 (open-source-firmware supported)
   * HP EliteDesk 800 G2 Desktop Mini
 
-.center[.image-30[![](/img/VP4600.png)].image-30[![](/img/hp_elitedesk_800_g2.jpg)]]
+.center[
+.image-20[![](/img/VP4600.png)]
+.image-10[![](/img/tb_aem_optiplex.png)]
+.image-20[![](/img/hp_elitedesk_800_g2.jpg)]
+]
 
 - AMD-based tested and known to work:
   * Terminal HP T630
 
-.center[.image-30[![](/img/hp_t630.png)]]
+.center[.image-20[![](/img/hp_t630.png)]]
 
 ???
 
@@ -269,7 +273,7 @@ capable CPU and chipset. Typically vPro platforms satisfy these requirements,
 although it is still possible to have a Intel TXT initialization bug in BIOS,
 which prevents using DRTM unless a BIOS fix is issued.
 
-For AMD platforms, almost every CPU supports AMD SKINIT (CPU needs to supports
+For AMD platforms, almost every CPU supports AMD SKINIT (CPU needs to support
 SVM basically and BIOS must not disable it).
 
 ---
