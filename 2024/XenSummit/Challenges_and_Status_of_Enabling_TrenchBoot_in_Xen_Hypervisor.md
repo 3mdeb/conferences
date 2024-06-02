@@ -190,7 +190,7 @@ Installation instructions on [3mdeb blog](https://blog.3mdeb.com/2024/2024-04-11
 
 # Current status of the work
 
-.center[.image-99[![](/img/aem_progress_2024.png)]]
+.center[.image-90[![](/img/aem_progress_2024.png)]]
 
 .center[.image-40[![](/img/logo/nlnet.svg)]]
 
@@ -208,7 +208,7 @@ Since the last year we progressed pretty significantly and finalize subsequent
 
 # Phase 2 - TPM 2.0 support
 
-.center[.image-90[![](/img/tb_aem_phase2.png)]]
+.center[.image-95[![](/img/tb_aem_phase2.png)]]
 
 ???
 
@@ -221,7 +221,7 @@ Since the last year we progressed pretty significantly and finalize subsequent
 
 # Phase 3 - TrenchBoot boot protocol
 
-.center[.image-90[![](/img/tb_aem_phase3.png)]]
+.center[.image-95[![](/img/tb_aem_phase3.png)]]
 
 ???
 
@@ -236,7 +236,7 @@ Since the last year we progressed pretty significantly and finalize subsequent
 
 # Phase 4 - AMD support
 
-.center[.image-80[![](/img/tb_aem_phase4.png)]]
+.center[.image-95[![](/img/tb_aem_phase4.png)]]
 
 ???
 
