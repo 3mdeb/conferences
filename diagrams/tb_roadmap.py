@@ -19,11 +19,9 @@ ongoing.add_task("fwupd HSI extension", "2024-09-01", "2024-11-30", style="round
 
 phase5 = roadmap.add_group("Phase 5", font_size=26)
 
-phase5.add_task("Booting Xen EFI MB2", "2025-01-01", "2025-02-28", style="rounded", fill_colour="#34A853", font_size=23)
-phase5.add_task("Secure Launch Resource Table support", "2025-02-01", "2024-04-30", style="rounded", fill_colour="#ADD8E6", font_size=23)
-phase5.add_task("Booting Xen native EFI", "2025-02-01", "2025-04-30", style="rounded", fill_colour="#EA4335", font_size=23)
+phase5.add_task("Xen Secure Launch on EFI system", "2025-01-01", "2025-03-31", style="rounded", fill_colour="#34A853", font_size=23)
 phase5.add_task("TrenchBoot AEM Compatibility Test Suite", "2025-03-01", "2025-06-30", style="rounded", fill_colour="#FD7E14", font_size=23)
 
-roadmap.set_footer(f"Dasharo Community Support Roadmap | {date} ({version}) | CC-BY-SA-4.0")
+roadmap.set_footer(f"TrenchBoot ongoing work and future plans | {date} ({version}) | CC-BY-SA-4.0")
 roadmap.draw()
 roadmap.save("img/tb_roadmap.png")

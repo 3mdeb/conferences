@@ -298,11 +298,15 @@ SVM basically and BIOS must not disable it).
 
 # Phase 5 - Xen as DLME for UEFI boot mode
 
-.center[.image-85[![](/img/tb_roadmap.png)]]
+.center[.image-99[![](/img/tb_roadmap.png)]]
 
 More details about Secure Launch on [trenchboot.org](https://trenchboot.org/specifications/Secure_Launch/)
 
 ???
+
+Our approach is to use legacy MB2 with EBS called in GRUB2.
+
+Not yet clarified, but also possible (subject to discussion on design session):
 
 - Xen will be able to initiate the DL Event via the code module exposed by DCE
   Preamble (GRUB)
