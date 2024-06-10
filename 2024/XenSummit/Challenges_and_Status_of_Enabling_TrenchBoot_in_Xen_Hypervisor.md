@@ -89,7 +89,7 @@ S-RTM complexity
 
 # TrenchBoot
 
-.center[.image-50[![](/img/tb_logo.svg)]]
+.center[.image-50[![](/img/logo/tb_logo.svg)]]
 
 - [TrenchBoot Mailing List](https://groups.google.com/forum/#!forum/trenchboot-devel)
 - The `#OSFW-Trenchboot` channel on [Matrix](https://matrix.to/#/#OSFW-Trenchboot:matrix.org)
@@ -143,7 +143,7 @@ matter of handling power state transitions and event log.
 
 # Usecase: Qubes OS Anti Evil Maid
 
-.center[.image-30[![](/img/qubes-logo-home.svg)]]
+.center[.image-30[![](/img/logo/qubes-logo-home.svg)]]
 
 - Qubes OS Anti Evil Maid (AEM) is a set of software packages and utilities to
   aid against [Evil Maid attacks](https://theinvisiblethings.blogspot.com/2009/10/evil-maid-goes-after-truecrypt.html)
@@ -174,7 +174,7 @@ target="_blank"> <img src="https://asciinema.org/a/661622.svg" width="400px"/></
 - **Software**:
   * [Qubes OS R4.2.1](https://www.qubes-os.org/downloads/#qubes-release-4-2-1)
   * [Xen 4.17.4 (AEM v0.4.1)](https://github.com/TrenchBoot/xen/releases/tag/v0.4.1)
-  * [GRUB2 2.06 (AEM v0.4.1](https://github.com/TrenchBoot/grub/releases/tag/v0.4.1)
+  * [GRUB2 2.06 (AEM v0.4.1)](https://github.com/TrenchBoot/grub/releases/tag/v0.4.1)
   * [Anti-Evil-Maid v0.4.1](https://github.com/TrenchBoot/qubes-antievilmaid/releases/tag/aem_v0.4.1)
 - **Issue**: [Xen is booting very slowly after Dynamic
   Launch](https://github.com/TrenchBoot/xen/issues/16)
@@ -286,7 +286,7 @@ SVM basically and BIOS must not disable it).
 
 # Current ongoing efforts
 
-- Provide package repositories for other major distros (Debian, Ubuntu Fedora)
+- Provide package repositories for other major distros (Debian, Ubuntu, Fedora)
 - Prepare tools for assessing the readiness of the system and BIOS to perform
   Dynamic Launch
 - Adding DRTM Ready indicator to the system security reports: Qubes OS Security
