@@ -72,10 +72,10 @@ class: center, middle, intro
 # Agenda
 
 * Why?
+* Hardware
 * Reset vector and thereabouts
 * Debugging tools
 * PPC64 ABI, decisions and assumptions
-* Hardware
 * Implementation
 * Current state & TODOs
 * Q&A
@@ -336,6 +336,20 @@ There is no difference!
 
 ---
 
+# Hardware
+
+**TBD**
+- Talos II vs Talos II Lite
+  - SATA controller - not open
+- https://en.wikipedia.org/wiki/POWER9#Chip_types
+- Figure 23-3 from https://wiki.raptorcs.com/w/images/c/ce/POWER9_um_OpenPOWER_v21_10OCT2019_pub.pdf
+  - OCC
+  - no I/O PPE on Sforza
+- Figure 2 from https://wiki.raptorcs.com/w/images/c/c7/POWER9_Registers_vol2_version1.2_pub.pdf
+  - SCOM
+
+---
+
 # Reset vector and thereabouts
 
 .center[.image-80[![](/img/p9_ipl.png)]]
@@ -386,9 +400,10 @@ version of it (ISA 2.07 instead of 3.0 used by main cores). It starts execution
 from ROM mask - while the code for it is publicly available, it is fused into
 the processor and can't be freely modified.
 
-SEEPROM is Secure EEPROM embedded in the SoC, it is not the main flash. It holds
-most of the SBE code, as well as HBBL (Hostboot bootloader). ROM mask has enough
-code to load further stages into SBE SRAM and start its execution.
+SEEPROM is Secure EEPROM (electrically erasable programmable read-only memory)
+embedded in the SoC, it is not the main flash. It holds most of the SBE code,
+as well as HBBL (Hostboot bootloader). ROM mask has enough code to load further
+stages into SBE SRAM and start its execution.
 
 SBE initializes just enough of SoC to let it start executing on its own. This
 includes one EQ (quad, mostly L3 and L2 cache) and one EC (core). HBBL is loaded
@@ -459,52 +474,193 @@ BACKUP_PART 0x03ff7000..0x03fff000 (actual=0x00000000) [----RB----]
 For easier transition we decided to reuse this layout, and put coreboot in
 partitions used previously by Hostboot.
 
+Normally SBE starts HBBL from SEEPROM, which loads HBB and jumps to it. HBB
+loads other code as needed.
+
+Writing to SEEPROM is scary - we don't have any idea how many write cycles it
+can take, and POWER9 CPUs aren't cheap. Because of that we decided to use HBB
+for coreboot's bootblock and HBI for the rest. Writing bootblock to SEEPROM was
+tested and it worked, but then bootblock became too big, now it only fits after
+enabling LTO.
+
 ---
 
 # Reset vector and thereabouts
 
-**TBD**
-- initial state, HRMOR, cache validity
+Initial state depends on how the code was started:
+
+.pure-table.pure-table-striped[
+|          | HBBL       | HBB        | QEMU<br>(hb-mode) | description |
+|----------|-----------:|-----------:|------------------:|-------------|
+| NIA      | 0x00003000 | 0x00000000 | 0x00000010        | Next Instruction Address |
+| HRMOR    | 0xF8200000 | 0xF8000000 | 0x08000000        | Hypervisor Real Mode Offset Register, every address is logically OR-ed with this value |
+| L3 start | 0xF8200000 | 0xF8000000 | n/a               | Starting address of initialized L3 cache, it is physically-tagged so HRMOR is applied |
+| L3 size  | 0x00008000 | 0x00400000 | n/a               | Size of initialized L3 cache, trying to access memory outside of initialized part of L3 results in error |
+]
+
+In case of HBBL, it is actually loaded at 0xF8203000, and first 12 KiB are
+filled with placeholder for interrupt vectors. This leaves only 20 KiB for code,
+and it must include SECUREROM (set of functions for calculating and verifying
+SHA-512 hashes, part of Hostboot code, ~9 KiB after compilation) if Secure Boot
+is to be used.
+
+???
+
+QEMU has `hb-mode` that is supposed to emulate how Hostboot is started, but
+instruction pointer looks like a bug. HRMOR has value from IPL document, perhaps
+this is how it was set for POWER8.
+
+Next slide shows how those values were obtained.
 
 ---
 
 # Debugging tools
 
-**TBD**
 - QEMU monitor
-- BMC pdbg
-- differences between QEMU and HW
-- first attempts at bootblock
+  - but QEMU is nowhere close to real hardware
+--
+
+- BMC `pdbg`: https://github.com/open-power/pdbg
+<!-- Options must not be indented, it breaks rendering ¯\_(ツ)_/¯ -->
+.small-code[
+    ```
+Options:
+            -p, --processor=processor-id
+            -c, --chip=chiplet-id
+            -t, --thread=thread
+            -a, --all
+                    Run command on all possible processors/chips/threads (default)
+    Commands:
+            getscom <address>
+            putscom <address> <value> [<mask>]
+            getmem <address> <count>
+            putmem <address>
+            getvmem <virtual address>
+            getgpr <gpr>
+            putgpr <gpr> <value>
+            getnia
+            putnia <value>
+            getspr <spr>
+            putspr <spr> <value>
+            start
+            stop
+            threadstatus
+    ```
+]
+
+  - supposedly works with GDB, haven't tried
+
+???
+
+This isn't a full list, just the most interesting commands.
+
+SCOM - Serial Communications, registers used for configuring hardware. It was
+used in initfiles shown on previous slides.
+
+GPR - general purpose register
+
+SPR - special purpose register
 
 ---
 
 # PPC64 ABI, decisions and assumptions
 
-**TBD**
-- function descriptors
-  - why sizes in `build/cbfs/fallback/*.map` are useless for PPC64
-- BE:
-  - why?
-  - CBFS, FMAP, CBMEM
-- reuse HB partitions
-- little RAS - workstation
-- skiboot in CBFS
-- FDT
-- Heads in PNOR (?)
+Boring ISA and ABI stuff:
+
+- 64b CPU, supports both big and little endian
+- RISC, 32b instructions (usually)
+- 32 GPRs, some of them have defined use:
+  - R1: stack pointer
+  - R2: TOC base - combines GOT and SDA
+  - R3-R10: passing parameters to functions
+  - R3: return value register
+  - R13: reserved for system thread ID
+- other registers:
+  - CR0-CR7: conditions registers (4b each, similar to FLAGS on x86)
+  - LR: link register, holds return address
+  - CTR: counter
+  - XER: fixed-point exception register
+  - FPSCR: floating-point status and control register
+
+???
+
+Important parts of this slide:
+- endianness
+- R1 - stack is purely software concept
+- R2
+
+GOT - global offset table
+
+SDA - small data area
 
 ---
 
-# Hardware
+# PPC64 ABI, decisions and assumptions
 
-**TBD**
-- Talos II vs Talos II Lite
-  - SATA controller - not open
-- https://en.wikipedia.org/wiki/POWER9#Chip_types
-- Figure 23-3 from https://wiki.raptorcs.com/w/images/c/ce/POWER9_um_OpenPOWER_v21_10OCT2019_pub.pdf
-  - OCC
-  - no I/O PPE on Sforza
-- Figure 2 from https://wiki.raptorcs.com/w/images/c/c7/POWER9_Registers_vol2_version1.2_pub.pdf
-  - SCOM
+Function descriptors:
+
+- TOC base must be loaded before calling external functions.
+- Most instructions allow 16b offsets, so TOC base is typically the first
+  address in the TOC plus 0x8000, this allowing access to up to 64 KiB in single
+  instruction.
+- Function descriptor holds 3 doubleword pointers: entry point, TOC base (R2
+  value) and environment (not used in C).
+- Function pointers are actually pointers to function descriptor, not its entry
+  point as on x86.
+- All descriptors are collected in `.opd` (official procedure descriptors)
+  section.
+- This renders `build/cbfs/fallback/*.map` less useful for PPC64.
+- More info about descriptors: https://refspecs.linuxfoundation.org/ELF/ppc64/PPC-elf64abi.html#FUNC-DES
+
+---
+
+# PPC64 ABI, decisions and assumptions
+
+Endianness:
+
+- POWER9 can use both big and little endian, and switching between them doesn't
+require a reset.
+- GCC build as part of `crossgcc` is able to use both, and it works for very
+  simple C code as well as assembly.
+- Anything complicated links with `libgcc.a`, a library of internal subroutines
+  overcoming shortcomings of particular machines. It has e.g. epilogues for
+  restoring many registers at once so they aren't repeated in each function.
+- Separate `libgcc.a` for BE and LE, compiler defaults to BE one. At the time
+  I&nbsp;didn't know that LE version existed and could be used, so BE was chosen.
+- This exposed some endianness bugs and inaccuracies in:
+  - CBFS: `cbfstool` runs on LE host,
+  - FMAP: not immediately caught because `0x00020200` is a palindrome,
+  - CBMEM: written in BE, read from LE OS,
+  - Mostly fixed by adding `htole`/`letoh` and clearly defining fields as LE.
+
+---
+
+# PPC64 ABI, decisions and assumptions
+
+Decisions and assumptions:
+
+- SBE configures serial, coreboot doesn't have to.
+- Make transition between Hostboot and coreboot easy for users by reusing PNOR
+  partitions.
+  - This results in having to use ECC. Other partitions read by coreboot use
+    ECC so code for reading from them would exist anyway.
+- Focus on use as a workstation, not as a server.
+  - Some RAS functionality was skipped.
+  - Fail on most errors, don't boot with parts of hardware disabled.
+  - Don't use Processor Runtime Diagnostics error logging, not sure if it even
+    applies to BMC-based platforms.
+- Use Skiboot as payload.
+  - Don't use the one from PNOR, add another to CBFS for simplicity. We have
+    more than enough space available.
+  - Use FDT for passing information to Skiboot.
+
+???
+
+There is a comment in SBE code that HB team asked them to configure serial,
+because HB couldn't fit the code to do so. Remember that HB is ~30 MB and SBE
+fits in 256 KB SEEPROM with ECC and HBBL.
+
+FDT - flat device tree. Hostboot used HDAT.
 
 ---
 
@@ -546,3 +702,4 @@ bonus slides:
   - SEEPROM I2C from BMC?
   - ECC
 - https://github.com/3mdeb/openpower-coreboot-docs/blob/main/devnotes/hostbug.md
+- Heads in PNOR (?)
