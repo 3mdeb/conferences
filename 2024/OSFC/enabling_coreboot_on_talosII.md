@@ -97,10 +97,160 @@ class: center, middle, intro
 .left-column50[
 ### Hostboot
 
-- C++, C, Python, Perl, XML
-- **TBD** KLOC
-- partially machine-generated
+- Apache 2.0
+]
+
+.right-column50[
+### coreboot
+
+- GPLv2, some BSD-3-clause
+]
+
+---
+
+# Why?
+
+.left-column50[
+### Hostboot
+
+- Apache 2.0
 - PPC64 only
+]
+
+.right-column50[
+### coreboot
+
+- GPLv2, some BSD-3-clause
+- x68, ARM, RISC-V, PPC64
+]
+
+---
+
+# Why?
+
+.left-column50[
+### Hostboot
+
+- Apache 2.0
+- PPC64 only
+- C++, XML, Perl, C, Tcl
+]
+
+.right-column50[
+### coreboot
+
+- GPLv2, some BSD-3-clause
+- x68, ARM, RISC-V, PPC64
+- mostly C, some ACPI
+]
+
+---
+
+# Why?
+
+.left-column50[
+### Hostboot
+
+- Apache 2.0
+- PPC64 only
+- C++, XML, Perl, C, Tcl
+- partially machine-generated
+]
+
+.right-column50[
+### coreboot
+
+- GPLv2, some BSD-3-clause
+- x68, ARM, RISC-V, PPC64
+- mostly C, some ACPI
+- written by humans for humans
+]
+
+???
+
+- machine generated: initfiles, will be shown later
+
+---
+
+# Why?
+
+.left-column50[
+### Hostboot
+
+- Apache 2.0
+- PPC64 only
+- C++, XML, Perl, C, Tcl
+- partially machine-generated
+- 1735196 LOC (a2ddbf3)
+  - +424336 lines of comments
+]
+
+.right-column50[
+### coreboot
+
+- GPLv2, some BSD-3-clause
+- x68, ARM, RISC-V, PPC64
+- mostly C, some ACPI
+- written by humans for humans
+- 1562749 LOC (24.05)
+  - +729830 lines of comments
+]
+
+???
+
+- LOC counted with cloc 1.82
+- empty lines not counted
+- coreboot includes documentation and utils, src only is 1298407/686173
+
+---
+
+# Why?
+
+.left-column50[
+### Hostboot
+
+- Apache 2.0
+- PPC64 only
+- C++, XML, Perl, C, Tcl
+- partially machine-generated
+- 1735196 LOC (a2ddbf3)
+  - +424336 lines of comments
+- OS:
+  - user mode
+  - virtual memory
+  - dynamically loaded libraries
+  - on-demand paging
+]
+
+.right-column50[
+### coreboot
+
+- GPLv2, some BSD-3-clause
+- x68, ARM, RISC-V, PPC64
+- mostly C, some ACPI
+- written by humans for humans
+- 1562749 LOC (24.05)
+  - +729830 lines of comments
+- program:
+  - supervisor mode
+  - physical memory
+  - static code<br>&nbsp;
+  - everything fits in cache
+]
+
+---
+
+# Why?
+
+.left-column50[
+### Hostboot
+
+- Apache 2.0
+- PPC64 only
+- C++, XML, Perl, C, Tcl
+- partially machine-generated
+- 1735196 LOC (a2ddbf3)
+  - +424336 lines of comments
 - OS:
   - user mode
   - virtual memory
@@ -112,10 +262,12 @@ class: center, middle, intro
 .right-column50[
 ### coreboot
 
-- mostly C
-- **TBD** KLOC
-- written by humans for humans
+- GPLv2, some BSD-3-clause
 - x68, ARM, RISC-V, PPC64
+- mostly C, some ACPI
+- written by humans for humans
+- 1562749 LOC (24.05)
+  - +729830 lines of comments
 - program:
   - supervisor mode
   - physical memory
@@ -128,20 +280,190 @@ class: center, middle, intro
 
 # Why?
 
-**TBD**: examples of initfiles
+Example of initfile in source form:
+
+.center[.image-100[![](/img/initfile0.png)]]
+
+.footnote[Source: https://git.raptorcs.com/git/talos-hostboot/tree/src/import/chips/p9/initfiles/p9a.int.scan.initfile?id=a2ddbf3150e2c02ccc904b25d6650c9932a8a841]
+
+This form isn't used, AFAICT there is no public parser available.
+
+???
+
+Not actually used by Talos II. File name suggests it is for Axone, while Talos
+has Nimbus chips.
+
+There are only 2 .initfile files, probably someone forgot to remove them from
+the tree.
+
+---
+
+# Why?
+
+Example of initfile in converted form:
+
+.center[.image-75[![](/img/initfile1.png)]]
+
+.footnote[Source: https://git.raptorcs.com/git/talos-hostboot/tree/src/import/chips/p9/procedures/hwp/initfiles/p9_npu_scom.C?id=a2ddbf3150e2c02ccc904b25d6650c9932a8a841]
+
+???
+
+There are four different ways of writing 0 and three ways of writing 1 on this
+slide.
+
+---
+
+# Why?
+
+Flow of every initfile is similar: read some unnamed register, check CPU
+version and attributes, write magic number back, repeat for the next register.
+
+.center[.image-100[![](/img/initfile2.png)]]
+
+.footnote[Source: https://git.raptorcs.com/git/talos-hostboot/tree/src/import/chips/p9/procedures/hwp/initfiles/p9_npu_scom.C?id=a2ddbf3150e2c02ccc904b25d6650c9932a8a841]
+
+???
+
+Most of the registers are documented, but not all.
+
+--
+
+Can you spot the difference between statements of middle level `if`s?
+
+???
+
+There is no difference!
+
+---
+
+# Reset vector and thereabouts
+
+.center[.image-80[![](/img/p9_ipl.png)]]
+
+.footnote[Source: https://wiki.raptorcs.com/w/images/b/bd/IPL-Flow-POWER9.pdf]
+
+???
+
+Sorry about quality, it was already like this in the linked source.
+
+Hostboot (and by extension coreboot) only does the steps in blue.
+
+Each step has substeps, called 'istep' - IPL step, IPL =  Initial Program Load.
+Those are described in the PDF, but no time to describe them all in detail. As
+we're talking about reset vector, let's focus on the left column.
+
+---
+
+# Reset vector and thereabouts
+
+.left-column30[.center.image-55[![](/img/p9_ipl_self_init.png)]]
+
+.right-column70[
+- Step 0: on OpenPOWER done by BMC.
+- Pervasive: bus between internal SoC chiplets, also accessible to BMC.
+- SBE (Self Boot Engine): PPE 42 embedded core used to do some basic
+  initialization to each chip and to load and start the Hostboot firmware.
+- SEEPROM: Secure EEPROM, 256 KiB, part of SoC.
+- EQ: cache chiplet, `Q` stands for quad as it is common to 4 core chiplets.
+  It contains one L3 and two sets of L2 cache. Sometimes L2 and surrounding
+  logic is described as EX, but from Pervasive point of view it is part of EQ.
+- EC: core chiplet, each core has 4 threads.
+- SBE initializes one EQ and one EC, copies HBBL from SEEPROM to L3 cache, sets
+  up registers and lets one thread on that EC to start executing.
+]
+
+???
+
+Step 0 isn't 'IBM confidential' on OpenPOWER, it is done by BMC and partially
+FPGA for low level power management.
+
+Pervasive is the name of bus between SBE and other cores, including external
+(from SoC point of view) interface to BMC.
+
+SBE (Self-Boot Engine) is one of many embedded cores in P9 SoC, it is not one of
+the cores available to OS. It is also of POWER architecture, but an older
+version of it (ISA 2.07 instead of 3.0 used by main cores). It starts execution
+from ROM mask - while the code for it is publicly available, it is fused into
+the processor and can't be freely modified.
+
+SEEPROM is Secure EEPROM embedded in the SoC, it is not the main flash. It holds
+most of the SBE code, as well as HBBL (Hostboot bootloader). ROM mask has enough
+code to load further stages into SBE SRAM and start its execution.
+
+SBE initializes just enough of SoC to let it start executing on its own. This
+includes one EQ (quad, mostly L3 and L2 cache) and one EC (core). HBBL is loaded
+from SEEPROM to L3, register values are set and execution on one of main cores
+finally starts.
+
+---
+
+# Reset vector and thereabouts
+
+.left-column45[
+
+PNOR layout (as of v2.00):
+
+.small-code[
+```
+       part 0x00000000..0x00002000 (actual=0x00002000) [----R-----]
+       HBEL 0x00008000..0x0002c000 (actual=0x00024000) [E-----F-C-]
+      GUARD 0x0002c000..0x00031000 (actual=0x00005000) [E--P--F-C-]
+      NVRAM 0x00031000..0x000c1000 (actual=0x00090000) [---P--F---]
+    SECBOOT 0x000c1000..0x000e5000 (actual=0x00024000) [E--P------]
+      DJVPD 0x000e5000..0x0012d000 (actual=0x00048000) [E--P--F-C-]
+       MVPD 0x0012d000..0x001bd000 (actual=0x00090000) [E--P--F-C-]
+       CVPD 0x001bd000..0x00205000 (actual=0x00048000) [E--P--F-C-]
+        HBB 0x00205000..0x00305000 (actual=0x00100000) [EL--R-----]
+        HBD 0x00305000..0x00425000 (actual=0x00120000) [EL--------]
+        HBI 0x00425000..0x019c5000 (actual=0x015a0000) [EL--R-----]
+        SBE 0x019c5000..0x01a81000 (actual=0x000bc000) [ELI-R-----]
+      HCODE 0x01a81000..0x01ba1000 (actual=0x00120000) [EL--R-----]
+       HBRT 0x01ba1000..0x021a1000 (actual=0x00600000) [EL--R-----]
+    PAYLOAD 0x021a1000..0x022a1000 (actual=0x00100000) [-L--R-----]
+ BOOTKERNEL 0x022a1000..0x03821000 (actual=0x01580000) [-L--R-----]
+        OCC 0x03821000..0x03941000 (actual=0x00120000) [EL--R-----]
+    FIRDATA 0x03941000..0x03944000 (actual=0x00003000) [E-----F-C-]
+    VERSION 0x03944000..0x03946000 (actual=0x00002000) [-L--R-----]
+    BMC_INV 0x03968000..0x03971000 (actual=0x00009000) [------F---]
+       HBBL 0x03971000..0x03978000 (actual=0x00007000) [EL--R-----]
+   ATTR_TMP 0x03978000..0x03980000 (actual=0x00008000) [------F---]
+  ATTR_PERM 0x03980000..0x03988000 (actual=0x00008000) [E-----F-C-]
+IMA_CATALOG 0x03989000..0x039c9000 (actual=0x00040000) [EL--R-----]
+    RINGOVD 0x039c9000..0x039e9000 (actual=0x00020000) [----------]
+    WOFDATA 0x039e9000..0x03ce9000 (actual=0x00300000) [EL--R-----]
+HB_VOLATILE 0x03ce9000..0x03cee000 (actual=0x00005000) [E-----F-CV]
+       MEMD 0x03cee000..0x03cfc000 (actual=0x0000e000) [EL--R-----]
+       SBKT 0x03d02000..0x03d06000 (actual=0x00004000) [EL--R-----]
+       HDAT 0x03d06000..0x03d0e000 (actual=0x00008000) [EL--R-----]
+     UVISOR 0x03d10000..0x03e10000 (actual=0x00100000) [-L--R-----]
+ BOOTKERNFW 0x03e10000..0x03ff0000 (actual=0x001e0000) [---P------]
+BACKUP_PART 0x03ff7000..0x03fff000 (actual=0x00000000) [----RB----]
+```
+]]
+
+.right-column55[
+- PNOR is Processor NOR, to distinguish from other flash media (e.g. BMC).
+- Partitions starting with `HB` are part of Hostboot, they take roughly half of
+  64&nbsp;MiB flash.
+- It has HBBL partition, but this is only an image that Hostboot uses to update
+  SEEPROM.
+- `PAYLOAD` is Skiboot, which implements OPAL (OpenPower Abstraction Layer):
+  boot and runtime firmware services.
+- `BOOTKERNEL` and `BOOTKERNFW` is Petitboot with optional GPU firmware, it
+  starts target OS.
+- Partitions with `E` flag use ECC for integrity checks.
+]
+
+???
+
+For easier transition we decided to reuse this layout, and put coreboot in
+partitions used previously by Hostboot.
 
 ---
 
 # Reset vector and thereabouts
 
 **TBD**
-- IPL diagram from https://wiki.raptorcs.com/w/images/b/bd/IPL-Flow-POWER9.pdf
-- SBE, SEEPROM
-  - SEEPROM I2C from BMC?
-  - ECC
-- PNOR with partition list
-  - marked HB
-  - ECC
 - initial state, HRMOR, cache validity
 
 ---
@@ -169,7 +491,6 @@ class: center, middle, intro
 - skiboot in CBFS
 - FDT
 - Heads in PNOR (?)
-- bonus: `eieio`, `darn`, `miso`
 
 ---
 
@@ -214,3 +535,14 @@ class: center, middle, intro
 <br>
 
 ## .center[Q&A]
+
+???
+
+bonus slides:
+- https://gitlab.raptorengineering.com/openpower-firmware/machine-talos-ii/machine-xml/-/blob/raptor-aggressive/raptor-util/woferclock.php
+- `eieio`, `darn`, `miso`
+- Linux CBMEM driver
+- SEEPROM
+  - SEEPROM I2C from BMC?
+  - ECC
+- https://github.com/3mdeb/openpower-coreboot-docs/blob/main/devnotes/hostbug.md
