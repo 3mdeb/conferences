@@ -83,10 +83,10 @@ class: center, middle, intro
 ???
 
 - why: coreboot is simpler than hostboot
+- hardware: how many cores in SoC
 - reset vector: SBE, SEEPROM, PNOR, initial state
 - Debugging: BMC => pdbg, QEMU => monitor
 - decisions & assumptions: BE
-- hardware: how many cores in SoC
 - implementation: easy and hard part
 - current state: what works, what doesn't
 
@@ -338,15 +338,121 @@ There is no difference!
 
 # Hardware
 
-**TBD**
-- Talos II vs Talos II Lite
-  - SATA controller - not open
-- https://en.wikipedia.org/wiki/POWER9#Chip_types
-- Figure 23-3 from https://wiki.raptorcs.com/w/images/c/ce/POWER9_um_OpenPOWER_v21_10OCT2019_pub.pdf
-  - OCC
-  - no I/O PPE on Sforza
-- Figure 2 from https://wiki.raptorcs.com/w/images/c/c7/POWER9_Registers_vol2_version1.2_pub.pdf
-  - SCOM
+Talos II:
+
+.center[.image-80[![](/img/talos2.png)]]
+
+.footnote[Source: https://raptorcs.com/content/TL2MB1/intro.html]
+
+???
+
+SATA controller - not open, version without it is also available.
+
+2 CPUs, lots of RAM slots (registered DDR4 with ECC), lots of PCIe
+
+---
+
+# Hardware
+
+Talos II Lite:
+
+.center[.image-80[![](/img/talos2_lite.png)]]
+
+.footnote[Source: https://raptorcs.com/content/TL1MB1/intro.html]
+
+???
+
+Less slots, SATA not an option
+
+---
+
+# Hardware
+
+Specifications:
+
+- 2 POWER9-compatible CPU sockets
+  - Talos II Lite: 1 socket
+- EATX form factor
+- 16 DDR4 ECC registered RAM slots
+  - Talos II Lite: 8 slots
+- 3 PCIe 4.0 x16 slots
+  - Talos II Lite: 1 slots
+- 2 PCIe 4.0 x8 slots
+  - Talos II Lite: 1 slots
+- 2 Broadcom Gigabit Ethernet ports, one shared with BMC
+- 1 Microsemi SAS 3.0 controller (**optional**)
+  - Talos II Lite: n/a
+- 4 USB 3.0 ports, 1 USB 2.0 port
+- 1 ASpeed BMC with OpenBMC
+- 1 VGA video port
+
+---
+
+# Hardware
+
+POWER9 chip types:
+
+- Scale Out (Nimbus) with directly attached memory, used on Talos II
+- Scale Up (Cumulus) with memory connected through memory controllers called
+  Centaurs
+
+Nimbus modules (packages):
+
+- Sforza - 50 mm × 50 mm, 4 DDR4, 48 PCIe lanes, 1 XBus 4B, used on
+  Talos&nbsp;II
+- Monza - 68.5 mm × 68.5 mm, 8 DDR4, 34 PCIe lanes, 1 XBus 4B, 48 OpenCAPI lanes
+- LaGrange - 68.5 mm × 68.5 mm, 8 DDR4, 42 PCIe lanes, 2 XBus 4B, 16 OpenCAPI
+  lanes
+
+.footnote[Source: https://en.wikipedia.org/wiki/POWER9#Chip_types]
+
+???
+
+Talos II uses least server-like option.
+
+XBus connects two CPUs. There is only one XBus for Sforza, so max 2 CPUs on
+board.
+
+---
+
+# Hardware
+
+Many cores of SoC:
+
+.center[.image-80[![](/img/power9_ppe_instances.png)]]
+
+.footnote[Source: https://wiki.raptorcs.com/w/images/c/ce/POWER9_um_OpenPOWER_v21_10OCT2019_pub.pdf]
+
+???
+
+PPE - Programmable PowerPC-lite Engines
+
+OCC - On-Chip Microcontroller, responsible for "high-level" power management
+
+CME - Core Management Engine, responsible for low-level power management, e.g.
+waking up the core after it was powered off.
+
+Sforza has less I/O PPEs than shown on the diagram.
+
+---
+
+# Hardware
+
+Yet another view of POWER9:
+
+.center[.image-75[![](/img/power9_pervasive.png)]]
+
+.footnote[Source: https://wiki.raptorcs.com/w/images/c/c7/POWER9_Registers_vol2_version1.2_pub.pdf]
+
+???
+
+This is POWER9 Processor from a Pervasive Point of View.
+
+Simply put, Pervasive is kind of bus used to communicate with chiplets through
+a mechanism called SCOM - Serial Communications. It exposes registers used for
+configuring hardware. It was used in initfiles shown on previous slides.
+
+Each chiplet has its own prefix in SCOM address space.
 
 ---
 
@@ -553,9 +659,6 @@ Options:
 ???
 
 This isn't a full list, just the most interesting commands.
-
-SCOM - Serial Communications, registers used for configuring hardware. It was
-used in initfiles shown on previous slides.
 
 GPR - general purpose register
 
