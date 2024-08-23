@@ -432,6 +432,12 @@ OCC - On-Chip Microcontroller, responsible for "high-level" power management
 CME - Core Management Engine, responsible for low-level power management, e.g.
 waking up the core after it was powered off.
 
+4 GPEs in OCC complex - 2 of them have dedicated uses:
+
+- SGPE - Stop GPE, used to bring back powered-down CMEs
+- PGPE - Pstate GPE, used for frequency/voltage control of cores and package as
+  a whole
+
 Sforza has less I/O PPEs than shown on the diagram.
 
 ---
@@ -769,11 +775,145 @@ FDT - flat device tree. Hostboot used HDAT.
 
 # Implementation
 
-**TBD**
+- All<sup>*</sup> required registers are documented in POWER9 registers
+  specification
+  - https://wiki.raptorcs.com/wiki/Category:Documentation
+- Many hours (~2/3 of total time) spent on analysis.
+  - Results at https://github.com/3mdeb/openpower-coreboot-docs/.
+- Initfiles and other code written into more readable pseudocode, with register
+  names and fields decoded whenever possible.
+- Some assumptions were made to simplify the code.
+
+.small-code[
+```
+        *0x0501082b =       // P9N2_MCS_PORT02_MCPERF3
+            [31] = 1                                    // ENABLE_CL0
+            [41] = 1                                    // ENABLE_AMO_MSI_RMW_ONLY
+            [43] = !ATTR_ENABLE_MEM_EARLY_DATA_SCOM     // ENABLE_CP_M_MDI0_LOCAL_ONLY, !0 = 1?
+            [44] = 1                                    // DISABLE_WRTO_IG
+            [45] = 1                                    // AMO_LIMIT_SEL
+
+        MC01.PORT0.SRQ.MBA_DSM0Q =       // 0x701090a
+            // These are set per port so all latencies should be calculated from both DIMMs (if present)
+            [0-5]   MBA_DSM0Q_CFG_RODT_START_DLY =  ATTR_EFF_DRAM_CL - ATTR_EFF_DRAM_CWL
+            [6-11]  MBA_DSM0Q_CFG_RODT_END_DLY =    ATTR_EFF_DRAM_CL - ATTR_EFF_DRAM_CWL + 5
+            [12-17] MBA_DSM0Q_CFG_WODT_START_DLY =  0
+            [18-23] MBA_DSM0Q_CFG_WODT_END_DLY =    5
+            [24-29] MBA_DSM0Q_CFG_WRDONE_DLY =      24
+            [30-35] MBA_DSM0Q_CFG_WRDATA_DLY =      ATTR_EFF_DRAM_CWL + ATTR_MSS_EFF_DPHY_WLO - 8
+            // Assume RDIMM, non-NVDIMM only
+            [36-41] MBA_DSM0Q_CFG_RDTAG_DLY =
+                MSS_FREQ_EQ_1866:                   ATTR_EFF_DRAM_CL[l_def_PORT_INDEX] + 7
+                MSS_FREQ_EQ_2133:                   ATTR_EFF_DRAM_CL[l_def_PORT_INDEX] + 7
+                MSS_FREQ_EQ_2400:                   ATTR_EFF_DRAM_CL[l_def_PORT_INDEX] + 8
+                MSS_FREQ_EQ_2666:                   ATTR_EFF_DRAM_CL[l_def_PORT_INDEX] + 9
+```
+]
+
+???
+
+1st register wasn't documented, its name was taken from Hostboot definitions,
+but those definitions weren't used by initfiles. Some of them we found later,
+documentation usually has only one instance of e.g. port, which may not be the
+first one.
+
+Numbers in square brackets are bit numbers. Because these registers are BE,
+MSB is bit 0, contrary to x86.
+
+About `ATTR_`, Hostboot keeps **everything** in attributes, kind of database.
+As this is part of RAM initialization, those particular values came from SPD.
+
+---
+
+# Implementation
+
+Largest implemented features:
+
+- internal buses and chiplets init
+  - power on, initialize clocks, deassert reset, the usual
 - RAM init
-  - https://github.com/3mdeb/openpower-coreboot-docs/tree/main/devnotes/isteps
-  - don't buy JEDEC specs unless you need it
-- SMP, HOMER, OCC
+  - ECC requires all of RAM to be initialized (written) so ECC bytes match the
+    data
+  - Hostboot writes in order multiple patterns on each boot, we decided that it
+    isn't necessary for workstation use
+- PCIe init
+  - just power on, train lanes and set up links, no resource allocation
+- SMP init
+  - OCC, CME
+  - HOMER
+
+???
+
+RAM init: don't buy JEDEC spec if you don't need it, most of the spec is
+available for free on DRAM vendors sites.
+
+PCIe init: resource allocation done by Skiboot
+
+OCC - On-Chip Microcontroller, responsible for "high-level" power management
+
+CME - Core Management Engine
+
+HOMER - Hardware Offload Microcode Engine Region
+
+---
+
+# Implementation
+
+.center[.image-100[![](/img/power9_homer.png)]]
+
+.footnote[Source: https://github.com/open-power/docs/blob/P9/occ/p9_pmcd_homer.pdf]
+
+???
+
+This document was added as a result of us asking on OP mailing list.
+
+HOMER is 4 MB (per chip/CPU) block of data and code in main RAM. Without getting
+into too much details, it is divided into 4 x 1MB sections, each responsible for
+different part of PM.
+
+1st: main OCC core code and data, OCC overviews work of all of the smaller
+pieces, it also communicates with outside world (host and BMC).
+
+2nd: SGPE code and data, responsible for managing and restoring state of Quad
+(L3 cache).
+
+3rd: CME code and data, basically does to core chiplets what SPGE did to quad
+chiplets. It also includes self-restore code: few instructions that are run by
+main cores/threads to restore GPRs, SPRs and some SCOM registers. Values to be
+restored are written as part of the instructions.
+
+4th: PGPE code and data, includes large tables mapping frequency and voltage 
+values to Pstates.
+
+---
+
+# Implementation
+
+Currently, HOMER prepared by coreboot is different than what Hostboot does:
+
+- enabling existing Hostboot's debug output to log math done when building HOMER
+  increases boot time to 4 hours (6 when booting with both CPUs)
+- Hostboot uses complicated floating-point operations that in the end result in
+  the same floor values as integer math would do
+  - except sometimes intermediate values exceed `float` precision
+- Hostboot has an interesting approach to rounding:
+
+```
+        uint32_t l_vdd = ...;
+
+        // Round up
+        l_vdd = (l_vdd << 1) + 1;
+        l_vdd = l_vdd >> 1;
+```
+
+- https://github.com/3mdeb/openpower-coreboot-docs/blob/main/devnotes/hostbug.md
+  contains this and more examples of original programming ideas
+
+.footnote[https://github.com/open-power/hostboot/blob/4689d6d20fccc4587aea2cdfa843dc9881ff6482/src/import/chips/p9/procedures/hwp/pm/p9_pstate_parameter_block.C#L1803]
+
+???
+
+**TBD**
 - RNG timeout - coreboot too fast
 - non-technical issues:
   - lost XIVE documentation
