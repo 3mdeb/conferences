@@ -9,6 +9,10 @@ class: center, middle, intro
 <img src="/remark-templates/3mdeb-presentation-template/images/logo.png"
   width="150px" style="margin-left:-20px">
 
+???
+
+Talos II: POWER9 platform by RaptorCS
+
 ---
 
 # `whoami`
@@ -108,6 +112,8 @@ class: center, middle, intro
 
 ---
 
+count: false
+
 # Why?
 
 .left-column50[
@@ -125,6 +131,8 @@ class: center, middle, intro
 ]
 
 ---
+
+count: false
 
 # Why?
 
@@ -144,7 +152,14 @@ class: center, middle, intro
 - mostly C, some ACPI
 ]
 
+???
+
+XML is used because Hostboot uses data-driven programming. Perl and Tcl are used
+to convert it into data that can be parsed in C/C++.
+
 ---
+
+count: false
 
 # Why?
 
@@ -171,6 +186,8 @@ class: center, middle, intro
 - machine generated: initfiles, will be shown later
 
 ---
+
+count: false
 
 # Why?
 
@@ -203,6 +220,8 @@ class: center, middle, intro
 - coreboot includes documentation and utils, src only is 1298407/686173
 
 ---
+
+count: false
 
 # Why?
 
@@ -239,6 +258,8 @@ class: center, middle, intro
 ]
 
 ---
+
+count: false
 
 # Why?
 
@@ -891,8 +912,6 @@ values to Pstates.
 
 Currently, HOMER prepared by coreboot is different than what Hostboot does:
 
-- enabling existing Hostboot's debug output to log math done when building HOMER
-  increases boot time to 4 hours (6 when booting with both CPUs)
 - Hostboot uses complicated floating-point operations that in the end result in
   the same floor values as integer math would do
   - except sometimes intermediate values exceed `float` precision
@@ -906,26 +925,104 @@ Currently, HOMER prepared by coreboot is different than what Hostboot does:
         l_vdd = l_vdd >> 1;
 ```
 
+.footnote[https://github.com/open-power/hostboot/blob/release-op920/src/import/chips/p9/procedures/hwp/pm/p9_pstate_parameter_block.C#L4736]
+
 - https://github.com/3mdeb/openpower-coreboot-docs/blob/main/devnotes/hostbug.md
   contains this and more examples of original programming ideas
+- enabling existing Hostboot's debug output to log math done when building HOMER
+  increases boot time
+--
+ to <span style="color:red">**4 hours**</span> (6 when booting with both CPUs)
 
-.footnote[https://github.com/open-power/hostboot/blob/4689d6d20fccc4587aea2cdfa843dc9881ff6482/src/import/chips/p9/procedures/hwp/pm/p9_pstate_parameter_block.C#L1803]
+---
+
+# Implementation
+
+Non-technical issues:
+
+- POWER9 documentation is relatively good, but not ideal
+  - some missing descriptions here and there
+  - changes between CPU revisions aren't always reflected in docs
+- XIVE documentation was reported to be lost `¯\_(ツ)_/¯`
+  - wasn't needed in the end
+- Communication with big companies takes time
 
 ???
 
-**TBD**
-- RNG timeout - coreboot too fast
-- non-technical issues:
-  - lost XIVE documentation
-  - https://lists.ozlabs.org/pipermail/openpower-firmware/2021-January/000611.html,
-    https://lists.ozlabs.org/pipermail/openpower-firmware/2021-February/000628.html
-  - platform moved to lab - full-speed CPU fan unnoticed because of that (Heads)
+XIVE - External Interrupt Virtualization Engine
+
+--
+
+.center[.image-90[![](/img/opfw_ml_q.png)]]
+
+.footnote[
+https://lists.ozlabs.org/pipermail/openpower-firmware/2021-January/000611.html
+<br>&nbsp;
+]
+
+--
+
+<style>.m8em {margin-top: -8em}</style>
+.m8em.center[.image-90[![](/img/opfw_ml_a.png)]]
+
+.footnote[
+https://lists.ozlabs.org/pipermail/openpower-firmware/2021-February/000628.html]
 
 ---
 
 # Current state & TODOs
 
-**TBD**
+Where's the code at?
+
+- initial patches sent to coreboot
+<!-- don't remove HTML entity, remark messes up URLs with quotation marks -->
+  - [&#104;ttps://review.coreboot.org/q/topic:"talos-2"](https://review.coreboot.org/q/topic:"talos-2")
+  - basic build infrastructure, PNOR access, SCOM drivers
+  - not enough for working platform yet
+- complete code can be found on our repo
+  - https://github.com/Dasharo/coreboot/blob/raptor-cs_talos-2/patches
+  - includes what was sent to upstream (+/- changes after review)
+  - enough for booting Linux
+- customized Skiboot
+  - https://github.com/Dasharo/skiboot/tree/raptor-cs_talos-2
+  - includes drivers for SLB9545 I2C TPM
+  - Skiboot from RaptorCS should work as well
+
+---
+
+# Current state & TODOs
+
+<style>.m2em {margin-top: -2em}</style>
+.m2em.center[.image-90[![](/img/debian_on_talos.png)]]
+
+---
+
+# Current state & TODOs
+
+What works:
+
+- booting Linux
+- PCIe (tested with NVMe adapted and SSD)
+- both CPUs, all RAM slots
+- either Heads or Petitboot as bootloader
+
+What needs more work:
+
+- https://github.com/Dasharo/dasharo-issues/labels/raptor-cs_talos-2
+- more PCIe tests required (GPUs, ports under second CPU)
+- Microsemi SATA controller not tested - our platform doesn't have it
+- UART unreliable, seems to be cached - Hostboot doesn't have this problem
+- currently only PNOR from Talos II System Firmware 2.00 is supported
+  - newer release enabled Secure Boot by default (easy fix)
+  - MEMD PNOR partition has different offset to data (needs analysis)
+???
+
+- I2C errors occasionally reported when accessing TPM
+  - this TPM isn't supported under Hostboot, nothing to compare with
+
+--
+
+- upstream!
 
 ---
 
@@ -944,5 +1041,6 @@ bonus slides:
 - SEEPROM
   - SEEPROM I2C from BMC?
   - ECC
-- https://github.com/3mdeb/openpower-coreboot-docs/blob/main/devnotes/hostbug.md
+- RNG timeout - coreboot too fast
 - Heads in PNOR (?)
+  - platform moved to lab - full-speed CPU fan unnoticed because of that (Heads)
