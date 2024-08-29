@@ -198,8 +198,8 @@ count: false
 - PPC64 only
 - C++, XML, Perl, C, Tcl
 - partially machine-generated
-- 1735196 LOC (a2ddbf3)
-  - +424336 lines of comments
+- 1'735'196 LOC (a2ddbf3)
+  - +424'336 lines of comments
 ]
 
 .right-column50[
@@ -209,15 +209,15 @@ count: false
 - x68, ARM, RISC-V, PPC64
 - mostly C, some ACPI
 - written by humans for humans
-- 1562749 LOC (24.05)
-  - +729830 lines of comments
+- 1'562'749 LOC (24.05)
+  - +729'830 lines of comments
 ]
 
 ???
 
 - LOC counted with cloc 1.82
 - empty lines not counted
-- coreboot includes documentation and utils, src only is 1298407/686173
+- coreboot includes documentation and utils, src only is 1'298'407 / 686'173
 
 ---
 
@@ -232,10 +232,10 @@ count: false
 - PPC64 only
 - C++, XML, Perl, C, Tcl
 - partially machine-generated
-- 1735196 LOC (a2ddbf3)
-  - +424336 lines of comments
+- 1'735'196 LOC (a2ddbf3)
+  - +424'336 lines of comments
 - OS:
-  - user mode
+  - user mode processes
   - virtual memory
   - dynamically loaded libraries
   - on-demand paging
@@ -248,8 +248,8 @@ count: false
 - x68, ARM, RISC-V, PPC64
 - mostly C, some ACPI
 - written by humans for humans
-- 1562749 LOC (24.05)
-  - +729830 lines of comments
+- 1'562'749 LOC (24.05)
+  - +729'830 lines of comments
 - program:
   - supervisor mode
   - physical memory
@@ -270,10 +270,10 @@ count: false
 - PPC64 only
 - C++, XML, Perl, C, Tcl
 - partially machine-generated
-- 1735196 LOC (a2ddbf3)
-  - +424336 lines of comments
+- 1'735'196 LOC (a2ddbf3)
+  - +424'336 lines of comments
 - OS:
-  - user mode
+  - user mode processes
   - virtual memory
   - dynamically loaded libraries
   - on-demand paging
@@ -287,8 +287,8 @@ count: false
 - x68, ARM, RISC-V, PPC64
 - mostly C, some ACPI
 - written by humans for humans
-- 1562749 LOC (24.05)
-  - +729830 lines of comments
+- 1'562'749 LOC (24.05)
+  - +729'830 lines of comments
 - program:
   - supervisor mode
   - physical memory
@@ -301,13 +301,15 @@ count: false
 
 # Why?
 
-Example of initfile in source form:
+Hostboot may have open source, but that doesn't mean it can be easily understood
+by humans. Initfiles are an example of this. This is how they look in source
+form:
 
 .center[.image-100[![](/img/initfile0.png)]]
 
 .footnote[Source: https://git.raptorcs.com/git/talos-hostboot/tree/src/import/chips/p9/initfiles/p9a.int.scan.initfile?id=a2ddbf3150e2c02ccc904b25d6650c9932a8a841]
 
-This form isn't used, AFAICT there is no public parser available.
+But this form isn't used, and AFAICT there is no public parser available.
 
 ???
 
@@ -346,6 +348,8 @@ version and attributes, write magic number back, repeat for the next register.
 ???
 
 Most of the registers are documented, but not all.
+
+Other than license header, not a single line of comment in those files.
 
 --
 
@@ -446,9 +450,11 @@ Many cores of SoC:
 
 ???
 
-PPE - Programmable PowerPC-lite Engines
+PPE - Programmable PowerPC-lite Engines, uses PowerPC Architecture v2.02 which
+is the same as implemented by POWER5: https://wiki.raptorcs.com/wiki/Power_ISA
 
-OCC - On-Chip Microcontroller, responsible for "high-level" power management
+OCC - On-Chip Microcontroller, responsible for "high-level" power management,
+also uses POWER ISE in slightly newer version: Power ISA v2.03
 
 CME - Core Management Engine, responsible for low-level power management, e.g.
 waking up the core after it was powered off.
@@ -731,7 +737,7 @@ Function descriptors:
 
 - TOC base must be loaded before calling external functions.
 - Most instructions allow 16b offsets, so TOC base is typically the first
-  address in the TOC plus 0x8000, this allowing access to up to 64 KiB in single
+  address in the TOC plus 0x8000, thus allowing access to up to 64 KiB in single
   instruction.
 - Function descriptor holds 3 doubleword pointers: entry point, TOC base (R2
   value) and environment (not used in C).
@@ -750,7 +756,7 @@ Endianness:
 
 - POWER9 can use both big and little endian, and switching between them doesn't
 require a reset.
-- GCC build as part of `crossgcc` is able to use both, and it works for very
+- GCC built as part of `crossgcc` is able to use both, and it works for very
   simple C code as well as assembly.
 - Anything complicated links with `libgcc.a`, a library of internal subroutines
   overcoming shortcomings of particular machines. It has e.g. epilogues for
@@ -801,8 +807,8 @@ FDT - flat device tree. Hostboot used HDAT.
   - https://wiki.raptorcs.com/wiki/Category:Documentation
 - Many hours (~2/3 of total time) spent on analysis.
   - Results at https://github.com/3mdeb/openpower-coreboot-docs/.
-- Initfiles and other code written into more readable pseudocode, with register
-  names and fields decoded whenever possible.
+- Initfiles and other code rewritten into more readable pseudocode, with
+  register names and fields decoded whenever possible.
 - Some assumptions were made to simplify the code.
 
 .small-code[
