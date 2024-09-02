@@ -18,38 +18,37 @@ Talos II: POWER9 platform by RaptorCS
 # `whoami`
 
 .center[<img
-  src="/remark-templates/3mdeb-presentation-template/images/your_name.png"
+  src="/remark-templates/3mdeb-presentation-template/images/krystian_hebel.png"
   width="150px" style="marking-top:-50px">
 ]
 
-.center[Your Name]
-.center[_Your Job Title_]
+.center[Krystian Hebel]
+.center[_Firmware Engineer_]
 .right-column50[
-- X years in 3mdeb
-- Work experience
+- 6 years in 3mdeb
+- about half of that spent on Talos II
 - interested in:
-  - interest 1
-  - interest 2
-  - interest 3
+  - low level stuff
+  - reserved bits in registers
 ]
 .left-column50[
-- <a href="https://twitter.com/YOUR_TWITTER">
-    <img
-      src="/remark-templates/3mdeb-presentation-template/images/twitter.png"
-      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
-      @YOUR_TWITTER_
+- <a href="https://www.facebook.com/krystian.hebel.7">
+  <img
+    src="/remark-templates/3mdeb-presentation-template/images/facebook.png"
+    width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
+    facebook.com/krystian.hebel.7
    </a>
-- <a href="mailto:YOUR.NAME@3mdeb.com">
+- <a href="mailto:krystian.hebel@3mdeb.com">
   <img
     src="/remark-templates/3mdeb-presentation-template/images/email.png"
     width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
-    YOUR.NAME@3mdeb.com
+    krystian.hebel@3mdeb.com
   </a>
-- <a href="https://www.linkedin.com/in/YOUR_LINKEDIN">
+- <a href="https://www.linkedin.com/in/krystian-hebel-b48424205">
   <img
     src="/remark-templates/3mdeb-presentation-template/images/linkedin.png"
     width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
-    linkedin.com/in/YOUR_LINKEDIN
+    linkedin.com/in/krystian-hebel-b48424205
   </a>
 ]
 
