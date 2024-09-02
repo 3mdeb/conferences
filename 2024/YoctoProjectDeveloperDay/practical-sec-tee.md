@@ -95,15 +95,56 @@ style="margin-left:40px; margin-top:40px"> ]
 
 # Agenda
 
+## Tymek
+
+- What is TEE (2-4 slides)?
+  + concept description
+  + overview on different architectures
+  + we focus on ARM Cortex-A
+  + we mentiond briefly Intel, RISC-V. Intel
+  + secure world vs non-secure world
+- TEE API specififactions (1-2 slides)
+  + focus Global Platform API
+    - show that something liek this exist,s try to explain the purpose
+- OPTEE - about + history
+  + https://www.iwavesystems.com/product/op-tee-for-android-and-linux/
+  + architecture, tee-supplicant
+- optee - features overview (1 slide)
+- fTPM - autopromotion + example of trusted service  (1 slide)
+- optee secure storage (1 slide)
+  + https://optee.readthedocs.io/en/latest/architecture/secure_storage.html
+
+extras:
 - What is Trusted Execution Environment?
   + Normal World vs Secure World
     - Different architecture overview
   + Root of trust
   + TEE use cases
-    + Secure storage
-- Integrating TEE solutions with Yocto:
-  + Current Yocto community support
+    - Secure storage
+
+## Daniil
+
+- meme star wars
+- optee support in Yocto (3 slides)
+  + meta-arm - compilation from sources
+  + problems with binaries provied by vendors
+  + optee format (bin vs elf)
+  + how other vendors provide/support optee (perhaps support matrix?)
+
+- optee secure storage userland integration
+  + https://optee.readthedocs.io/en/latest/building/userland_integration.html
+
+- practical integration on RK3566 (3-4 slides)
+  + adding optee to image
+  + adding userspace components
+- Zarhus integration
+  + source code references
+- bonus:
+  + optee test suite integrtation
+
 - Outro and sources
+
+???
 
 ---
 
@@ -120,21 +161,21 @@ inside are protected with respect to confidentiality and integrity._
 vary from architecture to architecture each having it's own caveats
 - According to Confidential Computing Consortium TEE provides a level of
 assurance of
-    - Data integrity
-        - preventing unauthorized entities from altering data when data is being
+  + Data integrity
+    - preventing unauthorized entities from altering data when data is being
         processed
-    - Data confidentiality
-        - unauthorized entities cannot view data while it is in use within the
+  + Data confidentiality
+    - unauthorized entities cannot view data while it is in use within the
         TEE
-    - Code integrity
-        - the code in the TEE cannot be replaced or modified by unauthorized
+  + Code integrity
+    - the code in the TEE cannot be replaced or modified by unauthorized
         entities
 - Also called Confidential Computing
-    - TODO elaborate, there's a difference
+  + TODO elaborate, there's a difference
 - TEE provides a level of protection against software attacks generated from the
 normal execution environment
-    - Also assists in protecting against hardware attacks.
-        - TODO elaborate
+  + Also assists in protecting against hardware attacks.
+    - TODO elaborate
 
 ---
 
@@ -146,7 +187,7 @@ normal execution environment
 
 - Arm TrustZone
 - High-level overview
-    - Trusted Applications are also protected from each other
+  + Trusted Applications are also protected from each other
 
 ---
 
