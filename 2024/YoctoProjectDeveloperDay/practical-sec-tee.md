@@ -152,6 +152,8 @@ extras:
 
 .center[ <img src="/img/TEE_cpu_visual.svg" height="250px"> ]
 
+<br>
+
 _A secure area of a main processor that guarantees that the code and data loaded
 inside are protected with respect to confidentiality and integrity._
 
@@ -179,9 +181,29 @@ normal execution environment
 
 ---
 
-# Normal vs Secure Worlds - Arm Cortex-A
+# Normal vs Secure Worlds - Arm
 
-.center[ <img src="/img/TEE_ARM_Cortex-a.svg" height="250px"> ]
+.left-column50[
+<br>
+### Arm Cortex-A
+]
+
+.right-column50[
+<img src="/img/TEE_ARM_Cortex-a.svg" height="180px" style="margin-left:-120px; margin-top:-10px"> 
+]
+
+.left-column50[
+<br>
+<br>
+<br>
+<br>
+<br>
+### Arm Cortex-M
+]
+
+.right-column50[
+<img src="/img/TEE_ARM_Cortex-m.svg" height="180px" style="margin-left:-17px"> 
+]
 
 ???
 
@@ -191,25 +213,9 @@ normal execution environment
 
 ---
 
-# Normal vs Secure Worlds - Arm Cortex-M
+# Normal vs Secure Worlds - Others
 
 .center[ <img src="/img/TEE_ARM_Cortex-m.svg" height="250px"> ]
-
----
-
-# Normal vs Secure Worlds - x86
-
-???
-
-- TODO (briefly)
-
----
-
-# Normal vs Secure Worlds - RISC-V
-
-???
-
-- TODO (briefly)
 
 ---
 
@@ -217,14 +223,51 @@ normal execution environment
 
 ### TPM
 
-<img src="/img/tpm_ftpm_tee_driver1.svg" height="79px">
+<img src="/img/tpm_ftpm_tee_driver1.svg" height="55px">
 
 ### fTPM
 
-<img src="/img/tpm_ftpm_tee_driver3.svg" height="130px" style="margin-top:-25px">
+<img src="/img/tpm_ftpm_tee_driver2.svg" height="55px">
 
 ### fTPM as TA
 
-<img src="/img/tpm_ftpm_tee_driver3.svg" height="130px" style="margin-top:-25px">
+<img src="/img/tpm_ftpm_tee_driver3.svg" height="90px" style="margin-top:-25px">
+
+---
+
+# Trusted OS options
+
+.pure-table[
+| Company              | Product         | Hardware Used          | API Standard                  | Is Open-Source?       | Supported by Yocto? |
+|----------------------|-----------------|------------------------|-------------------------------|-----------------------|---------------------|
+| Alibaba              | Cloud Link TEE  | ?                      | GlobalPlatform                | ❌                    | ❌                  |
+| Apple                | Secure Enclave  | Separate processor     | Proprietary                   | ❌                    | ❌                  |
+| BeanPod              | ISEE            | ARM TrustZone          | GlobalPlatform                | ❌                    | ❌                  |
+| Huawei               | iTrustee        | ARM TrustZone          | GlobalPlatform                | ❌                    | ❌                  |
+| Google               | Trusty          | ARM / Intel            | Proprietary                   | Partially Open-Source | ❌                  |
+| Linaro               | OPTEE           | ARM TrustZone          | GlobalPlatform                | ✔️                     | ✔️                   |
+| ProvenRun            | ProvenCore      | ARM TrustZone          | ?                             | ❌                    | ❌                  |
+| Qualcomm             | QTEE            | ARM TrustZone          | GlobalPlatform + Proprietary  | ❌                    | ❌                  |
+| Samsung              | TEEgris         | ARM TrustZone          | GlobalPlatform                | ❌                    | ❌                  |
+| TrustKernel          | T6              | Arm / Intel            | GlobalPlatform                | ✔️ *                   | ❌                  |
+| Trustonic            | Kinibi          | ARM TrustZone          | GlobalPlatform                | ❌                    | ❌                  |
+| Watchdata            | WatchTrust      | ARM TrustZone          | GlobalPlatform                | ❌                    | ❌                  |
+]
+
+.footnote[
+
+Sources:
+
+[wikipedia.org/Trusted_execution_environment](https://en.wikipedia.org/wiki/Trusted_execution_environment)
+
+*[github.com/liwenhaosuper/t6](https://github.com/liwenhaosuper/t6)
+(The link to the supposed source code is dead)
+]
+
+???
+
+- Wikipedia also specifies a formally-validated static partitioning über eXtensible
+Micro-Hypervisor Framework.
+    - Segway into Crosscon HV
 
 ---
