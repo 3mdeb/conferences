@@ -45,7 +45,6 @@ width="150px" style="marking-top:-50px">
 Daniil Klimuk
 
 _Junior Embedded Systems Developer_]
-Normal vs Secure Worlds
 - <a href="mailto:daniil.klimuk@3mdeb.com">
   <img
     src="/remark-templates/3mdeb-presentation-template/images/email.png"
@@ -152,6 +151,8 @@ extras:
 
 .center[ <img src="/img/TEE_cpu_visual.svg" height="250px"> ]
 
+<br>
+
 _A secure area of a main processor that guarantees that the code and data loaded
 inside are protected with respect to confidentiality and integrity._
 
@@ -179,9 +180,29 @@ normal execution environment
 
 ---
 
-# Normal vs Secure Worlds - Arm Cortex-A
+# Normal vs Secure Worlds - Arm
 
-.center[ <img src="/img/TEE_ARM_Cortex-a.svg" height="250px"> ]
+.left-column50[
+<br>
+### Arm Cortex-A
+]
+
+.right-column50[
+<img src="/img/TEE_ARM_Cortex-a.svg" height="180px" style="margin-left:-120px; margin-top:-10px"> 
+]
+
+.left-column50[
+<br>
+<br>
+<br>
+<br>
+<br>
+### Arm Cortex-M
+]
+
+.right-column50[
+<img src="/img/TEE_ARM_Cortex-m.svg" height="180px" style="margin-left:-17px"> 
+]
 
 ???
 
@@ -191,25 +212,9 @@ normal execution environment
 
 ---
 
-# Normal vs Secure Worlds - Arm Cortex-M
+# Normal vs Secure Worlds - Others
 
 .center[ <img src="/img/TEE_ARM_Cortex-m.svg" height="250px"> ]
-
----
-
-# Normal vs Secure Worlds - x86
-
-???
-
-- TODO (briefly)
-
----
-
-# Normal vs Secure Worlds - RISC-V
-
-???
-
-- TODO (briefly)
 
 ---
 
@@ -217,14 +222,69 @@ normal execution environment
 
 ### TPM
 
-<img src="/img/tpm_ftpm_tee_driver1.svg" height="79px">
+<img src="/img/tpm_ftpm_tee_driver1.svg" height="55px">
 
 ### fTPM
 
-<img src="/img/tpm_ftpm_tee_driver3.svg" height="130px" style="margin-top:-25px">
+<img src="/img/tpm_ftpm_tee_driver2.svg" height="55px">
 
 ### fTPM as TA
 
-<img src="/img/tpm_ftpm_tee_driver3.svg" height="130px" style="margin-top:-25px">
+<img src="/img/tpm_ftpm_tee_driver3.svg" height="90px" style="margin-top:-25px">
+
+???
+
+- If you've heard of fTPM you might be wondering how does it differ
+    - Without going into much detail fTPM can be thought as a software implementation of a TPM module
+    - Normally it's implemented only in the firmware so the OS calls TPM and firmware is responsive for handling requests and security
+    - Can be implemented in TEE thus offering better security and extended functionality
+---
+
+# Secure Storage vs fTPM - Shameless Plug
+
+
+.center[
+
+### For those interested more about fTPM's:
+
+
+[<img src="/img/FOSDEM_ftpm_ta_tee_blured.png" height="350px">
+](https://fosdem.org/2024/schedule/event/fosdem-2024-3097-securing-embedded-systems-with-ftpm-implemented-as-trusted-application-in-tee/)
+]
+
+---
+
+# Trusted Execution Environment (Secure OS) options
+
+.pure-table[
+| Company              | Product         | Hardware Used          | API Standard                  | Is Open-Source?       | Supported by Yocto? |
+|----------------------|-----------------|------------------------|-------------------------------|-----------------------|---------------------|
+| Alibaba              | Cloud Link TEE  | ?                      | GlobalPlatform                | ❌                    | ❌                  |
+| Apple                | Secure Enclave  | Separate processor     | Proprietary                   | ❌                    | ❌                  |
+| BeanPod              | ISEE            | ARM TrustZone          | GlobalPlatform                | ❌                    | ❌                  |
+| Huawei               | iTrustee        | ARM TrustZone          | GlobalPlatform                | ❌                    | ❌                  |
+| Google               | Trusty          | ARM / Intel            | Proprietary                   | Partially Open-Source | ❌                  |
+| Linaro               | OPTEE           | ARM TrustZone          | GlobalPlatform                | ✔️                     | ✔️                   |
+| ProvenRun            | ProvenCore      | ARM TrustZone          | ?                             | ❌                    | ❌                  |
+| Qualcomm             | QTEE            | ARM TrustZone          | GlobalPlatform + Proprietary  | ❌                    | ❌                  |
+| Samsung              | TEEgris         | ARM TrustZone          | GlobalPlatform                | ❌                    | ❌                  |
+| TrustKernel          | T6              | Arm / Intel            | GlobalPlatform                | ? *                   | ❌                  |
+| Trustonic            | Kinibi          | ARM TrustZone          | GlobalPlatform                | ❌                    | ❌                  |
+| Open-TEE             | Open-TEE        | Emulation only         | GlobalPlatform                | ✔️                     | -                   |
+]
+
+.footnote[
+
+Sources:
+
+[wikipedia.org/Trusted_execution_environment](https://en.wikipedia.org/wiki/Trusted_execution_environment)
+
+]
+
+???
+
+- Wikipedia also specifies a formally-validated static partitioning über eXtensible
+Micro-Hypervisor Framework.
+    - Segway into Crosscon HV
 
 ---
