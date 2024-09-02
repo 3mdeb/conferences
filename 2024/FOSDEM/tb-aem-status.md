@@ -118,9 +118,15 @@ last year's summit
 
 ???
 
-AEM attack is ...
+Evil Maid attack is ...
 
-In the current QubesOS implementation it reuiqres TPM and DRTM technology
+In the current QubesOS implementation it requires TPM and DRTM technology
+
+---
+
+class: center, middle, intro
+
+# Current state
 
 ---
 
@@ -183,20 +189,14 @@ TBD: photo of supported HW?
     - Asus KGPE-D16
     - Supermicro M11SDV-4C-LN4F (QubesOS 4.2 install issue)
     - subject to change
-        + we had some success with HP thin client for Intel, considering AMD alternatives
 
-.center.image-30[![](/img/kgpe-d16.jpeg) ![](/img/M11SDV-4C-LN4F_spec.webp)]
+.center.image-40[![](/img/kgpe-d16.jpeg) ![](/img/M11SDV-4C-LN4F_spec.webp)]
 .footnote[QubesOS installation issue: https://github.com/QubesOS/qubes-issues/issues/8322#issuecomment-1904423204]
 
 ---
 
+class: center, middle, intro
 # Further plans
-
-* Phase 5
-* Testing and documentation improvements
-* Upstream TrenchBoot AMD support to the Linux kernel
-* More Dasharo synergies
-* Early adopters
 
 ---
 
@@ -243,7 +243,7 @@ TBD: photo of supported HW?
     - https://lore.kernel.org/lkml/20231110222751.219836-1-ross.philipson@oracle.com/
 * nlnet grant for AMD equivalent
     - https://nlnet.nl/project/TrenchBoot-AMD/
-* Sync with Oracle latest work
+* Sync with Oracle's latest work
 * Will need some more time to start this effort
     - ideally if some Intel part is already merged
 
@@ -283,11 +283,22 @@ fix problems in that area.
 
 .center[.image-80[![](/img/tb_aem_early_adopter.drawio.svg)]]
 
+* Interested? Join [Matrix channel](https://matrix.to/#/#OSFW-Trenchboot:matrix.org).
+
 ???
 
 TBD: call to action?
 * becoming one
 * reporting feedback
+
+---
+
+# Matrix channel
+
+* TrenchBoot Matrix channel
+  - https://matrix.to/#/#OSFW-Trenchboot:matrix.org
+
+.center[.image-50[![](/img/tb_matrix_channel.png)]]
 
 ---
 
@@ -337,3 +348,9 @@ always open to cooperate and discuss.
 <br>
 
 ## .center[Q&A]
+
+---
+
+# After party
+
+.center[.image-85[![](/img/fosdem_2024_ppub_poster.png)]]
