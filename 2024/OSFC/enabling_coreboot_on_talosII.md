@@ -11,7 +11,8 @@ class: center, middle, intro
 
 ???
 
-Talos II: POWER9 platform by RaptorCS
+Hello everybody, in this talk I'll describe our adventures during porting of
+coreboot for Talos II: POWER9 platform made by RaptorCS.
 
 ---
 
@@ -52,6 +53,11 @@ Talos II: POWER9 platform by RaptorCS
   </a>
 ]
 
+???
+
+My name is KH, I've been working at 3mdeb for over 6 years now, for about half
+of that time I was engaged in this project.
+
 ---
 
 # Who we are ?
@@ -70,6 +76,11 @@ Talos II: POWER9 platform by RaptorCS
 * Official consultants for Linux Foundation fwupd/LVFS project since 2020
 * IBM OpenPOWER Foundation members since 2020
 
+???
+
+Something about 3mdeb, here's coreboot logo and OpenPOWER logo, the rest isn't
+important for today's talk.
+
 ---
 
 # Agenda
@@ -85,13 +96,8 @@ Talos II: POWER9 platform by RaptorCS
 
 ???
 
-- why: coreboot is simpler than hostboot
-- hardware: how many cores in SoC
-- reset vector: SBE, SEEPROM, PNOR, initial state
-- Debugging: BMC => pdbg, QEMU => monitor
-- decisions & assumptions: BE
-- implementation: easy and hard part
-- current state: what works, what doesn't
+This is the agenda, as you can see there is a lot I'd like to talk about so
+let's begin.
 
 ---
 
@@ -108,6 +114,20 @@ Talos II: POWER9 platform by RaptorCS
 
 - GPLv2, some BSD-3-clause
 ]
+
+???
+
+To understand why we even thought about this project, let's start with
+comparison between Hostboot (which is part of, let's say, "traditional"
+firmware for OpenPOWER) and coreboot. There are other parts of firmware,
+running both before and after Hostboot/coreboot, but we considered them to be
+good enough to be left with minimal or no changes.
+
+We also made a port of Heads for this platform, but sorry, we don't have the
+time to talk about everything.
+
+As you can see, both projects are already open-source, so nothing really gained
+there by switching to coreboot.
 
 ---
 
@@ -128,6 +148,17 @@ count: false
 - GPLv2, some BSD-3-clause
 - x68, ARM, RISC-V, PPC64
 ]
+
+???
+
+coreboot runs on many different architectures, Hostboot is PPC only.
+
+#### Backup
+
+Whether this is a good thing is
+debatable, on one hand we can have common tools and drivers in the OS to
+interact with coreboot (like cbmem), but OTOH peculiarities of one architecture
+may negatively impact the rest.
 
 ---
 
@@ -152,6 +183,8 @@ count: false
 ]
 
 ???
+
+Programming languages.
 
 XML is used because Hostboot uses data-driven programming. Perl and Tcl are used
 to convert it into data that can be parsed in C/C++.
@@ -182,7 +215,8 @@ count: false
 
 ???
 
-- machine generated: initfiles, will be shown later
+Hostboot is partially machine generated: it uses so-called initfiles, which will
+be shown later. coreboot OTOH is written by humans, for humans.
 
 ---
 
@@ -214,8 +248,16 @@ count: false
 
 ???
 
-- LOC counted with cloc 1.82
+Code base.
+
+- {{LOC counted with cloc}}
+- roughly in the same ballpark
 - empty lines not counted
+- this doesn't include most of the new code for Talos. In total, we added about
+35K lines, only a small part of that has been already upstreamed
+
+#### Backup
+
 - coreboot includes documentation and utils, src only is 1'298'407 / 686'173
 
 ---
@@ -255,6 +297,22 @@ count: false
   - static code<br>&nbsp;
   - everything fits in cache
 ]
+
+???
+
+The way Hostboot operates makes it full-blown operating system. It switches to
+user mode to do most of the tasks as separate processes, while still switching
+back to supervisor mode to do what can't be done in user space. Because of that,
+it also uses virtual memory, while coreboot operates on physical memory only.
+
+On top of that, Hostboot loads its libraries dynamically when needed. It is also
+significantly bigger, so some of the code is trashed and has to be reloaded back
+from flash multiple times. Please don't ask me how they deal with TOCTOU {time
+of check, time of use} issues, it was so FUBAR that I didn't even bothered to
+dig into that.
+
+Because of all those differences, {{switch to next slide}} coreboot is much
+faster.
 
 ---
 
@@ -312,11 +370,12 @@ But this form isn't used, and AFAICT there is no public parser available.
 
 ???
 
-Not actually used by Talos II. File name suggests it is for Axone, while Talos
-has Nimbus chips.
+Here's an example of initfile mentioned earlier. This particular file isn't
+actually used by Talos II. File name suggests it is for Axone, while Talos has
+Nimbus chips, more on that later.
 
-There are only 2 .initfile files, probably someone forgot to remove them from
-the tree.
+There are only 2 .initfile files in this form in Hostboot source code, my guess
+is that someone just forgot to remove them from the tree.
 
 ---
 
@@ -330,8 +389,9 @@ Example of initfile in converted form:
 
 ???
 
-There are four different ways of writing 0 and three ways of writing 1 on this
-slide.
+And this is an example of converted initfile, part one - definitions. Note that
+on this slide there are four different ways of writing 0 and three ways of
+writing 1.
 
 ---
 
@@ -346,7 +406,13 @@ version and attributes, write magic number back, repeat for the next register.
 
 ???
 
-Most of the registers are documented, but not all.
+Part two, the code. Always similar, read some register, check some attributes,
+write magic number back, go to the next one.
+
+Most of the registers are described in the documentation, but not all, I'll get
+back to that later.
+
+#### Backup
 
 Other than license header, not a single line of comment in those files.
 
@@ -370,9 +436,14 @@ Talos II:
 
 ???
 
-SATA controller - not open, version without it is also available.
+Quick look at the mainboard.
 
-2 CPUs, lots of RAM slots (registered DDR4 with ECC), lots of PCIe
+Under a heatsink on the right, there is SATA controller - it's firmware is the
+only part of the platform that isn't open. It is optional, version without it is
+also available.
+
+The platform has 2 CPU sockets, lots of RAM slots (registered DDR4 with ECC),
+lots of PCIe.
 
 ---
 
@@ -386,7 +457,16 @@ Talos II Lite:
 
 ???
 
-Less slots, SATA not an option
+There is also Talos II Lite, cheaper (but still not cheap) and with less slots.
+SATA controller is not an option on Lite.
+
+```
+RaptorCS prices:
+Talos 2: $4,126.75
+Lite: $2,459.70
+Mainboard only, add to that RAM and CPUs, ranging from $944.87 for 4-core to
+$4,961.25 for 22-core.
+```
 
 ---
 
@@ -410,6 +490,19 @@ Specifications:
 - 1 ASpeed BMC with OpenBMC
 - 1 VGA video port
 
+???
+
+This are full specifications for reference, I've already mentioned most of them.
+What I didn't mention is that the platform has Aspeed BMC, running OpenBMC. This
+makes remote work very easy.
+
+#### Backup
+
+I can count on fingers of one hand how
+many times I had to go to the lab to give the platform a push. The usual cause
+was filling up BMC's ramfs to a point where it stopped responding and required
+a power cycle.
+
 ---
 
 # Hardware
@@ -417,8 +510,8 @@ Specifications:
 POWER9 chip types:
 
 - Scale Out (Nimbus) with directly attached memory, used on Talos II
-- Scale Up (Cumulus) with memory connected through memory controllers called
-  Centaurs
+- Scale Up (Cumulus, Axone) with memory connected through memory controllers
+  called Centaurs
 
 Nimbus modules (packages):
 
@@ -432,7 +525,17 @@ Nimbus modules (packages):
 
 ???
 
-Talos II uses least server-like option.
+When showing initfiles, I briefly mentioned Nimbus and Axone. Those are
+types of POWER9 chips, respectively used for Scale Out and Scale Up.
+
+#### Backup
+
+Scale Out (aka horizontal scaling) means lots of small nodes running distributed
+software, Scale Up (vertical) - one supercomputer, lots of CPUs and memory.
+
+**Talos II uses the least server-like option.**
+
+#### Backup
 
 XBus connects two CPUs. There is only one XBus for Sforza, so max 2 CPUs on
 board.
@@ -449,11 +552,19 @@ Many cores of SoC:
 
 ???
 
-PPE - Programmable PowerPC-lite Engines, uses PowerPC Architecture v2.02 which
-is the same as implemented by POWER5: https://wiki.raptorcs.com/wiki/Power_ISA
+Now, lets take a look at all of the cores inside SoC. Main cores, visible to OS,
+are represented as salmon blocks, everyone knows about those, they are boring,
+lets focus on the rest.
+
+Other cores are orange, most of them have dedicated static RAM, sometimes it is
+shared between few tightly coupled components.
+
+All of the orange cores are PPEs - Programmable PowerPC-lite Engines, they use
+PowerPC Architecture v2.02 which is the same as implemented by POWER5
+{https://wiki.raptorcs.com/wiki/Power_ISA}
 
 OCC - On-Chip Microcontroller, responsible for "high-level" power management,
-also uses POWER ISE in slightly newer version: Power ISA v2.03
+also uses POWER ISA, in slightly newer version: Power ISA v2.03
 
 CME - Core Management Engine, responsible for low-level power management, e.g.
 waking up the core after it was powered off.
@@ -464,7 +575,10 @@ waking up the core after it was powered off.
 - PGPE - Pstate GPE, used for frequency/voltage control of cores and package as
   a whole
 
-Sforza has less I/O PPEs than shown on the diagram.
+#### Backup:
+
+Sforza (i.e. chip used by Talos) has less I/O PPEs than shown on the diagram,
+those are used mostly for OpenCAPI which isn't supported on Sforza,
 
 ---
 
@@ -481,10 +595,16 @@ Yet another view of POWER9:
 This is POWER9 Processor from a Pervasive Point of View.
 
 Simply put, Pervasive is kind of bus used to communicate with chiplets through
-a mechanism called SCOM - Serial Communications. It exposes registers used for
-configuring hardware. It was used in initfiles shown on previous slides.
+a mechanism called SCOM - Serial Communications. It was used in initfiles shown
+on previous slides, it is also used by new coreboot code, a lot.
 
-Each chiplet has its own prefix in SCOM address space.
+#### Backup
+
+Each chiplet has its own prefix in SCOM address space. Sometimes a chiplet
+consists of multiple subcomponents, e.g. memory controller has a set of
+registers for each channel, and PCIe - for lane. Each such set lives at a
+different offset, and documentation usually has description for only one of
+them, but not necessarily the first one.
 
 ---
 
@@ -496,13 +616,17 @@ Each chiplet has its own prefix in SCOM address space.
 
 ???
 
-Sorry about quality, it was already like this in the linked source.
+Next subject: how the platform starts.
+
+Sorry about the quality, it was already like this in the linked source.
 
 Hostboot (and by extension coreboot) only does the steps in blue.
 
 Each step has substeps, called 'istep' - IPL step, IPL =  Initial Program Load.
-Those are described in the PDF, but no time to describe them all in detail. As
-we're talking about reset vector, let's focus on the left column.
+Those are described in the PDF, but no time to list them all here. As we're
+talking about reset vector, let's focus on the left column.
+
+Step 0 is marked as IBM confidential, but {{next slide}}
 
 ---
 
@@ -526,20 +650,15 @@ we're talking about reset vector, let's focus on the left column.
 
 ???
 
-Step 0 isn't 'IBM confidential' on OpenPOWER, it is done by BMC and partially
-FPGA for low level power management.
+... on OpenPOWER, it is done by BMC and partially FPGA for power sequencing.
 
-Pervasive is the name of bus between SBE and other cores, including external
-(from SoC point of view) interface to BMC.
+SBE (Self-Boot Engine) is another of embedded cores in P9 SoC. It uses ISA 2.07
+which is newer than that of other PPEs, it corresponds to an embedded subset of
+POWER8. It starts execution from ROM mask - while the code for it is publicly
+available, it is fused into the processor and can't be freely modified.
 
-SBE (Self-Boot Engine) is one of many embedded cores in P9 SoC, it is not one of
-the cores available to OS. It is also of POWER architecture, but an older
-version of it (ISA 2.07 instead of 3.0 used by main cores). It starts execution
-from ROM mask - while the code for it is publicly available, it is fused into
-the processor and can't be freely modified.
-
-SEEPROM is Secure EEPROM (electrically erasable programmable read-only memory)
-embedded in the SoC, it is not the main flash. It holds most of the SBE code,
+SEEPROM {{is Secure EEPROM (electrically erasable programmable read-only memory)
+embedded in the SoC, it is not the main flash. It}} holds most of the SBE code,
 as well as HBBL (Hostboot bootloader). ROM mask has enough code to load further
 stages into SBE SRAM and start its execution.
 
@@ -609,17 +728,23 @@ BACKUP_PART 0x03ff7000..0x03fff000 (actual=0x00000000) [----RB----]
 
 ???
 
-For easier transition we decided to reuse this layout, and put coreboot in
-partitions used previously by Hostboot.
+This is how the flash layout looks like on Talos. For easier transition we
+decided to reuse this layout, and put coreboot in partitions used previously by
+Hostboot.
 
-Normally SBE starts HBBL from SEEPROM, which loads HBB and jumps to it. HBB
-loads other code as needed.
+Hostboot takes about 30 MB in total, split across multiple partitions.
+
+SBE loads and starts copy of HBBL from SEEPROM, which loads HBB and jumps to it.
+HBB loads other code as needed.
 
 Writing to SEEPROM is scary - we don't have any idea how many write cycles it
 can take, and POWER9 CPUs aren't cheap. Because of that we decided to use HBB
-for coreboot's bootblock and HBI for the rest. Writing bootblock to SEEPROM was
-tested and it worked, but then bootblock became too big, now it only fits after
-enabling LTO.
+for coreboot's bootblock and HBI for the rest.
+
+#### Backup
+
+Writing bootblock to SEEPROM was tested and it worked, but at some point
+bootblock became too big, now it only fits after enabling LTO.
 
 ---
 
@@ -690,6 +815,8 @@ Options:
 
 ???
 
+Big kudos to hanetzer who told us about this tool.
+
 This isn't a full list, just the most interesting commands.
 
 GPR - general purpose register
@@ -724,28 +851,11 @@ Important parts of this slide:
 - R1 - stack is purely software concept
 - R2
 
+TOC - table of contents
+
 GOT - global offset table
 
 SDA - small data area
-
----
-
-# PPC64 ABI, decisions and assumptions
-
-Function descriptors:
-
-- TOC base must be loaded before calling external functions.
-- Most instructions allow 16b offsets, so TOC base is typically the first
-  address in the TOC plus 0x8000, thus allowing access to up to 64 KiB in single
-  instruction.
-- Function descriptor holds 3 doubleword pointers: entry point, TOC base (R2
-  value) and environment (not used in C).
-- Function pointers are actually pointers to function descriptor, not its entry
-  point as on x86.
-- All descriptors are collected in `.opd` (official procedure descriptors)
-  section.
-- This renders `build/cbfs/fallback/*.map` less useful for PPC64.
-- More info about descriptors: https://refspecs.linuxfoundation.org/ELF/ppc64/PPC-elf64abi.html#FUNC-DES
 
 ---
 
@@ -763,9 +873,29 @@ require a reset.
 - Separate `libgcc.a` for BE and LE, compiler defaults to BE one. At the time
   I&nbsp;didn't know that LE version existed and could be used, so BE was chosen.
 - This exposed some endianness bugs and inaccuracies in:
+???
+
+Now let's talk about decisions. First of them is the use of big endian. This was
+an effect of my ignorance and laziness, as I didn't know that LE libraries
+existed in crossgcc built by coreboot, and when I finally learned about it, I
+was already committed to fix "that final bug" in CBFS handling code.
+--
+
   - CBFS: `cbfstool` runs on LE host,
+???
+
+And then "that final bug" in FMAP.
+--
+
   - FMAP: not immediately caught because `0x00020200` is a palindrome,
+???
+
+And then "that final bug" in CBMEM.
+--
+
   - CBMEM: written in BE, read from LE OS,
+--
+
   - Mostly fixed by adding `htole`/`letoh` and clearly defining fields as LE.
 
 ---
@@ -790,6 +920,8 @@ Decisions and assumptions:
   - Use FDT for passing information to Skiboot.
 
 ???
+
+Some decisions were made to make the porting easier.
 
 There is a comment in SBE code that HB team asked them to configure serial,
 because HB couldn't fit the code to do so. Remember that HB is ~30 MB and SBE
@@ -838,16 +970,20 @@ FDT - flat device tree. Hostboot used HDAT.
 
 ???
 
+So how the implementation looked like?
+
 1st register wasn't documented, its name was taken from Hostboot definitions,
 but those definitions weren't used by initfiles. Some of them we found later,
-documentation usually has only one instance of e.g. port, which may not be the
-first one.
+because as mentioned earlier, documentation has only one instance of e.g. port,
+which may not be the first one.
 
 Numbers in square brackets are bit numbers. Because these registers are BE,
-MSB is bit 0, contrary to x86.
+MSB is bit 0, contrary to x86. This alone invalidates use of bitfields.
 
 About `ATTR_`, Hostboot keeps **everything** in attributes, kind of database.
 As this is part of RAM initialization, those particular values came from SPD.
+In other instances, it may come from a PNOR partition, VPD or be created from
+XML during build.
 
 ---
 
@@ -875,7 +1011,7 @@ available for free on DRAM vendors sites.
 
 PCIe init: resource allocation done by Skiboot
 
-OCC - On-Chip Microcontroller, responsible for "high-level" power management
+OCC - On-Chip Microcontroller
 
 CME - Core Management Engine
 
@@ -891,7 +1027,8 @@ HOMER - Hardware Offload Microcode Engine Region
 
 ???
 
-This document was added as a result of us asking on OP mailing list.
+This diagram comes from a document that was added as a result of us asking on
+OpenPOWER mailing list.
 
 HOMER is 4 MB (per chip/CPU) block of data and code in main RAM. Without getting
 into too much details, it is divided into 4 x 1MB sections, each responsible for
@@ -906,7 +1043,9 @@ pieces, it also communicates with outside world (host and BMC).
 3rd: CME code and data, basically does to core chiplets what SPGE did to quad
 chiplets. It also includes self-restore code: few instructions that are run by
 main cores/threads to restore GPRs, SPRs and some SCOM registers. Values to be
-restored are written as part of the instructions.
+restored are written as part of the instructions. While it uses different way of
+communicating with core that is being woken up, this is similar in principle to
+how SBE started the first core.
 
 4th: PGPE code and data, includes large tables mapping frequency and voltage 
 values to Pstates.
@@ -917,9 +1056,20 @@ values to Pstates.
 
 Currently, HOMER prepared by coreboot is different than what Hostboot does:
 
+???
+
+HOMER made by coreboot isn't the same as Hostboot's, but in many cases it is
+closer to the math presented in Hostboot's comments.
+
+--
+
 - Hostboot uses complicated floating-point operations that in the end result in
   the same floor values as integer math would do
+--
+
   - except sometimes intermediate values exceed `float` precision
+--
+
 - Hostboot has an interesting approach to rounding:
 
 ```
@@ -934,6 +1084,8 @@ Currently, HOMER prepared by coreboot is different than what Hostboot does:
 
 - https://github.com/3mdeb/openpower-coreboot-docs/blob/main/devnotes/hostbug.md
   contains this and more examples of original programming ideas
+--
+
 - enabling existing Hostboot's debug output to log math done when building HOMER
   increases boot time
 --
@@ -948,13 +1100,16 @@ Non-technical issues:
 - POWER9 documentation is relatively good, but not ideal
   - some missing descriptions here and there
   - changes between CPU revisions aren't always reflected in docs
+--
+
 - XIVE documentation was reported to be lost `¯\_(ツ)_/¯`
   - wasn't needed in the end
-- Communication with big companies takes time
-
 ???
 
 XIVE - External Interrupt Virtualization Engine
+--
+
+- Communication with big companies takes time
 
 --
 
@@ -984,21 +1139,25 @@ Where's the code at?
   - [&#104;ttps://review.coreboot.org/q/topic:"talos-2"](https://review.coreboot.org/q/topic:"talos-2")
   - basic build infrastructure, PNOR access, SCOM drivers
   - not enough for working platform yet
+--
+
 - complete code can be found on our repo
   - https://github.com/Dasharo/coreboot/blob/raptor-cs_talos-2/patches
   - includes what was sent to upstream (+/- changes after review)
   - enough for booting Linux
+???
+
+Complete code can be found on a repo of a project that must not be named
+
+--
+
 - customized Skiboot
   - https://github.com/Dasharo/skiboot/tree/raptor-cs_talos-2
   - includes drivers for SLB9545 I2C TPM
   - Skiboot from RaptorCS should work as well
+--
 
----
-
-# Current state & TODOs
-
-<style>.m2em {margin-top: -2em}</style>
-.m2em.center[.image-90[![](/img/debian_on_talos.png)]]
+- I would mention Heads here, but I'm probably out of time already
 
 ---
 
@@ -1007,9 +1166,11 @@ Where's the code at?
 What works:
 
 - booting Linux
-- PCIe (tested with NVMe adapted and SSD)
+- PCIe (tested with NVMe adapter and SSD)
 - both CPUs, all RAM slots
 - either Heads or Petitboot as bootloader
+
+--
 
 What needs more work:
 
@@ -1031,6 +1192,13 @@ What needs more work:
 
 ---
 
+# Current state & TODOs
+
+<style>.m2em {margin-top: -2em}</style>
+.m2em.center[.image-90[![](/img/debian_on_talos.png)]]
+
+---
+
 <br>
 <br>
 <br>
@@ -1040,8 +1208,75 @@ What needs more work:
 ???
 
 bonus slides:
+
+---
+
+count: false
+
+# Bonus slides
+
+Function descriptors:
+
+- TOC base must be loaded before calling external functions.
+- Most instructions allow 16b offsets, so TOC base is typically the first
+  address in the TOC plus 0x8000, thus allowing access to up to 64 KiB in single
+  instruction.
+- Function descriptor holds 3 doubleword pointers: entry point, TOC base (R2
+  value) and environment (not used in C).
+- Function pointers are actually pointers to function descriptor, not its entry
+  point as on x86.
+- All descriptors are collected in `.opd` (official procedure descriptors)
+  section.
+- This renders `build/cbfs/fallback/*.map` less useful for PPC64.
+- More info about descriptors: https://refspecs.linuxfoundation.org/ELF/ppc64/PPC-elf64abi.html#FUNC-DES
+
+---
+
+count: false
+
+# Bonus slides
+
+Power ISA has interesting function names.
+
+--
+
+Some of them are pretty darn good:
+
+--
+
+`darn` - Deliver A Random Number
+
+--
+
+There is also something for Star Trek fans:
+
+--
+
+`miso` - Make It SO
+
+--
+
+This one will make you wanna sing:
+
+--
+
+Old MacDonald had a farm,
+--
+
+`eieio` - Enforce In-order Execution of I/O
+
+---
+
+count: false
+
+# Bonus slides
+
+Ever wanted to use PHP for firmware development?
+
 - https://gitlab.raptorengineering.com/openpower-firmware/machine-talos-ii/machine-xml/-/blob/raptor-aggressive/raptor-util/woferclock.php
-- `eieio`, `darn`, `miso`
+
+???
+
 - Linux CBMEM driver
 - SEEPROM
   - SEEPROM I2C from BMC?
