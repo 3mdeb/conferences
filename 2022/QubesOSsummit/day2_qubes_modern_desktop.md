@@ -248,13 +248,16 @@ What we currently support:
 
 Cinebench R23 results after applying same settings for i5-12600K CPU:
 
-.pure-table.pure-table-bordered.pure-table-striped[ | Firmware | Multi Thread |
-Single Thread | |:---------|:------------:|:-------------:| | MSI 1.70 | 17020 |
-1852 | | Dasharo v1.1.0, Intel defaults | 15438 | 1731 | | Dasharo v1.1.0, AC/DC
-loadline 0.8 mOhm | 16760 | 1634 | | Dasharo v1.1.0, AC/DC loadline 0.8 mOhm,
-IccMax 250A | 16722 | 1714 | | Dasharo v1.1.0, AC/DC loadline 0.8 mOhm,
-<br>IccMax 250A,<br> Power Limits 241W | 16712 | 1621 | | Dasharo v1.1.0, all
-modifications | 16702 | 1640 | ]
+.pure-table.pure-table-bordered.pure-table-striped[
+| Firmware | Multi Thread | Single Thread |
+|:---------|:------------:|:-------------:|
+| MSI 1.70 | 17020 | 1852 |
+| Dasharo v1.1.0, Intel defaults | 15438 | 1731 |
+| Dasharo v1.1.0, AC/DC loadline 0.8 mOhm | 16760 | 1634 |
+| Dasharo v1.1.0, AC/DC loadline 0.8 mOhm, IccMax 250A | 16722 | 1714 |
+| Dasharo v1.1.0, AC/DC loadline 0.8 mOhm, <br>IccMax 250A, Power Limits 241W | 16712 | 1621 |
+| Dasharo v1.1.0, all modifications | 16702 | 1640 |
+]
 
 - All modifications mean: AC/DC loadline 0.8 mOhm, IccMax 250A, Power Limits
   288W, Energy Efficient Turbo Disabled, Cache frequency Limit equal 49
