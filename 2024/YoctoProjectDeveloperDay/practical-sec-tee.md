@@ -45,7 +45,6 @@ width="150px" style="marking-top:-50px">
 Daniil Klimuk
 
 _Junior Embedded Systems Developer_]
-Normal vs Secure Worlds
 - <a href="mailto:daniil.klimuk@3mdeb.com">
   <img
     src="/remark-templates/3mdeb-presentation-template/images/email.png"
@@ -233,9 +232,29 @@ normal execution environment
 
 <img src="/img/tpm_ftpm_tee_driver3.svg" height="90px" style="margin-top:-25px">
 
+???
+
+- If you've heard of fTPM you might be wondering how does it differ
+    - Without going into much detail fTPM can be thought as a software implementation of a TPM module
+    - Normally it's implemented only in the firmware so the OS calls TPM and firmware is responsive for handling requests and security
+    - Can be implemented in TEE thus offering better security and extended functionality
 ---
 
-# Trusted OS options
+# Secure Storage vs fTPM - Shameless Plug
+
+
+.center[
+
+### For those interested more about fTPM's:
+
+
+[<img src="/img/FOSDEM_ftpm_ta_tee_blured.png" height="350px">
+](https://fosdem.org/2024/schedule/event/fosdem-2024-3097-securing-embedded-systems-with-ftpm-implemented-as-trusted-application-in-tee/)
+]
+
+---
+
+# Trusted Execution Environment (Secure OS) options
 
 .pure-table[
 | Company              | Product         | Hardware Used          | API Standard                  | Is Open-Source?       | Supported by Yocto? |
@@ -249,9 +268,9 @@ normal execution environment
 | ProvenRun            | ProvenCore      | ARM TrustZone          | ?                             | ❌                    | ❌                  |
 | Qualcomm             | QTEE            | ARM TrustZone          | GlobalPlatform + Proprietary  | ❌                    | ❌                  |
 | Samsung              | TEEgris         | ARM TrustZone          | GlobalPlatform                | ❌                    | ❌                  |
-| TrustKernel          | T6              | Arm / Intel            | GlobalPlatform                | ✔️ *                   | ❌                  |
+| TrustKernel          | T6              | Arm / Intel            | GlobalPlatform                | ? *                   | ❌                  |
 | Trustonic            | Kinibi          | ARM TrustZone          | GlobalPlatform                | ❌                    | ❌                  |
-| Watchdata            | WatchTrust      | ARM TrustZone          | GlobalPlatform                | ❌                    | ❌                  |
+| Open-TEE             | Open-TEE        | Emulation only         | GlobalPlatform                | ✔️                     | -                   |
 ]
 
 .footnote[
@@ -260,8 +279,6 @@ Sources:
 
 [wikipedia.org/Trusted_execution_environment](https://en.wikipedia.org/wiki/Trusted_execution_environment)
 
-*[github.com/liwenhaosuper/t6](https://github.com/liwenhaosuper/t6)
-(The link to the supposed source code is dead)
 ]
 
 ???
