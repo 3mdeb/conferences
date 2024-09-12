@@ -153,30 +153,57 @@ extras:
 
 <br>
 
-_A secure area of a main processor that guarantees that the code and data loaded
-inside are protected with respect to confidentiality and integrity._
+_"Trusted Execution Environment (TEE) is a secure area in a device that ensures
+sensitive data is stored, processed and protected in an isolated and trusted
+environment."_
 
 ???
 
-- This is more of an overview to visualize the basic gist as implementations
-vary from architecture to architecture each having it's own caveats
-- According to Confidential Computing Consortium TEE provides a level of
-assurance of
-  + Data integrity
-    - preventing unauthorized entities from altering data when data is being
-        processed
-  + Data confidentiality
-    - unauthorized entities cannot view data while it is in use within the
-        TEE
-  + Code integrity
-    - the code in the TEE cannot be replaced or modified by unauthorized
-        entities
-- Also called Confidential Computing
-  + TODO elaborate, there's a difference
-- TEE provides a level of protection against software attacks generated from the
-normal execution environment
-  + Also assists in protecting against hardware attacks.
-    - TODO elaborate
+- Used to be "secure area of the main processor" but the definition has
+broadened
+    - Can even be a separate device, some "External Security SoC"
+- A device can have multiple TEEs
+- Mostly dependant on CPU architecture
+
+---
+
+# Different architectures - different approaches
+
+- Guarantees the authenticity of the executed code.
+
+- The confidentiality of its code, data and runtime states stored on a
+persistent memory.
+
+- Shall be able to provide remote attestation that proves its
+trustworthiness for third-parties.
+
+- Not hardware-dependant
+
+---
+
+# Coprocessor-based TEE
+
+.left-column50[
+.center[ 
+<img src="/img/TEE_CPU_based.svg" height="200px" style="margin-left:-10px">
+]
+]
+
+.right-column50[
+.center[ 
+<img src="/img/TEE_CoCPU_based.svg" height="200px" style="margin-right:-10px"> 
+]
+]
+
+.center[ <img src="/img/TEE_SepCPU_based.svg" height="250px" style="margin-top:-10px"> ]
+
+---
+
+
+# Secure Storage
+
+_Storage where confidentiality, integrity and freshness of stored data are
+guaranteed, and where only authorized entities can access the data._
 
 ---
 
@@ -184,11 +211,13 @@ normal execution environment
 
 .left-column50[
 <br>
+
 ### Arm Cortex-A
+
 ]
 
 .right-column50[
-<img src="/img/TEE_ARM_Cortex-a.svg" height="180px" style="margin-left:-120px; margin-top:-10px"> 
+<img src="/img/TEE_ARM_Cortex-a.svg" height="180px" style="margin-left:-120px; margin-top:-10px">
 ]
 
 .left-column50[
@@ -197,11 +226,13 @@ normal execution environment
 <br>
 <br>
 <br>
+
 ### Arm Cortex-M
+
 ]
 
 .right-column50[
-<img src="/img/TEE_ARM_Cortex-m.svg" height="180px" style="margin-left:-17px"> 
+<img src="/img/TEE_ARM_Cortex-m.svg" height="180px" style="margin-left:-17px">
 ]
 
 ???
@@ -235,18 +266,16 @@ normal execution environment
 ???
 
 - If you've heard of fTPM you might be wondering how does it differ
-    - Without going into much detail fTPM can be thought as a software implementation of a TPM module
-    - Normally it's implemented only in the firmware so the OS calls TPM and firmware is responsive for handling requests and security
-    - Can be implemented in TEE thus offering better security and extended functionality
+  + Without going into much detail fTPM can be thought as a software implementation of a TPM module
+  + Normally it's implemented only in the firmware so the OS calls TPM and firmware is responsive for handling requests and security
+  + Can be implemented in TEE thus offering better security and extended functionality
 ---
 
 # Secure Storage vs fTPM - Shameless Plug
 
-
 .center[
 
-### For those interested more about fTPM's:
-
+### For those interested more about fTPM's
 
 [<img src="/img/FOSDEM_ftpm_ta_tee_blured.png" height="350px">
 ](https://fosdem.org/2024/schedule/event/fosdem-2024-3097-securing-embedded-systems-with-ftpm-implemented-as-trusted-application-in-tee/)
@@ -285,6 +314,20 @@ Sources:
 
 - Wikipedia also specifies a formally-validated static partitioning über eXtensible
 Micro-Hypervisor Framework.
-    - Segway into Crosscon HV
+  + Segway into Crosscon HV
 
 ---
+
+# Resources
+
+<!-- markdownlint-disable-next-line MD013 -->
+
+- ##### Mohamed Sabt, Mohammed Achemlal, Abdelmadjid Bouabdallah. Trusted Execution Environment: What It is, and What It is Not. 14th IEEE International Conference on Trust, Security and Privacy in Computing and Communications, Aug 2015, Helsinki, Finland. 10.1109/Trustcom.2015.357. hal-01246364
+
+<!-- markdownlint-disable-next-line MD013 -->
+
+- ##### Han, Seung-Kyun, and Jinsoo Jang. "MyTEE: Own the Trusted Execution Environment on Embedded Devices." NDSS. 2023. 
+
+- ##### [What is a Trusted Execution Environment (TEE)? Past, Present & Future](https://www.youtube.com/watch?v=JHbq6lSey_Q)
+
+- ##### Building Secure Firmware, Armoring the Foundation of the Platform - Jiewen Yao, Vincent Zimmer
