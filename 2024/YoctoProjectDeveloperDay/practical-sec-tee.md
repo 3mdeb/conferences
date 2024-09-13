@@ -200,6 +200,37 @@ broadened
 
 ---
 
+# Coprocessor-based TEE
+
+.left-column50[
+.center[
+
+**CPU based TEE**
+
+<img src="/img/TEE_CPU_based.svg" width="200px" style="margin-left:-10px">
+]
+]
+
+.right-column50[
+.center[
+
+**Coprocessor Based TEE (One SoC)**
+
+<img src="/img/TEE_CoCPU_based.svg" width="200px" style="margin-right:-10px">
+]
+]
+
+---
+
+.center[
+
+**Coprocessor Based TEE (External)**
+
+<img src="/img/TEE_SepCPU_based.svg" width="200px" style="margin-top:-10px">
+]
+
+---
+
 # Normal vs Secure Worlds - Arm
 
 .left-column50[
