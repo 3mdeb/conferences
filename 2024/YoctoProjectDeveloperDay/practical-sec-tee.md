@@ -174,34 +174,29 @@ extras:
 
 # What is Trusted Execution Environment?
 
-.center[ <img src="/img/TEE_cpu_visual.svg" height="250px"> ]
+.center[ <img src="/img/TEE_High_Lvl_Overview.svg" height="250px"> ]
 
 <br>
 
-_A secure area of a main processor that guarantees that the code and data loaded
-inside are protected with respect to confidentiality and integrity._
+_"A trusted execution environment (TEE) means a secure area which can guarantee
+the confidentiality and integrity of the code and data inside of this area.
+**Usually** a TEE is an isolated execution environment."_
 
 ???
 
-- This is more of an overview to visualize the basic gist as implementations
-vary from architecture to architecture each having it's own caveats
-- According to Confidential Computing Consortium TEE provides a level of
-assurance of
-  + Data integrity
-    - preventing unauthorized entities from altering data when data is being
-        processed
-  + Data confidentiality
-    - unauthorized entities cannot view data while it is in use within the
-        TEE
-  + Code integrity
-    - the code in the TEE cannot be replaced or modified by unauthorized
-        entities
-- Also called Confidential Computing
-  + TODO elaborate, there's a difference
-- TEE provides a level of protection against software attacks generated from the
-normal execution environment
-  + Also assists in protecting against hardware attacks.
-    - TODO elaborate
+- "from general information to specifics"
+- There's no agreed on firm definition and a lot of sources cite their own
+- Definition taken from _"Building Secure Firmware, Armoring the Foundation of
+the Platform"_
+  + Will be listed in resources
+  + **Usually** refers to the possibility of TEE being only isolated via
+software which is not the case in some definitions.
+- The term TEE was coined in 2000s so there's a lot of
+- Used to be "secure area of the main processor" but the definition has
+broadened
+  + Can even be a separate device, more on that later
+- A device can have multiple TEEs nowadays
+- Used implementation is mostly dependant on underlying CPU architecture
 
 ---
 
