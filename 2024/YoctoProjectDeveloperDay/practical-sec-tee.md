@@ -342,6 +342,27 @@ Micro-Hypervisor Framework.
 
 ---
 
+# What and why?
+
+<!-- What to integrate why. -->
+
+.center[ <img src="./img/TEE_ARM_Cortex-a_with_SM_and_apps.svg"> ]
+
+???
+
+- Time for this slide: TODO
+- Idea/goal of this slide: To decompose what parts should be integrated to use TEE on ARM.
+- What to say:
+    - TODO
+- Notes:
+    - What to integrate:
+        - ATF;
+        - OP-TEE OS;
+        - TAs;
+        - Userspace libraries and tools.
+
+---
+
 <!-- OPTEE support in Yocto -->
 <!-- Compilation from source -->
 
