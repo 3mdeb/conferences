@@ -412,13 +412,100 @@ Micro-Hypervisor Framework.
 
 ---
 
----
-
 <!-- Zarhus and Zarhus OS -->
 
+# Contact us
+
+.left-column45[ <img src="/img/zarhus_logo.png" height="150px"
+style="margin-top:-10px; margin-left:200px"> ]
+
+.right-column55[
+
+## [Zarhus OS](https://docs.zarhus.com/)
+
+]
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+.right-column50[
+
+- <a href="https://3mdeb.com">https://3mdeb.com</a>
+
+- <a href="https://calendly.com/3mdeb/consulting-remote-meeting">Book a call</a>
+
+- <a href="https://newsletter.3mdeb.com/subscription/PW6XnCeK6">
+      Sign up for the newsletter
+    </a>
+  ]
+
+.left-column50[
+
+- <a href="https://www.linkedin.com/company/3mdeb">
+    <img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png"
+      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
+      linkedin.com/company/3mdeb
+    </a>
+
+- <a href="mailto:contact@3mdeb.com">
+    <img src="/remark-templates/3mdeb-presentation-template/images/email.png"
+      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
+      contact@3mdeb.com
+  </a>
+
+- <a href="https://www.facebook.com/3mdeb">
+    <img src="/remark-templates/3mdeb-presentation-template/images/facebook.png"
+      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
+      facebook.com/3mdeb
+  </a>
+
+- <a href="https://twitter.com/3mdeb_com">
+    <img src="/remark-templates/3mdeb-presentation-template/images/twitter.png"
+      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
+      @3mdeb_com
+  </a>
+
+  ]
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+Feel free to contact us if you believe we can help you in any way. We are always
+open to cooperate and discuss
+
+???
+
+- We're researching possibilities of using this technology on Embedded Devices
+  + Especially in the context of our own Embedded Distribution Zarhus OS
+
 ---
 
-<!-- Outro, sources and Q&A-->
+# Resources
+
+- #### M. Sabt, M. Achemlal, and A. Bouabdallah, "Trusted Execution Environment: What It is, and What It is Not," in *14th IEEE International Conference on Trust, Security and Privacy in Computing and Communications*, Helsinki, Finland, Aug. 2015. doi: 10.1109/Trustcom.2015.357
+
+- #### S. Pinto and N. Santos, "Demystifying Arm TrustZone: A Comprehensive Survey," *ACM Computing Surveys*, vol. 51, no. 6, article 130, Jan. 2019. doi: 10.1145/3291047
+
+- #### J. Yao and V. Zimmer, *Building secure firmware: Armoring the foundation of the platform*. Apress, 2020. doi: 10.1007/978-1-4842-6106-4
+
+---
+
+<!-- Outro, and Q&A-->
+
+<br>
+<br>
+<br>
+
+## .center[Q&A]
 
 ???
 
