@@ -18,7 +18,7 @@ class: center, middle, intro
 .left-column50[.center[
 <img
 src="/remark-templates/3mdeb-presentation-template/images/tymek_burak.png"
-width="150px" style="marking-top:-50px">
+height="150px" style="marking-top:-50px">
 
 Tymoteusz Burak
 
@@ -40,7 +40,7 @@ _Junior Embedded Systems Developer_]
 .right-column50[.center[
 <img
 src="/remark-templates/3mdeb-presentation-template/images/daniil_klimuk.webp"
-width="150px" style="marking-top:-50px">
+height="150px" style="marking-top:-50px">
 
 Daniil Klimuk
 
