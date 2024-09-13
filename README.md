@@ -63,3 +63,54 @@ $ tree -L 2
 ║ &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; ║<br>
 ║ &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; ║<br>
 ║ &nbsp;&ensp;&ensp;TBD&ensp;&ensp;&ensp;║<br>
+
+## Usage
+
+Historically we used [remarkjs](https://github.com/remarkjs/remark) with our
+own [remark-remplates](https://github.com/3mdeb/remark-templates), but since
+September 2024 we started switching to [slidev](https://sli.dev/).
+
+## How to preview presentation
+
+### slidev
+
+* Install npm manager e.g. [nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#install--update-script)
+* Use lts version of npm:
+
+```bash
+nvm install --lts
+nvm use --lts
+```
+
+* Host presentations:
+
+```bash
+npm run dev -- -p 8000 --remote --force
+```
+
+* Open content in browser on http://0.0.0.0:8000
+
+### remarkjs
+
+* Clone repository
+* Initialize submodules
+
+  ```bash
+  git submodule update --init --recursive --checkout
+  ```
+
+* Run local HTTP server e.g.
+
+  ```bash
+  python -m http.server
+  ```
+
+* Open content in browser on http://0.0.0.0:8000
+
+## Contribution
+
+* Please feel free to create issues for improvement ideas and bugs, as well as
+  pull requests to fix any issues.
+* If you intend to provide code improvements, please install all dependencies.
+* Before pushing code for review, ensure that `pre-commit run --all-files` does
+  not return any issues.
