@@ -318,6 +318,28 @@ Micro-Hypervisor Framework.
 
 # Integration and verification
 
+.left-column50[ <img src="./img/optee-meme.png" height="500px" style="margin-top:-35px"> ]
+.righ-column50[.center[
+    <br>
+    <br>
+    <br>
+    <br>
+    <span style="font-size: 40px;">
+        Integration might not be as trivial as you think!
+    </span>
+]]
+
+???
+
+- Time for this slide: 30s
+- Idea/goal of this slide:
+    - Intro into practical part;
+    - To point out the problem - integration is complex;
+- What to say:
+    - TODO
+- Notes:
+    - Mention, that practical part will focuse on ATF and OPTEE?
+
 ---
 
 <!-- OPTEE support in Yocto -->
