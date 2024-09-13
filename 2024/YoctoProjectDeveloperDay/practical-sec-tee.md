@@ -59,6 +59,15 @@ _Junior Embedded Systems Developer_]
     </a>
   ]
 
+???
+
+- Time for this slide: 30s
+- Idea/goal of this slide: Tymek i Daniil intro
+- What to say:
+    - TODO
+- Notes:
+    - TODO
+
 ---
 
 # Who we are ?
@@ -89,6 +98,15 @@ style="margin-left:40px; margin-top:40px"> ]
 - Yocto Participants and Embedded Linux experts since 2019
 - Official consultants for Linux Foundation fwupd/LVFS project since 2020
 - IBM OpenPOWER Foundation members since 2020
+
+???
+
+- Time for this slide: 30s
+- Idea/goal of this slide: 3mdeb intro
+- What to say:
+    - TODO
+- Notes:
+    - TODO
 
 ---
 
@@ -144,6 +162,13 @@ extras:
 - Outro and sources
 
 ???
+
+- Time for this slide: 30s
+- Idea/goal of this slide: Present entire presentation in a short way
+- What to say:
+    - TODO
+- Notes:
+    - TODO
 
 ---
 
@@ -324,4 +349,13 @@ Micro-Hypervisor Framework.
 
 ---
 
-<!-- Outro and sources -->
+<!-- Outro, sources and Q&A-->
+
+???
+
+- Time for this slide: 5m
+- Idea/goal of this slide: TODO
+- What to say:
+    - TODO
+- Notes:
+    - TODO
