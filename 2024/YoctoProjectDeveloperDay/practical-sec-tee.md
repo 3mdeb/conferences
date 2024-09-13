@@ -288,3 +288,40 @@ Micro-Hypervisor Framework.
     - Segway into Crosscon HV
 
 ---
+
+<!-- Daniil first slide -->
+
+# Integration and verification
+
+---
+
+<!-- OPTEE support in Yocto -->
+<!-- Compilation from source -->
+
+---
+
+<!-- Using vendor binaries -->
+
+---
+
+<!-- Linux/bootloader integration via Yocto -->
+
+---
+
+<!-- Vendor/OPTEE/Yocto support matrix -->
+
+---
+
+<!-- Integration with system based on rk35566 -->
+
+---
+
+---
+
+---
+
+<!-- Zarhus and Zarhus OS -->
+
+---
+
+<!-- Outro and sources -->
