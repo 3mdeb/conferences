@@ -16,9 +16,8 @@ mdc: true
 
 ---
 
-## Presentation title
+## Challenges in developing trustworthy Linux-based systems in an open-source way
 
 ---
-# Provide path to slides you want to present.
-src: ./pages/imported-slides.md
+src: ./2024/LPC/challanges-in-developing-trustworthy-linux-based-systems.md
 ---
