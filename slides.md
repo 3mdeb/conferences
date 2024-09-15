@@ -17,6 +17,7 @@ mdc: true
 ---
 
 ## Challenges in developing trustworthy Linux-based systems in an open-source way
+Piotr Król
 
 ---
 src: ./2024/LPC/challanges-in-developing-trustworthy-linux-based-systems.md
