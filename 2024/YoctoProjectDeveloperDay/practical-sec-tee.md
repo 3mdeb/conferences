@@ -474,24 +474,33 @@ Micro-Hypervisor Framework.
 
 ---
 
-# What and why?
+# What to integrate and why?
 
-<!-- What to integrate why. -->
 
 .center[ <img src="./img/TEE_ARM_Cortex-a_with_SM_and_apps.svg"> ]
+
+.center[<span style="font-size: 30px;">
+            A bunch of stuff to integrate, huh?
+        </span>]
+
 
 ???
 
 - Time for this slide: TODO
-- Idea/goal of this slide: To decompose what parts should be integrated to use TEE on ARM.
+- Idea/goal of this slide: To decompose what parts should be integrated to use
+  TEE on ARM.
 - What to say:
     - TODO
 - Notes:
     - What to integrate:
-        - ATF;
-        - OP-TEE OS;
-        - TAs;
-        - Userspace libraries and tools.
+        - ATF (ARM Trusted Firmware);
+         - OP-TEE OS;
+        - TAs (like crypto or PKCS#11);
+        - Userspace clients (like OpenSSL), libs (at least for communicating
+          with TEE) and tools (TEE-specific tools, like tee-supplicant for
+          OP-TEE);
+        - Linux Kernel drivers and devicetree configuration.
+    - Mention U-Boot integration as well.
 
 ---
 
