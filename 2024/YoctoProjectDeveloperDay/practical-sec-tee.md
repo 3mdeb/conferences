@@ -504,8 +504,79 @@ Micro-Hypervisor Framework.
 
 ---
 
-<!-- OPTEE support in Yocto -->
-<!-- Compilation from source -->
+# Compilation from source
+
+.left-code-column50[
+```bash
+meta-arm
+(...)
+├── recipes-bsp
+(...)
+│   ├── trusted-firmware-a
+(...)
+│   │   ├── tf-a-tests_2.10.0.bb
+│   │   ├── trusted-firmware-a_2.10.3.bb
+│   │   └── trusted-firmware-a.inc
+│   ├── trusted-firmware-m
+│   │   ├── trusted-firmware-m_2.0.0.bb
+│   │   ├── trusted-firmware-m-2.0.0-src.inc
+│   │   ├── trusted-firmware-m.inc
+(...)
+├── recipes-security
+│   ├── optee
+│   │   ├── optee-client
+│   │   │   ├── tee-supplicant@.service
+│   │   │   └── tee-supplicant.sh
+│   │   ├── optee-client_4.1.0.bb
+│   │   ├── optee-client.inc
+│   │   ├── optee-examples_4.1.0.bb
+│   │   ├── optee.inc
+(...)
+│   │   ├── optee-os_4.1.0.bb
+│   │   ├── optee-os.inc
+(...)
+```
+]
+.right-code-column50[
+```bash
+meta-arm-bsp
+(...)
+├── recipes-bsp
+(...)
+│   ├── trusted-firmware-a
+(...)
+│   │   ├── fiptool-native_2.8.6.bb
+│   │   ├── tf-a-tests_2.8.0.bb
+│   │   ├── tf-a-tests_%.bbappend
+│   │   ├── trusted-firmware-a_%.bbappend
+(...)
+│   ├── trusted-firmware-m
+(...)
+│   │   ├── trusted-firmware-m_%.bbappend
+│   │   └── trusted-firmware-m-corstone1000.inc
+(...)
+├── recipes-security
+│   ├── optee
+(...)
+│   │   ├── optee-client
+│   │   │   ├── tee-supplicant@.service
+│   │   │   └── tee-supplicant.sh
+(...)
+│   │   ├── optee-ftpm_%.bbappend
+│   │   ├── optee-os_4.%.bbappend
+(...)
+```
+]
+
+???
+
+- Time for this slide: TODO
+- Idea/goal of this slide: To show that meta-arm has everithing neccessary and
+  even more.
+- What to say:
+    - TODO
+- Notes:
+    - TODO
 
 ---
 
