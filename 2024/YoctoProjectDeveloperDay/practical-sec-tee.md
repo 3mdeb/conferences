@@ -580,7 +580,26 @@ meta-arm-bsp
 
 ---
 
-<!-- Using vendor binaries -->
+# Using vendor binaries
+
+.center[ <img src="./img/vendor-binaries-meme.png" height="350px"> ]
+
+???
+
+- Time for this slide: TODO
+- Idea/goal of this slide: To say that though vendor supplied binaries were
+  sopposed to make development easier, they made it even worse.
+- What to say:
+    - TODO
+- Notes:
+    - Weak points:
+        - You have to trust vendor binaries;
+        - You have to use vendor-specific tools, that are often not suitable for
+          your environment, are very outdated, and lack support;
+        - You do not have source code, so, debugging becames nearly impossible;
+        - If you have a small contract or do not have direct contact with
+          vendor, you will have to wait for support or, if you do not have time,
+          you will have to go for an endless web-digging.
 
 ---
 
