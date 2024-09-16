@@ -200,72 +200,180 @@ broadened
 
 ---
 
-# Coprocessor-based TEE
+# Common Ground in TEE definition
 
-.left-column50[
+### What it ensures:
+
+- **Data integrity**: preventing unauthorized entities from altering data when
+data is being processed.
+
+- **Data confidentiality**: Guarantees the authenticity of the executed code.
+
+- **Code integrity**: The confidentiality of its code, data and runtime states
+stored on a persistent memory.
+
+???
+
+- This is the part that is universally agreed on
+- This exact definition is from Confidential Computing Consortium
+  - A Linux Foundation Project which aims to accelerate the adoption of Trusted
+  Execution Environment (TEE) technologies and standards
+  - With Confidential Computing being the protection of data in use by
+  performing computation in a hardware-based, attested Trusted Execution
+  Environment.
+
+---
+
+# TEE locations
+
+.right-column45[
 .center[
 
 **CPU based TEE**
 
-<img src="/img/TEE_CPU_based.svg" width="200px" style="margin-left:-10px">
+<img src="/img/TEE_CPU_based.svg" width="250px">
+
 ]
 ]
 
-.right-column50[
-.center[
+.left-column70[
+### Examples
 
-**Coprocessor Based TEE (One SoC)**
+- Arm Trustzone
+- Intel SGX (Software Guard Extensions)
+- AMD SEV (Secure Encrypted Virtualization)
 
-<img src="/img/TEE_CoCPU_based.svg" width="200px" style="margin-right:-10px">
-]
 ]
 
 ---
 
+# TEE locations
+
+.right-column45[
+.center[
+
+**Coprocessor Based TEE (One SoC)**
+
+<img src="/img/TEE_CoCPU_based.svg" width="250px">
+
+]
+]
+
+.left-column70[
+### Examples
+
+- Integrated TPM (Trusted Platform Module)
+- Apple Secure Enclave
+
+]
+
+???
+
+- ARM Cortex-M based Secure Subsystem
+
+---
+
+# TEE locations
+
+.right-column45[
 .center[
 
 **Coprocessor Based TEE (External)**
 
 <img src="/img/TEE_SepCPU_based.svg" width="200px" style="margin-top:-10px">
+
+]
+]
+
+.left-column70[
+### Examples
+
+- Discrete TPM (Trusted Platform Module)
+- Apple T2 Chip
+- Google Titan M
+
 ]
 
 ---
 
-# Normal vs Secure Worlds - Arm
+# Secure Storage
+
+_Storage where confidentiality, integrity and freshness of stored data are
+guaranteed, and where only authorized entities can access the data._
+
+---
+
+# Normal vs Secure World - Arm Cortex-A
 
 .left-column50[
 <br>
-### Arm Cortex-A
+
+### Overview
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### Exception Levels
+
+
 ]
 
 .right-column50[
-<img src="/img/TEE_ARM_Cortex-a.svg" height="180px" style="margin-left:-120px; margin-top:-10px"> 
-]
-
-.left-column50[
-<br>
-<br>
-<br>
-<br>
-<br>
-### Arm Cortex-M
-]
-
-.right-column50[
-<img src="/img/TEE_ARM_Cortex-m.svg" height="180px" style="margin-left:-17px"> 
+<img src="/img/TEE_ARM_Cortex-a.svg" height="220px" style="margin-left:-120px; margin-top:-10px">
+`
+<img src="/img/TEE_ARM_Cortex-a_exception_levels.svg" height="190px" style="margin-left:-120px; margin-top:40px">
 ]
 
 ???
 
 - Arm TrustZone
+- Arm operates on Exception Levels which roughly correlate with x86 protection
+rings
 - High-level overview
   + Trusted Applications are also protected from each other
+- The Exception Level 2 is optional, just as you can run a Rich OS without a
+  hypervisor you can run a Trusted OS without the Secure Partition Manager
+- You can see how the data goes through Secure Monitor which with conjuction
+with Memory Managment Unit
+  - Data goes from Rich OS via "Secure Monitor Call (SMC)"
+- Secure montior also saves the states of Normal and secure world when switching
+contexts to be able to restore them when switching back
+
 
 ---
 
 # Normal vs Secure Worlds - Others
 
 .center[ <img src="/img/TEE_ARM_Cortex-m.svg" height="250px"> ]
+
+???
+
+- The division between worlds in Armv8-M is memory map-based
+  + The transitions take place automatically via exception handling
+  + This means that, when running code from the secure memory, the processor
+    state is secure, and, when running code from non-secure memory, the processor
+    state is non-secure 
+  + This also excludes the monitor mode and the need for any secure monitor
+    software
+
+---
+
+# APIs
+
+???
+
+- The GlobalPlatform organization has created a committee to define an open
+security architecture for consumer and connected devices.
+- In order to run software in the TEE, we need to standardize the application
+program interface (API). Currently, the GlobalPlatform (GP) organization has
+developed a set of specifications so that the digital services and devices can
+be trusted and managed securely, including the secure element
+(SE), trusted execution environment (TEE), and trusted platform services (TPSs)
 
 ---
 
@@ -286,18 +394,16 @@ broadened
 ???
 
 - If you've heard of fTPM you might be wondering how does it differ
-    - Without going into much detail fTPM can be thought as a software implementation of a TPM module
-    - Normally it's implemented only in the firmware so the OS calls TPM and firmware is responsive for handling requests and security
-    - Can be implemented in TEE thus offering better security and extended functionality
+  + Without going into much detail fTPM can be thought as a software implementation of a TPM module
+  + Normally it's implemented only in the firmware so the OS calls TPM and firmware is responsive for handling requests and security
+  + Can be implemented in TEE thus offering better security and extended functionality
 ---
 
 # Secure Storage vs fTPM - Shameless Plug
 
-
 .center[
 
-### For those interested more about fTPM's:
-
+### For those interested more about fTPM's
 
 [<img src="/img/FOSDEM_ftpm_ta_tee_blured.png" height="350px">
 ](https://fosdem.org/2024/schedule/event/fosdem-2024-3097-securing-embedded-systems-with-ftpm-implemented-as-trusted-application-in-tee/)
