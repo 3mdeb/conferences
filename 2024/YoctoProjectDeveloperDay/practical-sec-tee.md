@@ -910,7 +910,7 @@ style="margin-top:-10px; margin-left:200px"> ]
 
 - <a href="https://3mdeb.com">https://3mdeb.com</a>
 
-- <a href="https://calendly.com/3mdeb/consulting-remote-meeting">Book a call</a>
+- <a href="https://cloud.3mdeb.com/index.php/apps/calendar/appointment/n7T65toSaD9t">Book a call</a>
 
 - <a href="https://newsletter.3mdeb.com/subscription/PW6XnCeK6">
       Sign up for the newsletter
