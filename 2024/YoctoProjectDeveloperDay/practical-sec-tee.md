@@ -112,8 +112,7 @@ style="margin-left:40px; margin-top:40px"> ]
 
 # Agenda
 
-## Tymek
-
+- TEE theory (Tymoteusz Burak)
 - What is TEE (2-4 slides)?
   + concept description
   + overview on different architectures
@@ -139,27 +138,15 @@ extras:
   + TEE use cases
     - Secure storage
 
-## Daniil
-
-- meme star wars
-- optee support in Yocto (3 slides)
-  + meta-arm - compilation from sources
-  + problems with binaries provied by vendors
-  + optee format (bin vs elf)
-  + how other vendors provide/support optee (perhaps support matrix?)
-
-- optee secure storage userland integration
-  + https://optee.readthedocs.io/en/latest/building/userland_integration.html
-
-- practical integration on RK3566 (3-4 slides)
-  + adding optee to image
-  + adding userspace components
-- Zarhus integration
-  + source code references
-- bonus:
-  + optee test suite integrtation
-
-- Outro and sources
+- TEE practice (Daniil Klimuk)
+    - Introduction
+    - What to integrate and why?
+    - Compilation from source vs vendor binaries.
+    - Linux/U-Boot and Yocto integration.
+    - OP-TEE Secure Storage.
+    - Experiments on Rockchip RK3566 SoC.
+    - Zarhus OS.
+- Outro and sources.
 
 ???
 
