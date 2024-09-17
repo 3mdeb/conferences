@@ -382,6 +382,45 @@ secure
 
 ---
 
+# Root of trust/Chain of trust
+
+.center[
+<img src="/img/gpt_root_of_trust.png" height="400px">
+]
+
+???
+
+- This is a broad topic that could easily be an entire presentation on its own,
+and while I won't go into too much depth, I'll give a high-level overview.
+- Essentially, the Trusted Execution Environment (TEE) plays a critical role in
+extending the chain
+of trust all the way into userspace applications, enhancing overall system
+security.
+- However TEE can't establish a root of trust on it's own so it's vital to be
+aware of necessity of secure bootloader.
+
+---
+
+# Root of trust/Chain of trust
+
+.center[
+<img src="/img/rot_tee_handshake.jpg" height="400px">
+]
+
+???
+
+- This is a broad topic that could easily be an entire presentation on its own,
+and while I won't go into too much depth, I'll give a high-level overview.
+- Essentially, the Trusted Execution Environment (TEE) plays a critical role in
+extending the chain
+of trust all the way into userspace applications, enhancing overall system
+security.
+- However TEE can't establish a root of trust on it's own so it's vital to be
+aware of necessity of secure bootloader and secure storage
+-
+
+---
+
 # APIs
 
 ???
@@ -722,6 +761,10 @@ open to cooperate and discuss
 - #### J. Yao and V. Zimmer, *Building secure firmware: Armoring the foundation of the platform*. Apress, 2020. doi: 10.1007/978-1-4842-6106-4
 
 - #### CHERUVU, Sunil, et al. Demystifying internet of things security: successful iot device/edge and platform security deployment. Springer Nature, 2020.
+
+- #### ZIMMER, Vincent; KRAU, Michael. Establishing the root of trust. UEFI. org document dated August, 2016.
+
+- #### ZHAO, Shijun, et al. Providing root of trust for ARM TrustZone using on-chip SRAM. In: Proceedings of the 4th International Workshop on Trustworthy Embedded Devices. 2014. p. 25-36.
 
 ---
 
