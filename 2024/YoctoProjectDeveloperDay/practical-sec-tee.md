@@ -673,7 +673,37 @@ meta-arm-bsp
 
 ---
 
-<!-- Linux/bootloader integration via Yocto -->
+# U-Boot integration
+
+1. Turn on `CONFIG_TEE` and `CONFIG_OPTEE` (and related configs, if needed)
+  configs.
+2. Link ATF (`BL31`):
+
+    ```bb
+    EXTRA_OEMAKE:append = " BL31=${DEPLOY_DIR_IMAGE}/atf.elf"
+    ```
+
+3. Link OP-TEE OS:
+
+    ```bb
+    EXTRA_OEMAKE:append = " TEE=${DEPLOY_DIR_IMAGE}/optee/tee.elf"
+    ```
+
+4. Check `binman` configuration, in case you are using other file formats (e.g.
+ raw binary).
+
+???
+
+- Time for this slide: TODO
+- Idea/goal of this slide: A list of steps on how to integrate ATF and OP-TEE
+  into bootloader.
+- What to say:
+    - TODO
+- Notes:
+    - Present some U-Boot configs;
+    - Present linking ATF and OP-TEE binaries;
+    - Present linkinng binaries vs ELF using Binman.
+    - DIscuss `binman`-related problems.
 
 ---
 
@@ -684,6 +714,8 @@ meta-arm-bsp
 <!-- Integration with system based on rk35566 -->
 
 ---
+
+<!-- Vendor/OPTEE/Yocto support matrix -->
 
 ---
 
@@ -755,7 +787,7 @@ style="margin-top:-10px; margin-left:200px"> ]
 <br>
 
 Feel free to contact us if you believe we can help you in any way. We are always
-open to cooperate and discuss
+open to cooperate and discuss.
 
 ???
 
