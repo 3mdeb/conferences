@@ -179,19 +179,19 @@ extras:
 <br>
 
 _"A trusted execution environment (TEE) means a secure area which can guarantee
-the confidentiality and integrity of the code and data inside of this area.
-**Usually** a TEE is an isolated execution environment."_
+the confidentiality and integrity of the code and data inside of this area._
 
 ???
 
 - "from general information to specifics"
-- There's no agreed on firm definition and a lot of sources cite their own
+- There's no agreed on firm definition and a lot of sources define their own
 - Definition taken from _"Building Secure Firmware, Armoring the Foundation of
 the Platform"_
   + Will be listed in resources
   + **Usually** refers to the possibility of TEE being only isolated via
 software which is not the case in some definitions.
-- The term TEE was coined in 2000s so there's a lot of
+- Can be isolated via software
+- The term TEE was coined somewhere in 2000s
 - Used to be "secure area of the main processor" but the definition has
 broadened
   + Can even be a separate device, more on that later
