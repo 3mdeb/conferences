@@ -166,7 +166,14 @@ extras:
 <br>
 
 _"A trusted execution environment (TEE) means a secure area which can guarantee
-the confidentiality and integrity of the code and data inside of this area._
+the confidentiality and integrity of the code and data inside of this area."_*
+
+
+.footnote[
+
+\* J. Yao and V. Zimmer, *Building secure firmware: Armoring the foundation of the platform*. Apress, 2020. doi: 10.1007/978-1-4842-6106-4
+
+]
 
 ???
 
@@ -349,14 +356,21 @@ contexts to be able to restore them when switching back
 
 # Secure Storage
 
-_Secure storage is an essential element in IoT devices in that
+_"Secure storage is an essential element in IoT devices in that
 cryptographic keys, trust anchors, access control lists, and other policies
 need to be stored in ways that resist software attacks and ideally resist
-attackers who have physical access to the device._
+attackers who have physical access to the device."_*
 
 .center[
 <img src="/img/TEE_ARM_Cortex-a_with_sec_store.svg" height="260px">
 ]
+
+.footnote[
+
+\* CHERUVU, Sunil, et al. Demystifying internet of things security: successful iot device/edge and platform security deployment. Springer Nature, 2020.
+
+]
+
 
 ???
 
