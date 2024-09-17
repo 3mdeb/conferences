@@ -707,7 +707,48 @@ meta-arm-bsp
 
 ---
 
-<!-- Vendor/OPTEE/Yocto support matrix -->
+# Linux integration
+
+Turn on `CONFIG_TEE` and `CONFIG_OPTEE` (and related, if needed) configs, and
+add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
+`CFG_TZDRAM_SIZE`, `CFG_SHMEM_START` and `CFG_SHMEM_SIZE`):
+
+```dts
+    reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		optee@8400000 {
+			reg = <0x0 0x08400000 0x0 0x02000000>;
+            no-map;
+		};
+
+		optee_shm: optee_shared_mem@a400000 {
+			reg = <0x0 0x0a400000 0x0 0x00400000>;
+		};
+	};
+
+	firmware {
+		optee: optee {
+			compatible = "linaro,optee-tz";
+			method = "smc";
+			shm = <&optee_shm>;
+		};
+    };
+```
+
+???
+
+- Time for this slide: TODO
+- Idea/goal of this slide: A list of steps on how to integrate ATF and OP-TEE
+  into Linux.
+- What to say:
+    - TODO
+- Notes:
+    - Present some Linux Kernel configs;
+    - Present devicetree modifications;
+    - Some userspace tools and libs integration.
 
 ---
 
