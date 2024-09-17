@@ -752,6 +752,14 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 
 ---
 
+# OP-TEE Secure Storage
+
+.center[ <img src="./img/op-tee-secure-storage.svg" height="350px"> ]
+<br>
+.center[ Configured during OP-TEE OS compilation via `CFG_RPMB_FS` and `CFG_REE_FS`. ]
+
+---
+
 <!-- Integration with system based on rk35566 -->
 
 ---
