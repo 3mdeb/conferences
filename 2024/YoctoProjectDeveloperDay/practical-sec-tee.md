@@ -300,13 +300,6 @@ stored on a persistent memory.
 
 ---
 
-# Secure Storage
-
-_Storage where confidentiality, integrity and freshness of stored data are
-guaranteed, and where only authorized entities can access the data._
-
----
-
 # Normal vs Secure World - Arm Cortex-A
 
 .left-column50[
@@ -364,6 +357,28 @@ contexts to be able to restore them when switching back
     state is non-secure 
   + This also excludes the monitor mode and the need for any secure monitor
     software
+
+---
+
+# Secure Storage
+
+_Secure storage is an essential element in IoT devices in that
+cryptographic keys, trust anchors, access control lists, and other policies
+need to be stored in ways that resist software attacks and ideally resist
+attackers who have physical access to the device._
+
+.center[
+<img src="/img/TEE_ARM_Cortex-a_with_sec_store.svg" height="260px">
+]
+
+???
+
+- Quote from Demystifying Internet of Things Security
+- Arm Trustzone doesn't actually add Secure Storage support on it's own as
+it's mainly responsible for protecting sensitive memory during runtime
+- You have to load private keys first
+- Thus you also have to ensure that the place youre storing your secrets on is
+secure
 
 ---
 
@@ -705,6 +720,8 @@ open to cooperate and discuss
 - #### S. Pinto and N. Santos, "Demystifying Arm TrustZone: A Comprehensive Survey," *ACM Computing Surveys*, vol. 51, no. 6, article 130, Jan. 2019. doi: 10.1145/3291047
 
 - #### J. Yao and V. Zimmer, *Building secure firmware: Armoring the foundation of the platform*. Apress, 2020. doi: 10.1007/978-1-4842-6106-4
+
+- #### CHERUVU, Sunil, et al. Demystifying internet of things security: successful iot device/edge and platform security deployment. Springer Nature, 2020.
 
 ---
 
