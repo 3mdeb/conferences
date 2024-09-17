@@ -270,6 +270,10 @@ stored on a persistent memory.
 ???
 
 - ARM Cortex-M based Secure Subsystem
+- Shared resources
+  - Power, memory, caches, buses, clock signals
+  - Larger vector of attack
+- Hardware/firmware vulnerabilities could be exploited
 
 ---
 
@@ -280,7 +284,7 @@ stored on a persistent memory.
 
 **Coprocessor Based TEE (External)**
 
-<img src="/img/TEE_SepCPU_based.svg" width="200px" style="margin-top:-10px">
+<img src="/img/TEE_SepCPU_based.svg" width="240px">
 
 ]
 ]
@@ -336,18 +340,18 @@ guaranteed, and where only authorized entities can access the data._
 rings
 - High-level overview
   + Trusted Applications are also protected from each other
-- The Exception Level 2 is optional, just as you can run a Rich OS without a
+- The Secure Partition Manager is optional, just as you can run a Rich OS without a
   hypervisor you can run a Trusted OS without the Secure Partition Manager
+- Worth noting that the Secure Partition Manager can be also implemented in EL3
 - You can see how the data goes through Secure Monitor which with conjuction
 with Memory Managment Unit
   - Data goes from Rich OS via "Secure Monitor Call (SMC)"
 - Secure montior also saves the states of Normal and secure world when switching
 contexts to be able to restore them when switching back
 
-
 ---
 
-# Normal vs Secure Worlds - Others
+# Normal vs Secure Worlds - Arm Cortex-M
 
 .center[ <img src="/img/TEE_ARM_Cortex-m.svg" height="250px"> ]
 
