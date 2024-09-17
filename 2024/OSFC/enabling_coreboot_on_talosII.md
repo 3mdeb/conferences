@@ -797,37 +797,40 @@ Next slide shows how those values were obtained.
 
 - QEMU monitor
   + but QEMU is nowhere close to real hardware
---
 
+--
 - BMC `pdbg`: https://github.com/open-power/pdbg
 <!-- Options must not be indented, it breaks rendering ¯\_(ツ)_/¯ -->
 .small-code[
-    ```
-Options:
-            -p, --processor=processor-id
-            -c, --chip=chiplet-id
-            -t, --thread=thread
-            -a, --all
-                    Run command on all possible processors/chips/threads (default)
-    Commands:
-            getscom <address>
-            putscom <address> <value> [<mask>]
-            getmem <address> <count>
-            putmem <address>
-            getvmem <virtual address>
-            getgpr <gpr>
-            putgpr <gpr> <value>
-            getnia
-            putnia <value>
-            getspr <spr>
-            putspr <spr> <value>
-            start
-            stop
-            threadstatus
-    ```
-]
 
+  ```text
+    Options:
+                -p, --processor=processor-id
+                -c, --chip=chiplet-id
+                -t, --thread=thread
+                -a, --all
+                        Run command on all possible processors/chips/threads (default)
+        Commands:
+                getscom <address>
+                putscom <address> <value> [<mask>]
+                getmem <address> <count>
+                putmem <address>
+                getvmem <virtual address>
+                getgpr <gpr>
+                putgpr <gpr> <value>
+                getnia
+                putnia <value>
+                getspr <spr>
+                putspr <spr> <value>
+                start
+                stop
+                threadstatus
+  ```
+
+]
+.force-2l-list[
 - supposedly works with GDB, haven't tried
+]
 
 ???
 
@@ -1093,11 +1096,9 @@ closer to the math presented in Hostboot's comments.
 <!-- Empty to keep the formatting -->
 
 --
+.force-2l-list[
 - except sometimes intermediate values exceed `float` precision
-
-???
-
-<!-- Empty to keep the formatting -->
+]
 
 --
 - Hostboot has an interesting approach to rounding:
