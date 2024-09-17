@@ -504,6 +504,18 @@ Micro-Hypervisor Framework.
 
 ---
 
+<br>
+<br>
+<br>
+
+## .center[How to implement TEE in practice?]
+
+???
+- End of Tymek's part
+- Daniil will now show you how to use all this knowledge in practice
+
+---
+
 <!-- Daniil first slide -->
 
 # Integration and verification
