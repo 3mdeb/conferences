@@ -29,8 +29,8 @@ coreboot for Talos II: POWER9 platform made by RaptorCS.
 - 6 years in 3mdeb
 - about half of that spent on Talos II
 - interested in:
-  - low level stuff
-  - reserved bits in registers
+  + low level stuff
+  + reserved bits in registers
 ]
 .left-column50[
 - <a href="https://www.facebook.com/krystian.hebel.7">
@@ -70,11 +70,11 @@ of that time I was engaged in this project.
 ]
 .center[.image-35[![](/remark-templates/3mdeb-presentation-template/images/openpower.svg)]]
 
-* coreboot licensed service providers since 2016 and leadership participants
-* UEFI Adopters since 2018
-* Yocto Participants and Embedded Linux experts since 2019
-* Official consultants for Linux Foundation fwupd/LVFS project since 2020
-* IBM OpenPOWER Foundation members since 2020
+- coreboot licensed service providers since 2016 and leadership participants
+- UEFI Adopters since 2018
+- Yocto Participants and Embedded Linux experts since 2019
+- Official consultants for Linux Foundation fwupd/LVFS project since 2020
+- IBM OpenPOWER Foundation members since 2020
 
 ???
 
@@ -85,14 +85,14 @@ important for today's talk.
 
 # Agenda
 
-* Why?
-* Hardware
-* Reset vector and thereabouts
-* Debugging tools
-* PPC64 ABI, decisions and assumptions
-* Implementation
-* Current state & TODOs
-* Q&A
+- Why?
+- Hardware
+- Reset vector and thereabouts
+- Debugging tools
+- PPC64 ABI, decisions and assumptions
+- Implementation
+- Current state & TODOs
+- Q&A
 
 ???
 
@@ -104,12 +104,14 @@ let's begin.
 # Why?
 
 .left-column50[
+
 ### Hostboot
 
 - Apache 2.0
 ]
 
 .right-column50[
+
 ### coreboot
 
 - GPLv2, some BSD-3-clause
@@ -136,6 +138,7 @@ count: false
 # Why?
 
 .left-column50[
+
 ### Hostboot
 
 - Apache 2.0
@@ -143,6 +146,7 @@ count: false
 ]
 
 .right-column50[
+
 ### coreboot
 
 - GPLv2, some BSD-3-clause
@@ -167,6 +171,7 @@ count: false
 # Why?
 
 .left-column50[
+
 ### Hostboot
 
 - Apache 2.0
@@ -175,6 +180,7 @@ count: false
 ]
 
 .right-column50[
+
 ### coreboot
 
 - GPLv2, some BSD-3-clause
@@ -196,6 +202,7 @@ count: false
 # Why?
 
 .left-column50[
+
 ### Hostboot
 
 - Apache 2.0
@@ -205,6 +212,7 @@ count: false
 ]
 
 .right-column50[
+
 ### coreboot
 
 - GPLv2, some BSD-3-clause
@@ -225,6 +233,7 @@ count: false
 # Why?
 
 .left-column50[
+
 ### Hostboot
 
 - Apache 2.0
@@ -232,10 +241,11 @@ count: false
 - C++, XML, Perl, C, Tcl
 - partially machine-generated
 - 1'735'196 LOC (a2ddbf3)
-  - +424'336 lines of comments
+  + +424'336 lines of comments
 ]
 
 .right-column50[
+
 ### coreboot
 
 - GPLv2, some BSD-3-clause
@@ -243,7 +253,7 @@ count: false
 - mostly C, some ACPI
 - written by humans for humans
 - 1'562'749 LOC (24.05)
-  - +729'830 lines of comments
+  + +729'830 lines of comments
 ]
 
 ???
@@ -267,6 +277,7 @@ count: false
 # Why?
 
 .left-column50[
+
 ### Hostboot
 
 - Apache 2.0
@@ -274,15 +285,16 @@ count: false
 - C++, XML, Perl, C, Tcl
 - partially machine-generated
 - 1'735'196 LOC (a2ddbf3)
-  - +424'336 lines of comments
+  + +424'336 lines of comments
 - OS:
-  - user mode processes
-  - virtual memory
-  - dynamically loaded libraries
-  - on-demand paging
+  + user mode processes
+  + virtual memory
+  + dynamically loaded libraries
+  + on-demand paging
 ]
 
 .right-column50[
+
 ### coreboot
 
 - GPLv2, some BSD-3-clause
@@ -290,12 +302,12 @@ count: false
 - mostly C, some ACPI
 - written by humans for humans
 - 1'562'749 LOC (24.05)
-  - +729'830 lines of comments
+  + +729'830 lines of comments
 - program:
-  - supervisor mode
-  - physical memory
-  - static code<br>&nbsp;
-  - everything fits in cache
+  + supervisor mode
+  + physical memory
+  + static code<br>&nbsp;
+  + everything fits in cache
 ]
 
 ???
@@ -321,6 +333,7 @@ count: false
 # Why?
 
 .left-column50[
+
 ### Hostboot
 
 - Apache 2.0
@@ -328,16 +341,17 @@ count: false
 - C++, XML, Perl, C, Tcl
 - partially machine-generated
 - 1'735'196 LOC (a2ddbf3)
-  - +424'336 lines of comments
+  + +424'336 lines of comments
 - OS:
-  - user mode processes
-  - virtual memory
-  - dynamically loaded libraries
-  - on-demand paging
+  + user mode processes
+  + virtual memory
+  + dynamically loaded libraries
+  + on-demand paging
 - slow 🐢
 ]
 
 .right-column50[
+
 ### coreboot
 
 - GPLv2, some BSD-3-clause
@@ -345,13 +359,15 @@ count: false
 - mostly C, some ACPI
 - written by humans for humans
 - 1'562'749 LOC (24.05)
-  - +729'830 lines of comments
+  + +729'830 lines of comments
 - program:
-  - supervisor mode
-  - physical memory
-  - static code<br>&nbsp;
-  - everything fits in cache
-- fast <img style="height:1em" src="/remark-templates/3mdeb-presentation-template/images/coreboot-1024x1024.png" />
+  + supervisor mode
+  + physical memory
+  + static code<br>&nbsp;
+  + everything fits in cache
+- fast
+  <img style="height:1em"
+   src="/remark-templates/3mdeb-presentation-template/images/coreboot-1024x1024.png"/>
 ]
 
 ---
@@ -460,7 +476,7 @@ Talos II Lite:
 There is also Talos II Lite, cheaper (but still not cheap) and with less slots.
 SATA controller is not an option on Lite.
 
-```
+```text
 RaptorCS prices:
 Talos 2: $4,126.75
 Lite: $2,459.70
@@ -475,17 +491,17 @@ $4,961.25 for 22-core.
 Specifications:
 
 - 2 POWER9-compatible CPU sockets
-  - Talos II Lite: 1 socket
+  + Talos II Lite: 1 socket
 - EATX form factor
 - 16 DDR4 ECC registered RAM slots
-  - Talos II Lite: 8 slots
+  + Talos II Lite: 8 slots
 - 3 PCIe 4.0 x16 slots
-  - Talos II Lite: 1 slots
+  + Talos II Lite: 1 slots
 - 2 PCIe 4.0 x8 slots
-  - Talos II Lite: 1 slots
+  + Talos II Lite: 1 slots
 - 2 Broadcom Gigabit Ethernet ports, one shared with BMC
 - 1 Microsemi SAS 3.0 controller (**optional**)
-  - Talos II Lite: n/a
+  + Talos II Lite: n/a
 - 4 USB 3.0 ports, 1 USB 2.0 port
 - 1 ASpeed BMC with OpenBMC
 - 1 VGA video port
@@ -575,7 +591,7 @@ waking up the core after it was powered off.
 - PGPE - Pstate GPE, used for frequency/voltage control of cores and package as
   a whole
 
-#### Backup:
+#### Backup
 
 Sforza (i.e. chip used by Talos) has less I/O PPEs than shown on the diagram,
 those are used mostly for OpenCAPI which isn't supported on Sforza,
@@ -676,7 +692,7 @@ finally starts.
 PNOR layout (as of v2.00):
 
 .small-code[
-```
+```text
        part 0x00000000..0x00002000 (actual=0x00002000) [----R-----]
        HBEL 0x00008000..0x0002c000 (actual=0x00024000) [E-----F-C-]
       GUARD 0x0002c000..0x00031000 (actual=0x00005000) [E--P--F-C-]
@@ -780,7 +796,7 @@ Next slide shows how those values were obtained.
 # Debugging tools
 
 - QEMU monitor
-  - but QEMU is nowhere close to real hardware
+  + but QEMU is nowhere close to real hardware
 --
 
 - BMC `pdbg`: https://github.com/open-power/pdbg
@@ -811,7 +827,7 @@ Options:
     ```
 ]
 
-  - supposedly works with GDB, haven't tried
+- supposedly works with GDB, haven't tried
 
 ???
 
@@ -832,17 +848,17 @@ Boring ISA and ABI stuff:
 - 64b CPU, supports both big and little endian
 - RISC, 32b instructions (usually)
 - 32 GPRs, some of them have defined use:
-  - R1: stack pointer
-  - R2: TOC base - combines GOT and SDA
-  - R3-R10: passing parameters to functions
-  - R3: return value register
-  - R13: reserved for system thread ID
+  + R1: stack pointer
+  + R2: TOC base - combines GOT and SDA
+  + R3-R10: passing parameters to functions
+  + R3: return value register
+  + R13: reserved for system thread ID
 - other registers:
-  - CR0-CR7: conditions registers (4b each, similar to FLAGS on x86)
-  - LR: link register, holds return address
-  - CTR: counter
-  - XER: fixed-point exception register
-  - FPSCR: floating-point status and control register
+  + CR0-CR7: conditions registers (4b each, similar to FLAGS on x86)
+  + LR: link register, holds return address
+  + CTR: counter
+  + XER: fixed-point exception register
+  + FPSCR: floating-point status and control register
 
 ???
 
@@ -873,30 +889,37 @@ require a reset.
 - Separate `libgcc.a` for BE and LE, compiler defaults to BE one. At the time
   I&nbsp;didn't know that LE version existed and could be used, so BE was chosen.
 - This exposed some endianness bugs and inaccuracies in:
+
 ???
 
 Now let's talk about decisions. First of them is the use of big endian. This was
 an effect of my ignorance and laziness, as I didn't know that LE libraries
 existed in crossgcc built by coreboot, and when I finally learned about it, I
-was already committed to fix "that final bug" in CBFS handling code.
---
+was already committed to fix "that final bug" in CBFS handling code
 
-  - CBFS: `cbfstool` runs on LE host,
+--
+    + CBFS: `cbfstool` runs on LE host,
 ???
 
-And then "that final bug" in FMAP.
---
+And then "that final bug" in FMAP
 
-  - FMAP: not immediately caught because `0x00020200` is a palindrome,
+--
+    + FMAP: not immediately caught because `0x00020200` is a palindrome,
 ???
 
-And then "that final bug" in CBMEM.
---
+And then "that final bug" in CBMEM
 
-  - CBMEM: written in BE, read from LE OS,
 --
+    + CBMEM: written in BE, read from LE OS,
+???
 
-  - Mostly fixed by adding `htole`/`letoh` and clearly defining fields as LE.
+<!-- Empty to keep the formatting -->
+
+--
+    + Mostly fixed by adding `htole`/`letoh` and clearly defining fields as LE.
+???
+
+<!-- Empty to keep the formatting -->
 
 ---
 
@@ -907,17 +930,17 @@ Decisions and assumptions:
 - SBE configures serial, coreboot doesn't have to.
 - Make transition between Hostboot and coreboot easy for users by reusing PNOR
   partitions.
-  - This results in having to use ECC. Other partitions read by coreboot use
+  + This results in having to use ECC. Other partitions read by coreboot use
     ECC so code for reading from them would exist anyway.
 - Focus on use as a workstation, not as a server.
-  - Some RAS functionality was skipped.
-  - Fail on most errors, don't boot with parts of hardware disabled.
-  - Don't use Processor Runtime Diagnostics error logging, not sure if it even
+  + Some RAS functionality was skipped.
+  + Fail on most errors, don't boot with parts of hardware disabled.
+  + Don't use Processor Runtime Diagnostics error logging, not sure if it even
     applies to BMC-based platforms.
 - Use Skiboot as payload.
-  - Don't use the one from PNOR, add another to CBFS for simplicity. We have
+  + Don't use the one from PNOR, add another to CBFS for simplicity. We have
     more than enough space available.
-  - Use FDT for passing information to Skiboot.
+  + Use FDT for passing information to Skiboot.
 
 ???
 
@@ -933,17 +956,17 @@ FDT - flat device tree. Hostboot used HDAT.
 
 # Implementation
 
-- All<sup>*</sup> required registers are documented in POWER9 registers
+- All.sup[*] required registers are documented in POWER9 registers
   specification
-  - https://wiki.raptorcs.com/wiki/Category:Documentation
+  + https://wiki.raptorcs.com/wiki/Category:Documentation
 - Many hours (~2/3 of total time) spent on analysis.
-  - Results at https://github.com/3mdeb/openpower-coreboot-docs/.
+  + Results at https://github.com/3mdeb/openpower-coreboot-docs/.
 - Initfiles and other code rewritten into more readable pseudocode, with
   register names and fields decoded whenever possible.
 - Some assumptions were made to simplify the code.
 
 .small-code[
-```
+```text
         *0x0501082b =       // P9N2_MCS_PORT02_MCPERF3
             [31] = 1                                    // ENABLE_CL0
             [41] = 1                                    // ENABLE_AMO_MSI_RMW_ONLY
@@ -992,17 +1015,17 @@ XML during build.
 Largest implemented features:
 
 - internal buses and chiplets init
-  - power on, initialize clocks, deassert reset, the usual
+  + power on, initialize clocks, deassert reset, the usual
 - RAM init
-  - ECC requires all of RAM to be initialized (written) so ECC bytes match the
+  + ECC requires all of RAM to be initialized (written) so ECC bytes match the
     data
-  - Hostboot writes in order multiple patterns on each boot, we decided that it
+  + Hostboot writes in order multiple patterns on each boot, we decided that it
     isn't necessary for workstation use
 - PCIe init
-  - just power on, train lanes and set up links, no resource allocation
+  + just power on, train lanes and set up links, no resource allocation
 - SMP init
-  - OCC, CME
-  - HOMER
+  + OCC, CME
+  + HOMER
 
 ???
 
@@ -1047,7 +1070,7 @@ restored are written as part of the instructions. While it uses different way of
 communicating with core that is being woken up, this is similar in principle to
 how SBE started the first core.
 
-4th: PGPE code and data, includes large tables mapping frequency and voltage 
+4th: PGPE code and data, includes large tables mapping frequency and voltage
 values to Pstates.
 
 ---
@@ -1062,34 +1085,50 @@ HOMER made by coreboot isn't the same as Hostboot's, but in many cases it is
 closer to the math presented in Hostboot's comments.
 
 --
-
 - Hostboot uses complicated floating-point operations that in the end result in
   the same floor values as integer math would do
---
 
-  - except sometimes intermediate values exceed `float` precision
---
+???
 
+<!-- Empty to keep the formatting -->
+
+--
+- except sometimes intermediate values exceed `float` precision
+
+???
+
+<!-- Empty to keep the formatting -->
+
+--
 - Hostboot has an interesting approach to rounding:
 
-```
-        uint32_t l_vdd = ...;
+    ```C
+    uint32_t l_vdd = ...;
 
-        // Round up
-        l_vdd = (l_vdd << 1) + 1;
-        l_vdd = l_vdd >> 1;
-```
+    // Round up
+    l_vdd = (l_vdd << 1) + 1;
+    l_vdd = l_vdd >> 1;
+    ```
 
 .footnote[https://github.com/open-power/hostboot/blob/release-op920/src/import/chips/p9/procedures/hwp/pm/p9_pstate_parameter_block.C#L4736]
 
 - https://github.com/3mdeb/openpower-coreboot-docs/blob/main/devnotes/hostbug.md
   contains this and more examples of original programming ideas
---
 
+???
+
+<!-- Empty to keep the formatting -->
+
+--
 - enabling existing Hostboot's debug output to log math done when building HOMER
   increases boot time
+
+???
+
+<!-- Empty to keep the formatting -->
+
 --
- to <span style="color:red">**4 hours**</span> (6 when booting with both CPUs)
+  to .text-color-red[**4 hours**] (6 when booting with both CPUs)
 
 ---
 
@@ -1098,17 +1137,18 @@ closer to the math presented in Hostboot's comments.
 Non-technical issues:
 
 - POWER9 documentation is relatively good, but not ideal
-  - some missing descriptions here and there
-  - changes between CPU revisions aren't always reflected in docs
---
+  + some missing descriptions here and there
+  + changes between CPU revisions aren't always reflected in docs
 
+--
 - XIVE documentation was reported to be lost `¯\_(ツ)_/¯`
-  - wasn't needed in the end
+  + wasn't needed in the end
+
 ???
 
 XIVE - External Interrupt Virtualization Engine
---
 
+--
 - Communication with big companies takes time
 
 --
@@ -1122,11 +1162,11 @@ https://lists.ozlabs.org/pipermail/openpower-firmware/2021-January/000611.html
 
 --
 
-<style>.m8em {margin-top: -8em}</style>
 .m8em.center[.image-90[![](/img/opfw_ml_a.png)]]
 
 .footnote[
-https://lists.ozlabs.org/pipermail/openpower-firmware/2021-February/000628.html]
+https://lists.ozlabs.org/pipermail/openpower-firmware/2021-February/000628.html
+]
 
 ---
 
@@ -1135,28 +1175,35 @@ https://lists.ozlabs.org/pipermail/openpower-firmware/2021-February/000628.html]
 Where's the code at?
 
 - initial patches sent to coreboot
-<!-- don't remove HTML entity, remark messes up URLs with quotation marks -->
-  - [&#104;ttps://review.coreboot.org/q/topic:"talos-2"](https://review.coreboot.org/q/topic:"talos-2")
-  - basic build infrastructure, PNOR access, SCOM drivers
-  - not enough for working platform yet
---
+  + [https://review.coreboot.org/q/topic:talos-2](https://review.coreboot.org/q/topic:talos-2)
+  + basic build infrastructure, PNOR access, SCOM drivers
+  + not enough for working platform yet
 
+???
+
+<!-- Empty to keep the formatting -->
+
+--
 - complete code can be found on our repo
-  - https://github.com/Dasharo/coreboot/blob/raptor-cs_talos-2/patches
-  - includes what was sent to upstream (+/- changes after review)
-  - enough for booting Linux
+  + https://github.com/Dasharo/coreboot/blob/raptor-cs_talos-2/patches
+  + includes what was sent to upstream (+/- changes after review)
+  + enough for booting Linux
+
 ???
 
 Complete code can be found on a repo of a project that must not be named
 
 --
-
 - customized Skiboot
-  - https://github.com/Dasharo/skiboot/tree/raptor-cs_talos-2
-  - includes drivers for SLB9545 I2C TPM
-  - Skiboot from RaptorCS should work as well
---
+  + https://github.com/Dasharo/skiboot/tree/raptor-cs_talos-2
+  + includes drivers for SLB9545 I2C TPM
+  + Skiboot from RaptorCS should work as well
 
+???
+
+<!-- Empty to keep the formatting -->
+
+--
 - I would mention Heads here, but I'm probably out of time already
 
 ---
@@ -1179,22 +1226,21 @@ What needs more work:
 - Microsemi SATA controller not tested - our platform doesn't have it
 - UART unreliable, seems to be cached - Hostboot doesn't have this problem
 - currently only PNOR from Talos II System Firmware 2.00 is supported
-  - newer release enabled Secure Boot by default (easy fix)
-  - MEMD PNOR partition has different offset to data (needs analysis)
+  + newer release enabled Secure Boot by default (easy fix)
+  + MEMD PNOR partition has different offset to data (needs analysis)
+
 ???
 
 - I2C errors occasionally reported when accessing TPM
-  - this TPM isn't supported under Hostboot, nothing to compare with
+  + this TPM isn't supported under Hostboot, nothing to compare with
 
 --
-
 - upstream!
 
 ---
 
 # Current state & TODOs
 
-<style>.m2em {margin-top: -2em}</style>
 .m2em.center[.image-90[![](/img/debian_on_talos.png)]]
 
 ---
@@ -1261,8 +1307,8 @@ This one will make you wanna sing:
 --
 
 Old MacDonald had a farm,
---
 
+--
 `eieio` - Enforce In-order Execution of I/O
 
 ---
@@ -1279,8 +1325,8 @@ Ever wanted to use PHP for firmware development?
 
 - Linux CBMEM driver
 - SEEPROM
-  - SEEPROM I2C from BMC?
-  - ECC
+  + SEEPROM I2C from BMC?
+  + ECC
 - RNG timeout - coreboot too fast
 - Heads in PNOR (?)
-  - platform moved to lab - full-speed CPU fan unnoticed because of that (Heads)
+  + platform moved to lab - full-speed CPU fan unnoticed because of that (Heads)
