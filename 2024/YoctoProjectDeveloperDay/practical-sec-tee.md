@@ -646,7 +646,8 @@ meta-arm-bsp
 - What to say:
     - TODO
 - Notes:
-    - TODO
+    - Porting problems:
+        - TODO
 
 ---
 
@@ -703,7 +704,7 @@ meta-arm-bsp
     - Present some U-Boot configs;
     - Present linking ATF and OP-TEE binaries;
     - Present linkinng binaries vs ELF using Binman.
-    - DIscuss `binman`-related problems.
+    - Present `binman`-related problems.
 
 ---
 
@@ -752,19 +753,134 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 
 ---
 
+# Adding packages and recipes:
+
+1. Add TFA `.bbappend` with configuration according to
+  `meta-arm/recipes-bsp/trusted-firmware-a/trusted-firmware-a_2.10.3.bb`;
+2. Add OP-TEE OS `.bbappend` with configuration according to
+  `meta-arm-bsp/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend`;
+3. You can add OP-TEE OS testsuite according to
+  `meta-arm-bsp/recipes-security/optee/optee-test_4.%.bbappend`;
+4. Add the packages to your packagegroup:
+
+    ```bb
+    RDEPENDS:${PN}-security = " \
+        trusted-firmware-a \
+        optee-client \
+        optee-os \
+        optee-test \
+        libp11 \
+    "
+    ```
+???
+
+- Time for this slide: TODO
+- Idea/goal of this slide: TODO
+- What to say:
+    - TODO
+- Notes:
+    - TODO
+
+---
+
 # OP-TEE Secure Storage
 
 .center[ <img src="./img/op-tee-secure-storage.svg" height="350px"> ]
 <br>
 .center[ Configured during OP-TEE OS compilation via `CFG_RPMB_FS` and `CFG_REE_FS`. ]
 
+???
+
+- Time for this slide: TODO
+- Idea/goal of this slide: TODO
+- What to say:
+    - TODO
+- Notes:
+    - TODO
+
 ---
 
-<!-- Integration with system based on rk35566 -->
+# Testing using vendor binaries
+
+```bash
+(...)
+U-Boot SPL 2024.01 (Jan 08 2024 - 15:37:48 +0000)
+(...)
+NOTICE:  BL31: v2.3():v2.3-607-gbf602aff1:cl
+NOTICE:  BL31: Built : 10:16:03, Jun  5 2023
+(...)
+I/TC: OP-TEE version: 3.13.0-723-gdcfdd61d0 #hisping.lin (gcc version 10.2.1...
+(...)
+root@quartz64-a:~# dmesg
+(...)
+root@quartz64-a:~# alias p11="pkcs11-tool --module /usr/lib/libckteec.so.0"
+root@quartz64-a:~# p11 --show-info
+E/LD:  ta_elf_load_main:1128 sys_map_zi stack
+E/TC:? 0 ldelf_init_with_ldelf:126 ldelf failed with res: 0xffff000c
+ERR [291] LT:ckteec_invoke_init:304: TEEC open session failed ffff000c from 3
+(...)
+root@quartz64-a:~# xtest
+(...)
+653 subtests of which 188 failed
+106 test cases of which 76 failed
+0 test cases were skipped
+TEE test application done!
+```
+
+.center[A hard to debug problem without source code!]
+
+???
+
+- Time for this slide: TODO
+- Idea/goal of this slide: TODO
+- What to say:
+    - TODO
+- Notes:
+    - TODO
 
 ---
 
-<!-- Vendor/OPTEE/Yocto support matrix -->
+# Testing self-ported image
+
+```bash
+U-Boot SPL 2024.01 (Jan 08 2024 - 15:37:48 +0000)
+(...)
+NOTICE:  BL31: v2.3():v2.3-607-gbf602aff1:cl
+NOTICE:  BL31: Built : 10:16:03, Jun  5 2023
+(...)
+I/TC: OP-TEE version: 4.1.0-dev (gcc version 13.2.0 (GCC)) #1 Fri Jan 19 17:14:14 UTC 2024 aarch64
+(...)
+root@quartz64-a:~# alias p11="pkcs11-tool --module /usr/lib/libckteec.so.0"
+root@quartz64-a:~# p11 --list-slots
+Available slots:
+Slot 0 (0x0): OP-TEE PKCS11 TA - TEE UUID 94e9ab89-4c43-56ea-8b35-45dc07226830
+  token state:   uninitialized
+(...)
+root@quartz64-a:~# p11 --init-token --label mytoken --so-pin 1234567890
+(...)
+root@quartz64-a:~# p11 --list-slots
+Available slots:
+Slot 0 (0x0): OP-TEE PKCS11 TA - TEE UUID 94e9ab89-4c43-56ea-8b35-45dc07226830
+  token label        : mytoken
+  token manufacturer : Linaro
+(...)
+root@quartz64-a:~# xtest
+(...)
++-----------------------------------------------------
+28130 subtests of which 0 failed
+106 test cases of which 0 failed
+0 test cases were skipped
+TEE test application done!
+```
+
+???
+
+- Time for this slide: TODO
+- Idea/goal of this slide: TODO
+- What to say:
+    - TODO
+- Notes:
+    - TODO
 
 ---
 
