@@ -469,7 +469,7 @@ be trusted and managed securely, including the secure element
 
 ---
 
-# Trusted Execution Environment (Secure OS) options
+# TEE implementations
 
 .pure-table[
 | Company              | Product         | Hardware Used          | API Standard                  | Is Open-Source?       | Supported by Yocto? |
@@ -479,7 +479,7 @@ be trusted and managed securely, including the secure element
 | BeanPod              | ISEE            | ARM TrustZone          | GlobalPlatform                | ❌                    | ❌                  |
 | Huawei               | iTrustee        | ARM TrustZone          | GlobalPlatform                | ❌                    | ❌                  |
 | Google               | Trusty          | ARM / Intel            | Proprietary                   | Partially Open-Source | ❌                  |
-| Linaro               | OPTEE           | ARM TrustZone          | GlobalPlatform                | ✔️                     | ✔️                   |
+| Linaro               | OP-TEE          | ARM TrustZone          | GlobalPlatform                | ✔️                     | ✔️                   |
 | ProvenRun            | ProvenCore      | ARM TrustZone          | ?                             | ❌                    | ❌                  |
 | Qualcomm             | QTEE            | ARM TrustZone          | GlobalPlatform + Proprietary  | ❌                    | ❌                  |
 | Samsung              | TEEgris         | ARM TrustZone          | GlobalPlatform                | ❌                    | ❌                  |
