@@ -642,6 +642,8 @@ meta-arm-bsp
 
 .center[ <img src="./img/vendor-binaries-meme.png" height="350px"> ]
 
+.center[ <span style="font-size:30px;">There's some kind of mess here!</span>]
+
 ???
 
 - Time for this slide: TODO
