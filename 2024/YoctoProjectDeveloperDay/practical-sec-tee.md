@@ -766,6 +766,8 @@ open to cooperate and discuss
 
 - #### ZHAO, Shijun, et al. Providing root of trust for ARM TrustZone using on-chip SRAM. In: Proceedings of the 4th International Workshop on Trustworthy Embedded Devices. 2014. p. 25-36.
 
+- #### [TrustedFirmware - Hafnium Documentation](https://hafnium.readthedocs.io/en/latest/)
+
 ---
 
 <!-- Outro, and Q&A-->
