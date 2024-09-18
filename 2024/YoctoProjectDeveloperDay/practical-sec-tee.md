@@ -80,15 +80,12 @@ _Junior Embedded Systems Developer_]
 
 .left-column50[
 
-<img src="/remark-templates/3mdeb-presentation-template/images/openpower.svg"
-    width="200px" style="margin-left:120px"> ]
+<img src="/remark-templates/3mdeb-presentation-template/images/openpower.png"
+    width="200px" style="margin-left:160px; margin-top:5px"> ]
 
 .right-column50[ <img src="/img/crosscon_logo.svg" width="200px"
-style="margin-left:40px; margin-top:40px"> ]
+style="margin-left:40px"> ]
 
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>
