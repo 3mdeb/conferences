@@ -877,9 +877,9 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 1. Add TFA `.bbappend` with configuration according to
   `meta-arm/recipes-bsp/trusted-firmware-a/trusted-firmware-a_2.10.3.bb`;
 2. Add OP-TEE OS `.bbappend` with configuration according to
-  `meta-arm-bsp/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend`;
+  `meta-arm/recipes-security/optee/optee-os_4.1.0.bb`;
 3. You can add OP-TEE OS testsuite according to
-  `meta-arm-bsp/recipes-security/optee/optee-test_4.%.bbappend`;
+  `meta-arm/recipes-security/optee/optee-test_4.1.0.bb`;
 4. Add the packages to your packagegroup:
 
     ```bb
