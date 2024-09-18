@@ -956,7 +956,7 @@ style="margin-top:-10px; margin-left:200px"> ]
   </a>
 
 - <a href="https://twitter.com/3mdeb_com">
-    <img src="/remark-templates/3mdeb-presentation-template/images/twitter.png"
+    <img src="/remark-templates/3mdeb-presentation-template/images/x.png"
       width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
       @3mdeb_com
   </a>
