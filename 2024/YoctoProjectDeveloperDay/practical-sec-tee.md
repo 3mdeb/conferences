@@ -1006,6 +1006,7 @@ open to cooperate and discuss.
 
 - #### [TrustZone Technology for Armv8-A](https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/Learn%20the%20Architecture/TrustZone%20for%20Armv8-A.pdf?revision=c3134c8e-f1d0-42ff-869e-0e6a6bab824f)
 
+- #### [Roots of Trust are difficult - Matthew Garret](https://mjg59.dreamwidth.org/66907.html)
 
 ---
 
