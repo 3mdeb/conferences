@@ -474,7 +474,7 @@ be trusted and managed securely, including the secure element
 - If you've heard of fTPM you might be wondering how does it differ
   + Without going into much detail fTPM can be thought as a software implementation of a TPM module
   + Normally it's implemented only in the firmware so the OS calls TPM and firmware is responsive for handling requests and security
-  + Can be implemented in TEE thus offering better security and extended functionality
+  + Can be integrated in TEE thus offering better security and extended functionality
 ---
 
 # Secure Storage vs fTPM - Shameless Plug
@@ -528,7 +528,7 @@ Micro-Hypervisor Framework.
 <br>
 <br>
 
-## .center[How to implement TEE in practice?]
+## .center[How to integrate TEE in practice?]
 
 ???
 - End of Tymek's part
