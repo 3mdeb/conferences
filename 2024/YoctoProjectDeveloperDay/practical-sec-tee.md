@@ -553,12 +553,14 @@ Micro-Hypervisor Framework.
 
 ???
 
-- Time for this slide: 30s
+- Time for this slide: 25s
 - Idea/goal of this slide:
     - Intro into practical part;
     - To point out the problem - integration is complex;
 - What to say:
-    - TODO
+    - "Now I will show you how to apply some of the knoledge Tymek presented to
+      integrate and use features of TEE implemented on ARM platforms. And I will
+      show you that it may not be so trivial as it may seem at first glance."
 - Notes:
     - Practical part will focuse on ATF and OP-TEE.
     - A an embedded developers, we depend not only on open source software but
@@ -579,11 +581,18 @@ Micro-Hypervisor Framework.
 
 ???
 
-- Time for this slide: 45s
+- Time for this slide: 1m 25s
 - Idea/goal of this slide: To decompose what parts should be integrated to use
   TEE on ARM.
 - What to say:
-    - TODO
+    - "And here it is, our secure hamburger. Going from buttom to the top, we
+    have Trusted Firmware A responsible for switching between the worlds, then,
+    from secure side, Open portable Trusted Execution Environment responsible
+    for key secure functions, for example, secure storage, and then its TA's
+    holding application-specific secure features, for example signing. In Rich
+    world we have our favourite Linux and its Drivers, responsible for
+    communication with hardware and secure world, and, of course, apps that take
+    full advantege of the secure world.""
 - Notes:
     - What to integrate:
         - ATF (ARM Trusted Firmware); -> Microarchitecture-side and
@@ -674,7 +683,17 @@ meta-arm-bsp
 - Idea/goal of this slide: To show that meta-arm has everithing neccessary and
   even more.
 - What to say:
-    - TODO
+    - "To the integration then. Here you can see some recipes from meta-arm.
+    The layer has actually all you need to integrate two key elements: ATF and
+    OP-TEE and even more. Apart from main recipes it has recipes for ATF tests,
+    OP-TEE TA Development Kit, and Test Suite for easier development.
+    Additionnaly there are some userspace components inccluding tee-supplicant,
+    which will be explained later.
+    So these recipes will allow you to build the components from zero using
+    Yocto. The only problem here is platform support. Why, because,
+    unfortunately, porting will never keep up with the pace with hardware
+    production.
+    "
 - Notes:
     - `meta-arm` has:
         - ATF recipes;
@@ -701,11 +720,16 @@ meta-arm-bsp
 
 ???
 
-- Time for this slide: 30
+- Time for this slide: 45s
 - Idea/goal of this slide: To say that though vendor supplied binaries were
   sopposed to make development easier, they made it even worse.
 - What to say:
-    - TODO
+    - "Especially with hardware from China... So here is another path. Some of
+    the SoC vendors port the previous mentioned elements but do not publish the
+    code as well as parts of hardware specs that are needed for ports. So you
+    cannot port by yourself and are forsed to use their binaries, that is
+    actually not secure, and development workflows, that are not convenient, are
+    outdated, and lack support. So, this path is a pure nightmare."
 - Notes:
     - Weak points:
         - You have to trust vendor binaries;
@@ -745,7 +769,13 @@ meta-arm-bsp
 - Idea/goal of this slide: A list of steps on how to integrate ATF and OP-TEE
   into bootloader.
 - What to say:
-    - TODO
+    - "After you have aquired the two key elements: ATF and OP-TEE you need to
+    integrate it into your system. This is done by a bootloader, which is
+    responsible for loadding and verifying the elemnts. In case of U-Boot all
+    you need is to change its config to include TEE, then link the ELFs during
+    compilation. Worth mentioning that some vendors may use raw binaries, and
+    binman, which is responsible for linking, will argue about that, in such a
+    case you will need some workarounds."
 - Notes:
     - U-Boot need to know about OP-TEE;
     - There is no config for ATF - U-Boot supposes it is true for ARM
@@ -758,6 +788,14 @@ meta-arm-bsp
       and in case vedor provides pre-compiled blobs as binaries - U-Boot will
       not take it, and `do_compile` will fail. So this will need additional
       workarounds.
+    - BL (aka. Boot Loader):
+        - `BL1`: Boot ROM;
+        - `BL2`: SPL and TPL;
+        - `BL3`: Bootloader FIT image with integrated ATF and OP-TEE;
+        - `BL31`: ATF (so, it is explicitly shown that it is a part of U-Boot FIT image);
+        - `BL32`: OP-TEE (so, it is explicitly shown that it is a part of U-Boot FIR image);
+        - `BL33`: REE bootloader (U-Boot).
+        - More about this [here](https://trustedfirmware-a.readthedocs.io/en/latest/getting_started/image-terminology.html).
 
 ---
 
@@ -773,13 +811,13 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 		#size-cells = <2>;
 		ranges;
 
-		optee@8400000 {
-			reg = <0x0 0x08400000 0x0 0x02000000>;
+		optee@CFG_TZDRAM_START {
+			reg = <CFG_TZDRAM_START CFG_TZDRAM_SIZE>;
             no-map;
 		};
 
-		optee_shm: optee_shared_mem@a400000 {
-			reg = <0x0 0x0a400000 0x0 0x00400000>;
+		optee_shm: optee_shared_mem@CFG_SHMEM_START {
+			reg = <CFG_SHMEM_START CFG_SHMEM_SIZE>;
 		};
 	};
 
@@ -798,7 +836,16 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 - Idea/goal of this slide: A list of steps on how to integrate ATF and OP-TEE
   into Linux.
 - What to say:
-    - TODO
+    - "After bootloader will load the Secure Side, it will begin loading Linux.
+    Now, it is important that Linux knows about the OP-TEE. For this to happen
+    you need to tell where OP-TEE resides in memory by adding nodes into
+    reserved-memory node in Linux devicetree, so Linux will not use it. You can
+    get those memory addresses from the OP-TEE OS port configuration variables
+    shown here. 
+    Next you need to set up communication channel between userspace and Secure
+    World by enabling TEE and OP-TEE drivers in Linux configuration and adding
+    an OP-TEE node in its devicetree.
+    "
 - Notes:
     - OP-TEE expects a Linux driver for communication, the ddriver can be
       enabled by `CONFIG_OPTEE`.
@@ -850,7 +897,11 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 - Idea/goal of this slide: A list of steps on how to intergrate OP-TEE and ATF
   using Yocto.
 - What to say:
-    - TODO
+    - To integrate it in Yocto you need to add your configuration into recipes,
+    you can use here examples from meta-arm layer, and add the packages to your
+    packagegroup. optee-client is a highly portable package and it does not need
+    any modifications. libp11 si usefull for the use case which is going to be
+    presented on the next slides.
 - Notes:
     - `trusted-firmware-a`: compiles and installs ATF, needs a port;
     - `optee-client`: installs some userspace libs, `tee-supplicant` and its
