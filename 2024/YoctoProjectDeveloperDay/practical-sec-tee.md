@@ -98,6 +98,7 @@ style="margin-left:40px; margin-top:40px"> ]
 - Yocto Participants and Embedded Linux experts since 2019
 - Official consultants for Linux Foundation fwupd/LVFS project since 2020
 - IBM OpenPOWER Foundation members since 2020
+- CROSSCON project partners
 
 ???
 
