@@ -560,7 +560,10 @@ Micro-Hypervisor Framework.
 - What to say:
     - TODO
 - Notes:
-    - Mention, that practical part will focuse on ATF and OPTEE?
+    - Practical part will focuse on ATF and OP-TEE.
+    - A an embedded developers, we depend not only on open source software but
+      on hardware as well, and integration of software might not be so trivial
+      if hardware specification is not published.
 
 ---
 
@@ -583,14 +586,21 @@ Micro-Hypervisor Framework.
     - TODO
 - Notes:
     - What to integrate:
-        - ATF (ARM Trusted Firmware);
-         - OP-TEE OS;
-        - TAs (like crypto or PKCS#11);
+        - ATF (ARM Trusted Firmware); -> Microarchitecture-side and
+          firmware-side security.
+        - OP-TEE OS; -> Software-side security.
+        - TAs (like crypto or PKCS#11); -> Secure functionalities.
         - Userspace clients (like OpenSSL), libs (at least for communicating
           with TEE) and tools (TEE-specific tools, like tee-supplicant for
           OP-TEE);
-        - Linux Kernel drivers and devicetree configuration.
-    - Mention U-Boot integration as well.
+        - Linux Kernel drivers and devicetree configuration. -> Communication
+          REE<->TEE.
+    - Mention U-Boot integration as well. -> Is responsible for setting up the
+      environment during boot:
+        - Memory initialization.
+        - Supplying of ATF and OP-TEE binaries.
+        - Verifying the ATF and OP-TEE binaries (Secure Boot and Root of trust).
+        - Booting REE stuff.
 
 ---
 
@@ -666,8 +676,20 @@ meta-arm-bsp
 - What to say:
     - TODO
 - Notes:
-    - Porting problems:
-        - TODO
+    - `meta-arm` has:
+        - ATF recipes;
+        - ATF test suite recipes;
+        - OP-TEE OS recipes, which include TAs as well (one recipe supply both
+          features);
+        - OP-TEE TA Dev Kit recipe;
+        - OP-TEE Test Suite recipe;
+        - Some userspace recipes, including a recipe for `tee-supplicant` and
+          its `systemd` unit.
+    - `meta-arm` requires:
+        - ATF port;
+        - OP-TEE port.
+    - `meta-arm/meta-arm` - holds core recipes;
+    - `meta-arm/meta-arm-bsp` - holds platform-specific appends.
 
 ---
 
@@ -693,6 +715,9 @@ meta-arm-bsp
         - If you have a small contract or do not have direct contact with
           vendor, you will have to wait for support or, if you do not have time,
           you will have to go for an endless web-digging.
+    - Problems with Yocto integration:
+        - You have to implement a custom recipes and classes for every
+          vendor-specific tool and workflow.
 
 ---
 
@@ -722,10 +747,17 @@ meta-arm-bsp
 - What to say:
     - TODO
 - Notes:
-    - Present some U-Boot configs;
-    - Present linking ATF and OP-TEE binaries;
-    - Present linkinng binaries vs ELF using Binman.
-    - Present `binman`-related problems.
+    - U-Boot need to know about OP-TEE;
+    - There is no config for ATF - U-Boot supposes it is true for ARM
+      architectures;
+    - OP-TEE and ATF binaries are linked into U-Boot [FIT
+      image](https://docs.u-boot.org/en/latest/usage/fit/index.html)
+    - `binman` is U-Boot tool that composes final U-Boot FIT image, which
+      includes, among others, Devicetree, ATF and OP-TEE.
+    - Currently, for Aarchv8-a, U-Boot expects ATF and OP-TEE files as ELFs,
+      and in case vedor provides pre-compiled blobs as binaries - U-Boot will
+      not take it, and `do_compile` will fail. So this will need additional
+      workarounds.
 
 ---
 
@@ -768,9 +800,28 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 - What to say:
     - TODO
 - Notes:
-    - Present some Linux Kernel configs;
-    - Present devicetree modifications;
-    - Some userspace tools and libs integration.
+    - OP-TEE expects a Linux driver for communication, the ddriver can be
+      enabled by `CONFIG_OPTEE`.
+    - We need to tell Linux not to use memory regions which are held by OP-TEE,
+      because if Linux will try to access it when OP-TEE is present - MMU will
+      interupt Linux, and Linux, theoretically can get `kernel panic` and get
+      frozen.
+    - Linux is being informed about OP-TEE via devicetree, where
+      `reserved-memory` holds OP-TEE memory regions, and `firmware` tells to the
+      Linux driver, that OP-TEE is being used.
+    - `CFG_TZDRAM_START`, `CFG_TZDRAM_SIZE`, `CFG_SHMEM_START`, and
+      `CFG_SHMEM_SIZE` are OP-TEE configuration variables, they could be found
+      in OP-TEE OS port-specific code.
+        - `CFG_TZDRAM_START`: start of OP-TEE private memory (`0x08400000` on
+          the slide);
+        - `CFG_TZDRAM_SIZE`: size of OP-TEE private memory (`0x02000000` on the
+          slide);
+        - `CFG_SHMEM_START`: start of OP-TEE public (shared with REE) memory (
+          `0x0a400000` on the slide);
+        - `CFG_SHMEM_SIZE`: size of OP-TEE public (shared with REE) memory (
+          `0x00400000` on the slide);
+    - Some userspace tools and libs integration (will be described on the next
+      slide).
 
 ---
 
@@ -796,11 +847,21 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 ???
 
 - Time for this slide: 30s
-- Idea/goal of this slide: TODO
+- Idea/goal of this slide: A list of steps on how to intergrate OP-TEE and ATF
+  using Yocto.
 - What to say:
     - TODO
 - Notes:
-    - TODO
+    - `trusted-firmware-a`: compiles and installs ATF, needs a port;
+    - `optee-client`: installs some userspace libs, `tee-supplicant` and its
+      `systemd` unit;
+    - `optee-os`: installs OP-TEE OS and standart TAs, signs and encrypts TAs,
+      integrates public key for TAs verification inside OP-TEE OS during
+      compilation;
+    - `optee-test`: installs OP-TEE Test Suite (`xtest`), OP-TEE TAs Dev Kit,
+      and additional TAs needed for the test suite.
+    - `libp11`: usecase-specific package, installs PKCS#11 userspace libs and
+      tools.
 
 ---
 
@@ -813,11 +874,44 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 ???
 
 - Time for this slide: 1m 30s
-- Idea/goal of this slide: TODO
+- Idea/goal of this slide: To present and explain OP-TEE Seccure Storage
+  implementation.
 - What to say:
     - TODO
 - Notes:
-    - TODO
+    - Two types of Secure Storage in OP-TEE: REE File System Secure Storage and
+      eMMC RPM Secure storage.
+        - The type of the Secure Storage being used is determined during OP-TEE
+          OS compilation by setting `CFG_RPMB_FS` or `CFG_REE_FS`, or both.
+        - Secure Storage is implemented on OP-TEE OS level, not on TAs level,
+          TAs only use specific calls to OP-TEE OS to use Secure Storage
+          features. This is why the type of Secure Storage is determined during
+          **OP-TEE OS** compilation, **not** during TA compilation.
+        - Difference in topology are shown by colors: red - REE FS, green eMMC
+          RPMB.
+        - Dark path is common for both cases.
+    - OP-TEE Secure Storage implementation relies on REE in terms of
+      communication with hardware.
+    - Siplified example workflow.:
+        - Client (lets say `pkcs11-tool`) asks PKCS#11 TA to create and hide a
+        secret.
+        - The clients call goes through OP-TEE Linux driver and via SMC (aka.
+          Secure Monitor Call) get to the TA.
+        - The TA uses OP-TEE RNG (aka. Random Number Generator) to create a
+          secret and asks OP-TEE OS to encrypt and hide it.
+        - OP-TEE encrypts and sends the secret via OP-TEE Linux drivers to REE,
+          where `tee-supplicant` reacts to the call and places the secret in the
+          specified secure storage.
+        - Client wants to use the secret, so he calls PKCS#11 TA to do some task
+          with the secret.
+        - The TA asks OP-TEE OS for the secret;
+        - OP-TEE OS asks for the secret `tee-supplicant`, which exctracts it
+          from the Secure Storage.
+        - The TA gets decrypted secret from OP-TEE OS and does it work;
+    - So, according to the example workflow, the secrets are encrypted for
+      everything outside OP-TEE OS, and OP-TEE OS is responsible for encrypting
+      it.
+    - [Source.](https://optee.readthedocs.io/en/latest/architecture/secure_storage.html)
 
 ---
 
@@ -854,11 +948,26 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 ???
 
 - Time for this slide: 30s
-- Idea/goal of this slide: TODO
+- Idea/goal of this slide: To show key problems related to using vendor OP-TEE
+  and ATF binaries.
 - What to say:
     - TODO
 - Notes:
-    - TODO
+    - Rockchip ATF and OP-TEE binaries are being used, TAs are being compiled
+      using `meta-arm` and its `optee-ta` package;
+    - ATF version is too old: `v2.3` vs `v2.10` in upstream;
+    - OP-TEE version is too old: `v3.13` vs `v4.1` in upstream;
+    - Strange Linux boot-time logs from OP-TEE:
+
+        ```bash
+            IcPc ot
+            /nUhnr IcPt
+            /nUhnr
+        ```
+
+    - Strange OP-TEE error when trying to communicate with PKCS#11 TA (the
+      `ldelf` is a part of OP-TEE OS and is responsible for loading TAs).
+    - Does not work.
 
 ---
 
@@ -886,11 +995,14 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 ???
 
 - Time for this slide: 30s
-- Idea/goal of this slide: TODO
+- Idea/goal of this slide: Same as previous one.
 - What to say:
     - TODO
 - Notes:
-    - TODO
+    - Most of the failed test cases are because of the same `ldelf` issue as on
+      the previous slide.
+    - The issue and all OP-TEE and and ATF issues are almost impossible to debug
+      without acces to their source code and using debug prints/traces.
 
 ---
 
@@ -929,11 +1041,15 @@ Slot 0 (0x0): OP-TEE PKCS11 TA - TEE UUID 94e9ab89-4c43-56ea-8b35-45dc07226830
 ???
 
 - Time for this slide: 30
-- Idea/goal of this slide: TODO
+- Idea/goal of this slide: To show our effort to integrate OP-TEE using our port
+  for RK3566 and problems we have met.
 - What to say:
     - TODO
 - Notes:
-    - TODO
+    - Using Rockchip ATF binary and self-compiled OP-TEE OS and TAs binaries via
+      `meta-arm` recipes.
+    - No OP-TEE OS or TAs issues.
+    - PKCS#11 TA and Secure Storage can be initialized and used.
 
 ---
 
@@ -954,11 +1070,11 @@ TEE test application done!
 ???
 
 - Time for this slide: 30
-- Idea/goal of this slide: TODO
+- Idea/goal of this slide: Same as the previous one.
 - What to say:
     - TODO
 - Notes:
-    - TODO
+    - All OP-TEE tests have passed.
 
 ---
 
@@ -1035,11 +1151,14 @@ open to cooperate and discuss.
 ???
 
 - Time for this slide: 30
-- Idea/goal of this slide: TODO
+- Idea/goal of this slide: Present Zarhus OS and its features.
 - What to say:
     - TODO
 - Notes:
-    - TODO
+    - List of its features:
+        - Secure Boot (to be megrated from our private layers);
+        - Secure Storage, including TPM and OP-TEE (te be megrated);
+        - OTA updates (to be megrated).
 
 ---
 
