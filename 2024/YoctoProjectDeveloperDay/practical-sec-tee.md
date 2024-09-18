@@ -822,30 +822,63 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 
 # Testing using vendor binaries
 
-```bash
-(...)
-U-Boot SPL 2024.01 (Jan 08 2024 - 15:37:48 +0000)
-(...)
-NOTICE:  BL31: v2.3():v2.3-607-gbf602aff1:cl
-NOTICE:  BL31: Built : 10:16:03, Jun  5 2023
-(...)
-I/TC: OP-TEE version: 3.13.0-723-gdcfdd61d0 #hisping.lin (gcc version 10.2.1...
-(...)
-root@quartz64-a:~# dmesg
-(...)
-root@quartz64-a:~# alias p11="pkcs11-tool --module /usr/lib/libckteec.so.0"
-root@quartz64-a:~# p11 --show-info
-E/LD:  ta_elf_load_main:1128 sys_map_zi stack
-E/TC:? 0 ldelf_init_with_ldelf:126 ldelf failed with res: 0xffff000c
-ERR [291] LT:ckteec_invoke_init:304: TEEC open session failed ffff000c from 3
-(...)
-root@quartz64-a:~# xtest
-(...)
-653 subtests of which 188 failed
-106 test cases of which 76 failed
-0 test cases were skipped
-TEE test application done!
-```
+* Booting:
+
+    ```bash
+    (...)
+    U-Boot SPL 2024.01 (Jan 08 2024 - 15:37:48 +0000)
+    (...)
+    NOTICE:  BL31: v2.3():v2.3-607-gbf602aff1:cl
+    NOTICE:  BL31: Built : 10:16:03, Jun  5 2023
+    (...)
+    I/TC: OP-TEE version: 3.13.0-723-gdcfdd61d0 #hisping.lin (gcc version 10.2.1...
+    (...)
+    [    0.015841] smp: Bringing up secondary CPUs ...
+    IcPc ot
+    /nUhnr IcPt
+    /nUhnr
+    ```
+
+* Verification:
+
+    ```bash
+    root@quartz64-a:~# alias p11="pkcs11-tool --module /usr/lib/libckteec.so.0"
+    root@quartz64-a:~# p11 --show-info
+    E/LD:  ta_elf_load_main:1128 sys_map_zi stack
+    E/TC:? 0 ldelf_init_with_ldelf:126 ldelf failed with res: 0xffff000c
+    ERR [291] LT:ckteec_invoke_init:304: TEEC open session failed ffff000c from 3
+    (...)
+    ```
+
+???
+
+- Time for this slide: TODO
+- Idea/goal of this slide: TODO
+- What to say:
+    - TODO
+- Notes:
+    - TODO
+
+---
+
+# Testing using vendor binaries
+
+* Running OP-TEE test suite:
+
+    ```bash
+    root@quartz64-a:~# xtest
+    (...)
+    * regression_4112 Test TEE Internal API Arithmetical API - Is prime
+    E/LD:  ta_elf_load_main:1128 sys_map_zi stack
+    E/TC:? 0 ldelf_init_with_ldelf:126 ldelf failed with res: 0xffff000c
+    /usr/src/debug/optee-test/4.1.0/host/xtest/regression_4100.c:2291: xtest_teec_open_session(&session, &crypt_user_ta_uS
+      regression_4112 FAILE
+    (...)
+    653 subtests of which 188 failed
+    106 test cases of which 76 failed
+    0 test cases were skipped
+    TEE test application done!
+    ```
 
 .center[A hard to debug problem without source code!]
 
@@ -862,6 +895,8 @@ TEE test application done!
 
 # Testing self-ported image
 
+* Booting:
+
 ```bash
 U-Boot SPL 2024.01 (Jan 08 2024 - 15:37:48 +0000)
 (...)
@@ -870,6 +905,11 @@ NOTICE:  BL31: Built : 10:16:03, Jun  5 2023
 (...)
 I/TC: OP-TEE version: 4.1.0-dev (gcc version 13.2.0 (GCC)) #1 Fri Jan 19 17:14:14 UTC 2024 aarch64
 (...)
+```
+
+* Verification:
+
+```bash
 root@quartz64-a:~# alias p11="pkcs11-tool --module /usr/lib/libckteec.so.0"
 root@quartz64-a:~# p11 --list-slots
 Available slots:
@@ -883,7 +923,24 @@ Available slots:
 Slot 0 (0x0): OP-TEE PKCS11 TA - TEE UUID 94e9ab89-4c43-56ea-8b35-45dc07226830
   token label        : mytoken
   token manufacturer : Linaro
-(...)
+```
+
+???
+
+- Time for this slide: TODO
+- Idea/goal of this slide: TODO
+- What to say:
+    - TODO
+- Notes:
+    - TODO
+
+---
+
+# Testing self-ported image
+
+* Running OP-TEE test suite:
+
+```bash
 root@quartz64-a:~# xtest
 (...)
 +-----------------------------------------------------
