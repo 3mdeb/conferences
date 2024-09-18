@@ -575,7 +575,7 @@ Micro-Hypervisor Framework.
 
 ???
 
-- Time for this slide: TODO
+- Time for this slide: 45s
 - Idea/goal of this slide: To decompose what parts should be integrated to use
   TEE on ARM.
 - What to say:
@@ -659,7 +659,7 @@ meta-arm-bsp
 
 ???
 
-- Time for this slide: TODO
+- Time for this slide: 1m
 - Idea/goal of this slide: To show that meta-arm has everithing neccessary and
   even more.
 - What to say:
@@ -678,7 +678,7 @@ meta-arm-bsp
 
 ???
 
-- Time for this slide: TODO
+- Time for this slide: 30
 - Idea/goal of this slide: To say that though vendor supplied binaries were
   sopposed to make development easier, they made it even worse.
 - What to say:
@@ -715,7 +715,7 @@ meta-arm-bsp
 
 ???
 
-- Time for this slide: TODO
+- Time for this slide: 45s
 - Idea/goal of this slide: A list of steps on how to integrate ATF and OP-TEE
   into bootloader.
 - What to say:
@@ -761,7 +761,7 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 
 ???
 
-- Time for this slide: TODO
+- Time for this slide: 1m
 - Idea/goal of this slide: A list of steps on how to integrate ATF and OP-TEE
   into Linux.
 - What to say:
@@ -794,7 +794,7 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
     ```
 ???
 
-- Time for this slide: TODO
+- Time for this slide: 30s
 - Idea/goal of this slide: TODO
 - What to say:
     - TODO
@@ -811,7 +811,7 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 
 ???
 
-- Time for this slide: TODO
+- Time for this slide: 1m 30s
 - Idea/goal of this slide: TODO
 - What to say:
     - TODO
@@ -852,7 +852,7 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 
 ???
 
-- Time for this slide: TODO
+- Time for this slide: 30s
 - Idea/goal of this slide: TODO
 - What to say:
     - TODO
@@ -884,7 +884,7 @@ add OP-TEE OS and its memory to DTS (here are `CFG_TZDRAM_START`,
 
 ???
 
-- Time for this slide: TODO
+- Time for this slide: 30s
 - Idea/goal of this slide: TODO
 - What to say:
     - TODO
@@ -927,7 +927,7 @@ Slot 0 (0x0): OP-TEE PKCS11 TA - TEE UUID 94e9ab89-4c43-56ea-8b35-45dc07226830
 
 ???
 
-- Time for this slide: TODO
+- Time for this slide: 30
 - Idea/goal of this slide: TODO
 - What to say:
     - TODO
@@ -952,7 +952,7 @@ TEE test application done!
 
 ???
 
-- Time for this slide: TODO
+- Time for this slide: 30
 - Idea/goal of this slide: TODO
 - What to say:
     - TODO
@@ -1033,8 +1033,12 @@ open to cooperate and discuss.
 
 ???
 
-- We're researching possibilities of using this technology on Embedded Devices
-  + Especially in the context of our own Embedded Distribution Zarhus OS
+- Time for this slide: 30
+- Idea/goal of this slide: TODO
+- What to say:
+    - TODO
+- Notes:
+    - TODO
 
 ---
 
@@ -1054,6 +1058,15 @@ open to cooperate and discuss.
 
 - #### [Roots of Trust are difficult - Matthew Garret](https://mjg59.dreamwidth.org/66907.html)
 
+???
+
+- Time for this slide: 15s
+- Idea/goal of this slide: TODO
+- What to say:
+    - TODO
+- Notes:
+    - TODO
+
 ---
 
 # Resources
@@ -1068,6 +1081,15 @@ open to cooperate and discuss.
 
 - #### [TrustZone Technology for Armv8-A](https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/Learn%20the%20Architecture/TrustZone%20for%20Armv8-A.pdf?revision=c3134c8e-f1d0-42ff-869e-0e6a6bab824f)
 
+???
+
+- Time for this slide: 15s
+- Idea/goal of this slide: TODO
+- What to say:
+    - TODO
+- Notes:
+    - TODO
+
 ---
 
 <!-- Outro, and Q&A-->
@@ -1080,9 +1102,7 @@ open to cooperate and discuss.
 
 ???
 
-- Time for this slide: 5m
-- Idea/goal of this slide: TODO
+- Time for this slide: 4m
+- Idea/goal of this slide: Questions and answers
 - What to say:
-    - TODO
-- Notes:
     - TODO
