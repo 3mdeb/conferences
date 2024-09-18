@@ -697,8 +697,7 @@ meta-arm-bsp
 
 # U-Boot integration
 
-1. Turn on `CONFIG_TEE` and `CONFIG_OPTEE` (and related configs, if needed)
-  configs.
+1. Turn on `CONFIG_TEE` and `CONFIG_OPTEE` (and related, if needed) configs.
 2. Link ATF (`BL31`):
 
     ```bb
