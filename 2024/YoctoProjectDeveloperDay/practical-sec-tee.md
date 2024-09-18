@@ -996,6 +996,12 @@ open to cooperate and discuss.
 
 - #### ZHAO, Shijun, et al. Providing root of trust for ARM TrustZone using on-chip SRAM. In: Proceedings of the 4th International Workshop on Trustworthy Embedded Devices. 2014. p. 25-36.
 
+- #### [Roots of Trust are difficult - Matthew Garret](https://mjg59.dreamwidth.org/66907.html)
+
+---
+
+# Resources
+
 - #### [TrustedFirmware - Hafnium Documentation](https://hafnium.readthedocs.io/en/latest/)
 
 - #### [OP-TEE documentation](https://optee.readthedocs.io/en/latest/index.html)
@@ -1005,8 +1011,6 @@ open to cooperate and discuss.
 - #### [TrustZone Technology for Armv8-M](https://documentation-service.arm.com/static/5f873034f86e16515cdb6d3e?token=)
 
 - #### [TrustZone Technology for Armv8-A](https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/Learn%20the%20Architecture/TrustZone%20for%20Armv8-A.pdf?revision=c3134c8e-f1d0-42ff-869e-0e6a6bab824f)
-
-- #### [Roots of Trust are difficult - Matthew Garret](https://mjg59.dreamwidth.org/66907.html)
 
 ---
 
