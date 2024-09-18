@@ -159,6 +159,24 @@ extras:
 
 ---
 
+<br>
+<br>
+<br>
+
+## .center[Intro]
+
+???
+
+- I want to ask some questions to better get the feel of your familiarity with
+the concepts that will be covered in this talk
+- Please raise your hand
+  + "Who has heard of Trusted Execution Environment?"
+  + "Who has heard of Arm TrustZone?"
+  + "Who has worked with these concepts within Yocto?"
+  + "Who is currently working on projects that require secure execution or data isolation?"
+
+---
+
 # What is Trusted Execution Environment?
 
 .center[ <img src="/img/TEE_High_Lvl_Overview.svg" height="250px"> ]
