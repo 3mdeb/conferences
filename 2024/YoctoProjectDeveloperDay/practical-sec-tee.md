@@ -368,7 +368,7 @@ contexts to be able to restore them when switching back
     state is secure, and, when running code from non-secure memory, the processor
     state is non-secure 
   + This also excludes the monitor mode and the need for any secure monitor
-    software
+    firmware
 
 ---
 
