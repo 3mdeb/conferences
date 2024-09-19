@@ -187,7 +187,7 @@ the confidentiality and integrity of the code and data inside of this area."_*
 
 .footnote[
 
-\* J. Yao and V. Zimmer, *Building secure firmware: Armoring the foundation of the platform*. Apress, 2020. doi: 10.1007/978-1-4842-6106-4
+\* Source: J. Yao and V. Zimmer, *Building secure firmware: Armoring the foundation of the platform*. Apress, 2020. doi: 10.1007/978-1-4842-6106-4
 
 ]
 
@@ -221,6 +221,13 @@ data is being processed.
 
 - **Code integrity**: The confidentiality of its code, data and runtime states
 stored on a persistent memory.
+
+
+.footnote[
+
+Source: [Common Terminology for Confidential Computing - A Publication of The Confidential Computing Consortium](https://confidentialcomputing.io/wp-content/uploads/sites/10/2023/03/Common-Terminology-for-Confidential-Computing.pdf)
+
+]
 
 ???
 
@@ -374,7 +381,7 @@ attackers who have physical access to the device."_*
 
 .footnote[
 
-\* CHERUVU, Sunil, et al. Demystifying internet of things security: successful iot device/edge and platform security deployment. Springer Nature, 2020.
+\* Source: CHERUVU, Sunil, et al. Demystifying internet of things security: successful iot device/edge and platform security deployment. Springer Nature, 2020.
 
 ]
 
@@ -1152,6 +1159,8 @@ open to cooperate and discuss.
 - #### [TrustZone Technology for Armv8-M](https://documentation-service.arm.com/static/5f873034f86e16515cdb6d3e?token=)
 
 - #### [TrustZone Technology for Armv8-A](https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/Learn%20the%20Architecture/TrustZone%20for%20Armv8-A.pdf?revision=c3134c8e-f1d0-42ff-869e-0e6a6bab824f)
+
+- #### [Common Terminology for Confidential Computing - A Publication of The Confidential Computing Consortium](https://confidentialcomputing.io/wp-content/uploads/sites/10/2023/03/Common-Terminology-for-Confidential-Computing.pdf)
 
 ???
 
