@@ -354,19 +354,10 @@ contexts to be able to restore them when switching back
 
 ---
 
-# Normal vs Secure Worlds - Arm Cortex-M
 
-.center[ <img src="/img/TEE_ARM_Cortex-m.svg" height="250px"> ]
 
 ???
 
-- The division between worlds in Armv8-M is memory map-based
-  + The transitions take place automatically via exception handling
-  + This means that, when running code from the secure memory, the processor
-    state is secure, and, when running code from non-secure memory, the processor
-    state is non-secure 
-  + This also excludes the monitor mode and the need for any secure monitor
-    firmware
 
 ---
 
@@ -1248,6 +1239,23 @@ open to cooperate and discuss.
 <br>
 
 ## .center[Backlog]
+
+
+---
+
+# Normal vs Secure Worlds - Arm Cortex-M
+
+.center[ <img src="/img/TEE_ARM_Cortex-m.svg" height="250px"> ]
+
+???
+
+- The division between worlds in Armv8-M is memory map-based
+  + The transitions take place automatically via exception handling
+  + This means that, when running code from the secure memory, the processor
+    state is secure, and, when running code from non-secure memory, the processor
+    state is non-secure 
+  + This also excludes the monitor mode and the need for any secure monitor
+    firmware
 
 ---
 
