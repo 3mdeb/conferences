@@ -102,7 +102,9 @@ style="margin-left:40px"> ]
 - Time for this slide: 30s
 - Idea/goal of this slide: 3mdeb intro
 - What to say:
-    - TODO
+    - Embedded and Firmware development consultancy
+    - Our main products are Dasharo, a coreboot downstream and
+    Zarhus OS a Yocto-based Embedded Linux distribution
 - Notes:
     - TODO
 
