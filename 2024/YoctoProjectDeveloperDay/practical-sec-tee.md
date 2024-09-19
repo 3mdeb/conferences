@@ -408,7 +408,7 @@ contexts to be able to restore them when switching back
 # TEE-less cases - Arm Cortex-A
 
 .center[
-<img src="/img/TEE_ARM_Cortex-a_TEEless.svg" height="220px">
+<img src="/img/TEE_ARM_Cortex-a_TEEless.svg" height="400px">
 ]
 
 ???
