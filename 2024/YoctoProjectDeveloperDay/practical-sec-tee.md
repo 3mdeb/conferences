@@ -1187,6 +1187,23 @@ open to cooperate and discuss.
 
 ## .center[Backlog]
 
+---
+
+# GlobalPlatform API
+
+.center[
+<img src="/img/TEE_ARM_Cortex-a_GlobalPlatform.svg" width="380px">
+]
+
+???
+
+- The GlobalPlatform organization has created a committee to define an open
+security architecture for consumer and connected devices.
+- In order to run software in the TEE, we need to standardize the application
+program interface (API). Currently, the GlobalPlatform (GP) organization has
+developed a set of specifications so that the digital services and devices can
+be trusted and managed securely, including the secure element
+(SE), trusted execution environment (TEE), and trusted platform services (TPSs)
 
 ---
 
