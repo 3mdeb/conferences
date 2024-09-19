@@ -158,6 +158,46 @@ the concepts that will be covered in this talk
 
 ---
 
+<br>
+<br>
+<br>
+
+## .center[Raise your hand if you've heard of Trusted Execution Environment]
+
+---
+
+<br>
+<br>
+<br>
+
+## .center[Raise your hand if you've heard of Arm TrustZone]
+
+---
+
+<br>
+<br>
+<br>
+
+## .center[Raise your hand if you're familiar with the concept of Root of Trust]
+
+---
+
+<br>
+<br>
+<br>
+
+## .center[Raise your hand if you've worked with these concepts within Yocto]
+
+---
+
+<br>
+<br>
+<br>
+
+## .center[Raise your hand if the project you're working on requires secure execution or data isolation]
+
+---
+
 # What is Trusted Execution Environment?
 
 .center[ <img src="/img/TEE_High_Lvl_Overview.svg" height="250px"> ]
