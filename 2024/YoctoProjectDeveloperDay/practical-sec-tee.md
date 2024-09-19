@@ -150,6 +150,7 @@ the concepts that will be covered in this talk
 - Please raise your hand
   + "Who has heard of Trusted Execution Environment?"
   + "Who has heard of Arm TrustZone?"
+  + "Who is familiar with the concept of Root of Trust?"
   + "Who has worked with these concepts within Yocto?"
   + "Who is currently working on projects that require secure execution or data isolation?"
 
@@ -362,10 +363,42 @@ contexts to be able to restore them when switching back
 
 ---
 
+# TEE-less cases - Arm Cortex-A
 
+.center[
+<img src="/img/TEE_ARM_Cortex-a_TEEless.svg" height="220px">
+]
 
 ???
 
+- Some vendors may skip TrustZone when developing SoC's to reduce costs, power consumption, or complexity.
+- In case of disabled Arm TrustZone we could rely on external SoC or use software isolation.
+- Static partitioning hypervisors like `bao` or `xen Dom0-less` are best for this case as they statically define memory access to VM's at creation time
+
+---
+
+# Root of Trust and security
+
+_"A thing that has to be trustworthy for anything else on your computer to be trustworthy"_*
+
+.footnote[
+\* Source: [Root of trust are difficult - Matthew Garrett](https://mjg59.dreamwidth.org/66907.html)
+]
+
+???
+
+- This is a broad topic that could easily be an entire presentation on its own,
+and while I won't go into too much depth, I'll give a high-level overview.
+- This kind of jokey definition gets the point across perfectly
+- Essentialy Arm Trustzone doesn't attest the Trusted OS
+- Thus a malicious Trusted OS could be initialized
+- Thus Arm Trustzone must be attested
+- If we have some element we trust like TPM it can attest it
+- But if someone messes with the boot code it can also be compromised
+- Example raspberry pi
+  - Doesn't have immutable boot code so even when we attest the TEE the
+  bootloader can be modified
+- Some vendors don't provide support for TrustZone at all
 
 ---
 
@@ -1135,6 +1168,8 @@ open to cooperate and discuss.
 - #### ZIMMER, Vincent; KRAU, Michael. Establishing the root of trust. UEFI. org document dated August, 2016.
 
 - #### ZHAO, Shijun, et al. Providing root of trust for ARM TrustZone using on-chip SRAM. In: Proceedings of the 4th International Workshop on Trustworthy Embedded Devices. 2014. p. 25-36.
+
+- #### MARTINS, José; PINTO, Sandro. Shedding light on static partitioning hypervisors for Arm-based mixed-criticality systems. In: 2023 IEEE 29th Real-Time and Embedded Technology and Applications Symposium (RTAS). IEEE, 2023. p. 40-53.
 
 - #### [Roots of Trust are difficult - Matthew Garret](https://mjg59.dreamwidth.org/66907.html)
 
