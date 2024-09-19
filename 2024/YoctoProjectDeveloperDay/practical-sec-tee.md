@@ -202,6 +202,7 @@ the Platform"_
 software which is not the case in some definitions.
 - Can be isolated via software
 - The term TEE was coined somewhere in 2000s
+  - Goes back to Intel System Managment Mode
 - Used to be "secure area of the main processor" but the definition has
 broadened
   + Can even be a separate device, more on that later
@@ -235,9 +236,14 @@ Source: [Common Terminology for Confidential Computing - A Publication of The Co
 - This exact definition is from Confidential Computing Consortium
   - A Linux Foundation Project which aims to accelerate the adoption of Trusted
   Execution Environment (TEE) technologies and standards
-  - With Confidential Computing being the protection of data in use by
-  performing computation in a hardware-based, attested Trusted Execution
-  Environment.
+- Following the CIA triad:
+  - Confidentiality ensures that sensitive data is only accessible to those who
+  are authorized to see it
+  - Integrity prevents data from being tampered with or altered either
+  accidentally or maliciously.
+- Notice the lack of availability.
+  - In case of Denial of Service attack the core focus of the TEE is to ensure
+  that data and computations remain secure when the system is restored.
 
 ---
 
@@ -261,6 +267,15 @@ Source: [Common Terminology for Confidential Computing - A Publication of The Co
 - AMD SEV (Secure Encrypted Virtualization)
 
 ]
+
+???
+
+- Performance bottlenecks when competing for CPU resources
+- More vulnerable to side-channel attacks because of shared hardware
+  + Power
+  + Memory buses
+  + Clock signals
+  + Attacker can more easily deduce what's going on inside of TEE
 
 ---
 
@@ -286,11 +301,13 @@ Source: [Common Terminology for Confidential Computing - A Publication of The Co
 
 ???
 
-- ARM Cortex-M based Secure Subsystem
-- Shared resources
-  - Power, memory, caches, buses, clock signals
-  - Larger vector of attack
-- Hardware/firmware vulnerabilities could be exploited
+- For example some ARM Cortex-M/RISC-V based Secure Subsystem
+- No bottlenecks (maybe latency but that's forced drawback)
+- Still vulnerable to side-channel attacks because of shared hardware
+  + Power<
+  + Memory buses
+  + Clock signals
+- Hardware/firmware vulnerabilities could be exploited during initialization
 
 ---
 
@@ -314,6 +331,10 @@ Source: [Common Terminology for Confidential Computing - A Publication of The Co
 - Google Titan M
 
 ]
+
+???
+- More costly
+- Communication channels can be sniffed
 
 ---
 
@@ -1206,13 +1227,8 @@ open to cooperate and discuss.
 
 ???
 
-- The GlobalPlatform organization has created a committee to define an open
-security architecture for consumer and connected devices.
-- In order to run software in the TEE, we need to standardize the application
-program interface (API). Currently, the GlobalPlatform (GP) organization has
-developed a set of specifications so that the digital services and devices can
-be trusted and managed securely, including the secure element
-(SE), trusted execution environment (TEE), and trusted platform services (TPSs)
+- GlobalPlatform standarizes the API for development and execution of TA's as
+well as REE side API's to interact with those TA's
 
 ---
 
