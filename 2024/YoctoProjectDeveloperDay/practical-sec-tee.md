@@ -452,40 +452,6 @@ be trusted and managed securely, including the secure element
 
 ---
 
-# Secure Storage vs fTPM
-
-### TPM
-
-<img src="/img/tpm_ftpm_tee_driver1.svg" height="55px">
-
-### fTPM
-
-<img src="/img/tpm_ftpm_tee_driver2.svg" height="55px">
-
-### fTPM as TA
-
-<img src="/img/tpm_ftpm_tee_driver3.svg" height="90px" style="margin-top:-25px">
-
-???
-
-- If you've heard of fTPM you might be wondering how does it differ
-  + Without going into much detail fTPM can be thought as a software implementation of a TPM module
-  + Normally it's implemented only in the firmware so the OS calls TPM and firmware is responsive for handling requests and security
-  + Can be integrated in TEE thus offering better security and extended functionality
----
-
-# Secure Storage vs fTPM - Shameless Plug
-
-.center[
-
-### For those interested more about fTPM's
-
-[<img src="/img/FOSDEM_ftpm_ta_tee_blured.png" height="350px">
-](https://fosdem.org/2024/schedule/event/fosdem-2024-3097-securing-embedded-systems-with-ftpm-implemented-as-trusted-application-in-tee/)
-]
-
----
-
 # TEE implementations
 
 .pure-table[
@@ -1274,3 +1240,49 @@ open to cooperate and discuss.
 - Idea/goal of this slide: Questions and answers
 - What to say:
     - TODO
+
+---
+
+<br>
+<br>
+<br>
+
+## .center[Backlog]
+
+---
+
+# Secure Storage vs fTPM
+
+### TPM
+
+<img src="/img/tpm_ftpm_tee_driver1.svg" height="55px">
+
+### fTPM
+
+<img src="/img/tpm_ftpm_tee_driver2.svg" height="55px">
+
+### fTPM as TA
+
+<img src="/img/tpm_ftpm_tee_driver3.svg" height="90px" style="margin-top:-25px">
+
+???
+
+- Can fTPM mitigate the problems of Arm Trustzone not being trusted?
+- No, it suffers from the same exact problems
+- Needs a secure storage, secure counter
+- If you've heard of fTPM you might be wondering how does it differ
+  + Without going into much detail fTPM can be thought as a software implementation of a TPM module
+  + Normally it's implemented only in the firmware so the OS calls TPM and firmware is responsive for handling requests and security
+  + Can be integrated in TEE thus offering better security and extended functionality
+
+---
+
+# Secure Storage vs fTPM - Shameless Plug
+
+.center[
+
+### For those interested more about fTPM's
+
+[<img src="/img/FOSDEM_ftpm_ta_tee_blured.png" height="350px">
+](https://fosdem.org/2024/schedule/event/fosdem-2024-3097-securing-embedded-systems-with-ftpm-implemented-as-trusted-application-in-tee/)
+]
