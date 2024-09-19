@@ -390,59 +390,6 @@ secure
 
 ---
 
-# Root of trust/Chain of trust
-
-.center[
-<img src="/img/gpt_root_of_trust.png" height="400px">
-]
-
-???
-
-- This is a broad topic that could easily be an entire presentation on its own,
-and while I won't go into too much depth, I'll give a high-level overview.
-- Essentially, the Trusted Execution Environment (TEE) plays a critical role in
-extending the chain
-of trust all the way into userspace applications, enhancing overall system
-security.
-- However TEE can't establish a root of trust on it's own so it's vital to be
-aware of necessity of secure bootloader.
-
----
-
-# Root of trust/Chain of trust
-
-.center[
-<img src="/img/rot_tee_handshake.jpg" height="400px">
-]
-
-???
-
-- This is a broad topic that could easily be an entire presentation on its own,
-and while I won't go into too much depth, I'll give a high-level overview.
-- Essentially, the Trusted Execution Environment (TEE) plays a critical role in
-extending the chain
-of trust all the way into userspace applications, enhancing overall system
-security.
-- However TEE can't establish a root of trust on it's own so it's vital to be
-aware of necessity of secure bootloader and secure storage
--
-
----
-
-# APIs
-
-???
-
-- The GlobalPlatform organization has created a committee to define an open
-security architecture for consumer and connected devices.
-- In order to run software in the TEE, we need to standardize the application
-program interface (API). Currently, the GlobalPlatform (GP) organization has
-developed a set of specifications so that the digital services and devices can
-be trusted and managed securely, including the secure element
-(SE), trusted execution environment (TEE), and trusted platform services (TPSs)
-
----
-
 # TEE implementations
 
 .pure-table[
@@ -1294,3 +1241,18 @@ open to cooperate and discuss.
 [<img src="/img/FOSDEM_ftpm_ta_tee_blured.png" height="350px">
 ](https://fosdem.org/2024/schedule/event/fosdem-2024-3097-securing-embedded-systems-with-ftpm-implemented-as-trusted-application-in-tee/)
 ]
+
+---
+
+# Secret slide!!!
+
+.left-column50[
+<img src="/img/gpt_root_of_trust.png" height="300px">
+]
+
+.right-column50[
+<img src="/img/rot_tee_handshake.jpg" height="300px">
+]
+
+It was cut from presentation but we didn't have the heart to remove it
+completely :)
