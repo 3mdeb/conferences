@@ -319,7 +319,7 @@ Source: [Common Terminology for Confidential Computing - A Publication of The Co
 
 ---
 
-# Normal vs Secure World - Arm Cortex-A
+# Arm TrustZone - Arm Cortex-A
 
 .left-column50[
 <br>
