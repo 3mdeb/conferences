@@ -381,6 +381,12 @@ contexts to be able to restore them when switching back
 
 _"A thing that has to be trustworthy for anything else on your computer to be trustworthy"_*
 
+.center[
+<br>
+<br>
+<img src="/img/TEE_ARM_Cortex-a_boot.svg" width="750px">
+]
+
 .footnote[
 \* Source: [Root of trust are difficult - Matthew Garrett](https://mjg59.dreamwidth.org/66907.html)
 ]
