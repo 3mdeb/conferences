@@ -111,33 +111,13 @@ style="margin-left:40px"> ]
 # Agenda
 
 - TEE theory (Tymoteusz Burak)
-- What is TEE (2-4 slides)?
-  + concept description
-  + overview on different architectures
-  + we focus on ARM Cortex-A
-  + we mentiond briefly Intel, RISC-V. Intel
-  + secure world vs non-secure world
-- TEE API specififactions (1-2 slides)
-  + focus Global Platform API
-    - show that something liek this exist,s try to explain the purpose
-- OPTEE - about + history
-  + https://www.iwavesystems.com/product/op-tee-for-android-and-linux/
-  + architecture, tee-supplicant
-- optee - features overview (1 slide)
-- fTPM - autopromotion + example of trusted service  (1 slide)
-- optee secure storage (1 slide)
-  + https://optee.readthedocs.io/en/latest/architecture/secure_storage.html
-
-extras:
-- What is Trusted Execution Environment?
-  + Normal World vs Secure World
-    - Different architecture overview
-  + Root of trust
-  + TEE use cases
-    - Secure storage
+    - What is TEE?
+    - Arm TrustZone (Arm Cortex-A)
+    - Root of Trust and security
+    - Secure Storage
+    - TEE Implementations
 
 - TEE practice (Daniil Klimuk)
-    - Introduction
     - What to integrate and why?
     - Compilation from source vs vendor binaries.
     - Linux/U-Boot and Yocto integration.
