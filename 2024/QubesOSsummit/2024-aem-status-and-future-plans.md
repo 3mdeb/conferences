@@ -323,9 +323,11 @@ still not set in stone.
 
 # Support us
 
-Sign up for a paid tech preview to help us with development and testing.
+[Sign up][email_link] for a paid tech preview to help us with development and testing.
 
-<!-- Placeholder for QR code -->
+.center.image-50[![](/img/aem_tech_preview_qr.png)]
+
+[email_link]: mailto:tb.aem@dasharo.com?subject=Trenchboot%20NV4X%20tech%20preview&body=Please%20sign%20me%20up%20for%20Trenchboot%20technical%20preview%20%20NovaCustom%20NV4X
 
 ---
 
