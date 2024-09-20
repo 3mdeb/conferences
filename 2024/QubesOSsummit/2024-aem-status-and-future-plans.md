@@ -260,6 +260,12 @@ failed) or red indicator (not supported or not installed).
 
 ---
 
+# Qubes-certified devices with Dasharo
+
+.center.image-100[![](/img/qubes_certified_dasharo.png)]
+
+---
+
 # Main issues
 
 - [Lack of UEFI
