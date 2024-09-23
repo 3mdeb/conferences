@@ -439,7 +439,9 @@ _"A thing that has to be trustworthy for anything else on your computer to be tr
 and while I won't go into too much depth, I'll give a high-level overview.
 - This kind of jokey definition gets the point across perfectly
 - Essentialy Arm Trustzone doesn't attest the Trusted OS
-- Thus a malicious Trusted OS could be initialized
+- This part is handled by Arm Trusted Firmware
+- provides a reference implementation of secure boot and runtime firmware for ARM's A-profile architecture
+- So a malicious Trusted OS cant be initialized
 - Thus Arm Trustzone must be attested
 - If we have some element we trust like TPM it can attest it
 - But if someone messes with the boot code it can also be compromised
@@ -476,6 +478,8 @@ it's mainly responsible for protecting sensitive memory during runtime
 - You have to load private keys first
 - Thus you also have to ensure that the place youre storing your secrets on is
 secure
+- There's two types of secure storage that concerns us
+- eMMC Replay Protected Memory Block and Rich Execution Environment Filesystem Storage
 
 ---
 
