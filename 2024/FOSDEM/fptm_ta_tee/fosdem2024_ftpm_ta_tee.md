@@ -215,7 +215,7 @@ Secure Random Number Generation:
 _"Confidential Computing is the protection of data in use by performing
 computation in a hardware-based, attested Trusted Execution Environment (TEE)."_
 
-.center[ <img src="/img/TEE_ARM_Cortex-a.svg" height="250px"> ]
+.center[ <img src="/img/TEE_ARM_Cortex-a_old.svg" height="250px"> ]
 
 ???
 
@@ -228,7 +228,8 @@ computation in a hardware-based, attested Trusted Execution Environment (TEE)."_
 
 <br>
 
-.center[ <img src="/img/TEE_ARM_Cortex-a_exception_levels.svg" height="250px"> ]
+.center[ <img src="/img/TEE_ARM_Cortex-a_exception_levels_old.svg"
+    height="250px"> ]
 
 ???
 
