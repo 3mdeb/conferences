@@ -71,9 +71,11 @@ approaching this topic.
   - Qubes OS Security Report (based on Qubes HCL).
   - FSF RYF Certification (unclear rules).
 
+<!-- markdownlint-disable MD022 MD003 -->
 ---
 clicks: 4
 ---
+<!-- markdownlint-enable MD022 MD003 -->
 
 ## Assessment
 
@@ -112,9 +114,11 @@ of the system.
 
 -->
 
+<!-- markdownlint-disable MD022 MD003 -->
 ---
 clicks: 2
 ---
+<!-- markdownlint-enable MD022 MD003 -->
 
 # Challenge 2: SMM (TEE?) as Chain of Trust Gap
 
@@ -149,11 +153,14 @@ couple PoC. Unfortunately not much traction.
 
 -->
 
+<!-- markdownlint-disable MD022 MD003 -->
 ---
 clicks: 5
 ---
+<!-- markdownlint-enable MD022 MD003 -->
 
 # Challenge 3: All your hardware belong to us
+
 * The growth of hardware and firmware components like AMD PSP features, Intel
 PPAM and ME features, or MS Pluton, and how those effectively block/enable
 building trustworthy systems by the open-source community.
@@ -182,8 +189,8 @@ Full potential can be leveraged only by MS Windows, and Linux gets fTPM.
 - do we own our computers?
 
 [click] Satoshi Tanada has excellent posts on his blog explaining how ISDR (aka
-Devil's Gate Rock) works. Intel PPAM. The critical point is that no one can leverage it
-except those with excellent vendor relations. Without working Intel
+Devil's Gate Rock) works. Intel PPAM. The critical point is that no one can
+leverage it except those with excellent vendor relations. Without working Intel
 PPAM, our system is potentially more vulnerable. How many of us can verify if we
 have a correctly working Intel PPAM module on our computers? It applies to all
 Hardware Shield Technologies.
@@ -201,9 +208,11 @@ and report CVEs.
 existence of peripheral processors and, IMHO, TEE firmware features, too.
 -->
 
+<!-- markdownlint-disable MD022 MD003 -->
 ---
 clicks: 4
 ---
+<!-- markdownlint-enable MD022 MD003 -->
 
 # Challenge 4: Root of Trust
 
@@ -244,14 +253,14 @@ support for Caliptra
 
 <v-clicks>
 
-  * Lessons learned from the 11-th series of making 20+ year-old security tech
+* Lessons learned from the 11-th series of making 20+ year-old security tech
   for Intel CPUs first-class citizens in the Linux kernel.
-  * Make sure to consider platform-specific challenges and architectural
+* Make sure to consider platform-specific challenges and architectural
   alignment (Intel vs AMD, ARM inclusion). Design a robust ABI framework up
   front to reflect this.
-  * Consider configuration impacts and document them upfront (e.g., KASLR,
+* Consider configuration impacts and document them upfront (e.g., KASLR,
   IOMMU in the Linux kernel).
-  * Check various compilers and build environments from the beginning. Ensure
+* Check various compilers and build environments from the beginning. Ensure
   successful builds with the new features turned on and off in the
   configuration.
 
@@ -263,14 +272,14 @@ support for Caliptra
 
 <v-clicks>
 
-  * Plan for all entry points and boot protocols (32/64 bit, legacy/UEFI). Note
+* Plan for all entry points and boot protocols (32/64 bit, legacy/UEFI). Note
   that the upstream work assumes 64b environments to run in, but it should
   build in all environments
-  * Be willing to accommodate feedback and suggestions where possible and
+* Be willing to accommodate feedback and suggestions where possible and
   attempt to get assistance from the community (e.g., WAIT/MONITOR,
   linker-based `kernel_info` placement).
-  * Avoid tight coupling to specific hardware behaviors (e.g., TPM access).
-  * Is there anything missing?
+* Avoid tight coupling to specific hardware behaviors (e.g., TPM access).
+* Is there anything missing?
 
 </v-clicks>
 
