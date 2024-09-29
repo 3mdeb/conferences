@@ -19,6 +19,8 @@ mdc: true
 ## Presentation title
 
 ---
-# Provide path to slides you want to present.
+
+# Provide path to slides you want to present
+
 src: ./pages/imported-slides.md
 ---

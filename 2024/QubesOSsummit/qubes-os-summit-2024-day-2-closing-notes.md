@@ -10,6 +10,7 @@ routeAlias: closing-day-2
 ### Piotr Król
 
 ---
+
 # Platinum Sponsors
 
 ---
@@ -49,8 +50,10 @@ independent reviewers.
 
 ---
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
-  <img src="/2024/QubesOSsummit/sudblock.jpg" style="max-width: 50%; height: auto; margin: 10px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;
+  align-items: center;">
+  <img src="/2024/QubesOSsummit/sudblock.jpg" style="max-width: 50%; height:
+    auto; margin: 10px;">
 </div>
   <center><img src="/2024/QubesOSsummit/sudblock_address.png" style="max-width: 100%"></center>
 
@@ -58,12 +61,14 @@ independent reviewers.
 <small>Photo by Maciej Klimiuk</small>
 </div>
 
+<!-- markdownlint-disable MD022 MD003 -->
 ---
 layout: cover
 background: /intro.png
 class: text-center
 ---
+<!-- markdownlint-enable MD022 MD003 -->
 
-# Thank you and see you next year 
+# Thank you and see you next year
+
 ## (or on tomorrows hackathon)
-

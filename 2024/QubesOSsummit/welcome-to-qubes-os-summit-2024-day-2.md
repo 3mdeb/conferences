@@ -8,6 +8,8 @@ routeAlias: welcome-day-2
 ## Welcome to Qubes OS Summit 2024 Day 2
 
 ### Piotr Król and Marek Marczykowski Górecki
+
+<!-- markdownlint-disable MD022 MD003 -->
 ---
 layout: cover
 background: /2024/QubesOSsummit/qoss_welcome.png
@@ -18,6 +20,7 @@ layout: cover
 background: /intro.png
 class: text-center
 ---
+<!-- markdownlint-enable MD022 MD003 -->
 
 # Platinum Sponsors
 
@@ -56,11 +59,13 @@ independent reviewers.
 
 -->
 
+<!-- markdownlint-disable MD022 MD003 -->
 ---
 layout: cover
 background: /intro.png
 class: text-center
 ---
+<!-- markdownlint-enable MD022 MD003 -->
 
 # Silver Sponsors
 
@@ -70,7 +75,8 @@ class: text-center
   height: 40vh;">
   <img src="/2024/QubesOSsummit/novacustom_logo.png" style="max-width: 50%;
     height: auto;">
-  <img src="/2024/QubesOSsummit/nitrokey_logo.png" style="max-width: 500%; height: auto;">
+  <img src="/2024/QubesOSsummit/nitrokey_logo.png" style="max-width: 500%;
+    height: auto;">
 </div>
 
 <!--
@@ -100,15 +106,17 @@ You can always thank them by recommending them and their products.
 ### 10:45-11:15
 
 #### **_Implementing UEFI Secure Boot in Qubes OS: Challenges and Future Steps_** - Piotr (3mdeb)
+
 ### 11:25-12:15
 
 #### **_GPU passthrough - My personal experience_** - Neowutran (Specialist in OffSec)
+
 ### 12:15-13:00
 
 #### **_Joys and sorrows of multi-VM app development: a SecureDrop Workstation case study_** - Francisco Rocha (@deeplow)
 
-
 ### 13:00-14:30
+
 #### **_Lunch_**
 
 ---
@@ -126,21 +134,25 @@ You can always thank them by recommending them and their products.
 ### 15:40-16:10
 
 #### **_Qubes & Device_** - Piotr (ITL)
+
 ### 16:15-17:00
 
 #### **_Heads rolling release : roles of upstream and downstream forks_** - Thierry (Heads Maintainer)
+
 ### 17:10-17:40
 
 #### **_Update on Qubes Air_** - Marek&Frédéric (ITL/Qubes Team)
 
-
 ### 17:50-18:00
+
 #### **_Closing Notes_** - Piotr (3mdeb)
 
+<!-- markdownlint-disable MD022 MD003 -->
 ---
 layout: cover
 background: /intro.png
 class: text-center
 ---
+<!-- markdownlint-enable MD022 MD003 -->
 
 # Q&A

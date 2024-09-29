@@ -8,6 +8,8 @@ routeAlias: welcome-day-1
 ## Welcome to Qubes OS Summit 2024 Day 1
 
 ### Piotr Król and Marek Marczykowski-Górecki
+
+<!-- markdownlint-disable MD022 MD003 -->
 ---
 layout: cover
 background: /2024/QubesOSsummit/qoss_welcome.png
@@ -18,6 +20,7 @@ layout: cover
 background: /intro.png
 class: text-center
 ---
+<!-- markdownlint-enable MD022 MD003 -->
 
 # Platinum Sponsors
 
@@ -56,11 +59,13 @@ independent reviewers.
 
 -->
 
+<!-- markdownlint-disable MD022 MD003 -->
 ---
 layout: cover
 background: /intro.png
 class: text-center
 ---
+<!-- markdownlint-enable MD022 MD003 -->
 
 # Silver Sponsors
 
@@ -70,7 +75,8 @@ class: text-center
   height: 40vh;">
   <img src="/2024/QubesOSsummit/novacustom_logo.png" style="max-width: 50%;
     height: auto;">
-  <img src="/2024/QubesOSsummit/nitrokey_logo.png" style="max-width: 500%; height: auto;">
+  <img src="/2024/QubesOSsummit/nitrokey_logo.png" style="max-width: 500%;
+    height: auto;">
 </div>
 
 <!--
@@ -97,12 +103,19 @@ on Qubes OS and support FOSS philosophy.
 ---
 
 <img src="/2024/QubesOSsummit/qubes_2024_logo.png">
-<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
-    <img src="/2024/QubesOSsummit/qubes_2023_logo.png" alt="Image 1" style="max-width: 50%; height: auto; margin: 10px;">
-    <img src="/2024/QubesOSsummit/qubes_2022_logo.png" alt="Image 2" style="max-width: 50%; height: auto; margin: 10px;">
-    <img src="/2024/QubesOSsummit/qubes_2021_logo.png" alt="Image 3" style="max-width: 35%; height: auto; margin: 10px;">
-    <img src="/2024/QubesOSsummit/qubes_2020_logo.jpeg" alt="Image 4" style="max-width: 30%; height: auto; margin: 10px;">
-    <img src="/2024/QubesOSsummit/qubes_2019_logo.png" alt="Image 5" style="max-width: 25%; height: auto; margin: 10px;">
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center;
+  align-items: center;">
+  <img src="/2024/QubesOSsummit/qubes_2023_logo.png" alt="Image 1"
+    style="max-width: 50%; height: auto; margin: 10px;">
+  <img src="/2024/QubesOSsummit/qubes_2022_logo.png" alt="Image 2"
+    style="max-width: 50%; height: auto; margin: 10px;">
+  <img src="/2024/QubesOSsummit/qubes_2021_logo.png" alt="Image 3"
+    style="max-width: 35%; height: auto; margin: 10px;">
+  <img src="/2024/QubesOSsummit/qubes_2020_logo.jpeg" alt="Image 4"
+    style="max-width: 30%; height: auto; margin: 10px;">
+  <img src="/2024/QubesOSsummit/qubes_2019_logo.png" alt="Image 5"
+    style="max-width: 25%; height: auto; margin: 10px;">
 </div>
 
 <!--
@@ -122,10 +135,11 @@ available,
 * Qubes HCL statistics: 1055 (+61)
 * Released Qubes OS 4.2 and three subsequent point releases
 * Greatly improved updates experience
-* Several UX improvements and new GUI tools - including new Qubes Global Config, more to come
+* Several UX improvements and new GUI tools - including new Qubes Global
+  Config, more to come
 * fwupd integration installed by default
 * Community projects:
-  * Automated configurability extended thanks to community contribution from Ben
+  - Automated configurability extended thanks to community contribution from Ben
   Grande in form of [qusal](https://github.com/ben-grande/qusal) based on
   previous unman work.
 
@@ -141,23 +155,24 @@ Qubes HCL snapshot date 18/09/2024
 * Event organization improved:
   - A lot external talks in CfP, we had to reject some.
 * Coming soon:
-  * UEFI Secure Boot integration - more about that in tomorrow's talk.
-    - TL;DR we are not there yet, but we are close. safeboot approach is still
+  - UEFI Secure Boot integration - more about that in tomorrow's talk.
+    + TL;DR we are not there yet, but we are close. safeboot approach is still
   alive.
-  * TrenchBoot AEM - we have some exciting news and demo for you.
-  * Certified Hardware with Intel Boot Guard and UEFI Capsule Update coming in
+  - TrenchBoot AEM - we have some exciting news and demo for you.
+  - Certified Hardware with Intel Boot Guard and UEFI Capsule Update coming in
   following months.
-  * As mentioned last year SMI Transfer Monitor was integrated for Qubes OS
+  - As mentioned last year SMI Transfer Monitor was integrated for Qubes OS
   Certified Hardware MSI PRO Z690-A by Brian Delgado.
-    - code is PoC, but it was presented at [vPub 0xB](https://youtu.be/3PmOcjQX-9Y)
-    - the challenge would be to make Xen and dom0 aware of that,
+    + code is PoC, but it was presented at [vPub 0xB](https://youtu.be/3PmOcjQX-9Y)
+    + the challenge would be to make Xen and dom0 aware of that,
 
+<!-- markdownlint-disable MD022 MD003 -->
 ---
 transition: fade
 ---
+<!-- markdownlint-enable MD022 MD003 -->
 
 # Accomplishments - 2022-2023
-
 
 <center><img src="/2024/QubesOSsummit/qubes_2023_stats.png" width="600"></center>
 
@@ -169,10 +184,14 @@ transition: fade
 
 ---
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
-    <img src="/2024/QubesOSsummit/secure_boot_main1.png" alt="Image 1" style="max-width: 35%; height: auto; margin: 10px;">
-    <img src="/2024/QubesOSsummit/secure_boot_main3.png" alt="Image 2" style="max-width: 35%; height: auto; margin: 10px;">
-    <img src="/2024/QubesOSsummit/secure_boot_main4.png" alt="Image 3" style="max-width: 35%; height: auto; margin: 10px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;
+  align-items: center;">
+  <img src="/2024/QubesOSsummit/secure_boot_main1.png" alt="Image 1"
+    style="max-width: 35%; height: auto; margin: 10px;">
+  <img src="/2024/QubesOSsummit/secure_boot_main3.png" alt="Image 2"
+    style="max-width: 35%; height: auto; margin: 10px;">
+  <img src="/2024/QubesOSsummit/secure_boot_main4.png" alt="Image 3"
+    style="max-width: 35%; height: auto; margin: 10px;">
 </div>
 
 <!--
@@ -194,7 +213,8 @@ transition: fade
   - UEFI is planned and founded.
 * Finalize Qubes AEM for AMD
   - Waiting for release of documentation by AMD
-  - If it would not happen early we have to rely on existing documentation and will adjust after that.
+  - If it would not happen early we have to rely on existing documentation and
+    will adjust after that.
 * UEFI Secure Boot have to become first-class citizen in Qubes OS.
 * Qubes Security Report - road to OSS security leadership.
 * More in Marek's talk dedicated to Qubes OS Project plans.
@@ -212,12 +232,15 @@ Not much changed since last year.
 <br>
 
 * ## September 20th: Conference Day 1 and Afterparty
+
 <br>
 
 * ## September 21th: Conference Day 2
+
 <br>
 
 * ## September 22th: Hackathon
+
 <br>
 
 ---
@@ -235,15 +258,17 @@ Not much changed since last year.
 ### 11:10-11:30
 
 #### **_Qubes OS GUI Changes and Future Perspectives_** - Marta (ITL)
+
 ### 11:40-12:10
 
 #### **_Enhancing OS Awareness of Hardware Security Capabilities in Qubes OS_** - Piotr (3mdeb)
+
 ### 12:15-13:00
 
 #### **_Passwordless encrypted Qubes? Exploring some concepts_** - nestire (Nitrokey)
 
-
 ### 13:00-14:30
+
 #### **_Lunch_**
 
 ---
@@ -261,40 +286,46 @@ Not much changed since last year.
 ### 15:50-16:20
 
 #### **_Anti Evil Maid status and future plans_** - Michał (3mdeb)
+
 ### 16:30-17:00
 
 #### **_Rolling out Qubes_** - unman (Qubes OS Maintainer)
+
 ### 17:10-17:40
 
 #### **_Update on Qubes Air_** - Marek&Frédéric (ITL/Qubes Team)
 
-
 ### 17:50-18:00
+
 #### **_Closing Notes_** - Piotr (3mdeb)
 
 ### 19:30+
+
 #### **_Afterparty_**
 
+<!-- markdownlint-disable MD022 MD003 -->
 ---
 layout: cover
 background: /intro.png
 class: text-center
 ---
 
-## Details on: 
-### https://cfp.3mdeb.com/qubes-os-summit-2024/
-### https://vpub.dasharo.com/e/16/qubes-os-summit-2024#schedule
+## Details on
 
+### https://cfp.3mdeb.com/qubes-os-summit-2024/
+
+### https://vpub.dasharo.com/e/16/qubes-os-summit-2024#schedule
 
 ---
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
-  <img src="/2024/QubesOSsummit/sudblock.jpg" style="max-width: 50%; height: auto; margin: 10px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;
+  align-items: center;">
+  <img src="/2024/QubesOSsummit/sudblock.jpg" style="max-width: 50%; height:
+    auto; margin: 10px;">
 </div>
   <center><img src="/2024/QubesOSsummit/sudblock_address.png" style="max-width: 100%"></center>
-
 <div class="absolute left-30px bottom-30px">
-<small>Photo by Maciej Klimiuk</small>
+  <small>Photo by Maciej Klimiuk</small>
 </div>
 
 ---
@@ -307,29 +338,33 @@ https://vpub.dasharo.com
 
 </center>
 
-- Respect Code of Conduct.
-- Please follow Safety and Health protocols and respect others.
-- Talks are streamed and recorded and will be published on Youtube.
-- Drinks and sweets are free.
-- Matrix `#qubes-summit:matrix.org` will be used for communication during event.
-- In case of any issues please contact with organizers.
+* Respect Code of Conduct.
+* Please follow Safety and Health protocols and respect others.
+* Talks are streamed and recorded and will be published on Youtube.
+* Drinks and sweets are free.
+* Matrix `#qubes-summit:matrix.org` will be used for communication during event.
+* In case of any issues please contact with organizers.
 
 ---
 
 # Merchandise
-<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
-  <img src="/2024/QubesOSsummit/qubes_front.png" style="max-width: 35%; height: auto; margin: 10px;">
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center;
+  align-items: center;">
+  <img src="/2024/QubesOSsummit/qubes_front.png" style="max-width: 35%; height:
+    auto; margin: 10px;">
   <img src="/2024/QubesOSsummit/qubes_back.png" style="max-width: 35%">
 </div>
 
-- Paid and free merchandise available (at location and in 3mdeb Shop).
-- There are also partners selling their merchandise.
+* Paid and free merchandise available (at location and in 3mdeb Shop).
+* There are also partners selling their merchandise.
 
+<!-- markdownlint-disable MD022 MD003 -->
 ---
 layout: cover
 background: /intro.png
 class: text-center
 ---
+<!-- markdownlint-enable MD022 MD003 -->
 
 # Q&A
-

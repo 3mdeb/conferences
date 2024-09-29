@@ -15,8 +15,8 @@ Presentation subtitle
 Slide Subtitle
 
 * Slide bullet text
-  * Slide bullet text
-  * Slide bullet text
+  - Slide bullet text
+  - Slide bullet text
 * Slide bullet text
 * Slide bullet text
 

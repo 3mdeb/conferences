@@ -2,11 +2,11 @@
 layout: cover
 background: /intro.png
 class: text-center
-routeAlias: assesment
+routeAlias: assessment
 
 ---
 
-##  Enhancing OS Awareness of Hardware Security Capabilities in Qubes OS
+## Enhancing OS Awareness of Hardware Security Capabilities in Qubes OS
 
 ### Piotr Król
 
@@ -23,9 +23,11 @@ approaching this topic.
   - Qubes OS Security Report (based on Qubes HCL).
   - FSF RYF Certification (unclear rules).
 
+<!-- markdownlint-disable MD022 MD003 -->
 ---
 clicks: 4
 ---
+<!-- markdownlint-enable MD022 MD003 -->
 
 ## Assessment
 
@@ -64,10 +66,12 @@ of the system.
 
 -->
 
+<!-- markdownlint-disable MD022 MD003 -->
 ---
 layout: cover
 background: /intro.png
 class: text-center
 ---
+<!-- markdownlint-enable MD022 MD003 -->
 
 # Discussion
