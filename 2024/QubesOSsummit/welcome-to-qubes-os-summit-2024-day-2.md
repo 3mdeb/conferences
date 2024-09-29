@@ -117,7 +117,7 @@ You can always thank them by recommending them and their products.
 
 ### 14:30-15:00
 
-#### **_Future of Measured Boot such as Heads_** - Jan (Nitrokey)
+#### **_Qubes in the land of Ansible_** - Kushal (Sunet)
 
 ### 15:05-15:35
 
@@ -131,7 +131,7 @@ You can always thank them by recommending them and their products.
 #### **_Heads rolling release : roles of upstream and downstream forks_** - Thierry (Heads Maintainer)
 ### 17:10-17:40
 
-#### **_Qubes Ready to Install for Journalists_** - Kenneth
+#### **_Update on Qubes Air_** - Marek&Frédéric (ITL/Qubes Team)
 
 
 ### 17:50-18:00
