@@ -18,7 +18,8 @@ mdc: true
 
 ## Presentation title
 
+<!-- markdownlint-disable MD022 MD003 -->
 ---
-# Provide path to slides you want to present.
 src: ./pages/imported-slides.md
 ---
+<!-- markdownlint-enable MD022 MD003 -->
