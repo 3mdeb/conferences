@@ -5,7 +5,9 @@ class: text-center
 routeAlias: implementing-uefi
 
 ---
+
 ## Implementing UEFI Secure Boot in Qubes OS
+
 ### Challenges and Future Steps
 
 <br>
@@ -21,32 +23,195 @@ OS, ultimately paving the way for a more secure and resilient operating system.
 
 ---
 
-# UEFI Secure Boot
+# Kudos
+
+* Kamil Aronowski
+* Marek Marczykowski-Górecki
+* Andrew Cooper
+
+---
+
+# Goals
+* Briefly explain what is UEFI Secure Boot and what led to OSS dislike of it.
+* Justify that only valid way of use of UEFI Secure Boot was defined by Trammel Hudson
+in [safeboot project](https://safeboot.dev/).
+  - Anything else are just excuses, which waste resources.
+
+---
+transition: fade
+
+---
+
+<img src="/2024/QubesOSsummit/uefi_rot_and_cot/ds08msa_uefi_rot_and_cot_09.png"/>
+
+---
+transition: fade
+
+---
+
+<img src="/2024/QubesOSsummit/uefi_rot_and_cot/ds08msa_uefi_rot_and_cot_08.png"/>
+
+---
+transition: fade
+
+---
+
+<img src="/2024/QubesOSsummit/uefi_rot_and_cot/ds08msa_uefi_rot_and_cot_07.png"/>
+
+---
+transition: fade
+
+---
+
+<img src="/2024/QubesOSsummit/uefi_rot_and_cot/ds08msa_uefi_rot_and_cot_06.png"/>
+
+---
+transition: fade
+
+---
+
+<img src="/2024/QubesOSsummit/uefi_rot_and_cot/ds08msa_uefi_rot_and_cot_05.png"/>
+
+---
+transition: fade
+
+---
+
+<img src="/2024/QubesOSsummit/uefi_rot_and_cot/ds08msa_uefi_rot_and_cot_04.png"/>
+
+---
+transition: fade
+
+---
+
+<img src="/2024/QubesOSsummit/uefi_rot_and_cot/ds08msa_uefi_rot_and_cot_03.png"/>
+
+---
+transition: fade
+
+---
+
+<img src="/2024/QubesOSsummit/uefi_rot_and_cot/ds08msa_uefi_rot_and_cot_02.png"/>
+
+---
+transition: fade
+
+---
+
+<img src="/2024/QubesOSsummit/uefi_rot_and_cot/ds08msa_uefi_rot_and_cot_01.png"/>
 
 <!--
 
-TODO: very brief intro to UEFI Secure Boot
+Chain of Trust between DXE and BDS, BDS is just specialized DXE module, is
+something to consider, because despite whole infrastructure for enforcing image
+authentication exist at this point.
 
-UEFI Secure
-Boot has emerged as a critical feature to protect systems against persistent
-firmware attacks and unauthorized code execution. While Qubes OS is renowned
-for its security-centric approach, the official support for UEFI Secure Boot
-remains a significant milestone yet to be fully realized.
+First there is no image verification if UEFI Secure Boot is not set, that is
+obvious.
+
+It seem to not be used in reference implementation. It is little bit different
+for each image, but we will look on the policy right after next slide.
+
+-->
+
+---
+transition: fade
+
+---
+
+<img src="/2024/QubesOSsummit/uefi_rot_and_cot/ds08msa_uefi_rot_and_cot_00.png"/>
+
+<!-- 
+
+A bootloader is an option. In reality, it is a UEFI Image (PE file) called by
+UEFI Specification OS Loader. Recently popularity gain boot chain without
+Bootloader/OS Loader, or rather built-in OS kernel. Both are visible to UEFI as
+PE file and treated as UEFI Image.
+
+-->
+
+---
+
+```c {*}{maxHeight:'100px'}
+  switch (GetImageType (File)) {
+    case IMAGE_FROM_FV:
+      Policy = ALWAYS_EXECUTE;
+      break;
+
+    case IMAGE_FROM_OPTION_ROM:
+      Policy = PcdGet32 (PcdOptionRomImageVerificationPolicy);
+      break;
+
+    case IMAGE_FROM_REMOVABLE_MEDIA:
+      Policy = PcdGet32 (PcdRemovableMediaImageVerificationPolicy);
+      break;
+
+    case IMAGE_FROM_FIXED_MEDIA:
+      Policy = PcdGet32 (PcdFixedMediaImageVerificationPolicy);
+      break;
+
+    default:
+      Policy = DENY_EXECUTE_ON_SECURITY_VIOLATION;
+      break;
+  }
+```
+
+Policies:
+`ALWAYS_EXECUTE`,`NEVER_EXECUTE`,`ALLOW_EXECUTE_ON_SECURITY_VIOLATION`,`DEFER_EXECUTE_ON_SECURITY_VIOLATION`,`DENY_EXECUTE_ON_SECURITY_VIOLATION`,
+`QUERY_USER_EXECUTE_ON_SECURITY_VIOLATION`.
+
+<!--
+
+OptionROM policy is important because malicious VM with passed-through GPU
+could do the OptionROM update, which without signature verification can
+undermine security of whole platform.
+
+-->
+
+---
+
+# UEFI Secure Boot
+
+UEFI Secure Boot has emerged as a critical feature to protect systems against
+persistent firmware attacks and unauthorized code execution. While Qubes OS is
+renowned for its security-centric approach, the official support for UEFI
+Secure Boot remains a significant milestone yet to be fully realized.
 
 UEFI Secure Boot is really Chain of Trust technology, which covers very
 specific part of x86 UEFI compliant boot process.
 
-It covers only transition between UEFI BIOS and OS Loader/OS Kernel.
+By default it covers only transition between UEFI BIOS and OS Loader/OS Kernel.
+Verification of components coming from Firmware Volume, OptionROMs, drivers
+from external media or internally connected are verified only if correct policy
+is set by UEFI BIOS vendor.
 
-It also can cover DXE images (typically drivers) authentication although
-reference implementation does not enable that. Despite providing all necessary
-libraries to achieve the goal.
+<!--
+
+Correctly configured UEFI Secure Boot is not enough to protectli platform,
+there have to be root of trust behind, but is another can of worms.
+
+-->
+
+---
+
+<center><img src="/2024/QubesOSsummit/pk_kek_role.png" width="450"/></center>
+
+<!--
+
+UEFI Secure Boot keys and db role
 
 -->
 
 ---
 
 # UEFI Secure Boot and Linux
+
+* Microsoft became a holder of of keys for UEFI CA
+  - nobody else had infrastructure (Microsoft already signed OS drivers),
+  - nobody else had/wanted to put resources in the process,
+* Microsoft to provide certification mandates among OEM inclusion of one their
+certificates in KEK database and two in DB (MSFT PCA, UEFI CA).
+* UEFI CA is the certificate which signs non-Microsoft software.
 
 <!--
 
@@ -58,8 +223,126 @@ dual-boot environments.
 
 ---
 
-# UEFI Secure Boot and Xen
+# UEFI Secure Boot has bad press
+
+* [PKfail (CVE-2024-8105)](https://www.cve.org/CVERecord?id=CVE-2024-8105)
+  - Use of insecure PK generated by AMI for reference implmentation needs
+* [UEFI Shell considered harmful (CVE-2024-7756)](https://www.cve.org/CVERecord?id=CVE-2024-7756)
+  - If UEFI BIOS has UEFI Shell and attacker would be able to trigger it, then it can be leveraged for UEFI Secure Boot bypass thanks to `mm` tool (CWE-489: Active Debug Code).
+* [BootHole](https://eclypsium.com/blog/theres-a-hole-in-the-boot/)
+  - Multiple vulnerabilities in GRUB2 allowing to bypass UEFI Secure Boot.
+  - Lack of revocation in shim lead to escalation of revocation to certificate
+    from Microsoft to prevent shims that allow running vulnerable GRUB2.
+* [Black Lotus](https://github.com/Wack0/CVE-2022-21894)
+  - Bootkit using CVE-2022-21894 ("Baton Drop") to bypass UEFI Secure Boot.
+  - > Windows Boot Applications allow the `truncatememory` setting to remove blocks of memory containing "persistent" ranges of serialised data from the memory map, leading to Secure Boot bypass.
+
 <!--
+
+Cryptographic verification of UEFI images was not broken, but those vulnerabilities.
+
+-->
+
+---
+
+# The cure happen to be worse than the disease
+
+* Microsoft effort for maintaining security properties of UEFI Secure Boot on
+  certified hardware lead to requirements, which leads to many issues in OSS
+  ecosystem. If it all was not bad design from the beginning.
+  - [SBAT](https://github.com/rhboot/shim/blob/main/SBAT.md) (_Secure Boot
+    Advanced Targeting_) was created to create revocation mechanism in shim,
+  - All processes around signing are very bureaucratic.
+  - shim community put together dedicated [review repo](https://github.com/rhboot/shim-review) and guidelines to simplify process of OSS community.
+* Need for complex and non-standarized integration with HSMs.
+* But we can see almost no one attack UEFI Secure Boot mechanism, not even
+  implementation, but rather configuration or already authorized code.
+  - Maybe we will get there.
+
+<!--
+
+* It looks like brave fighting with self-created problems.
+  - even more, fighting using the same methods which caused problems upfront
+* When we will realized something is wrong with the way we fighting?
+- revocation doesn't make sense, DBX is evergrowing, on many systems space for
+DBX was probably exhausted or will be exhausted soon,
+- maintaining revocation list is also hard thing, you have to rely on UEFI
+distributions or on your vendor, and we know there are various vendors with
+various level of caring about security
+- this is at least one reason to have only allow list, which consist only
+current system owner signature
+  - how stupid this is, we can manage passwords to our banks and creating systems
+to simplify things in that space, but traction for UEFI SB management
+simplification is non-existent
+  - we can imagine system in which keys would be managed by TPM and protected by
+user password
+
+-->
+
+---
+
+# UEFI Secure Boot and Qubes OS
+
+* Those are requirements for being signed by Microsoft, not for UEFI Secure
+Boot a la'safeboot.
+* First production-related
+  [question](https://groups.google.com/g/qubes-users/c/vrzdJmPNzrE/m/MC4l9QTJBAAJ)
+  coming from Wim Vervoorn (Eltan), Aug 2017.
+* Effort started to be tracked in
+  [#4371](https://github.com/QubesOS/qubes-issues/issues/4371) since Oct 2018.
+* Trammell reported booting Qubes OS 4.1 with secure boot enable leveraginging
+  unified `xen.efi` in Aug, 2020.
+  - initial concerns: xen.efi reliability while loading other boot files,
+    complexity of boot parameters modification
+* Effort for signing boot images was requested by Marek in May 2023 in
+  [#8206](https://github.com/QubesOS/qubes-issues/issues/8206).
+* Qubes OS Summit 2023 we discussed inclusion of Qubes OS CA in Dasharo firmware.
+* Frederic works on improving Qubes Builder v2 to include `pesign` for signing
+  needs [PR #77](https://github.com/QubesOS/qubes-builderv2/pull/77).
+* There is no easy way to use current installer (R4.2.3) and modify it for UEFI
+  Secure Boot enabled booting.
+* Current approach is to build unified `xen.efi` and sign it. Pre-built
+    `xen.efi` binaries will be provided in R4.3.
+
+
+<!--
+
+Initial email thread gathered a lot of emotions, FUD, ideology etc.
+
+Trammel effort led to:
+- patches for supporting UEFI Secure Boot in Xen started landing upstream,
+- safeboot project support was developed,
+
+-->
+
+---
+
+# UEFI Secure Boot and Xen
+
+* There is a lot in this can of worms.
+* From discussion with Andrew:
+  - Xen needs support for SBAT, which is not present yet.
+  - NX_COMPAT is required for SBAT support.
+  - kexec have to leverage SHA256 for checking integrity of executed images.
+  - kexec purgatory code should be built-in Xen.
+  - Livepatching have to check patches singatures.
+  - Command line have to be correctly handled (some options may be not safe).
+  - New hypercalls ABI for checking all passed pointers.
+  - Some debug options should have ability to be disabled at compilations time: GDB stub.
+* In summary "unsigned code can't make any unaudited reads/writes".
+* Not everything affect Qubes OS.
+  -  But ensuring Linux kernel lockdown mode is forced will belong to this tasks.
+
+<!--
+
+* xen.efi changes:
+** Require SBAT support to be signed
+** In turn, requires NX_COMPAT
+* Kexec needs to sig-check purgatory and the target executable
+** Easiest approach is to build purgatory into Xen
+* Livepatching needs to sig-check the patch
+* Command line handling
+** Most options are probably safe, some are definitely not
 
 TODO: Why Qubes OS is different?  What are the Xen challanges?
 - NX bit
@@ -115,29 +398,6 @@ Other issue is PE file format vs Xen requirements for memory layout.
 This talk will explore the challenges and potential solutions for implementing
 UEFI Secure Boot in Qubes OS.
 
-TODO: where to put various BIOSes approach: Dasharo, HP BIOS, QEMU
-- ACER seem to have option "UEFI file trusted for execution" or sth like that
-
--->
-
----
-
-# UEFI SB in Qubes OS
-
-<!--
-
-It all seem to start from Wim Vervoorn (Eltan)
-[email](https://groups.google.com/g/qubes-users/c/vrzdJmPNzrE/m/MC4l9QTJBAAJ)
-about building chain of trust in system using Qubes OS.
-- thread gathered a lot of emotions, FUD, ideology etc.
-
--->
-
----
-
-# Challenges
-
-<!--
 
 > just signing bootloader and/or Xen isn't enough, and would result in
 > something trivial to bypass (for example using kernel parameters).
@@ -163,124 +423,36 @@ Let's say we have booted system, what is next?
 
 ---
 
-# Why we should care?
+# What we can do right now?
 
-<!--
-
-The ever-evolving landscape of cybersecurity demands robust mechanisms to
-ensure the integrity and trustworthiness of computing environments.
-
-- Security Enhancements and Benefits: Evaluate how Secure Boot can enhance
-Qubes OS's overall security posture and protect against specific attack
-vectors.
-
-TODO: mention biggest SNAFU caused by UEFI Secure Boot and explain true reason
-behind that.
-
--->
+* Choose hardware which has better UEFI Secure Boot Support
+  - HP and some ACER BIOS implement ability to trust given file for execution,
+  - not ideal but could be improved, especially by Dasharo Team, of course if
+    there is consensus about security of such solution with Qubes OS Team,
+* Wait for R4.3.
+* Compile unified kernel yourself and try safeboot-like approach - this is what
+  we will try.
+* Disable UEFI Secure Boot
 
 ---
 
-# What we can do?
+# It would not be end
 
-<!--
-
-TODO: explain possible paths for integration of UEFI Secure Boot
-- how various distributions deal with the problem
-- draw diagrams which show all those boot flows and provisioning procedures
-
-- Proposed Solutions: This section discusses the steps proposed in issue #4371
-to sign boot images with dedicated keys, build unified Xen boot images, and
-make necessary GRUB configuration changes.
-
--->
-
----
-
-# Tools
-
-<!--
-
-TODO: what tools we have to deal with
-- sbsigntool family
-- efitools family
-
--->
-
----
-
-# Processes
-
-<!--
-
-Leveraging insights from ongoing discussions and issues like QubesOS Issue
-#4371, we will explore the necessary system changes, from signing boot images
-to configuring the system to accommodate Secure Boot's complexities.
-
--->
-
----
-
-# Plans
-
-<!--
-
-- Roadmap and Community Involvement: Outlining the future steps towards full
-Secure Boot support and how the community can participate in the ongoing
-testing, feedback, and development efforts.
-
-Marek's requirements June, 2018:
-1. Binaries signed in a split-gpg compatible way
-  - signing key shouldn't be exposed to build environment
-2. Make sure kernel and initramfs also gets verified
-  - how to do that when initramfs is dynamically generated?
-  - what would be role of shim in this scheme?
-3. xen and kernel command line are also verified
-
-Reading this: https://ruderich.org/simon/notes/secure-boot-with-grub-and-signed-linux-and-initrd
-- why initial loader (GRUB2) cannot be signed and then continue using GPG?
-
--->
-
----
-
-# Extreme approach
-
-* Trust only keys I personally control
-
-<!--
-
-What are the capabilities which my system support?
-- UEFI specificaition clearly defines what is supported,
+* What are the capabilities which my system support?
+- UEFI specificaition not defines what is supported,
 - every implementation may do things little bit different,
 - how to test that?
-  - practical test
-  - trust spec version compliance
+  - try
+  - trust spec version compliance, which say something but not everything,
 
-Why?
-- revocation doesn't make sense, DBX is evergrowing, on many systems space for
-DBX was probably exhausted or will be exhausted soon,
-- maintaining revocation list is also hard thing, you have to rely on UEFI
-distributions or on your vendor, and we know there are various vendors with
-various level of caring about security
-- this is at least one reason to have only allow list, which consist only
-current system owner signature
-  - how stupid this is, we can manage passwords to our banks and creating systems
-to simplify things in that space, but traction for UEFI SB management
-simplification is non-existent
-  - we can imagine system in which keys would be managed by TPM and protected by
-user password
-
-TODO: introduce UEFI revocation
-
-Trammel already achieved this approach in 2020 with Qubes 4.1 under safeboot
-project.
-
--->
 
 ---
 
-# Evaluation
+# Hackathon Challange
+
+* Build unified xen.efi using qubes-builderv2
+  - fix documentation?
+* Test in OVMF
 
 <!--
 
@@ -317,5 +489,31 @@ error: you need to load the kernel first.
 
 Press any key to continue...
 ```
-
 -->
+
+---
+layout: cover
+background: /intro.png
+class: text-center
+
+---
+
+# Q&A
+
+---
+layout: cover
+background: /intro.png
+class: text-center
+
+---
+
+# Backup
+
+---
+
+# What could be done differently?
+
+* Improve reference UEFI BIOS implementation to make dealing with UEFI Secure
+  Boot manageable by mare mortals.
+* Provide system level tooling as part of OS installation process.
+  - Many distro doing that since those cannot afford fullfilling requirements for review process.
