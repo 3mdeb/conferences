@@ -43,6 +43,7 @@ Community Call Oct 2019:
 > Host Secureboot: no-one has followed on it - not clear on what exactly the problem is
 Community Call: 13 June 2024:
 > Andy: XenServer Host UEFI Secure Boot update
+https://youtu.be/cJyX6FLK4iU?feature=shared&t=813
 -->
 
 ---
@@ -208,6 +209,10 @@ https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-image_optiona
 <!--
 Describe why it is needed, how the support is going, what will need to be
 done. Is it disabled? If yes then why?
+
+https://xenbits.xen.org/docs/unstable/misc/kexec_and_kdump.txt
+
+- integrity check
 -->
 
 ---
@@ -225,6 +230,12 @@ needed only to verify sha256 checksum?
         Includes SHA256 for checking the integrity of the target image
     Check signature on new kernel+initrd
 > Purgatory runs in VM context, fully privileged, to ensure Xen’s signature.
+
+From June 2024 community call:
+- purgatory can't be past userspace becase it violates security boundary of host
+SB
+- Linux - implemented purgatory themselves
+
 -->
 
 ---
@@ -237,6 +248,10 @@ done.
 
 >     Check signature on livepatches
 > Live patches require signatures, while Kxec is more complicated due to user-space code.
+
+https://www.redhat.com/en/topics/linux/what-is-linux-kernel-live-patching
+https://docs.kernel.org/livepatch/livepatch.html
+https://xenbits.xen.org/docs/unstable/misc/livepatch.html
 -->
 
 ---
@@ -261,6 +276,11 @@ spec-ctrl - Controls for speculative execution sidechannel mitigations
 <!--
 Describe why it is needed, how the support is going, what will need to be
 done.
+
+From Community call:
+- Requirement from Microsoft - no pointer can be used unchecked
+- that translates to deleting priv(?) command
+- a lot of work needed
 -->
 
 ---
