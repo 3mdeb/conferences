@@ -20,34 +20,67 @@ OS, ultimately paving the way for a more secure and resilient operating system.
 -->
 
 ---
+
 # UEFI Secure Boot
 
-<!-- Basic overview of UEFI Secure Boot -->
+<center><img src="/img/ds08msa_uefi_rot_and_cot_00.png" style="height: 400px; padding: 10px;"></center>
 
+<!--
+Basic overview of UEFI Secure Boot
+Maybe add basic Secure Boot workflow when using bootloader e.g. GRUB, notes
+about signature verifier protocols and security consideration in bootloader e.g.
+GRUB module signing (or disallowing insmod), locking GRUB console when SB is
+enabled to disallow changing boot commands
+-->
 ---
+
 # UEFI Secure Boot in Xen
 
 <!--
 What's different when using Xen, why can't Secure Boot be enabled by default
+Check:
+Community Call Oct 2019:
+> Host Secureboot: no-one has followed on it - not clear on what exactly the problem is
+Community Call: 13 June 2024:
+> Andy: XenServer Host UEFI Secure Boot update
 -->
+
 ---
+
+# UKI
+
+Building Unified Kernel Image allows image to be verified by UEFI verification
+protocol which lowers needed security considerations
+
+<!--
+With UKI bootloader part could be skipped.
+Built-in initrd, no need for separate verifier protocol in e.g. GRUB
+(UEFI verifier works for EFI files (any others?))
+-->
+
+---
+
 # Static Root of Trust
 
 <!-- Describe basics of SRTM -->
 
 ---
+
 # Dynamic Root of Trust
 
 <!-- Describe basics of DRTM -->
 
 ---
+
 # SRTM, DRTM & TrenchBoot
 
 <!--
 Describe synergy between SRTM, DRTM and TrenchBoot.
 Can anything be taken from: https://trenchboot.org/dev-docs/Late_Launch_Overview/?
 -->
+
 ---
+
 # TrenchBoot & Xen
 
 <!--
@@ -55,6 +88,7 @@ https://trenchboot.org/blueprints/Xen_Late_Launch/
 -->
 
 ---
+
 # Current state
 
 <style type="text/css">
@@ -96,10 +130,10 @@ https://trenchboot.org/blueprints/Xen_Late_Launch/
   </tr>
 </tbody></table>
 
-<!-- Taken from https://xenbits.xen.org/docs/unstable/support-matrix.html -->
----
-
-<!-- Describe experimental support, why it is/isn't enough -->
+<!--
+Taken from https://xenbits.xen.org/docs/unstable/support-matrix.html
+Describe experimental support, why it is/isn't enough
+-->
 
 ---
 
@@ -122,22 +156,53 @@ https://github.com/QubesOS/qubes-issues/issues/4371
 -->
 
 ---
+
+# SBAT
+
+* TL;DR: better DBX but for shims, bootloaders and kernels
+* SBAT (Secure Boot Advanced Targeting) introduces a structured metadata
+  section in EFI binaries (like bootloaders and shims) that provides versioning
+  information related to the binary.
+* Metadata is added to the binary as part of a new section in the PE (Portable
+  Executable) file called `.sbat`.
+  * **Component Name** : Identifies what part of the boot chain the binary belongs to.
+  * **Provider Name** : The organization or company that maintains the binary (e.g.,
+    "shim").
+  * **Component Generation** : Establishes the "generation" or version of the
+    component to determine if it’s old or new.
+  * **Vendor Name** : Identifies the vendor responsible for the binary (e.g.,
+    "Red Hat").
+  * **Version Information** : The specific version of the entity.
+  * **Vendor URL** : A URL for further information (often related to security, vulnerabilities, or versioning).
+
+---
+
 # SBAT support
 
 <!--
 Describe why it is needed, how the support is going, what will need to be
 done
+
+From community call agenda:
+
+> Add SBAT support.  Contents to be provided by vendor
+> Microsoft mandates use of SBAT for signing Xen code.
+
+Is it needed if using custom keys?
 -->
 
 ---
+
 # NX_COMPAT
 
 <!--
 Describe why it is needed, how the support is going, what will need to be
 done
+https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-image_optional_header32#IMAGE_DLLCHARACTERISTICS_NX_COMPAT
 -->
 
 ---
+
 # kexec SHA256 leverage
 
 <!--
@@ -146,6 +211,7 @@ done. Is it disabled? If yes then why?
 -->
 
 ---
+
 # kexec purgatory should be built-in
 
 <!--
@@ -154,25 +220,42 @@ done.
 What's the current state?
 https://github.com/torvalds/linux/blob/master/arch/x86/purgatory/purgatory.c#L44
 needed only to verify sha256 checksum?
+
+>     Embed purgatory in Xen (can’t be passed from tools)
+        Includes SHA256 for checking the integrity of the target image
+    Check signature on new kernel+initrd
+> Purgatory runs in VM context, fully privileged, to ensure Xen’s signature.
 -->
 
 ---
+
 # Livepatching
 
 <!--
 Describe why it is needed, how the support is going, what will need to be
 done.
+
+>     Check signature on livepatches
+> Live patches require signatures, while Kxec is more complicated due to user-space code.
 -->
 
 ---
+
 # Command line handling
 
 <!--
 Describe why it is needed, how the support is going, what will need to be
 done.
+Command line should be locked to disallow disabling security features e.g.
+(check if it's relevant to Xen/QubesOS):
+
+ima_appraise - disabling integrity measurements
+lockdown - kernel lockdown feature
+spec-ctrl - Controls for speculative execution sidechannel mitigations
 -->
 
 ---
+
 # New hypercalls ABI
 
 <!--
@@ -181,11 +264,13 @@ done.
 -->
 
 ---
+
 # Other
 
 <!-- Anything else? If so then add -->
 
 ---
+
 # Roadmap
 
 <!-- Create roadmap for implementing Secure Boot support in Xen -->
