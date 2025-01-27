@@ -21,8 +21,9 @@ mdc: true
 <br>
 
 #### Piotr Król
-<!-- markdownlint-disable MD022 MD003 -->
+
 ---
-src: ./2025/XenSummit/Implementing_Secure_Boot_In_Xen.md
+src: ./2025/XenSummit/enabling_uefi_secure_boot_in_xcp-ng.md
 ---
-<!-- markdownlint-enable MD022 MD003 -->
+
+---
