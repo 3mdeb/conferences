@@ -6,15 +6,93 @@
 
 # Agenda
 
+---
+
+# Goals
+
+* Explore challenges for implementing UEFI Secure Boot within Xen.
+* Report current status and activity in downstream distributions.
+* Build awareness about UEFI Secure Boot among developers, testers and
+researchers.
+* Explain risk associated with choosing narrow and centralized path while
+securing boot process.
+
+---
+
+## From Root of Trust to authenticated UEFI image
+
+<br>
+<center><img src="/2025/XenSummit/cot_w_uefi_sb.excalidraw.png"></center>
+<br>
+
+* Platform security for commercial off-the-shelf hardware starts with Static Root of
+Trust for Verification (SRTV). Which typically consist of some secure storage
+and code managing its lifecycle.
+* RoT properties are pass through boot chain using transitive trust and
+establishing Chain of Trust.
+* **UEFI Secure Boot** is part of that chain, which establish trust between Platform Owner and firmware as well as between firmware and hypervisor and/or operating system.
+* **UEFI Secure Boot** is part of the UEFI Specification and serves as a
+**load-time authentication mechanism** for UEFI images (like bootloaders, OS
+kernels, drivers and hypervisors).
+* It ensures only trusted UEFI binaries signed with a recognized key can be
+executed during the boot process.
+
+<!--
+
+[click]
+* I assume most of you know at least roughly how UEFI Secure Boot works, but
+for clarity let's spent a minute on explaining what UEFI Secure Boot is in
+simple words.
+
+[click]
+It is important to mention that UEFI Secure Boot to manage its databases and
+keys use UEFI Runtime Services exposed through SMM.
+
+[click]
+* How and if hypervisor continue chain of trust to Guest VM?
+
+
+TODO: explain UKI as one of most common strategies for implementation
+- why UKI?
+
+-->
+
+---
+
+## Why UEFI Secure Boot matters for Xen ecosystem?
+
+* To not loose competitive advantage.
+* To ensure compliance with standards and regulations.
+- Need for disabling security features to install security-focused Xen
+derivative bring bad vibe.
+
+<!--
+
+* Scary logos
+* If you are susceptible to attacks that can compromise UEFI Secure Boot or any
+other component in chain of trust your problem is bigger, that's why maybe it
+doesn't make sense to take care of chain of trust protection if you don't have
+correct countermeasure of physical attacks.
+* What about bootkits? Maybe correctly set chain of trust at least can help
+protecting against bootkits.
+  - how bootkits are deployed? - through update, through vulnerabilities in
+  "value-added" BIOS components, vulnerabilities in BIOS services and drivers?
+* Maybe one of the problems is that Xen is deployed in "someone-else"
+datacenters on bare metal?
+* Why nobody care in Xen Community care about UEFI SB?
+
+-->
+
+---
+
 <!--
 
 This talk will explore challenges and proposed strategies for implementing UEFI
 Secure Boot within Xen and downstream distributions like XCP-ng or Qubes OS,
 focusing on how these changes can enhance security and contribute to a more
 unified framework for future development.
+- it seems like everything boils down to XenServer development [Marek's comment](https://github.com/QubesOS/qubes-issues/issues/8206#issuecomment-2613858551)
 
-We will begin by examining why UEFI Secure Boot is essential in continuing the
-transitive chain established by the modern static root of trust, and its
 synergy with TrenchBoot and DRTM technology. We will delve into the
 implications of the UEFI Secure Boot process, showing why simply signing
 bootloaders and hypervisor binaries is insufficient; a comprehensive
@@ -52,35 +130,37 @@ strategy.
 
 # Previous work
 
-<!--
-
-* Secure Boot in Xen 2019
-  * https://archive.fosdem.org/2019/schedule/event/vai_implementing_uefi_variable_services_in_qemu/attachments/slides/2972/export/events/attachments/vai_implementing_uefi_variable_services_in_qemu/slides/2972/fosdem.pdf
-   * https://www.youtube.com/watch?v=jiR8khaECEk
-* Vates UEFI SB in Xen Guests
-  * https://www.youtube.com/watch?v=A_IhKjK7EgA
-
--->
+* [Xen and dom0 with UEFI/SecureBoot + Intel TXT](https://github.com/tklengyel/xen-uefi), Tamas K Lengyel, last modification 2018
+* [Securing Secure Boot on Xen](https://www.youtube.com/watch?v=jiR8khaECEk), Ross Lagerwall, FOSDEM 2019
+  - Focused on UEFI Secure Boot for Guest VMs
+* [Enabling UEFI Secure Boot on Xen](https://www.youtube.com/watch?v=A_IhKjK7EgA),Robert Eshleman, Xen Summit 2021
+  - Also focused on Guest VMs
+* [Xen Project Community Call](https://www.youtube.com/watch?v=cJyX6FLK4iU&t=813s), Andrew Cooper, June 2024
+* [Implementing UEFI Secure Boot in Qubes OS: Challenges and Future Steps](https://youtu.be/ZcF_RN04oq8), Piotr Król, Qubes OS Summit 2024
 
 ---
 
-# Start with why
+# Mailing list activity
+
+---
+
+# Challenges
+
+* Microsoft-signed shim
+  - this path make sense only if software would be directly used on a large number of machines from multiple hardware vendors
+  - this path generate the most issues, but it doesn't mean issues we see on this path should not be fixed for other paths,
+* Adding your keys to UEFI Secure Boot database
+  - by administrator on each installation,
+  - by hardware and or firmware/vendor,
+* Tooling
 
 <!--
 
-* I should not need to lower my hardware and firmware security posture to
-install Qubes OS, xcp-ng or any other Xen derivative.
-* If you are susceptible to attacks that can compromise UEFI Secure Boot or any
-other component in chain of trust your problem is bigger, that's why maybe it
-doesn't make sense to take care of chain of trust protection if you don't have
-correct countermeasure of physical attacks.
-* What about bootkits? Maybe correctly set chain of trust at least can help
-protecting against bootkits.
-  - how bootkits are deployed? - through update, through vulnerabilities in
-  "value-added" BIOS components, vulnerabilities in BIOS services and drivers?
-* Maybe one of the problems is that Xen is deployed in "someone-else"
-datacenters on bare metal?
-* Why nobody care in Xen Community care about UEFI SB?
+Areas of involvement:
+- making Xen distro to boot on any Microsoft certified-hardware
+
+Tooling:
+* UEFI Secure Boot tooling like sbctl does not work with Xen, but should
 
 -->
 
@@ -90,41 +170,16 @@ datacenters on bare metal?
 
 <center><img src="/2025/XenSummit/xenserver_sb_not_suppported.png"></center>
 
-
-<!--
-
 * XCP-ng:
-  - https://github.com/xcp-ng/xcp/issues/294
+  - https://github.com/xcp-ng/xcp/issues/294, issue created in 2019
 * Qubes OS:
-  - https://github.com/QubesOS/qubes-issues/issues/8206
-  - https://github.com/QubesOS/qubes-issues/issues/4371
+  - https://github.com/QubesOS/qubes-issues/issues/4371, 2018
+  - https://github.com/QubesOS/qubes-issues/issues/8206, 2023
 * There are some other commercial versions of Xen
 
--->
-
----
-
-# What is Chain of Trust?
-
----
-
-# Chain of Trust
-
-* Modern computers Chain of Trust
-
 <!--
 
-* UEFI Secure Boot is as good as its own mechanisms and transitive trust on which
-  it relies on.
-* There is a lot of turtles all the way down. We will not be able to deal with
-  all of those.
-* Claims:
-  - depending on your threat model you can be better on handling all keys
-    yourself instead of relying on ecosystem
-  - major obstacle for that is tooling
-
-* UEFI Secure Boot tooling like sbctl does not work with Xen, but should
-
+XCP-ng ticket is open since 
 -->
 
 ---
@@ -354,6 +409,11 @@ https://github.com/QubesOS/qubes-issues/issues/4371
 ---
 
 # SBAT support
+
+* It doesn't seem to be big issue and it is required during
+[shim-review](https://github.com/rhboot/shim-review) as well as Microsoft
+process.
+* If one does not use shim revocation mechanism it does not add much value.
 
 <!--
 Describe why it is needed, how the support is going, what will need to be
