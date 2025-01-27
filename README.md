@@ -82,6 +82,12 @@ nvm install --lts
 nvm use --lts
 ```
 
+* Install `slidev`:
+
+```bash
+npm install @slidev/cli
+```
+
 * Host presentations:
 
 ```bash
