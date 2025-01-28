@@ -107,6 +107,12 @@ npm run dev -- -p 8000 --remote --force
 
 * Open content in browser on http://0.0.0.0:8000
 
+#### Markdown Admonitions
+
+sli.dev bring support for
+[markdown-it-admon](https://github.com/commenthol/markdown-it-admon) nice
+markdown admonition that can be used in presentations.
+
 ## Contribution
 
 * Please feel free to create issues for improvement ideas and bugs, as well as
