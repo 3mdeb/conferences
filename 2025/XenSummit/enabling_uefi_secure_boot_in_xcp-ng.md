@@ -393,6 +393,29 @@ loaded during the boot process.
 [shim-review](https://github.com/rhboot/shim-review) as well as Microsoft
 process.
 * If one does not use shim revocation mechanism it does not add much value.
+* It seem that manual version could look as follows:
+
+```sh
+cat <<EOF >sbat.csv
+sbat,1,SBAT Version,XCP-ng,https://xcp-ng.org,20240101,11111111-1111-1111-1111-111111111111
+xen,4.20.0,XCP-ng,https://xcp-ng.org,20240101,22222222-2222-2222-2222-222222222222
+EOF
+```
+
+```sh
+
+objcopy --input binary --output elf64-x86-64 --binary-architecture i386:x86-64 sbat.csv sbat.o
+```
+
+```sh
+objcopy --add-section .sbat=sbat.csv \
+        --set-section-flags .sbat=alloc,readonly,data \
+        --set-section-alignment .sbat=512 \
+        xen.efi
+
+```
+
+* Ultimately it should probably land in `Config.mk` or one of `config/*.mk`
 
 <!--
 
@@ -400,7 +423,15 @@ Whole topic is not that complex, most likely simple sctipt could succesfully
 add `.sbat` section to already created uki xen images as part of Qubes OS and
 XCP-ng testing.
 
-TODO: try to add that section and see if it works.
+TODO: try to add that section and see if it works. Steps should be relatively
+simple:
+- create xen.efi UKI
+- create section .sbat
+- add section using objdump
+- of course it should be handled by build scripts
+- test if it works with shim
+
+This is relatively simple task that can be done by anyone.
 
 -->
 
