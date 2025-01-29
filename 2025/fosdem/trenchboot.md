@@ -92,14 +92,18 @@ width="220px" style="margin-top:-50px"> ]
 
 ### Done
 
-- Old and by now outdated AMD support for Linux was updated to use SLRT
-- Includes changes for DRTM Service developed by Oracle
+- Old and by now outdated AMD support for Linux was updated to use [SLRT]
+- Adapted changes for DRTM Service (new AMD DRTM) developed by Oracle
   + https://www.amd.com/content/dam/amd/en/documents/epyc-technical-docs/user-guides/58453.pdf
 - Revived meta-trenchboot Yocto distribution that can be used for testing and
   demonstration
   + https://github.com/zarhus/meta-trenchboot
+- Added first TrenchBoot tests to Open Source Firmware Validation
+  + https://github.com/Dasharo/open-source-firmware-validation/tree/main/trenchboot
 - Refreshed TrenchBoot's website to be more up to date with current development:
   + https://trenchboot.org/
+
+[SLRT]: https://trenchboot.org/blueprints/SLRT/
 
 ???
 
