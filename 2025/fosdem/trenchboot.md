@@ -169,8 +169,7 @@ https://trenchboot.org/theory/Glossary
   users don't need to pick the right DCE manually
 - Introduced an RPM-repository for distribution of AEM packages
   + https://dl.3mdeb.com/rpm/QubesOS/r4.2/current/dom0/fc37/
-
-- Tested on:
+- Tested legacy AMD implementation on:
   + Asus KGPE-D16 with TPM 1.2
   + HP Thin Client t630 with TPM 2.0
 
@@ -225,7 +224,7 @@ value.
   + https://archive.fosdem.org/2024/schedule/event/fosdem-2024-3724-trenchboot-project-status-update/
   + https://www.youtube.com/watch?v=A9GrlQsQc7Q&t=17441s
   + https://www.youtube.com/live/xo2BVTn7ohs?si=BVUnKccSe-saRf2b&t=5441
-- Blog
+- Latest blog post
   + https://blog.3mdeb.com/2024/2024-04-11-aem_phase4/
 - GitHub milestones
   + https://github.com/TrenchBoot/trenchboot-issues/milestones
