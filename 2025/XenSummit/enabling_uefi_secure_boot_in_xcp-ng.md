@@ -20,6 +20,7 @@
 # Kudos
 
 * Michał Iwanicki
+* Krystian Hebel
 * Marek Marczykowski-Górecki
 * Demi Marie Obenour
 
@@ -76,7 +77,7 @@ Key questions are:
 
 ---
 
-# Xen EFI boot
+<center><img src="/2025/XenSummit/xen_efi_boot.excalidraw.png"></center>
 
 <!--
 
@@ -86,6 +87,33 @@ Key questions are:
   - which one is the best?
 * How hypothetically Xen boot path could look like?
 
+-->
+
+---
+
+# UKI
+
+Building Unified Kernel Image allows image to be verified by UEFI verification
+protocol which lowers needed security considerations
+
+A Unified Kernel Image (UKI) is a single binary that combines:
+* The Linux kernel
+* An initramfs
+* A UEFI stub (such as systemd-stub)
+* Optionally, a kernel command line
+
+This format is designed for UEFI-based booting and provides better integration
+with Secure Boot, making it an excellent fit for secure Linux deployments.
+
+* With UKI bootloader part could be skipped.
+* Or rather in this case we should call it Unified Xen and Linux Kernels, and
+dom0 initramfs Signed Images.
+
+Although it does not fulfil all requirements stated by Microsoft.
+
+<!--
+Built-in initrd, no need for separate verifier protocol in e.g. GRUB
+(UEFI verifier works for EFI files (any others?))
 -->
 
 ---
@@ -280,12 +308,6 @@ shield.
 
 We already have some researchers calling for more centralized approach to UEFI Secure Boot revocation list distribution.
 
--->
-
----
-
-<!--
-
 What was said so far?
 1. who we are
 2. who contributed
@@ -339,6 +361,9 @@ GDB stub.
 I'm not Xen hacker, so my understanding of those is limited, but for what I
 know some of this positions are concerning because of potential for similar
 UEFI Secure Boot bypass as in case of Boot Hole and Black Lotus, so abuse of certain configuration and creating special cases for bypass.
+
+So what I will do is trying to discuss first two points and for the rest feel
+free to ask Andrew and Demi I would gladly participate :)
 
 -->
 
@@ -423,21 +448,77 @@ Whole topic is not that complex, most likely simple sctipt could succesfully
 add `.sbat` section to already created uki xen images as part of Qubes OS and
 XCP-ng testing.
 
-TODO: try to add that section and see if it works. Steps should be relatively
-simple:
-- create xen.efi UKI
-- create section .sbat
-- add section using objdump
-- of course it should be handled by build scripts
-- test if it works with shim
-
 This is relatively simple task that can be done by anyone.
 
 -->
 
 ---
 
+What we did in practice was following modification of `uki-generate` script from Qubes OS:
+
+```diff
+ --- uki-generate    2025-01-20 15:59:14.671164416 +0100
+ +++ uki-generate    2025-01-29 20:45:46.176621254 +0100
+ @@ -9,6 +9,6 @@
+      alignment_mask = (1 << 21) - 1
+ -    if len(args) != 7 or args[1] != '--':
+ -        print(f"Usage: uki-generate -- HYPERVISOR CONFIG KERNEL INITRAMFS OUTPUT", file=sys.stderr)
+ +    if len(args) != 8 or args[1] != '--':
+ +        print(f"Usage: uki-generate -- HYPERVISOR CONFIG KERNEL INITRAMFS SBAT OUTPUT", file=sys.stderr)
+          sys.exit(1)
+ -    _, _, hyp, cfg, kern, initramfs, out = args
+ +    _, _, hyp, cfg, kern, initramfs, sbat, out = args
+      if hyp[0] != '/':
+ @@ -26,2 +26,3 @@
+      initramfs_vma = round_to_next(kernel_vma + os.stat(kern).st_size)
+ +    sbat_vma = round_to_next(initramfs_vma + os.stat(initramfs).st_size)
+      cmdline = [
+ @@ -38,2 +39,4 @@
+          f"--change-section-vma=.ramdisk={initramfs_vma}",
+ +        f"--add-section=.sbat={sbat}",
+ +        f"--change-section-vma=.sbat={sbat_vma}",
+          "--",
+```
+
+---
+
+shim also needs slight modification:
+
+```diff
+  diff --git a/include/sbat_var_defs.h b/include/sbat_var_defs.h
+  index 5c7115b94dd1..ef860dcb55c4 100644
+  --- a/include/sbat_var_defs.h
+  +++ b/include/sbat_var_defs.h
+  @@ -55,7 +55,7 @@
+   #define SBAT_VAR_AUTOMATIC_DATE QUOTEVAL(SBAT_AUTOMATIC_DATE)
+   #define SBAT_VAR_AUTOMATIC \
+          SBAT_VAR_SIG SBAT_VAR_VERSION SBAT_VAR_AUTOMATIC_DATE "\n" \
+  -       SBAT_VAR_AUTOMATIC_REVOCATIONS
+  +       SBAT_VAR_AUTOMATIC_REVOCATIONS "xen,4\n"
+
+   /*
+    * Revocations for:
+```
+
+What gives working revocation through SBAT.
+
+<!--
+
+Key question is if that is what we envision?
+
+-->
+
+---
+
 # NX_COMPAT
+
+!!! quote
+
+    The application must not run self-modifying code; meaning that the code sections of the application may not have the write attribute.  Any attempt to change values within the memory range will cause an execution fault. 
+
+!!! quote
+
+    If the application attempts to load any internal code into memory for execution, or if it provides support for an external loader, then it must use the EFI_MEMORY_ATTRIBUTE_PROTOCOL appropriately.  This optional protocol allows the caller to get, set, and clear the read, write, and execute attributes of a well-defined memory range.
 
 <!--
 
@@ -450,6 +531,571 @@ https://techcommunity.microsoft.com/blog/hardwaredevcenter/new-uefi-ca-memory-mi
 Why it is needed? Does Xen not comply to that requirements?
 How does Xen UKI comply with this requirement?
 
+There is some tooling for validation:
+https://github.com/tianocore/edk2-pytool-extensions
+
+-->
+
+---
+
+!!! quote
+
+    Loading internal code into memory must maintain WRITE and EXECUTE exclusivity. It must also change the attributes after loading the code to allow execution.
+
+!!! quote
+
+    External loaders must support the protocol if available on the system. The loader must not assume newly allocated memory allows code execution (even of code types).
+
+
+!!! quote
+
+    The application must not assume all memory ranges are valid; specifically, page 0 (PA 0 – 4kb). 
+
+---
+
+!!! quote
+
+    Stack space cannot be used for code execution 
+
+Luckily Microsoft contributed to Tianocore tooling to check those requirements.
+
+```sh
+% python venv/lib/python3.11/site-packages/edk2toolext/image_validation.py -i uki-xen.efi -d
+ERROR - [[FAIL]]: Section [.text]                               should not be both Write and Execute
+ERROR - [[FAIL]: Section Alignment Required:                             [IMAGE_FILE_MACHINE_AMD64]                             [DEFAULT]:                             [(Detected): 2097152]
+ERROR - [FAIL]: Submodule Type [IMAGE_SUBSYSTEM_EFI_APPLICATION] not allowed.
+INFO - Overall Result: [FAIL]
+```
+
+
+<!--
+
+
+- Kexec and Livepatching: the necessity for integrity checks using SHA256
+during kexec operations and the requirement for signature verification for live
+patches.
+
+- Command Line Handling: how command-line parameters can introduce
+vulnerabilities unless carefully managed, which must be resolved for an
+implementation that can maintain a chain of trust.
+
+- Memory Layout Compatibility: challenges presented by PE file formats and
+their interactions with Xen's memory layout demands.
+
+Community input is critical to ensure that the proposed changes align with
+practical use cases and user requirements.  We will articulate a potential
+roadmap for progressing toward full UEFI Secure Boot support in Xen, with
+collaborative development and user requirements guiding change. By elucidating
+the roadmap, we aim to motivate stakeholders to engage in dialogue prioritizing
+secure launch technologies as essential components of a modern virtualization
+strategy.
+
+-->
+
+---
+
+!!! quote
+
+    Submitter must design and implement a strong revocation mechanism for
+    everything the shim loads, directly and subsequently.
+
+* This rise question which components would have to be verified.
+* There is no similar software reviewed on shim-review repository.
+* Xen is probably comparable to special case, as it was for iPXE Anywhere from 2Pint for which Microsoft published [Security Assurance Review](https://techcommunity.microsoft.com/blog/hardwaredevcenter/ipxe-security-assurance-review/1062943).
+
+---
+
+<center><img src="/2025/XenSummit/msft_revoc_mechanism.excalidraw.png" style="height:450px"></center>
+
+<!--
+
+Looking like some other cases 
+
+-->
+
+
+---
+
+# Current state
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-7h26{color:#00E;text-align:left;text-decoration:underline;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg"><thead>
+  <tr>
+    <th class="tg-amwm" colspan="2">Xen-Version</th>
+    <th class="tg-7h26"><a href="https://xenbits.xen.org/docs/unstable/SUPPORT.html">4.20-unstable</a></th>
+    <th class="tg-7h26"><a href="https://xenbits.xen.org/docs/4.19-testing/SUPPORT.html">4.19</a></th>
+    <th class="tg-7h26"><a href="https://xenbits.xen.org/docs/4.18-testing/SUPPORT.html">4.18</a></th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td class="tg-amwm" colspan="2">Initial-Release</td>
+    <td class="tg-0lax">n/a</td>
+    <td class="tg-0lax">2024-07-29</td>
+    <td class="tg-0lax">2023-11-16</td>
+  </tr>
+  <tr>
+    <td class="tg-amwm" rowspan="2">Host EFI Secure Boot</td>
+    <td class="tg-amwm">x86</td>
+    <td class="tg-0lax">Experimental</td>
+    <td class="tg-0lax">Experimental</td>
+    <td class="tg-0lax">Experimental</td>
+  </tr>
+  <tr>
+    <td class="tg-amwm">Arm64</td>
+    <td class="tg-0lax">Experimental</td>
+    <td class="tg-0lax">Experimental</td>
+    <td class="tg-0lax">Experimental</td>
+  </tr>
+</tbody></table>
+
+<!--
+Taken from https://xenbits.xen.org/docs/unstable/support-matrix.html
+Describe experimental support, why it is/isn't enough
+-->
+
+---
+
+# How does decode?
+
+* Functional completeness: No
+  * Does it behave like a fully functional feature? Does it work on all expected platforms, or does it only work for a very specific sub-case? Does it have a sensible UI, or do you have to have a deep understanding of the internals to get it to work properly?
+* Functional stability: Here be dragons
+  * Pretty likely to still crash / fail to work. Not recommended unless you like life on the bleeding edge.
+* Interface stability: Not stable
+  * Interface is still in the early stages and still fairly likely to be broken in future updates.
+* Security supported: No
+  * If “no”, anyone who finds a security-related bug in the feature will be advised to post it publicly to the Xen Project mailing lists (or contact another security response team, if a relevant one exists).
+
+
+
+---
+
+# Current state
+
+<center><img src="/2025/XenSummit/xenserver_sb_not_suppported.png"></center>
+
+* XCP-ng:
+  - https://github.com/xcp-ng/xcp/issues/294, issue created in 2019
+* Qubes OS:
+  - https://github.com/QubesOS/qubes-issues/issues/4371, 2018
+  - https://github.com/QubesOS/qubes-issues/issues/8206, 2023
+* There are some other commercial versions of Xen
+
+<!--
+
+Read one more time all those issues content to make sure you get all niuances.
+
+Mention Trammel and tklengyel PoC and fact that what we presenting here is not
+much new despite being closer to final implementation.
+
+-->
+---
+
+## Qubes OS and UEFI Secure Boot
+
+* Invisible Things Lab created
+[qubes-vmm-xen-unified](https://github.com/QubesOS/qubes-vmm-xen-unified),
+which provide "Unified Xen Linux Kernel Signed Image".
+* We used it as base for testing UEFI Secure Boot.
+* We also composed Xen UKI ourselves. Procedure roughly is as follows:
+
+<br>
+
+### Creating UKI
+
+These steps use official Qubes release to create UKI
+
+* Download Xen, kernel and uki-generate script
+
+```sh
+wget https://yum.qubes-os.org/r4.2/current-testing/dom0/fc37/rpm/xen-hypervisor-4.17.5-5.fc37.x86_64.rpm
+wget https://yum.qubes-os.org/r4.2/current-testing/dom0/fc37/rpm/kernel-latest-6.9.7-1.qubes.fc37.x86_64.rpm
+wget https://raw.githubusercontent.com/DemiMarie/qubes-core-admin-linux/1f38e0fb9b3ffc14aab2a0d5b0f6a3dff0368feb/\
+uki-generate
+```
+
+---
+
+* Unpack rpms
+
+```sh
+rpm2cpio xen-hypervisor-4.17.5-5.fc37.x86_64.rpm | cpio -imvd
+rpm2cpio kernel-latest-6.9.7-1.qubes.fc37.x86_64.rpm | cpio -imvd
+cp boot/vmlinuz-6.9.7-1.qubes.fc37.x86_64 vmlinuz
+cp boot/efi/EFI/qubes/xen-4.17.5.efi xen.efi
+```
+
+* Generate/copy initramfs. It can be copied from QubesOS `/boot` partition or
+generated with dracut if using QubesOS.
+
+```sh
+dracut --no-hostonly --kernel-image vmlinuz ./initramfs.img
+```
+
+You can change `--no-hostonly` to `--hostonly` if you are creating UKI for
+the same QubesOS you are currently using which will drastically reduce
+initramfs size.
+
+---
+
+* Create config
+
+```sh
+cat <<EOF >conf
+[global]
+default=test
+
+[test]
+options=loglvl=all com1=115200,8n1 console=com1 noreboot
+kernel=console=hvc0 earlyprintk=xen
+EOF
+```
+
+You can embed Xen cmdline by writing it to `options=` and dom0 kernel
+cmdline by writing it to `kernel=`. It's also possible to pass cmdline
+from GRUB by using:
+
+```sh
+chainloader <path_to_uki> placeholder -- <Xen cmdline> -- <Dom0 cmdline>
+```
+
+* Generate UKI file
+
+```sh
+./uki-generate -- xen.efi conf vmlinuz initramfs.img uki-xen.efi
+```
+
+---
+
+### Create grubx64.efi capable of Secure Boot booting
+
+* Get grub modules
+
+```sh
+wget https://ftp.qubes-os.org/repo/yum/r4.2/current-testing/dom0/fc37/rpm/grub2-efi-x64-modules-2.06-4.fc37.noarch.rpm
+rpm2cpio grub2-efi-x64-modules-2.06-4.fc37.noarch.rpm | cpio -imvd
+```
+
+* Create SBAT.csv. Without it shim won't run GRUB.
+
+```sh
+cat <<EOF >sbat.csv
+sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
+grub,3,Free Software Foundation,grub,2.06,https//www.gnu.org/software/grub/
+EOF
+```
+
+* Build `grubx64.efi`.
+
+```sh
+GRUB_MODULES="boot chain fat font gettext ls part_msdos part_gpt serial"
+grub2-mkimage -d usr/lib/grub/x86_64-efi -o grubx64.efi -O x86_64-efi -p / --sbat sbat.csv ${GRUB_MODULES}
+```
+
+---
+
+### Build shim and MOK manager
+
+* Generate shim certificate
+
+```sh
+openssl req -new -x509 -newkey rsa:2048 -nodes -keyout shim.key -out shim.crt -subj "/C=PL"
+openssl x509 -in shim.crt -out shim.cer -outform DER
+```
+
+* Clone and build shim
+
+```sh
+git clone --recurse-submodules https://github.com/rhboot/shim.git
+cd shim && make VENDOR_CERT_FILE=../shim.cer && cd ..
+```
+
+Without `VENDOR_CERT_FILE` booting Xen fails with:
+
+```text
+Xen 4.17.4 (c/s ) EFI loader
+Using builtin config file
+kernel: 0x000000005ae00000-0x000000005b9b0200
+ramdisk: 0x000000005ba00000-0x000000005ba00001
+Dom0 kernel image could not be verified: Security violation
+```
+
+---
+
+### Sign everything
+
+* Create `DB` key and certificate
+
+```sh
+openssl req -new -x509 -newkey rsa:2048 -nodes -keyout DB.key -out DB.crt -subj "/C=PL"
+openssl x509 -in DB.crt -out DB.cer -outform DER
+```
+
+* Sign every `.efi` file
+
+```sh
+sbsign --key DB.key --cert DB.crt --output uki-xen.efi uki-xen.efi
+sbsign --key DB.key --cert DB.crt --output grubx64.efi grubx64.efi
+sbsign --key DB.key --cert DB.crt --output shimx64.efi shim/shimx64.efi
+sbsign --key DB.key --cert DB.crt --output mmx64.efi shim/mmx64.efi
+```
+
+---
+
+### Prepare boot partition and OVMF files
+
+* Create boot partition structure
+
+```sh
+mkdir -p boot-sb/EFI/BOOT
+cp uki-xen.efi boot-sb/EFI/BOOT/uki-xen.efi
+cp grubx64.efi boot-sb/EFI/BOOT/grubx64.efi
+cp shimx64.efi boot-sb/EFI/BOOT/bootx64.efi
+cp mmx64.efi boot-sb/EFI/BOOT/mmx64.efi
+cp DB.cer boot-sb/DB.cer
+```
+
+* Copy `OVMF_CODE` and `OVMF_VARS`
+
+```sh
+cp /usr/share/OVMF/OVMF_CODE.* .
+cp /usr/share/OVMF/OVMF_VARS.* .
+```
+
+---
+
+### Verification
+
+* Start Qemu
+
+```sh
+qemu-system-x86_64 -m 2G -M q35,kernel-irqchip=split -net none \
+    -global ICH9-LPC.disable_s3=1 \
+    -drive if=pflash,format=raw,readonly=on,file=OVMF_CODE.secboot.fd \
+    -drive if=pflash,format=raw,file=OVMF_VARS.secboot.fd \
+    -drive file=fat:rw:$PWD/boot-sb,media=disk,index=0,format=raw \
+    -chardev file,path=debug.log,id=ovmf-debug \
+    -device isa-debugcon,iobase=0x402,chardev=ovmf-debug
+```
+
+Output:
+
+```text
+BdsDxe: loading Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x0,0xFFFF,0x0)
+BdsDxe: failed to load Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x0,0xFFFF,0x0): Access Denied
+BdsDxe: No bootable option or device was found.
+BdsDxe: Press any key to enter the Boot Manager Menu.
+```
+
+---
+
+1. Press Enter and enroll `DB.cer` certificate
+1. After rebooting you should be able to boot into GRUB and then into
+`uki-xen.efi` using the same command as previously
+1. If your `uki-xen.efi` has initramfs you can enter emergency shell and check
+Secure Boot status
+
+```sh
+dmesg | grep -i secure
+```
+
+Output:
+
+```text
+UEFI Secure Boot is enabled
+Secure boot enabled
+```
+
+---
+
+## XCP-ng and UEFI Secure Boot
+
+The process for XCP-ng is mostly the same. Relevant differences from QubesOS:
+
+* Packages taken from <https://updates.xcp-ng.org/8/8.3/base/x86_64/Packages/>
+* XCP-ng uses initrd instead of initramfs.
+* XCP-ng doesn't come with `xen.efi`
+* XCP-ng uses much older kernel version (4.19)
+
+---
+
+## Why we cannot boot without GRUB2?
+
+Technically it should be possible, but:
+
+* We have to provide some alternative boot options.
+* Maybe we are not yet read to switch to environment in which kernel command
+line would not be modified.
+* We don't want to rely on registering multiple boot entries in firmware.
+* It seem there is a bug while trying to boot UKI Xen directly:
+
+```sh
+Xen 4.17.4 (c/s ) EFI loader
+Unsupported relocation type
+```
+
+---
+
+## TrenchBoot
+
+* Xen boots on EFI similar to how Linux does:
+  - Xen’s normal EFI entry point detects presence of SLRT, points SLRT to “secondary” entry point and calls back into GRUB
+  - GRUB does the normal thing of invoking ACM/SKL which ends up calling the “secondary” entry point of Xen
+  - Xen switches to long mode and continues booting where it left off
+* GRUB’s chainloader now handles Slaunch (quite similar to multiboot or linux boot methods)
+* AEM’s file in /etc/grub.d:
+  - generates Xen.efi’s configuration file next to it with an entry per discovered Linux
+  - copies Linux kernel and initrd to ESP, so Xen can find them
+  - generates separate boot entries for both legacy and EFI variants because grub.cfg is shared (EFI calls configfile /boot/grub2/grub.cfg)
+
+<!--
+
+Apparently UKI approach has quite good synergy with TrenchBoot.
+
+synergy with TrenchBoot and DRTM technology. We will delve into the
+implications of the UEFI Secure Boot process, showing why simply signing
+bootloaders and hypervisor binaries is insufficient; a comprehensive
+implementation must address the entire boot chain.
+
+-->
+---
+
+# Roadmap
+
+- Unfortunately most challenges on Xen side seem to boil down to waiting for
+XenServer to develop solution.
+  - Does it have to be that way?
+  - What other distribution can do?
+* Qubes OS Team created CI/CD pipeline and tooling to produce Xen UKI
+* Andrew proposed working group which would discuss during monthly call, who's in?
+* Tooling
+  - support for tools like sbctl to allow users manage signing themselves
+  - tools for adding SBAT section
+
+<!--
+
+* Qubes OS use pesign
+
+TODO: what is missing, how to proceed, with whome etc.
+TODO: submit design session
+
+-->
+
+---
+
+# Final notes
+
+<!--
+
+Strategic agitation.
+
+-->
+
+---
+
+# Sales pitch
+
+<!--
+
+What we can propose to accelerate resolution of described problems?
+- we don't have enough resources to do big ecosystem changes,
+- that's why we mostly focus on education and fixed price consultation,
+- to provide something for community we work with OST2 to provide free of
+charge, open access training materials related to coreboot, UEFI and low level
+security, it is not only about us because there are lot of world-class experts
+teaching those things at that platform
+- if you looking for introducing UEFI SB in your organizations
+
+What is our stake in enabling Xen in UEFI SB ecosystem?
+
+-->
+
+
+---
+
+# References
+
+* [Xen and dom0 with UEFI/SecureBoot + Intel TXT](https://github.com/tklengyel/xen-uefi), Tamas K Lengyel, last modification 2018
+* [Securing Secure Boot on Xen](https://www.youtube.com/watch?v=jiR8khaECEk), Ross Lagerwall, FOSDEM 2019
+  - Focused on UEFI Secure Boot for Guest VMs
+* [Enabling UEFI Secure Boot on Xen](https://www.youtube.com/watch?v=A_IhKjK7EgA),Robert Eshleman, Xen Summit 2021
+  - Also focused on Guest VMs
+* [Xen Project Community Call](https://www.youtube.com/watch?v=cJyX6FLK4iU&t=813s), Andrew Cooper, June 2024
+* [Implementing UEFI Secure Boot in Qubes OS: Challenges and Future Steps](https://youtu.be/ZcF_RN04oq8), Piotr Król, Qubes OS Summit 2024
+* xen-devel activity
+
+<!--
+
+TODO: add activity found on mailing list.
+
+-->
+
+---
+
+# Backlog
+
+<!--
+
+* What about bootkits? Maybe correctly set chain of trust at least can help
+protecting against bootkits.
+  - how bootkits are deployed? - through update, through vulnerabilities in
+  "value-added" BIOS components, vulnerabilities in BIOS services and drivers?
+* Maybe one of the problems is that Xen is deployed in "someone-else"
+datacenters on bare metal?
+* Why nobody care in Xen Community care about UEFI SB?
+
+This view is definitely too simplified, we have to consider Xen distributions
+and target market for it. Let's tackle it one by one and verify what are the
+most common boot paths for those market segments:
+
+### Server
+
+Question is what datacenters use, how big deployments Xen have,
+based on fact that Amazon use Xen deployment base can be really bit.
+
+This space is extensive from OCP servers to SOHO setup with 1-2U. It is
+possible to find representative examples of how those devices boot, but finding
+most popular in rankings and maybe map that to standards (OCP) or simply read
+manuals which can give a hint.
+
+It seem that very popular solutions are:
+- RoT in BMC and then BMC control hand over to CPU
+  - then we can have Intel PFR here
+  - there is AMD PSB here, but it has bad reputation
+  - RoT in BMC make sense since AST2600, because earlier versions didn't have OTP memory
+  - then going further there can be DC-SCM (Datacenter Secure Control Module) based on OCP specification: 
+    - there could be lecture just about that one, but it seem to be most advanced
+    and polished design, modular and mature in concept, what is most important it
+    is open
+      - but the point of this presentation is not exploration of all possible RoT and
+      how platform can be boot, but presenting plethora of approaches showing strong
+      sides and explaining that delegating security to vendor could be cost-saving
+      but ignorant approach, which may lead to not comprehensively covered boot chain
+      security
+
+### Client? - this seem to be only Qubes OS, where laptops dominating market,
+with small share of workstations
+
+### Embedded - there is extensive space here, on one side it can be SOHO and
+homelabs, on the other side there is huge automotive market
+
+- Those are threats against UEFI Secure Boot, but there are also threats
+against other components in the system like: ME, BMC and potentially more.
+- Other issue is that MSFT and UEFI Forum are centralized authorities to deal
+with vulnerabilities, relying always on those players may be insufficient in
+some cases
+
+Future ideas:
+- discuss PI 1.9 and signed FV
 -->
 
 ---
@@ -570,163 +1216,6 @@ Is there enough time to discuss it?
 
 ---
 
-<!--
-
-synergy with TrenchBoot and DRTM technology. We will delve into the
-implications of the UEFI Secure Boot process, showing why simply signing
-bootloaders and hypervisor binaries is insufficient; a comprehensive
-implementation must address the entire boot chain.
-
-Throughout the presentation, we will navigate the technical complexities of
-effectively integrating UEFI Secure Boot in Xen. Some obstacles include:
-
-- Support for SBAT: We will discuss the mandated adoption of SBAT for signing
-Xen code and the prerequisite implementation of NX_COMPAT, which is critical
-for UEFI Secure Boot compatibility.
-
-- Kexec and Livepatching: the necessity for integrity checks using SHA256
-during kexec operations and the requirement for signature verification for live
-patches.
-
-- Command Line Handling: how command-line parameters can introduce
-vulnerabilities unless carefully managed, which must be resolved for an
-implementation that can maintain a chain of trust.
-
-- Memory Layout Compatibility: challenges presented by PE file formats and
-their interactions with Xen's memory layout demands.
-
-Community input is critical to ensure that the proposed changes align with
-practical use cases and user requirements.  We will articulate a potential
-roadmap for progressing toward full UEFI Secure Boot support in Xen, with
-collaborative development and user requirements guiding change. By elucidating
-the roadmap, we aim to motivate stakeholders to engage in dialogue prioritizing
-secure launch technologies as essential components of a modern virtualization
-strategy.
-
--->
-
-
----
-
-# Selected Microsoft signing requirements
-
-
-<!--
-
-Some Microsoft requirements may pose additional challanges on top of mentioned above.
-
-* Revise Qubes OS Summit 2024 materials and get through shim review documentation
-as well as current state for Qubes OS.
-* Explain what is really involved.
-* Is there any hypervisor signed already?
-
--->
-
----
-
-!!! quote
-
-    Submitter must design and implement a strong revocation mechanism for
-    everything the shim loads, directly and subsequently.
-
-* This rise question which components would have to be verified.
-* There is no similar software reviewed on shim-review repository.
-* Xen is probably comparable to special case, as it was for iPXE Anywhere from 2Pint for which Microsoft published [Security Assurance Review](https://techcommunity.microsoft.com/blog/hardwaredevcenter/ipxe-security-assurance-review/1062943).
-
----
-
-# Key takeaways from iPXE security assurance review
-
----
-
-<center><img src="/2025/XenSummit/msft_revoc_mechanism.excalidraw.png" style="height:350px"></center>
-
-<!--
-
-Looking like some other cases 
-
--->
-
-
----
-
-# Current state
-
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
-.tg .tg-7h26{color:#00E;text-align:left;text-decoration:underline;vertical-align:top}
-.tg .tg-0lax{text-align:left;vertical-align:top}
-</style>
-<table class="tg"><thead>
-  <tr>
-    <th class="tg-amwm" colspan="2">Xen-Version</th>
-    <th class="tg-7h26"><a href="https://xenbits.xen.org/docs/unstable/SUPPORT.html">4.20-unstable</a></th>
-    <th class="tg-7h26"><a href="https://xenbits.xen.org/docs/4.19-testing/SUPPORT.html">4.19</a></th>
-    <th class="tg-7h26"><a href="https://xenbits.xen.org/docs/4.18-testing/SUPPORT.html">4.18</a></th>
-  </tr></thead>
-<tbody>
-  <tr>
-    <td class="tg-amwm" colspan="2">Initial-Release</td>
-    <td class="tg-0lax">n/a</td>
-    <td class="tg-0lax">2024-07-29</td>
-    <td class="tg-0lax">2023-11-16</td>
-  </tr>
-  <tr>
-    <td class="tg-amwm" rowspan="2">Host EFI Secure Boot</td>
-    <td class="tg-amwm">x86</td>
-    <td class="tg-0lax">Experimental</td>
-    <td class="tg-0lax">Experimental</td>
-    <td class="tg-0lax">Experimental</td>
-  </tr>
-  <tr>
-    <td class="tg-amwm">Arm64</td>
-    <td class="tg-0lax">Experimental</td>
-    <td class="tg-0lax">Experimental</td>
-    <td class="tg-0lax">Experimental</td>
-  </tr>
-</tbody></table>
-
-<!--
-Taken from https://xenbits.xen.org/docs/unstable/support-matrix.html
-Describe experimental support, why it is/isn't enough
--->
-
----
-
-# How does decode?
-
-* Functional completeness: No
-  * Does it behave like a fully functional feature? Does it work on all expected platforms, or does it only work for a very specific sub-case? Does it have a sensible UI, or do you have to have a deep understanding of the internals to get it to work properly?
-* Functional stability: Here be dragons
-  * Pretty likely to still crash / fail to work. Not recommended unless you like life on the bleeding edge.
-* Interface stability: Not stable
-  * Interface is still in the early stages and still fairly likely to be broken in future updates.
-* Security supported: No
-  * If “no”, anyone who finds a security-related bug in the feature will be advised to post it publicly to the Xen Project mailing lists (or contact another security response team, if a relevant one exists).
-
-
----
-
-# UKI
-
-Building Unified Kernel Image allows image to be verified by UEFI verification
-protocol which lowers needed security considerations
-
-* Or rather Unified Xen and Linux Kernels, and dom0 initiramfs Signed Images
-
-<!--
-With UKI bootloader part could be skipped.
-Built-in initrd, no need for separate verifier protocol in e.g. GRUB
-(UEFI verifier works for EFI files (any others?))
--->
-
----
-
 # Xen UKI boot flow
 
 <!--
@@ -766,159 +1255,24 @@ Can anything be taken from:
 - https://trenchboot.org/blueprints/Xen_Late_Launch/
 
 -->
+
 ---
 
-# Current state
+# Selected Microsoft signing requirements
 
-<center><img src="/2025/XenSummit/xenserver_sb_not_suppported.png"></center>
-
-* XCP-ng:
-  - https://github.com/xcp-ng/xcp/issues/294, issue created in 2019
-* Qubes OS:
-  - https://github.com/QubesOS/qubes-issues/issues/4371, 2018
-  - https://github.com/QubesOS/qubes-issues/issues/8206, 2023
-* There are some other commercial versions of Xen
 
 <!--
 
-Read one more time all those issues content to make sure you get all niuances.
+Some Microsoft requirements may pose additional challanges on top of mentioned above.
 
-Mention Trammel and tklengyel PoC and fact that what we presenting here is not
-much new despite being closer to final implementation.
-
--->
----
-
-## Qubes OS and UEFI Secure Boot
-
----
-
-## XCP-ng and UEFI Secure Boot
-
----
-
-# Roadmap
-
-- Unfortunately most challenges on Xen side seem to boil down to waiting for
-XenServer to develop solution.
-  - Does it have to be that way?
-* Qubes OS Team created CI/CD pipeline and tooling to produce Xen UKI
-* Tooling
-  - support for tools like sbctl to allow users manage signing themselves
-  - tools for adding SBAT section
-
-<!--
-
-* Qubes OS use pesign
-
-TODO: what is missing, how to proceed, with whome etc.
-TODO: submit design session
+* Revise Qubes OS Summit 2024 materials and get through shim review documentation
+as well as current state for Qubes OS.
+* Explain what is really involved.
+* Is there any hypervisor signed already?
 
 -->
 
 ---
 
-# Final notes
+# Key takeaways from iPXE security assurance review
 
-<!--
-
-Strategic agitation.
-
--->
-
----
-
-# Sales pitch
-
-<!--
-
-What we can propose to accelerate resolution of described problems?
-- we don't have enough resources to do big ecosystem changes,
-- that's why we mostly focus on education and fixed price consultation,
-- to provide something for community we work with OST2 to provide free of
-charge, open access training materials related to coreboot, UEFI and low level
-security, it is not only about us because there are lot of world-class experts
-teaching those things at that platform
-- if you looking for introducing UEFI SB in your organizations
-
-What is our stake in enabling Xen in UEFI SB ecosystem?
-
--->
-
----
-
-# Backlog
-
-<!--
-
-* What about bootkits? Maybe correctly set chain of trust at least can help
-protecting against bootkits.
-  - how bootkits are deployed? - through update, through vulnerabilities in
-  "value-added" BIOS components, vulnerabilities in BIOS services and drivers?
-* Maybe one of the problems is that Xen is deployed in "someone-else"
-datacenters on bare metal?
-* Why nobody care in Xen Community care about UEFI SB?
-
-This view is definitely too simplified, we have to consider Xen distributions
-and target market for it. Let's tackle it one by one and verify what are the
-most common boot paths for those market segments:
-
-### Server
-
-Question is what datacenters use, how big deployments Xen have,
-based on fact that Amazon use Xen deployment base can be really bit.
-
-This space is extensive from OCP servers to SOHO setup with 1-2U. It is
-possible to find representative examples of how those devices boot, but finding
-most popular in rankings and maybe map that to standards (OCP) or simply read
-manuals which can give a hint.
-
-It seem that very popular solutions are:
-- RoT in BMC and then BMC control hand over to CPU
-  - then we can have Intel PFR here
-  - there is AMD PSB here, but it has bad reputation
-  - RoT in BMC make sense since AST2600, because earlier versions didn't have OTP memory
-  - then going further there can be DC-SCM (Datacenter Secure Control Module) based on OCP specification: 
-    - there could be lecture just about that one, but it seem to be most advanced
-    and polished design, modular and mature in concept, what is most important it
-    is open
-      - but the point of this presentation is not exploration of all possible RoT and
-      how platform can be boot, but presenting plethora of approaches showing strong
-      sides and explaining that delegating security to vendor could be cost-saving
-      but ignorant approach, which may lead to not comprehensively covered boot chain
-      security
-
-### Client? - this seem to be only Qubes OS, where laptops dominating market,
-with small share of workstations
-
-### Embedded - there is extensive space here, on one side it can be SOHO and
-homelabs, on the other side there is huge automotive market
-
-- Those are threats against UEFI Secure Boot, but there are also threats
-against other components in the system like: ME, BMC and potentially more.
-- Other issue is that MSFT and UEFI Forum are centralized authorities to deal
-with vulnerabilities, relying always on those players may be insufficient in
-some cases
-
-Future ideas:
-- discuss PI 1.9 and signed FV
--->
-
----
-
-# References
-
-* [Xen and dom0 with UEFI/SecureBoot + Intel TXT](https://github.com/tklengyel/xen-uefi), Tamas K Lengyel, last modification 2018
-* [Securing Secure Boot on Xen](https://www.youtube.com/watch?v=jiR8khaECEk), Ross Lagerwall, FOSDEM 2019
-  - Focused on UEFI Secure Boot for Guest VMs
-* [Enabling UEFI Secure Boot on Xen](https://www.youtube.com/watch?v=A_IhKjK7EgA),Robert Eshleman, Xen Summit 2021
-  - Also focused on Guest VMs
-* [Xen Project Community Call](https://www.youtube.com/watch?v=cJyX6FLK4iU&t=813s), Andrew Cooper, June 2024
-* [Implementing UEFI Secure Boot in Qubes OS: Challenges and Future Steps](https://youtu.be/ZcF_RN04oq8), Piotr Król, Qubes OS Summit 2024
-* xen-devel activity
-
-<!--
-
-TODO: add activity found on mailing list.
-
--->
