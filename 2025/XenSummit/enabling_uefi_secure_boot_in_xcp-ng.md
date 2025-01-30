@@ -991,18 +991,22 @@ TODO: submit design session
 -->
 
 ---
-
-# Final notes
-
-<!--
-
-Strategic agitation.
-
--->
-
+layout: two-cols
 ---
 
-# Sales pitch
+<center><img src="/2025/XenSummit/hwio.jpg" width="600"></center>
+
+::right::
+
+<center><img src="/2025/XenSummit/ost2_logo2.png" width="250">
+<br>
+<img src="/2025/XenSummit/arch4221_qr.png" width="225">
+Use QR code to get news about upcoming OST2 classes:
+<br>
+Arch4221: UEFI Secure Boot
+<br>
+TC3211: Intel Boot Guard
+</center>
 
 <!--
 
