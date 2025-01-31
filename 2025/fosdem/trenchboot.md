@@ -75,12 +75,16 @@ width="220px" style="margin-top:-50px"> ]
 
 # Intro
 
-- Main areas of 3mdeb's involvement in TrenchBoot right now
+<!-- markdownlint-disable MD007 -->
+
+- Two main areas of 3mdeb's involvement in TrenchBoot right now
   + implementation of "the original" DRTM path for AMD
-    - booting Linux
-  + practical application of TrenchBoot in QubesOS
-    - booting Xen
-    - https://github.com/QubesOS/qubes-antievilmaid
+      - booting Linux
+  + practical application of TrenchBoot as QubesOS AEM
+      - booting Xen
+      - https://github.com/QubesOS/qubes-antievilmaid
+
+<!-- markdownlint-enable MD007 -->
 
 .center.image-50[![](/img/trenchboot_logo.png)]
 
@@ -92,18 +96,15 @@ width="220px" style="margin-top:-50px"> ]
 
 ### Done
 
-- Old and by now outdated AMD support for Linux was updated to use [SLRT]
+- AMD support for Linux updated to use [Secure Launch Resource Table]
 - Adapted changes for DRTM Service (new AMD DRTM) developed by Oracle
   + https://www.amd.com/content/dam/amd/en/documents/epyc-technical-docs/user-guides/58453.pdf
-- Revived meta-trenchboot Yocto distribution that can be used for testing and
-  demonstration
-  + https://github.com/zarhus/meta-trenchboot
 - Added first TrenchBoot tests to Open Source Firmware Validation
   + https://github.com/Dasharo/open-source-firmware-validation/tree/main/trenchboot
 - Refreshed TrenchBoot's website to be more up to date with current development:
   + https://trenchboot.org/
 
-[SLRT]: https://trenchboot.org/blueprints/SLRT/
+[Secure Launch Resource Table]: https://trenchboot.org/blueprints/SLRT/
 
 ???
 
@@ -116,47 +117,46 @@ firmware version as well as on CPU family.
 
 # TrenchBoot for AMD
 
+### Done
+
+- Revived meta-trenchboot Yocto layer that can be used for testing and
+  + used for testing and demonstration
+  + generic image with: legacy/UEFI, Linux/Xen, Intel/AMD
+  + https://github.com/zarhus/meta-trenchboot
+
+.center.code-13px[
+```bash
+ GNU GRUB  version 2.06
+
+ +----------------------------------------------------------------------------+
+ |*Boot Linux normally                                                        |
+ | Boot Linux with TrenchBoot                                                 |
+ | Boot Xen normally                                                          |
+ | Boot Xen with TrenchBoot                                                   |
+ |                                                                            |
+ |                                                                            |
+ |                                                                            |
+ +----------------------------------------------------------------------------+
+
+      Use the ^ and v keys to select which entry is highlighted.
+      Press enter to boot the selected OS, `e' to edit the commands
+```
+]
+
+---
+
+# TrenchBoot for AMD
+
 ### In progress - upstream process
 
 - Linux Intel series in still in progress
   + as shown in Oracle's part
-- Upstreaming of AMD changes depends on upstreaming Intel changes that contain
-  common part of the code
-- Small portion of generic GRUB patches landed, but the rest depends on Linux
-  upstreaming
+- Upstreaming of AMD changes depends on Intel changes
+  + contain common part of the code
+- Small portion of generic GRUB patches landed
+  + the rest depends on Linux upstreaming
 
 .center[.image-20[![](/img/Tux.png)] &nbsp;&nbsp;&nbsp;&nbsp; .image-30[![](/img/logo/grub.png)]]
-
----
-
-# TrenchBoot as QubesOS AEM
-
-.center.image-95[![](/img/tb_drtm.png)]
-
-For Qubes OS AEM:
-- The Gap: GRUB
-- DCE-Preamble: Secure Launch commands of GRUB
-- [DL Event]: `SENTER` instruction on Intel, `SKINIT` on AMD
-- [DCE]: [ACM] on Intel, [SKL] on AMD
-- [DLME]: Xen
-
-[DL Event]: https://trenchboot.org/theory/Glossary/#dynamic-launch-event-dle
-[SKL]: https://github.com/TrenchBoot/secure-kernel-loader/
-[DCE]: https://trenchboot.org/theory/Glossary/#dynamic-configuration-environment-dce
-[DLME]: https://trenchboot.org/theory/Glossary/#dynamic-launch-measured-environment-dlme
-[ACM]: https://trenchboot.org/theory/Glossary/#authenticated-code-module-acm
-
-.footnote[https://trustedcomputinggroup.org/wp-content/uploads/TCG_D-RTM_Architecture_v1-0_Published_06172013.pdf]
-
-???
-
- How TrenchBoot maps onto DRTM process
-
-Pre-gap: from power on to starting GRUB and picking AEM boot.
-The gap: GRUB initiates DRTM.
-Post-gap: Xen runs securely after a successful DRTM.
-
-https://trenchboot.org/theory/Glossary
 
 ---
 
@@ -165,8 +165,10 @@ https://trenchboot.org/theory/Glossary
 ### Done
 
 - Support for legacy boot on AMD (uses [SKL] as [DCE])
-- GRUB now tries out all DCEs found in `/boot` and uses the last valid one, so
-  users don't need to pick the right DCE manually
+- GRUB now tries out all DCEs found in `/boot`
+  + uses the last valid one
+  + users don't need to pick the right DCE (ACM/SKL) manually
+  + generic image, smoother experience
 - Introduced an RPM-repository for distribution of AEM packages
   + https://dl.3mdeb.com/rpm/QubesOS/r4.2/current/dom0/fc37/
 - Tested legacy AMD implementation on:
@@ -278,3 +280,34 @@ Feel free to contact us if you believe we can help you in any way.
 <br>
 
 ## .center[Q&A]
+
+---
+
+# TrenchBoot components mapping
+
+.center.image-95[![](/img/tb_drtm.png)]
+
+For Qubes OS AEM:
+- The Gap: GRUB
+- DCE-Preamble: Secure Launch commands of GRUB
+- [DL Event]: `SENTER` instruction on Intel, `SKINIT` on AMD
+- [DCE]: [ACM] on Intel, [SKL] on AMD
+- [DLME]: Xen
+
+[DL Event]: https://trenchboot.org/theory/Glossary/#dynamic-launch-event-dle
+[SKL]: https://github.com/TrenchBoot/secure-kernel-loader/
+[DCE]: https://trenchboot.org/theory/Glossary/#dynamic-configuration-environment-dce
+[DLME]: https://trenchboot.org/theory/Glossary/#dynamic-launch-measured-environment-dlme
+[ACM]: https://trenchboot.org/theory/Glossary/#authenticated-code-module-acm
+
+.footnote[https://trustedcomputinggroup.org/wp-content/uploads/TCG_D-RTM_Architecture_v1-0_Published_06172013.pdf]
+
+???
+
+ How TrenchBoot maps onto DRTM process
+
+Pre-gap: from power on to starting GRUB and picking AEM boot.
+The gap: GRUB initiates DRTM.
+Post-gap: Xen runs securely after a successful DRTM.
+
+https://trenchboot.org/theory/Glossary
