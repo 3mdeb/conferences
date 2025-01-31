@@ -65,24 +65,24 @@ width="220px" style="margin-top:-50px"> ]
 ]
 .center[.image-35[![](/remark-templates/3mdeb-presentation-template/images/openpower.svg)]]
 
-* coreboot licensed service providers since 2016 and leadership participants
-* UEFI Adopters since 2018
-* Yocto Participants and Embedded Linux experts since 2019
-* Official consultants for Linux Foundation fwupd/LVFS project since 2020
-* IBM OpenPOWER Foundation members since 2020
+- coreboot licensed service providers since 2016 and leadership participants
+- UEFI Adopters since 2018
+- Yocto Participants and Embedded Linux experts since 2019
+- Official consultants for Linux Foundation fwupd/LVFS project since 2020
+- IBM OpenPOWER Foundation members since 2020
 
 ---
 
 # Agenda
 
-* Introduction to Dasharo Open Source Firmware Validation (OSFV)
-* Current state
-* Recent improvements
+- Introduction to Dasharo Open Source Firmware Validation (OSFV)
+- Current state
+- Recent improvements
 
-* Interfacing with hardware
-* Robot Framework
-* Work in progress - current priorities
-* Q&A
+- Interfacing with hardware
+- Robot Framework
+- Work in progress - current priorities
+- Q&A
 
 ---
 
@@ -90,11 +90,11 @@ width="220px" style="margin-top:-50px"> ]
 
 .center.image-99[![](/img/osfv.png)]
 
-* We've been using OSFV at least since 2018, when we've started validating PC
+- We've been using OSFV at least since 2018, when we've started validating PC
   Engines coreboot releases on a monthly basis
-* Using those scripts we've executed over **50k** tests publicly releasing **150+**
+- Using those scripts we've executed over **50k** tests publicly releasing **150+**
   binaries based on open-source firmware
-* Initially, it was closed source because of assumption that validation provides
+- Initially, it was closed source because of assumption that validation provides
   majority of the value in open-source firmware development
 
 ---
@@ -103,70 +103,75 @@ width="220px" style="margin-top:-50px"> ]
 
 .center[https://github.com/Dasharo/open-source-firmware-validation]
 
-* TBD: when? At some point we have decided to open-source what we have and start
-  maintaining and improving it as an open-source product
-* Use cases of Dasharo OSFV
-  - validation of (open-source) firmware
-    + can be used for any firmware, really
-  - testing Dasharo firmware releases
-  - test-driven bug fixing (and adding new features)
-  - regression testing
-    + after introducing new features
-    + after major changes (update base from upstream project)
-  - mainly Dasharo with UEFI payload right now
-* Scripts written in:
-    - mostly Robot Framework (keywords, test suites)
-    - some Python (sometimes more suitable than RF)
-    - shell scripts (mostly some wrappers for test execution)
+- Published as open-source project Sep 2023
+- Use cases of Dasharo OSFV
+  + validation of (open-source) firmware
+      * can be used for any firmware, really
+  + testing Dasharo firmware releases
+  + test-driven bug fixing (and adding new features)
+  + regression testing
+      * after introducing new features
+      * after major changes (update base from upstream project)
+  + mainly Dasharo with UEFI payload right now
+- Scripts written in:
+  + mostly Robot Framework (keywords, test suites)
+  + some Python (sometimes more suitable than RF)
+  + shell scripts (mostly some wrappers for test execution)
 
 ???
 
-* Main purpose
-* Using Robot Framework as a base
+- Main purpose
+- Using Robot Framework as a base
 
-* Use cases
-  - validation of Dasharo-related tools (Dasharo Tools Suite, Dasharo
+- Use cases
+  + validation of Dasharo-related tools (Dasharo Tools Suite, Dasharo
     Configuration Utility)
-    + where possible, in QEMU
+    * where possible, in QEMU
 
-
-* Key Features of OSFV:
-    - **Hardware Compatibility Testing**: audio, cpu, fan, network, docking
+- Key Features of OSFV:
+  + **Hardware Compatibility Testing**: audio, cpu, fan, network, docking
     stations, displays, network, thunderbolt, USB and more
-    - **Performance and Stability Testing**: boot time, cpu frequency and
+  + **Performance and Stability Testing**: boot time, cpu frequency and
     temperature, power cycle testing
-    - **Dashro Security Features Testing**: UEFI Secure Boot, measured boot, TPM,
+  + **Dashro Security Features Testing**: UEFI Secure Boot, measured boot, TPM,
     verified boot, TCG OPAL, ME, DMA protection and more
-* To maximize use of Dasharo OSFV you need dedicated infrastructure
+- To maximize use of Dasharo OSFV you need dedicated infrastructure
 
 ---
 
 # Robot Framework
 
-* Robot Framework is a generic open source automation framework
-* It can be used for test automation and Robotic Process Automation (RPA)
-* Used widely for web apps testing (with Selenium), and many more
-* Used by OpenBMC (firmware, embedded Linux) for test automation
-    - https://github.com/openbmc/openbmc-test-automation
-* Active community, quality documentation
-    - https://robotframework.org/#community
-    - https://docs.robotframework.org/docs
-* Robot Framework Conference
-    - https://robocon.io/
+- Robot Framework is a generic open source automation framework
+- It can be used for test automation and Robotic Process Automation (RPA)
+- Used widely for web apps testing (with Selenium), and many more
+- Used by OpenBMC (firmware, embedded Linux) for test automation
+  + https://github.com/openbmc/openbmc-test-automation
+- Active community, quality documentation
+  + https://robotframework.org/#community
+  + https://docs.robotframework.org/docs
+- Robot Framework Conference
+  + https://robocon.io/
 
 .center.image-20[![](/img/Robot-framework-logo.png)]
 
 ---
 
-# OSFV Supported Platforms
+# Supported Platforms
 
-.center.image-60[![](/img/osfv_supported_platforms.png)]
+.center[
+  .image-30[![](/img/VP4600.png)]
+  .image-30[![](/img/NovaCustom-V54-Series-1.png)]
+]
+.center[
+  .image-30[![](/img/apu4d4.png)]
+  .image-40[![](/img/qubes_modern_desktop/msi_pro_z690a.png)]
+]
 
 TBD: instead give some examples and photos
 
 ???
 
-Let's see what kind of hardware we are interfacing with the most 
+Let's see what kind of hardware we are interfacing with the most
 
 ---
 
@@ -186,35 +191,52 @@ We have two more options, not displayed here:
 
 # Power control
 
-* Reflashed firmware on Sonoffs in the lab to a more stable one
-  - https://tasmota.github.io/docs/devices/Sonoff-S26-Smart-Socket/
 
-TBD: RTE vs Sonoff vs BMC
+.left-column50[
+.center.image-50[![](/img/osfv_sonoff_r26.png)]
 
-.center.image-30[![](/img/osfv_sonoff_r26.png)]
+- WiFi plug with custom firmware 
+- https://tasmota.github.io/docs/devices/Sonoff-S26-Smart-Socket/
+]
+
+.right-column50[
+.center.image-60[![](/img/rte.jpg)]
+
+- DC relay
+- OSHW control board
+- HTTP API to control gpio/power
+- https://github.com/3mdeb/rte-schematics
+- https://github.com/3mdeb/RteCtrl
+]
 
 ---
 
 # GPIO control
 
-* Power / reset button
-* Power LED status
-* Custom GPIOs
+- Power / reset button
+- Power LED status
+- Custom GPIOs
 
-* Controller via RTE
-  - TBD: RTE image
+.center.image-80[![](/img/msi_z690_lab_SPI_RTE.jpg)]
+
+---
+
+# Firmware flashing
+
+.center.image-40[![](/img/pomona_clip_connected_to_flash_chip.jpg)]
+
 
 ---
 
 # Test execution
 
-* Output
-  - gather logs via serial port
-  - SSH
-* Input
-  - serial port
-  - USB keyboard emulation (via PiKVM)
-  - SSH
+- Output
+  + gather logs via serial port
+  + SSH
+- Input
+  + serial port
+  + USB keyboard emulation (via PiKVM)
+  + SSH
 
 ---
 
@@ -307,30 +329,82 @@ TBD: One more screenshot with entering to setup menu?
     Should Contain    ${out_flashrom}    SMM protection is enabled
 ```
 
+---
+
+# Contact us
+
+We are open to cooperate and discuss
+
+- <a href="mailto:contact@3mdeb.com">
+    <img src="/remark-templates/3mdeb-presentation-template/images/email.png"
+      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
+      contact@3mdeb.com
+  </a>
+
+- <a href="https://www.facebook.com/3mdeb">
+    <img src="/remark-templates/3mdeb-presentation-template/images/facebook.png"
+      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
+      facebook.com/3mdeb
+  </a>
+
+- <a href="https://twitter.com/3mdeb_com">
+    <img src="/remark-templates/3mdeb-presentation-template/images/twitter.png"
+      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
+      @3mdeb_com
+  </a>
+
+- <a href="https://www.linkedin.com/company/3mdeb">
+    <img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png"
+      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
+      linkedin.com/company/3mdeb
+    </a>
+
+- <a href="https://3mdeb.com">https://3mdeb.com</a>
+
+- <a href="https://calendly.com/3mdeb/consulting-remote-meeting">Book a call</a>
+
+- <a href="https://newsletter.3mdeb.com/subscription/PW6XnCeK6">
+    Sign up for the newsletter
+  </a>
+
+Feel free to contact us if you believe we can help you in any way. We are
+always open to cooperate and discuss.
+
+---
+
+<br>
+<br>
+<br>
+
+## .center[Q&A]
+
+---
+
+# Extras
 
 ---
 
 # Getting started with OSFV
 
-* What do I need to learn first?
-* How do I run existing test?
-* How do I write a new test?
-* How do I add support for a new platform?
+- What do I need to learn first?
+- How do I run existing test?
+- How do I write a new test?
+- How do I add support for a new platform?
 
 ---
 
 # What do I need to learn first?
 
-* Some basic RF knowledge
-    - go through basics in
+- Some basic RF knowledge
+  + go through basics in
       [User Guide](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html):
-    - go through basic
+  + go through basic
       [RF libraries](https://robotframework.org/robotframework/):
-        - `BuildIn`, `Collections`, `Strings`, `Telnet`
-        - add them to your bookmarks, you will need them often
-    - check out [SSHLibrary](http://robotframework.org/SSHLibrary/SSHLibrary.html)
-* Some basic Python knowlednge
-    - there are plenty of learning materials, pick your favourite one
+    * `BuildIn`, `Collections`, `Strings`, `Telnet`
+    * add them to your bookmarks, you will need them often
+  + check out [SSHLibrary](http://robotframework.org/SSHLibrary/SSHLibrary.html)
+- Some basic Python knowlednge
+  + there are plenty of learning materials, pick your favourite one
 
 ???
 
@@ -340,33 +414,33 @@ https://3mdeb.gitlab.io/human-resources/processes/teams/test-automation-team/TAT
 
 # How do I run existing test?
 
-* Consult README for:
-    - [supported platforms](https://github.com/Dasharo/open-source-firmware-validation/#supported-platforms)
-    - [getting started](https://github.com/Dasharo/open-source-firmware-validation/#getting-started)
-    - [running single tests](https://github.com/Dasharo/open-source-firmware-validation/#running-tests)
-* Look through existing tests in:
-    - `dasharo-compatibility`
-    - `dasharo-security`
-    - `dasharo-performance`
-    - `dasharo-stability`
+- Consult README for:
+  + [supported platforms](https://github.com/Dasharo/open-source-firmware-validation/#supported-platforms)
+  + [getting started](https://github.com/Dasharo/open-source-firmware-validation/#getting-started)
+  + [running single tests](https://github.com/Dasharo/open-source-firmware-validation/#running-tests)
+- Look through existing tests in:
+  + `dasharo-compatibility`
+  + `dasharo-security`
+  + `dasharo-performance`
+  + `dasharo-stability`
 
 ---
 
 # How do I run existing test?
 
-* Start with QEMU to learn how it works
-* Spin up QEMU with Dasharo firmware
-  - TBD scirpt path
-* Run test
-* Observe the robot execution in console
-* Observe how the machine is being controlled in the QEMU window
+- Start with QEMU to learn how it works
+- Spin up QEMU with Dasharo firmware
+  + TBD scirpt path
+- Run test
+- Observe the robot execution in console
+- Observe how the machine is being controlled in the QEMU window
 
 ---
 
 # How do I run existing test?
 
-* Check if selected test is supported by the given platform
-* In `platform-configs/qemu.robot`:
+- Check if selected test is supported by the given platform
+- In `platform-configs/qemu.robot`:
 
 .code-11px[```markdown
 ${CUSTOM_BOOT_MENU_KEY_SUPPORT}=    ${TRUE}
@@ -455,49 +529,3 @@ https://3mdeb.gitlab.io/human-resources/processes/teams/test-automation-team/cod
 
 ---
 
-# Contact us
-
-We are open to cooperate and discuss
-
-- <a href="mailto:contact@3mdeb.com">
-    <img src="/remark-templates/3mdeb-presentation-template/images/email.png"
-      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
-      contact@3mdeb.com
-  </a>
-
-- <a href="https://www.facebook.com/3mdeb">
-    <img src="/remark-templates/3mdeb-presentation-template/images/facebook.png"
-      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
-      facebook.com/3mdeb
-  </a>
-
-- <a href="https://twitter.com/3mdeb_com">
-    <img src="/remark-templates/3mdeb-presentation-template/images/twitter.png"
-      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
-      @3mdeb_com
-  </a>
-
-- <a href="https://www.linkedin.com/company/3mdeb">
-    <img src="/remark-templates/3mdeb-presentation-template/images/linkedin.png"
-      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
-      linkedin.com/company/3mdeb
-    </a>
-
-- <a href="https://3mdeb.com">https://3mdeb.com</a>
-
-- <a href="https://calendly.com/3mdeb/consulting-remote-meeting">Book a call</a>
-
-- <a href="https://newsletter.3mdeb.com/subscription/PW6XnCeK6">
-    Sign up for the newsletter
-  </a>
-
-Feel free to contact us if you believe we can help you in any way. We are
-always open to cooperate and discuss.
-
----
-
-<br>
-<br>
-<br>
-
-## .center[Q&A]
