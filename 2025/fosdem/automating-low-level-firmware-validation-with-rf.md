@@ -75,13 +75,11 @@ width="220px" style="margin-top:-50px"> ]
 
 # Agenda
 
-- Introduction to Dasharo Open Source Firmware Validation (OSFV)
-- Current state
-- Recent improvements
-
+- History
+- Dasharo OSFV and RF
+- Hardware support
 - Interfacing with hardware
-- Robot Framework
-- Work in progress - current priorities
+- Example scenarios
 - Q&A
 
 ---
@@ -90,12 +88,11 @@ width="220px" style="margin-top:-50px"> ]
 
 .center.image-99[![](/img/osfv.png)]
 
-- We've been using OSFV at least since 2018, when we've started validating PC
-  Engines coreboot releases on a monthly basis
-- Using those scripts we've executed over **50k** tests publicly releasing **150+**
-  binaries based on open-source firmware
-- Initially, it was closed source because of assumption that validation provides
-  majority of the value in open-source firmware development
+- We've been using OSFV at least since 2018
+  - when validating PC Engines coreboot releases on a monthly basis
+  - executed over **50k** tests
+  - publicly releasing **150+** binaries of open-source firmware
+- Initially, it was an internal project 
 
 ---
 
@@ -103,7 +100,7 @@ width="220px" style="margin-top:-50px"> ]
 
 .center[https://github.com/Dasharo/open-source-firmware-validation]
 
-- Published as open-source project Sep 2023
+- Published as open-source project Sep 2023 (small part of it earlier)
 - Use cases of Dasharo OSFV
   + validation of (open-source) firmware
       * can be used for any firmware, really
@@ -167,8 +164,6 @@ width="220px" style="margin-top:-50px"> ]
   .image-40[![](/img/qubes_modern_desktop/msi_pro_z690a.png)]
 ]
 
-TBD: instead give some examples and photos
-
 ???
 
 Let's see what kind of hardware we are interfacing with the most
@@ -178,8 +173,6 @@ Let's see what kind of hardware we are interfacing with the most
 # OSFV Lab
 
 .center.image-70[![](/img/osfv_arch.png)]
-
-TBD: new version of the graphic
 
 ???
 
@@ -211,6 +204,22 @@ We have two more options, not displayed here:
 
 ---
 
+# Test execution interface 
+
+- Output
+  + gather logs via serial port
+  + SSH
+- Input
+  + serial port
+  + USB keyboard emulation (via PiKVM)
+  + SSH
+
+.center.image-50[![](/img/rf_test_control.png)]
+
+
+
+---
+
 # GPIO control
 
 - Power / reset button
@@ -224,19 +233,6 @@ We have two more options, not displayed here:
 # Firmware flashing
 
 .center.image-40[![](/img/pomona_clip_connected_to_flash_chip.jpg)]
-
-
----
-
-# Test execution
-
-- Output
-  + gather logs via serial port
-  + SSH
-- Input
-  + serial port
-  + USB keyboard emulation (via PiKVM)
-  + SSH
 
 ---
 
@@ -289,9 +285,7 @@ control the state of the devices in the lab
 
 # Example test scenario
 
-TBD: One more screenshot with entering to setup menu?
-
-.center.image-80[![](/img/dasharo_main_page.jpeg)]
+.center.image-80[![](/img/dasharo_press_key.png)]
 
 ---
 
@@ -315,7 +309,10 @@ TBD: One more screenshot with entering to setup menu?
 
 # Example test scenario
 
-```python
+* Code
+
+.code-13px[```python
+SMM001.001 SMM BIOS write protection enabling (Ubuntu)
     Power On
     ${setup_menu}=    Enter Setup Menu Tianocore And Return Construction
     ${dasharo_menu}=    Enter Dasharo System Features    ${setup_menu}
@@ -328,6 +325,40 @@ TBD: One more screenshot with entering to setup menu?
     ${out_flashrom}=    Execute Command In Terminal    flashrom -p internal
     Should Contain    ${out_flashrom}    SMM protection is enabled
 ```
+]
+
+* Run command
+
+.code-13px[```bash
+CONFIG=msi-pro-z690-a-ddr5 \
+RTE_IP=AAA.BBB.CCC.DDD \
+DEVICE_IP=EEE.FFF.GGG.HHH \
+FW_FILE=msi_ms7d25_v1.1.4_ddr5.rom \
+./scripts/run.sh dasharo-security/smm-bios-write-protection.robot 
+```]
+
+---
+
+# Running in QEMU
+
+- Spin up QEMU with Dasharo firmware
+  + `./scripts/ci/qemu-run.sh graphic firmware`
+- Run test
+- Observe the robot execution in console
+- Observe how the machine is being controlled in the QEMU window
+
+.center.image-90[![](/img/osfv_qemu_run.png)]
+
+---
+
+# Community
+
+* Standard GH issues and PR flow for contributors
+  - https://github.com/Dasharo/open-source-firmware-validation
+* Join Dasharo Matrix Space
+  - https://matrix.to/#/#dasharo:matrix.org
+* Join Dasharo OSFV Matrix room
+  - https://matrix.to/#/#osfv:matrix.3mdeb.com
 
 ---
 
@@ -347,8 +378,8 @@ We are open to cooperate and discuss
       facebook.com/3mdeb
   </a>
 
-- <a href="https://twitter.com/3mdeb_com">
-    <img src="/remark-templates/3mdeb-presentation-template/images/twitter.png"
+- <a href="https://x.com/3mdeb_com">
+    <img src="/remark-templates/3mdeb-presentation-template/images/x.png"
       width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
       @3mdeb_com
   </a>
@@ -361,7 +392,9 @@ We are open to cooperate and discuss
 
 - <a href="https://3mdeb.com">https://3mdeb.com</a>
 
-- <a href="https://calendly.com/3mdeb/consulting-remote-meeting">Book a call</a>
+- <a href="https://cloud.3mdeb.com/index.php/apps/calendar/appointment/yiqxCTTdioPN">
+    Book a call
+  </a>
 
 - <a href="https://newsletter.3mdeb.com/subscription/PW6XnCeK6">
     Sign up for the newsletter
@@ -430,7 +463,7 @@ https://3mdeb.gitlab.io/human-resources/processes/teams/test-automation-team/TAT
 
 - Start with QEMU to learn how it works
 - Spin up QEMU with Dasharo firmware
-  + TBD scirpt path
+  + `./scripts/ci/qemu-run.sh graphic firmware`
 - Run test
 - Observe the robot execution in console
 - Observe how the machine is being controlled in the QEMU window
@@ -495,7 +528,7 @@ https://3mdeb.gitlab.io/human-resources/processes/teams/test-automation-team/cod
 # How do I add support for a new platform?
 
 * Pick a similar board from `platform-config` and adjust it
-  - config documentation: TBD
+  - config documentation: `docs/adding-new-platforms.md`
 * Power control
   - [RTE](https://3mdeb.com/open-source-hardware/),
     [Sonoff WiFi Smart Plug](https://sonoff.tech/product/smart-plugs/s26/),
@@ -508,24 +541,3 @@ https://3mdeb.gitlab.io/human-resources/processes/teams/test-automation-team/cod
     via telnet
 * Hardware setup may be complex
   - https://docs.dasharo.com/variants/asus_kgpe_d16/setup/
-
-???
-
----
-
-# Contributing to OSFV repository
-
-* Many parties can contribute there
-* By contributing you get the benefits such as:
-    - access to test developed by 3mdeb or other parties
-    - stable environment tested in more scenarios
-* 3mdeb maintains repository to make sure changes from external parties does
-  not break others, and can be shared between them
-    - access to all supported platforms
-    - experience
-* Standard GH issues and PR flow for contributors
-* Join Dasharo Matrix Space https://matrix.to/#/#dasharo:matrix.org
-* Join Dasharo OSFV Matrix room: https://matrix.to/#/#osfv:matrix.3mdeb.com
-
----
-
