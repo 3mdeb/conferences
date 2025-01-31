@@ -423,7 +423,7 @@ process.
 ```sh
 cat <<EOF >sbat.csv
 sbat,1,SBAT Version,XCP-ng,https://xcp-ng.org,20240101,11111111-1111-1111-1111-111111111111
-xen,4.20.0,XCP-ng,https://xcp-ng.org,20240101,22222222-2222-2222-2222-222222222222
+xen,4,XCP-ng,https://xcp-ng.org,20240101,22222222-2222-2222-2222-222222222222
 EOF
 ```
 
@@ -945,30 +945,6 @@ Unsupported relocation type
 
 ---
 
-## TrenchBoot
-
-* Xen boots on EFI similar to how Linux does:
-  - Xen’s normal EFI entry point detects presence of SLRT, points SLRT to “secondary” entry point and calls back into GRUB
-  - GRUB does the normal thing of invoking ACM/SKL which ends up calling the “secondary” entry point of Xen
-  - Xen switches to long mode and continues booting where it left off
-* GRUB’s chainloader now handles Slaunch (quite similar to multiboot or linux boot methods)
-* AEM’s file in /etc/grub.d:
-  - generates Xen.efi’s configuration file next to it with an entry per discovered Linux
-  - copies Linux kernel and initrd to ESP, so Xen can find them
-  - generates separate boot entries for both legacy and EFI variants because grub.cfg is shared (EFI calls configfile /boot/grub2/grub.cfg)
-
-<!--
-
-Apparently UKI approach has quite good synergy with TrenchBoot.
-
-synergy with TrenchBoot and DRTM technology. We will delve into the
-implications of the UEFI Secure Boot process, showing why simply signing
-bootloaders and hypervisor binaries is insufficient; a comprehensive
-implementation must address the entire boot chain.
-
--->
----
-
 # Roadmap
 
 - Unfortunately most challenges on Xen side seem to boil down to waiting for
@@ -980,6 +956,8 @@ XenServer to develop solution.
 * Tooling
   - support for tools like sbctl to allow users manage signing themselves
   - tools for adding SBAT section
+* We can move forward only having community, to build it we need education on
+  various level.
 
 <!--
 
@@ -1280,3 +1258,27 @@ as well as current state for Qubes OS.
 
 # Key takeaways from iPXE security assurance review
 
+---
+
+## TrenchBoot
+
+* Xen boots on EFI similar to how Linux does:
+  - Xen’s normal EFI entry point detects presence of SLRT, points SLRT to “secondary” entry point and calls back into GRUB
+  - GRUB does the normal thing of invoking ACM/SKL which ends up calling the “secondary” entry point of Xen
+  - Xen switches to long mode and continues booting where it left off
+* GRUB’s chainloader now handles Slaunch (quite similar to multiboot or linux boot methods)
+* AEM’s file in /etc/grub.d:
+  - generates Xen.efi’s configuration file next to it with an entry per discovered Linux
+  - copies Linux kernel and initrd to ESP, so Xen can find them
+  - generates separate boot entries for both legacy and EFI variants because grub.cfg is shared (EFI calls configfile /boot/grub2/grub.cfg)
+
+<!--
+
+Apparently UKI approach has quite good synergy with TrenchBoot.
+
+synergy with TrenchBoot and DRTM technology. We will delve into the
+implications of the UEFI Secure Boot process, showing why simply signing
+bootloaders and hypervisor binaries is insufficient; a comprehensive
+implementation must address the entire boot chain.
+
+-->
