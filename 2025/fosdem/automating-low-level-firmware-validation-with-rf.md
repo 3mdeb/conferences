@@ -103,18 +103,32 @@ width="220px" style="margin-top:-50px"> ]
 
 .center[https://github.com/Dasharo/open-source-firmware-validation]
 
-* Since then, these scripts came through many iterations, supporting more
-  different products
-* At some point we have decided to open-source what we have and start
+* TBD: when? At some point we have decided to open-source what we have and start
   maintaining and improving it as an open-source product
-* Dasharo Open Source Firmware Validation purpose is the validation of
-  open-source firmware (mainly Dasharo)
+* Use cases of Dasharo OSFV
+  - validation of (open-source) firmware
+    + can be used for any firmware, really
+  - testing Dasharo firmware releases
+  - test-driven bug fixing (and adding new features)
+  - regression testing
+    + after introducing new features
+    + after major changes (update base from upstream project)
+  - mainly Dasharo with UEFI payload right now
 * Scripts written in:
     - mostly Robot Framework (keywords, test suites)
-    - some Python (for some keywords, sometimes more suitable than RF)
+    - some Python (sometimes more suitable than RF)
     - shell scripts (mostly some wrappers for test execution)
 
 ???
+
+* Main purpose
+* Using Robot Framework as a base
+
+* Use cases
+  - validation of Dasharo-related tools (Dasharo Tools Suite, Dasharo
+    Configuration Utility)
+    + where possible, in QEMU
+
 
 * Key Features of OSFV:
     - **Hardware Compatibility Testing**: audio, cpu, fan, network, docking
@@ -131,7 +145,7 @@ width="220px" style="margin-top:-50px"> ]
 
 * Robot Framework is a generic open source automation framework
 * It can be used for test automation and Robotic Process Automation (RPA)
-* Used widely for web apps testing (with Selenium), but not only
+* Used widely for web apps testing (with Selenium), and many more
 * Used by OpenBMC (firmware, embedded Linux) for test automation
     - https://github.com/openbmc/openbmc-test-automation
 * Active community, quality documentation
@@ -144,9 +158,23 @@ width="220px" style="margin-top:-50px"> ]
 
 ---
 
+# OSFV Supported Platforms
+
+.center.image-60[![](/img/osfv_supported_platforms.png)]
+
+TBD: instead give some examples and photos
+
+???
+
+Let's see what kind of hardware we are interfacing with the most 
+
+---
+
 # OSFV Lab
 
 .center.image-70[![](/img/osfv_arch.png)]
+
+TBD: new version of the graphic
 
 ???
 
@@ -156,82 +184,43 @@ We have two more options, not displayed here:
 
 ---
 
-# OSFV Supported Platforms
+# Power control
 
-.center.image-60[![](/img/osfv_supported_platforms.png)]
+* Reflashed firmware on Sonoffs in the lab to a more stable one
+  - https://tasmota.github.io/docs/devices/Sonoff-S26-Smart-Socket/
 
----
+TBD: RTE vs Sonoff vs BMC
 
-# Introduction to Dasharo OSFV
-
-* Main purpose
-  - validation of (open-source) firmware
-    + can be used for any firmware, really
-  - mainly Dasharo with UEFI payload right now
-* Using Robot Framework as a base
+.center.image-30[![](/img/osfv_sonoff_r26.png)]
 
 ---
 
-# Introduction to Dasharo OSFV
+# GPIO control
 
-* Use cases
-  - testing Dasharo firmware releases
-  - test-driven bug fixing (and adding new features)
-  - regression testing
-    + after introducing new features
-    + after major changes (update base from upstream project)
-  - validation of Dasharo-related tools (Dasharo Tools Suite, Dasharo
-    Configuration Utility)
-    + where possible, in QEMU
+* Power / reset button
+* Power LED status
+* Custom GPIOs
+
+* Controller via RTE
+  - TBD: RTE image
 
 ---
 
-# Example test scenario
+# Test execution
 
-.center.image-60[![](/img/dasharo_main_page.jpeg)]
-
----
-
-# Example test scenario
-
-.center.image-60[![](/img/dasharo_features.jpeg)]
-
----
-
-# Example test scenario
-
-.center.image-60[![](/img/dasharo_sec_opts.jpeg)]
-
----
-
-# Example test scenario
-
-```python
-    Power On
-    ${setup_menu}=    Enter Setup Menu Tianocore And Return Construction
-    ${dasharo_menu}=    Enter Dasharo System Features    ${setup_menu}
-    ${network_menu}=    Enter Dasharo Submenu    ${dasharo_menu}    Dasharo Security Options
-    Set Option State    ${network_menu}    Enable SMM BIOS write    ${TRUE}
-    Save Changes And Reset
-    Boot System Or From Connected Disk    ubuntu
-    Login To Linux
-    Switch To Root User
-    ${out_flashrom}=    Execute Command In Terminal    flashrom -p internal
-    Should Contain    ${out_flashrom}    SMM protection is enabled
-```
-
----
-
-# osfv_cli integration
-
-* Integrate low-level hardware operations into Python libraries
-* Reuse the same libraries by test framework and CLI tool
-
-.center.image-60[![](/img/osfv_cli_after.png)]
+* Output
+  - gather logs via serial port
+  - SSH
+* Input
+  - serial port
+  - USB keyboard emulation (via PiKVM)
+  - SSH
 
 ---
 
 # osfv_cli - developer usage scenario
+
+https://github.com/Dasharo/osfv-scripts/tree/main/osfv_cli
 
 .code-13px[```bash
 
@@ -260,16 +249,64 @@ osfv_cli rte --rte_ip $RTE_IP serial
 osfv_cli rte --rte_ip $RTE_IP pwr reset
 ```]
 
+???
+
+We expose these hardwaare interfaces via CLI tool allowing developers to
+control the state of the devices in the lab
+
 ---
 
-# Recent improvements
+# osfv_cli integration
 
-### **Notable changes - switch Sonoff API**
+* Integrate low-level hardware operations into Python libraries
+* Reuse the same libraries by test framework and CLI tool
 
-* Reflashed firmware on Sonoffs in the lab to a more stable one
-  - https://tasmota.github.io/docs/devices/Sonoff-S26-Smart-Socket/
+.center.image-80[![](/img/osfv_cli_after.png)]
 
-.center.image-30[![](/img/osfv_sonoff_r26.png)]
+---
+
+# Example test scenario
+
+TBD: One more screenshot with entering to setup menu?
+
+.center.image-80[![](/img/dasharo_main_page.jpeg)]
+
+---
+
+# Example test scenario
+
+.center.image-80[![](/img/dasharo_main_page.jpeg)]
+
+---
+
+# Example test scenario
+
+.center.image-80[![](/img/dasharo_features.jpeg)]
+
+---
+
+# Example test scenario
+
+.center.image-80[![](/img/dasharo_sec_opts.jpeg)]
+
+---
+
+# Example test scenario
+
+```python
+    Power On
+    ${setup_menu}=    Enter Setup Menu Tianocore And Return Construction
+    ${dasharo_menu}=    Enter Dasharo System Features    ${setup_menu}
+    ${network_menu}=    Enter Dasharo Submenu    ${dasharo_menu}    Dasharo Security Options
+    Set Option State    ${network_menu}    Enable SMM BIOS write    ${TRUE}
+    Save Changes And Reset
+    Boot System Or From Connected Disk    ubuntu
+    Login To Linux
+    Switch To Root User
+    ${out_flashrom}=    Execute Command In Terminal    flashrom -p internal
+    Should Contain    ${out_flashrom}    SMM protection is enabled
+```
+
 
 ---
 
@@ -312,6 +349,18 @@ https://3mdeb.gitlab.io/human-resources/processes/teams/test-automation-team/TAT
     - `dasharo-security`
     - `dasharo-performance`
     - `dasharo-stability`
+
+---
+
+# How do I run existing test?
+
+* Start with QEMU to learn how it works
+* Spin up QEMU with Dasharo firmware
+  - TBD scirpt path
+* Run test
+* Observe the robot execution in console
+* Observe how the machine is being controlled in the QEMU window
+
 ---
 
 # How do I run existing test?
@@ -356,11 +405,11 @@ Report:  /home/macpijan/projects/github/dasharo/open-source-firmware-validation/
 * Refer to the existing tests
   - `self-tests` are good examples
   - other commonly used tests
-    - `dasharo-security/bios-lock.robot`
-    - `dasharo-security/me-neuter.robot`
-    - `dasharo-security/smm-bios-write-protection.robot`
-    - `dasharo-compatibility/network-boot.robot`
-    - `dasharo-compatibility/network-boot-utilities.robot`
+      - `dasharo-security/bios-lock.robot`
+      - `dasharo-security/me-neuter.robot`
+      - `dasharo-security/smm-bios-write-protection.robot`
+      - `dasharo-compatibility/network-boot.robot`
+      - `dasharo-compatibility/network-boot-utilities.robot`
   - some tests may currently not work or be of a lower quality
 
 ???
@@ -372,6 +421,7 @@ https://3mdeb.gitlab.io/human-resources/processes/teams/test-automation-team/cod
 # How do I add support for a new platform?
 
 * Pick a similar board from `platform-config` and adjust it
+  - config documentation: TBD
 * Power control
   - [RTE](https://3mdeb.com/open-source-hardware/),
     [Sonoff WiFi Smart Plug](https://sonoff.tech/product/smart-plugs/s26/),
