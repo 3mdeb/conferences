@@ -16,10 +16,14 @@ mdc: true
 
 ---
 
-## Presentation title
+## Enabling UEFI Secure Boot in XCP-ng: Establishing a Robust Chain of Trust
 
-<!-- markdownlint-disable MD022 MD003 -->
+<br>
+
+#### Piotr Król
+
 ---
-src: ./pages/imported-slides.md
+src: ./2025/XenSummit/enabling_uefi_secure_boot_in_xcp-ng.md
 ---
-<!-- markdownlint-enable MD022 MD003 -->
+
+---
