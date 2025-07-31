@@ -1,6 +1,6 @@
 ## Qubes Air: Hardware, Firmware, and Architectural Foundations
 
-### Abstract:
+### Abstract
 
 Qubes OS has traditionally been recognized for its excellence on personal
 laptops and desktops, securely compartmentalizing computing tasks. Extending
@@ -12,7 +12,7 @@ threat considerations for Qubes OS certification (including BMC, Platform
 Firmware Resiliency), and a strategic roadmap toward securely deploying Qubes
 OS on servers.
 
-### Description:
+### Description
 
 Participants will explore:
 * An introduction to modern AMD server platforms (Gigabyte MZ33-AR1, ASRock
