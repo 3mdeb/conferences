@@ -2,12 +2,11 @@
 
 ### Abstract
 
-Building on the foundational "Qubes Air: Hardware, Firmware, and Architectural
-Foundations" talk, this session outlines an opinionated vision of Qubes Air
-vertical integration, explicitly addressing the needs of security-conscious
-technical professionals like security researchers, developers, privacy
-advocates, and SMEs operating in the surrounding ecosystem. Grounded in
-Kicksecure/Whonix
+Building on "Qubes Air: Hardware, Firmware, and Architectural Foundations"
+talk, this session outlines an opinionated vision of Qubes Air vertical
+integration, explicitly addressing the needs of security-conscious technical
+professionals like security researchers, developers, privacy advocates, and
+SMEs operating in the surrounding ecosystem. Grounded in Kicksecure/Whonix
 [persona](https://github.com/3mdeb/verified-boot/blob/master/threat-model-persona.md)
 and [threat
 model](https://github.com/3mdeb/verified-boot/blob/master/threat-model.md), it
@@ -21,7 +20,7 @@ preliminary PoCs demonstrating feasibility and value.
 
 Participants will gain insights into:
 * How Qubes Air aligns with the threat models and workflows of
-security-sensitive users.
+security-sensitive users including comparison with non-Qubes Air workflow.
 * Leveraging qrexec's RemoteVM capabilities to securely delegate critical
 workloads, including cryptographic operations, blockchain development, malware
 analysis, and secure coding environments.
