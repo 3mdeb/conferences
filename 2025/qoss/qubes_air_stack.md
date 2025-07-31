@@ -1,6 +1,6 @@
 ## Qubes Air: Opinionated Value Proposition for Security-Conscious Technical Professionals
 
-### Abstract:
+### Abstract
 
 Building on the foundational "Qubes Air: Hardware, Firmware, and Architectural
 Foundations" talk, this session outlines an opinionated vision of Qubes Air
@@ -17,7 +17,7 @@ recent qrexec-based RemoteVM advancements for secure delegation of sensitive
 workloads, attestation, TrenchBoot for enhanced platform trustworthiness, and
 preliminary PoCs demonstrating feasibility and value.
 
-### Description:
+### Description
 
 Participants will gain insights into:
 * How Qubes Air aligns with the threat models and workflows of
@@ -35,4 +35,3 @@ technical workloads.
 * The presentation serves as an investor-focused pitch, highlighting both the
 practical path forward and the high-value security outcomes achievable through
 targeted ecosystem integration.
-
