@@ -28,14 +28,16 @@
 
 # Goals
 
-* Explore challenges for implementing UEFI Secure Boot within Xen.
-* Report current status and activity in downstream distributions.
+* Explore some challenges for implementing UEFI Secure Boot within Xen.
+* Briefly report current status and activity in downstream distributions.
 * Build awareness about UEFI Secure Boot among developers, testers and
 researchers.
 * Explain risk associated with choosing narrow and centralized path while
 securing boot process.
-* Show instructions and small demo what can be achieved now.
+* Show instructions how to boot Qubes OS and XCP-ng UEFI Secure Boot enabled.
 
+---
+clicks: 3
 ---
 
 ## From Root of Trust to authenticated UEFI image
