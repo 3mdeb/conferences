@@ -230,7 +230,7 @@ Explain why you care about this event.
 
 * [ ] where Qubes OS, 3mdeb and Dasharo would be in 2025
   - we are far from competition
-    + we barely leverage old hardware-assisted securit technologies: TPMs, DRTM
+    + we barely leverage old hardware-assisted security technologies: TPMs, DRTM
     + Trammel's safeboot and heads moved us in good direction
   - lack of innovation in operating systems
 * [ ] Joanna's paper overview/progress (state and x86 considered harmful)

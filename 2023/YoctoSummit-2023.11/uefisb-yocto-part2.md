@@ -400,7 +400,7 @@ in the future.
 
 ???
 
-When checking UEFI Secure Boot complaince we need to prepare a test environment
+When checking UEFI Secure Boot compliance we need to prepare a test environment
 which consist of software and hardware parts.
 
 Software part is a set of tests that logically check and verify if given
