@@ -89,10 +89,10 @@ width="220px" style="margin-top:-50px"> ]
 .center.image-99[![](/img/osfv.png)]
 
 - We've been using OSFV at least since 2018
-  - when validating PC Engines coreboot releases on a monthly basis
-  - executed over **50k** tests
-  - publicly releasing **150+** binaries of open-source firmware
-- Initially, it was an internal project 
+  + when validating PC Engines coreboot releases on a monthly basis
+  + executed over **50k** tests
+  + publicly releasing **150+** binaries of open-source firmware
+- Initially, it was an internal project
 
 ---
 
@@ -103,12 +103,12 @@ width="220px" style="margin-top:-50px"> ]
 - Published as open-source project Sep 2023 (small part of it earlier)
 - Use cases of Dasharo OSFV
   + validation of (open-source) firmware
-      * can be used for any firmware, really
+    * can be used for any firmware, really
   + testing Dasharo firmware releases
   + test-driven bug fixing (and adding new features)
   + regression testing
-      * after introducing new features
-      * after major changes (update base from upstream project)
+    * after introducing new features
+    * after major changes (update base from upstream project)
   + mainly Dasharo with UEFI payload right now
 - Scripts written in:
   + mostly Robot Framework (keywords, test suites)
@@ -184,11 +184,10 @@ We have two more options, not displayed here:
 
 # Power control
 
-
 .left-column50[
 .center.image-50[![](/img/osfv_sonoff_r26.png)]
 
-- WiFi plug with custom firmware 
+- WiFi plug with custom firmware
 - https://tasmota.github.io/docs/devices/Sonoff-S26-Smart-Socket/
 ]
 
@@ -204,7 +203,7 @@ We have two more options, not displayed here:
 
 ---
 
-# Test execution interface 
+# Test execution interface
 
 - Output
   + gather logs via serial port
@@ -215,8 +214,6 @@ We have two more options, not displayed here:
   + SSH
 
 .center.image-50[![](/img/rf_test_control.png)]
-
-
 
 ---
 
@@ -327,14 +324,14 @@ SMM001.001 SMM BIOS write protection enabling (Ubuntu)
 ```
 ]
 
-* Run command
+- Run command
 
 .code-13px[```bash
 CONFIG=msi-pro-z690-a-ddr5 \
 RTE_IP=AAA.BBB.CCC.DDD \
 DEVICE_IP=EEE.FFF.GGG.HHH \
 FW_FILE=msi_ms7d25_v1.1.4_ddr5.rom \
-./scripts/run.sh dasharo-security/smm-bios-write-protection.robot 
+./scripts/run.sh dasharo-security/smm-bios-write-protection.robot
 ```]
 
 ---

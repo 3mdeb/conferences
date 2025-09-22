@@ -60,7 +60,7 @@ width="150px">]
 
 # What is Fobnail?
 
-.center[.image-30[![](images/nlnet.svg)]]
+.center[.image-30[![](/img/logo/nlnet.svg)]]
 
 - NLNet Foundation granted project
 - Reference OSF for OSHW USB token enabling a user/administrator for a
@@ -75,8 +75,10 @@ width="150px">]
 
 ### .center[Provide axiomatically trustworthy device\[[1]\] and simple user interface to attest platform state]
 
-.left-column50[ .image-90[.center[![](images/fobnail_red.png)]] ]
-.right-column50[ .image-90[.center[![](images/fobnail_green.png)]] ]
+.left-column50[
+.image-90[.center[![](/2021/TrenchBootSummit/images/fobnail_red.png)]] ]
+.right-column50[
+.image-90[.center[![](/2021/TrenchBootSummit/images/fobnail_green.png)]] ]
 
 [1]:
   https://www.usenix.org/legacy/event/hotsec07/tech/full_papers/mccune/mccune_html/index.html
@@ -85,7 +87,7 @@ width="150px">]
 
 # This not new concept
 
-.center[.image-60[![](images/turtle.png)]]
+.center[.image-60[![](/2021/TrenchBootSummit/images/turtle.png)]]
 
 - The Fobnail project aims to provide a reference architecture for building
   offline integrity measurement servers on the USB device and clients running in
@@ -123,7 +125,7 @@ https://www.usenix.org/legacy/event/hotsec07/tech/full_papers/mccune/mccune_html
 
 # Fobnail usage
 
-.image-70[.center[![](images/fobnail_overview.svg)]]
+.image-70[.center[![](/2021/TrenchBootSummit/images/fobnail_overview.svg)]]
 
 ---
 
@@ -150,15 +152,15 @@ https://www.usenix.org/legacy/event/hotsec07/tech/full_papers/mccune/mccune_html
 
 # S-RTM vs D-RTM "holy war": S-RTM
 
-.center[.image-99[![](images/s-crtm.svg)]]
+.center[.image-99[![](/2021/TrenchBootSummit/images/s-crtm.svg)]]
 
-.center[.image-99[![](images/verified_boot.svg)]]
+.center[.image-99[![](/2021/TrenchBootSummit/images/verified_boot.svg)]]
 
 ---
 
 # S-RTM vs D-RTM "holy war": D-RTM
 
-.center[.image-99[![](images/trenchboot_drtm.svg)]]
+.center[.image-99[![](/2021/TrenchBootSummit/images/trenchboot_drtm.svg)]]
 
 - establish root of trust even in environment for which S-CRTM and its
   protection is questionable
@@ -172,8 +174,8 @@ https://www.usenix.org/legacy/event/hotsec07/tech/full_papers/mccune/mccune_html
 
 # Modern OSF boot flow
 
-.image-30[.center[![](images/petitboot.png) ![](images/linuxboot.png)
-![](images/heads.jpg)]]
+.image-30[.center[![](/2021/TrenchBootSummit/images/petitboot.png) ![](/2021/TrenchBootSummit/images/linuxboot.png)
+![](/2021/TrenchBootSummit/images/heads.jpg)]]
 
 - **kexec everything** - for couple last years we see trend of using kexec as
   ultimate boot loader
@@ -187,7 +189,7 @@ https://www.usenix.org/legacy/event/hotsec07/tech/full_papers/mccune/mccune_html
 
 # Modern OSF boot flow - security properties
 
-.image-90[.center[![](images/hotp_boot_flow_heads.svg)]]
+.image-90[.center[![](/2021/TrenchBootSummit/images/hotp_boot_flow_heads.svg)]]
 
 - Measured boot
 - Platform open source firmware self-attestation
@@ -200,7 +202,7 @@ https://www.usenix.org/legacy/event/hotsec07/tech/full_papers/mccune/mccune_html
 
 # Modern OSF boot flow - issues
 
-.image-90[.center[![](images/hotp_boot_flow_heads.svg)]]
+.image-90[.center[![](/2021/TrenchBootSummit/images/hotp_boot_flow_heads.svg)]]
 
 - bootblock unprotected by any RoT (SPI WP, Boot Guard, etc.)
 - possible firmware replacement attack
@@ -217,7 +219,7 @@ generate valid TOTP codes. \[[1]\]"_
 
 # USB crypto-token kexec boot flow
 
-.image-90[.center[![](images/hotp_boot_flow_heads_compromised.svg)]]
+.image-90[.center[![](/2021/TrenchBootSummit/images/hotp_boot_flow_heads_compromised.svg)]]
 
 - firmware is replaced
 - TPM PCR measurements are faked and replayed
@@ -227,7 +229,7 @@ generate valid TOTP codes. \[[1]\]"_
 
 # Fobnail enabled boot flow
 
-.image-90[.center[![](images/hotp_boot_flow_heads_fobnail.svg)]]
+.image-90[.center[![](/2021/TrenchBootSummit/images/hotp_boot_flow_heads_fobnail.svg)]]
 
 - bootblock unprotected by any RoT (SPI WP, Boot Guard, etc.)
 - possible firmware replacement attack
@@ -239,7 +241,7 @@ generate valid TOTP codes. \[[1]\]"_
 
 # Fobnail enabled boot flow
 
-.image-90[.center[![](images/hotp_boot_flow_heads_fobnail_compromised.svg)]]
+.image-90[.center[![](/2021/TrenchBootSummit/images/hotp_boot_flow_heads_fobnail_compromised.svg)]]
 
 - firmware is replaced + TPM SRTM PCR measurements are faked and replayed
 - Secret unsealed from the USB crypto-token and a false platform state is
@@ -267,7 +269,7 @@ generate valid TOTP codes. \[[1]\]"_
 
 # Who support us
 
-.center[.image-50[![](images/nitrokey.svg)]]
+.center[.image-50[![](/2021/TrenchBootSummit/images/nitrokey.svg)]]
 
 - Early Adopters - companies which will include Fobnail firmware features on
   their hardware-capable USB tokens
@@ -286,7 +288,7 @@ generate valid TOTP codes. \[[1]\]"_
 
 # Fobnail - hw and sw stack
 
-.center[.image-30[![](images/nrf52840dongle_nrf52840.jpg)]]
+.center[.image-30[![](/2021/TrenchBootSummit/images/nrf52840dongle_nrf52840.jpg)]]
 
 - HW and SW selection is at early stage
 - We started development on Nordic nRF52840 development kit
