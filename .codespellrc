@@ -1,4 +1,4 @@
 [codespell]
 exclude-file = .codespellx
 skip = diagrams/*.xml
-ignore-words-list = FPT,FTP,fpt,ftp,hsi
+ignore-words-list = FPT,FTP,fpt,ftp,hsi,SME,sme,BuildIn,buildin

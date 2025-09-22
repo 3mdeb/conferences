@@ -409,7 +409,7 @@ Manager
 - You can see how the data goes through Secure Monitor which with conjunction
 with Memory Management Unit manages memory access
   + Data goes from Rich OS via "Secure Monitor Call (SMC)"
-- Secure montior also saves the states of Normal and secure world when switching
+- Secure monitor also saves the states of Normal and secure world when switching
 contexts to be able to restore them when switching back
 
 ---
@@ -1386,6 +1386,7 @@ well as REE side API's to interact with those TA's
 
 ### For those interested more about fTPM's
 
+<!-- markdownlint-disable-next-line MD039 -->
 [<img src="/img/FOSDEM_ftpm_ta_tee_blured.png" height="350px">
 ](https://fosdem.org/2024/schedule/event/fosdem-2024-3097-securing-embedded-systems-with-ftpm-implemented-as-trusted-application-in-tee/)
 ]
