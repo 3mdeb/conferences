@@ -1,8 +1,8 @@
 ---
+theme: slidev-template/theme
 layout: cover
 background: /intro.png
 class: text-center
-routeAlias: closing-day-2
 
 ---
 ## Qubes OS Summit 2024 Day 2: Closing Notes
@@ -11,6 +11,13 @@ routeAlias: closing-day-2
 
 ---
 
+<!-- markdownlint-disable MD022 MD003 -->
+layout: cover
+background: /intro.png
+class: text-center
+---
+<!-- markdownlint-enable MD022 MD003 -->
+
 # Platinum Sponsors
 
 ---
@@ -18,7 +25,7 @@ routeAlias: closing-day-2
 <div style="display: flex; justify-content: center; align-items: center;
   margin-top:150px;">
   <center>
-    <img src="/2024/QubesOSsummit/fopf_logo.png" width="1200">
+    <img src="/@fs/repo/public/2024/QubesOSsummit/fopf_logo.png" width="1200">
   </center>
 </div>
 
@@ -35,7 +42,7 @@ projects development, like SecureDrop, with community.
 
 <div style="display: flex; justify-content: center; align-items: center;
   margin-top:100px;">
-<center><img src="/2024/QubesOSsummit/mullvad_logo.png" width="1200"></center>
+<center><img src="/@fs/repo/public/2024/QubesOSsummit/mullvad_logo.png" width="1200"></center>
 </div>
 
 <!--
@@ -52,10 +59,14 @@ independent reviewers.
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center;
   align-items: center;">
-  <img src="/2024/QubesOSsummit/sudblock.jpg" style="max-width: 50%; height:
-    auto; margin: 10px;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/sudblock.jpg" style="max-width:
+    50%; height: auto; margin: 10px;">
 </div>
-  <center><img src="/2024/QubesOSsummit/sudblock_address.png" style="max-width: 100%"></center>
+
+<center>
+  <img src="/@fs/repo/public/2024/QubesOSsummit/sudblock_address.png"
+    style="max-width: 100%">
+</center>
 
 <div class="absolute left-30px bottom-30px">
 <small>Photo by Maciej Klimiuk</small>

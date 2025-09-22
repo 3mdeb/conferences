@@ -1,8 +1,8 @@
 ---
+theme: slidev-template/theme
 layout: cover
 background: /intro.png
 class: text-center
-routeAlias: welcome-day-2
 
 ---
 ## Welcome to Qubes OS Summit 2024 Day 2
@@ -12,7 +12,7 @@ routeAlias: welcome-day-2
 <!-- markdownlint-disable MD022 MD003 -->
 ---
 layout: cover
-background: /2024/QubesOSsummit/qoss_welcome.png
+background: /@fs/repo/public/2024/QubesOSsummit/qoss_welcome.png
 ---
 
 ---
@@ -29,7 +29,7 @@ class: text-center
 <div style="display: flex; justify-content: center; align-items: center;
   margin-top:150px;">
   <center>
-    <img src="/2024/QubesOSsummit/fopf_logo.png" width="1200">
+    <img src="/@fs/repo/public/2024/QubesOSsummit/fopf_logo.png" width="1200">
   </center>
 </div>
 
@@ -46,7 +46,7 @@ projects development, like SecureDrop, with community.
 
 <div style="display: flex; justify-content: center; align-items: center;
   margin-top:100px;">
-<center><img src="/2024/QubesOSsummit/mullvad_logo.png" width="1200"></center>
+<center><img src="/@fs/repo/public/2024/QubesOSsummit/mullvad_logo.png" width="1200"></center>
 </div>
 
 <!--
@@ -73,10 +73,10 @@ class: text-center
 
 <div style="display: flex; justify-content: center; align-items: center;
   height: 40vh;">
-  <img src="/2024/QubesOSsummit/novacustom_logo.png" style="max-width: 50%;
-    height: auto;">
-  <img src="/2024/QubesOSsummit/nitrokey_logo.png" style="max-width: 500%;
-    height: auto;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/novacustom_logo.png"
+    style="max-width: 50%; height: auto;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/nitrokey_logo.png"
+    style="max-width: 500%; height: auto;">
 </div>
 
 <!--
