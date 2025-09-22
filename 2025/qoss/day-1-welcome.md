@@ -1,18 +1,18 @@
 ---
+theme: slidev-template/theme
 layout: cover
 background: /intro.png
 class: text-center
-routeAlias: welcome-day-1
 
 ---
-## Welcome to Qubes OS Summit 2024 Day 1
+## Welcome to Qubes OS Summit 2025 Day 1
 
 ### Piotr Król and Marek Marczykowski-Górecki
 
 <!-- markdownlint-disable MD022 MD003 -->
 ---
 layout: cover
-background: /2024/QubesOSsummit/qoss_welcome.png
+background: /@fs/repo/public/2024/QubesOSsummit/qoss_welcome.png
 ---
 
 ---
@@ -29,7 +29,7 @@ class: text-center
 <div style="display: flex; justify-content: center; align-items: center;
   margin-top:150px;">
   <center>
-    <img src="/2024/QubesOSsummit/fopf_logo.png" width="1200">
+    <img src="/@fs/repo/public/2024/QubesOSsummit/fopf_logo.png" width="1200">
   </center>
 </div>
 
@@ -46,7 +46,7 @@ projects development, like SecureDrop, with community.
 
 <div style="display: flex; justify-content: center; align-items: center;
   margin-top:100px;">
-<center><img src="/2024/QubesOSsummit/mullvad_logo.png" width="1200"></center>
+<center><img src="/@fs/repo/public/2024/QubesOSsummit/mullvad_logo.png" width="1200"></center>
 </div>
 
 <!--
@@ -73,10 +73,10 @@ class: text-center
 
 <div style="display: flex; justify-content: center; align-items: center;
   height: 40vh;">
-  <img src="/2024/QubesOSsummit/novacustom_logo.png" style="max-width: 50%;
-    height: auto;">
-  <img src="/2024/QubesOSsummit/nitrokey_logo.png" style="max-width: 500%;
-    height: auto;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/novacustom_logo.png"
+    style="max-width: 50%; height: auto;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/nitrokey_logo.png"
+    style="max-width: 500%; height: auto;">
 </div>
 
 <!--
@@ -102,20 +102,20 @@ on Qubes OS and support FOSS philosophy.
 
 ---
 
-<img src="/2024/QubesOSsummit/qubes_2024_logo.png">
+<img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2024_logo.png">
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center;
   align-items: center;">
-  <img src="/2024/QubesOSsummit/qubes_2023_logo.png" alt="Image 1"
-    style="max-width: 50%; height: auto; margin: 10px;">
-  <img src="/2024/QubesOSsummit/qubes_2022_logo.png" alt="Image 2"
-    style="max-width: 50%; height: auto; margin: 10px;">
-  <img src="/2024/QubesOSsummit/qubes_2021_logo.png" alt="Image 3"
-    style="max-width: 35%; height: auto; margin: 10px;">
-  <img src="/2024/QubesOSsummit/qubes_2020_logo.jpeg" alt="Image 4"
-    style="max-width: 30%; height: auto; margin: 10px;">
-  <img src="/2024/QubesOSsummit/qubes_2019_logo.png" alt="Image 5"
-    style="max-width: 25%; height: auto; margin: 10px;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2023_logo.png" alt="Image
+    1" style="max-width: 50%; height: auto; margin: 10px;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2022_logo.png" alt="Image
+    2" style="max-width: 50%; height: auto; margin: 10px;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2021_logo.png" alt="Image
+    3" style="max-width: 35%; height: auto; margin: 10px;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2020_logo.jpeg" alt="Image
+    4" style="max-width: 30%; height: auto; margin: 10px;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2019_logo.png" alt="Image
+    5" style="max-width: 25%; height: auto; margin: 10px;">
 </div>
 
 <!--
@@ -174,24 +174,24 @@ transition: fade
 
 # Accomplishments - 2022-2023
 
-<center><img src="/2024/QubesOSsummit/qubes_2023_stats.png" width="600"></center>
+<center><img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2023_stats.png" width="600"></center>
 
 ---
 
 # Accomplishments - 2023-2024
 
-<center><img src="/2024/QubesOSsummit/qubes_2024_stats.png" width="600"></center>
+<center><img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2024_stats.png" width="600"></center>
 
 ---
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center;
   align-items: center;">
-  <img src="/2024/QubesOSsummit/secure_boot_main1.png" alt="Image 1"
-    style="max-width: 35%; height: auto; margin: 10px;">
-  <img src="/2024/QubesOSsummit/secure_boot_main3.png" alt="Image 2"
-    style="max-width: 35%; height: auto; margin: 10px;">
-  <img src="/2024/QubesOSsummit/secure_boot_main4.png" alt="Image 3"
-    style="max-width: 35%; height: auto; margin: 10px;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/secure_boot_main1.png"
+    alt="Image 1" style="max-width: 35%; height: auto; margin: 10px;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/secure_boot_main3.png"
+    alt="Image 2" style="max-width: 35%; height: auto; margin: 10px;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/secure_boot_main4.png"
+    alt="Image 3" style="max-width: 35%; height: auto; margin: 10px;">
 </div>
 
 <!--
@@ -320,17 +320,21 @@ class: text-center
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center;
   align-items: center;">
-  <img src="/2024/QubesOSsummit/sudblock.jpg" style="max-width: 50%; height:
-    auto; margin: 10px;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/sudblock.jpg" style="max-width:
+    50%; height: auto; margin: 10px;">
 </div>
-  <center><img src="/2024/QubesOSsummit/sudblock_address.png" style="max-width: 100%"></center>
+
+<center><img src="/@fs/repo/public/2024/QubesOSsummit/sudblock_address.png"
+  style="max-width: 100%"></center>
+
 <div class="absolute left-30px bottom-30px">
   <small>Photo by Maciej Klimiuk</small>
 </div>
 
 ---
 
-<center><img src="/2024/QubesOSsummit/qoss_format.png" style="max-width: 70%"></center>
+<center><img src="/@fs/repo/public/2024/QubesOSsummit/qoss_format.png"
+  style="max-width: 70%"></center>
 
 <center>
 
@@ -351,9 +355,10 @@ https://vpub.dasharo.com
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center;
   align-items: center;">
-  <img src="/2024/QubesOSsummit/qubes_front.png" style="max-width: 35%; height:
-    auto; margin: 10px;">
-  <img src="/2024/QubesOSsummit/qubes_back.png" style="max-width: 35%">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_front.png"
+    style="max-width: 35%; height: auto; margin: 10px;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_back.png"
+    style="max-width: 35%">
 </div>
 
 * Paid and free merchandise available (at location and in 3mdeb Shop).
