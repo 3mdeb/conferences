@@ -18,9 +18,8 @@ copyright: <COPYRIGHT>
 
 ## &#x1F44B; Qubes OS Summit 2025 &#x1F389;
 
----
-
 <!-- markdownlint-disable MD033 MD003 -->
+---
 src: <SRC>
 ---
 <!-- markdownlint-enable MD033 MD003 -->
