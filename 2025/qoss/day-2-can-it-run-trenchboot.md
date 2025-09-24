@@ -22,7 +22,9 @@ class: text-center
 - Recommend to watch the past presentations about AEM:
   + [Qubes OS Summit 2022](https://www.youtube.com/watch?v=A9GrlQsQc7Q&t=17441s)
   + [Qubes OS Summit 2023](https://www.youtube.com/watch?v=xo2BVTn7ohs&t=5441s)
+  * [FOSDEM 2025](https://archive.fosdem.org/2024/schedule/event/fosdem-2024-3724-trenchboot-project-status-update/)
   + [Qubes OS Summit 2024](https://youtu.be/5ieNhbLLTIU?si=_E_k6ct9LV0iXYeN)
+  * [FOSDEM 2025](https://archive.fosdem.org/2025/schedule/event/fosdem-2025-5979-trenchboot-project-status-update/)
 
 <div style="display: flex; justify-content: center; align-items: center;">
   <center>
@@ -114,14 +116,23 @@ will likely not work in the current stage of development. Refer to
 [this issue](https://github.com/TrenchBoot/trenchboot-issues/issues/66) for
 further progress on this.
 
+## Intel
 
+In order for Intel TXT to function properly the following dependencies need to be established:
+ Intel Xeon processor-based server platform with Intel TXT Enabled BIOS
+ Intel Virtualization Technology (Intel VT) must be enabled
+ Intel Virtualization Technology with Directed I/O (Intel VT-d) must be enabled
+ A Trusted Platform Module (TPM) v1.2 must be enabled and activated
+ The platform specific Intel SINIT ACM needs to be installed into the platform
+ Finally, you need a hypervisor that supports trusted boot (t-boot
+
+Source: https://www.intel.com/content/dam/www/public/us/en/documents/guides/intel-one-stop-txt-activation-guide.pdf
 
 OpenQA:
 
 AEM setup: https://openqa.3mdeb.com/tests/416
 AEM first run: https://openqa.3mdeb.com/tests/417
 AEM second run: https://openqa.3mdeb.com/tests/418
-
 
 # meta-trenchboot
 
@@ -132,243 +143,55 @@ AEM second run: https://openqa.3mdeb.com/tests/418
 
 ---
 
-# Accomplishments - 2023-2024
+# Upstream
 
-* Recap of vision and challenges presented last year.
-* We added 50% to Qubes OS Certified Hardware (from 6 to 9)
-  - although we have to admit that some old certified hardware is no longer
-available,
-* Qubes HCL statistics: 1055 (+61)
-* Released Qubes OS 4.2 and three subsequent point releases
-* Greatly improved updates experience
-* Several UX improvements and new GUI tools - including new Qubes Global
-  Config, more to come
-* fwupd integration installed by default
-* Community projects:
-  - Automated configurability extended thanks to community contribution from Ben
-  Grande in form of [qusal](https://github.com/ben-grande/qusal) based on
-  previous unman work.
-
-<!--
-
-Qubes HCL snapshot date 18/09/2024
-
--->
----
-
-# Accomplishments - 2023-2024
-
-* Event organization improved:
-  - A lot external talks in CfP, we had to reject some.
-* Coming soon:
-  - UEFI Secure Boot integration - more about that in tomorrow's talk.
-    + TL;DR we are not there yet, but we are close. safeboot approach is still
-  alive.
-  - TrenchBoot AEM - we have some exciting news and demo for you.
-  - Certified Hardware with Intel Boot Guard and UEFI Capsule Update coming in
-  following months.
-  - As mentioned last year SMI Transfer Monitor was integrated for Qubes OS
-  Certified Hardware MSI PRO Z690-A by Brian Delgado.
-    + code is PoC, but it was presented at [vPub 0xB](https://youtu.be/3PmOcjQX-9Y)
-    + the challenge would be to make Xen and dom0 aware of that,
-
-<!-- markdownlint-disable MD022 MD003 -->
----
-transition: fade
----
-<!-- markdownlint-enable MD022 MD003 -->
-
-# Accomplishments - 2022-2023
-
-<center><img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2023_stats.png" width="600"></center>
+* Linux
+ - Intel (v14): https://lkml.org/lkml/2025/4/21/688
+ - AMD (RFC)
+   - Intel must go in first
+* GRUB
+  -
+  - latest info: https://github.com/TrenchBoot/trenchboot-issues/issues/38#issuecomment-2843602445
+    - list archive does not work for me?
+* Xen (v3)
+  - https://lists.xenproject.org/archives/html/xen-devel/2025-05/msg01686.html
+  - https://github.com/TrenchBoot/trenchboot-issues/issues/46#issuecomment-2922390285
+  - v4 in the works
+All TrenchBoot patch series are CCed to trenchboot-devel:
+- https://groups.google.com/g/trenchboot-devel
 
 ---
 
-# Accomplishments - 2023-2024
+# nlnet phases
 
-<center><img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2024_stats.png" width="600"></center>
-
----
-
-<div style="display: flex; flex-wrap: wrap; justify-content: center;
-  align-items: center;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/secure_boot_main1.png"
-    alt="Image 1" style="max-width: 35%; height: auto; margin: 10px;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/secure_boot_main3.png"
-    alt="Image 2" style="max-width: 35%; height: auto; margin: 10px;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/secure_boot_main4.png"
-    alt="Image 3" style="max-width: 35%; height: auto; margin: 10px;">
-</div>
-
-<!--
-
-- PoC was created during Qubes OS Summit 2023 Hackathon
-
--->
+Chagned since FOSDEM 2025 status report
+- P4 (AMD): https://blog.3mdeb.com/2024/2024-04-11-aem_phase4/ 
+- P5 (UEFI): https://blog.3mdeb.com/2025/2025-06-10-aem-uefi/
 
 ---
 
-# Vision and challenges - 2024-2025
+# plans
 
-* Continue growth of number of Qubes OS Certified Hardware
-  - Dell OptiPlex 7010/9010 with AEM
-  - Odroid H4?
-  - Novacustom Laptops
-* Finalize Qubes AEM support for Intel
-  - Legacy BIOS (through SeaBIOS) is close to be completed.
-  - UEFI is planned and founded.
-* Finalize Qubes AEM for AMD
-  - Waiting for release of documentation by AMD
-  - If it would not happen early we have to rely on existing documentation and
-    will adjust after that.
-* UEFI Secure Boot have to become first-class citizen in Qubes OS.
-* Qubes Security Report - road to OSS security leadership.
-* More in Marek's talk dedicated to Qubes OS Project plans.
+https://github.com/TrenchBoot/trenchboot-issues/milestones
+- 
 
-<!--
+## enhancements
 
-Not much changed since last year.
+https://github.com/TrenchBoot/trenchboot-issues/milestone/16
 
--->
+plans_enhancements.png
+
+## DRTM between coreboot and UEFI payload
+
+https://camo.githubusercontent.com/aaf8708e3ca99122a50cc3ee8a5797a2bc9e0c34cec218dfcb26160deba1f2de/68747470733a2f2f696d672e706c616e74756d6c2e62697a2f706c616e74756d6c2f7376672f5a4c4e315258656e3442747841715266444a486a7171434c384847324134423935574752444c394c4c4d4f7a6d3059704868514e62624a767a75777a42366d574833615073735f6370526e7651777754627a4f4e496f7351706379716a694a37664c3471394c4a6d4a6d33536f366e6e51717348677578486e6941376f735f67772d4b646c68636437444376504f6953644f4646737643494454345339667635797341524c365953556c3036424374633758485070336f504e385a434d396d4f752d34416d5a424858594468587a4f696b5347503269364248735764744c574f4742615f677831643831724b637a794963697367614c51685a585f56744b5365686f536e6731505638595a79454370724e394e49707074677a6e483366756c66562d2d6471457561434f334e71724e474b484b78624867444c6772704b4845317a5045625662536c5a6e6b575a4c4757536d4e75357845322d4f385762336b46563677634f37354d51366258394a53315558572d395173584d37366a6a6958794f48366346465947477176437551696d6669626163374961536c4934587561694568486858324b6b5a54743442447248636130774a30334e63376a45434846726744306b3475623054574c63584e64336353396332424853514c6e6f5a327044354830314e4f7648524153504d314c775463316167587a4642454d70713550642d453357335f61765a466c335658736f7575332d3834615547356251656e4b4c6641387844487549444c6b794558757743507841416b79514b666261424a4d6675414e71434f4c43686b493444376232546d5943716d6f57455368514a387a6d41796a6f4d787131586e77495433486f534d3053554f48346f70544251302d766f357058717a654b78666e6870744958576958396365763236692d52387676695a6a6132513166544732786d6869646e4a4662507358415537794f5336326265487062746f6e657975546b55655a595a794661355656616265626e6f596959676337416f414a7a7334557a745a59416e5f4a38336c4c486742717a71464753637a787157674d4133724131377667444a7661693646464a31413348706d4d74567a6a396e685f4670485f6b6b7a7033794c4f7a7a71764d71415f6462366e396c4f705a63536738484b3852596b71617854454242397a686a4b4d4c4e4b5464326c49786667712d4e4153696d64364a4f772d7974745356555664464a374d7942736b626848374b545a5750795679724d32647a4d5f6d3430
+
+## New hardware support for QuubesOS AEM
+
+- MSI PRO B650m-A
+
+## Testing, upstream
 
 ---
-
-# What is our lineup this year?
-
-<br>
-
-* ## September 20th: Conference Day 1 and Afterparty
-
-<br>
-
-* ## September 21th: Conference Day 2
-
-<br>
-
-* ## September 22th: Hackathon
-
-<br>
-
----
-
-# Day 1 agenda
-
-### 10:00-10:25
-
-#### **_Welcome to Qubes OS Summit 2024 Day 1_** - Piotr (3mdeb), Marek (ITL)
-
-### 10:30-11:00
-
-#### **_Qubes OS development status update_** - Marek (ITL)
-
-### 11:10-11:30
-
-#### **_Qubes OS GUI Changes and Future Perspectives_** - Marta (ITL)
-
-### 11:40-12:10
-
-#### **_Enhancing OS Awareness of Hardware Security Capabilities in Qubes OS_** - Piotr (3mdeb)
-
-### 12:15-13:00
-
-#### **_Passwordless encrypted Qubes? Exploring some concepts_** - nestire (Nitrokey)
-
-### 13:00-14:30
-
-#### **_Lunch_**
-
----
-
-# Day 1 agenda
-
-### 14:30-15:00
-
-#### **_How to architect your Qubes OS with SaltStack_** - Ben (FOSS Maintainer)
-
-### 15:10-15:40
-
-#### **_FlashKeeper: where SpiSpy meets Stateless Laptop jaded dreams: A retrofit plan first_** - Thierry (Heads Maintainer)
-
-### 15:50-16:20
-
-#### **_Anti Evil Maid status and future plans_** - Michał (3mdeb)
-
-### 16:30-17:00
-
-#### **_Rolling out Qubes_** - unman (Qubes OS Maintainer)
-
-### 17:10-17:40
-
-#### **_Update on Qubes Air_** - Marek&Frédéric (ITL/Qubes Team)
-
-### 17:50-18:00
-
-#### **_Closing Notes_** - Piotr (3mdeb)
-
-### 19:30+
-
-#### **_Afterparty_**
-
-<!-- markdownlint-disable MD022 MD003 -->
----
-layout: cover
-background: /intro.png
-class: text-center
----
-
-## Details on
-
-### https://cfp.3mdeb.com/qubes-os-summit-2024/
-
-### https://vpub.dasharo.com/e/16/qubes-os-summit-2024#schedule
-
----
-
-<div style="display: flex; flex-wrap: wrap; justify-content: center;
-  align-items: center;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/sudblock.jpg" style="max-width:
-    50%; height: auto; margin: 10px;">
-</div>
-
-<center><img src="/@fs/repo/public/2024/QubesOSsummit/sudblock_address.png"
-  style="max-width: 100%"></center>
-
-<div class="absolute left-30px bottom-30px">
-  <small>Photo by Maciej Klimiuk</small>
-</div>
-
----
-
-<center><img src="/@fs/repo/public/2024/QubesOSsummit/qoss_format.png"
-  style="max-width: 70%"></center>
-
-<center>
-
-https://vpub.dasharo.com
-
-</center>
-
-* Respect Code of Conduct.
-* Please follow Safety and Health protocols and respect others.
-* Talks are streamed and recorded and will be published on Youtube.
-* Drinks and sweets are free.
-* Matrix `#qubes-summit:matrix.org` will be used for communication during event.
-* In case of any issues please contact with organizers.
-
----
-
-# Merchandise
-
-<div style="display: flex; flex-wrap: wrap; justify-content: center;
-  align-items: center;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_front.png"
-    style="max-width: 35%; height: auto; margin: 10px;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_back.png"
-    style="max-width: 35%">
-</div>
-
-* Paid and free merchandise available (at location and in 3mdeb Shop).
-* There are also partners selling their merchandise.
 
 <!-- markdownlint-disable MD022 MD003 -->
 ---
