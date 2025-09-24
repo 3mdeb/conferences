@@ -17,7 +17,6 @@ Building on "Qubes Air: Hardware, Firmware, and Architectural Foundations":
 - [ ] outline opinionated vision of Qubes Air vertical integration
 - [ ] address the needs of security-conscious technical professionals
   - [ ] define those professionals
-
 - [ ] How Qubes Air aligns with the threat models and workflows of
   security-sensitive users including comparison with non-Qubes Air workflow.
   - [ ] what workflows we talking about
@@ -68,6 +67,11 @@ TBD:
   steps that really improve situation, so let's focus on max 3 tasks that will
   change, or could be implemented better thanks to Dasharo-based dservers with
   Qubes Air
+
+Painpoint backstory:
+
+- We dealing with growing number of private keys, every platform and every
+  release family for given platform adds to the key tree structure
 
 -->
 
@@ -129,40 +133,80 @@ About 3mdeb.
 -->
 
 ---
+clicks: 2
+---
 
-- Who?
-  - Experienced professionals.
-- Why?
-  - Need to protect high value cryptographic keys (e.g. master keys, release
-    signing keys).
-  - Need for code signing.
-  - Need to ensure software reproducibility.
-  - Overhead with incoherent trust bundaries, maintenance of multiple tools and
-    dificulty of achieving verifiable/attestable state.
-  - Knowledge to define appropriate policy for those operations.
-  - Need for custom services (backup, router, NAS, air-gapped operations)
-- [Threat Model Persona](https://github.com/3mdeb/verified-boot/blob/master/threat-model-persona.md)
-  and
-  [Threat Model](https://github.com/3mdeb/verified-boot/blob/master/threat-model.md)
-  documentation was funded by PowerUpPrivacy.
+<center>
+    <img src="/@fs/repo/img/qoss2025/actors.excalidraw.png" width="450px">
+</center>
+
+- Expert
+  - maintainers of security related software
+  - incident response teams
+- Adversary
+  - intrenal or external
+- Auditor
+  - governament, certification/compilance org, insurer
 
 <!--
 
-Who?
-- exmaples of experienced professionals I'm thinking about, are
-  - maintainers of security related software
-  - incident response teams
-  - quality assurance of missiong critical software
+Let me set the stage with some actors for my story. We have Experts,
+Adversaries, and Auditors.
+
+[click]
+- Other examples of experienced professionals I'm thinking about, are
+  - quality assurance of mission critical software
   - people dealing with Confidential or Top Secret documents
-  - resaerchers
+  - researchers
   - huge and important group that falls in this bucket are people who would
     like to leverage self-hosted GPU compute for LLM-related in isolated
     environment, which can deliver quarantees on non-leaking, so almost
     everyone delivering value right now
+- This presentation is targeted at Experts, but feedback from Adversaries and
+Auditors is welcome.
+
+[click]
 Why them?
-- they have need and can typically resources to afford solutions that makes
+  - they have need and can typically resources to afford solutions that makes
   their life easier, or improve quality of life by better defending workflows
   and workloads
+  - Need to protect high value cryptographic keys (e.g. master keys, release
+    signing keys).
+  - Need to ensure software reproducibility.
+  - Overhead with incoherent trust boundaries, maintenance of multiple tools and
+    difficulty of achieving verifiable/attestable state.
+  - Knowledge to define appropriate policy for those operations.
+  - Need for custom services (backup, router, NAS, air-gapped operations)
+- Assuming we are experts only by creating solutions that work for us we can
+  really create solutions for others
+
+
+-->
+
+---
+
+Documentation of
+[Threat Model Persona](https://github.com/3mdeb/verified-boot/blob/master/threat-model-persona.md)
+of **Expert** and
+[Threat Model](https://github.com/3mdeb/verified-boot/blob/master/threat-model.md),
+that can be exercised by some **Adversaries** was funded by PowerUpPrivacy and
+reviewed by Whonix/Kicksecure Maintainers.
+
+<!--
+
+Some credits.
+
+-->
+
+---
+
+# Friction #1
+
+<center>
+    <img src="/@fs/repo/img/qoss2025/qoss2025_friction_1.excalidraw.svg" width="500px">
+</center>
+
+<!--
 
 Some other use cases/workloads:
 - trasncoding, video/audio processing, streaming
@@ -170,8 +214,6 @@ Some other use cases/workloads:
 - CI/CD - we should not build on our thin clients
 
 Assumptions:
-- only by creating solutions that work for us we can really create solutions
-  for others
 
 It is trivial to say that Virtualization Based Security is future of Security,
 but so far it is adapted either by:
@@ -194,19 +236,40 @@ Visualization:
   - again we can choose ready to use building blocks, or try to glue something
     our own
 
-In most cases it is not only about security, privacy or trustworthiness, it is also for cases, when incident will happen we really have ability to:
+In most cases it is not only about security, privacy or trustworthiness, it is
+also for cases, when incident will happen we really have ability to:
 - detect - quickly inspect, analyze and isolate to improve our detection
 - protect - also improve our protection
 - recover - get back to operation ASAP
 
 Why now?
 - rise of need for security because global power shift
-
 - first most likely is the cause of hard push for compliance, compliance means
   auditability
 
 TBD:
 - KPI for proving problem is solved.
+-->
+
+---
+
+# Friction #2
+
+---
+
+# Friction #3
+
+---
+
+# Friction #4 and #5
+
+<!--
+
+I know I should have just 3 frictions, but I could not resist adding last two
+which are very closely related to todays trends and giving pirch  is
+essentially impossible without mentioning those two areas.
+
+I promise this is almost last time and we will focus on frictions #1-#3.
 
 -->
 
@@ -217,7 +280,8 @@ TBD:
 Joanna writing is probably one of most influential among FOSS crowd when we
 touch space of privacy and security. We keep recalling here work related to x86
 considered harmful or stateless laptop, but today I would like to talk about
-post published on 22 January 2018 about Qubes Air, which according to here is generalization of Qubes Architecture.
+post published on 22 January 2018 about Qubes Air, which according to here is
+generalization of Qubes Architecture.
 
 What were reasons for Qubes Air:
 
@@ -248,6 +312,7 @@ which we discourage.
 
 What are other reasons?
 - distributed reproducibility
+- need for heavy but privacy respecting and secure computing
 
 Notes about Joanna approach to security of Qubes:
 - it is about minimizing and controlling interfaces between components
@@ -260,6 +325,13 @@ Qubes Air security considerations:
   it under the physical security control guard in a vault?
 - The problem is sending things over intrenet?
   - What if we sending only through intranet?
+- Some may say this is coming back to mainframe security model.
+  - Classic mainframe/MLS concentrates the TCB on the host. Terminals are I/O
+    only and outside the TCB; they do not enforce policy. Any controller or
+    link encryptor on the path enters the TCB only if the system relies on it
+    for security properties. This sets the baseline for our contrast with Qubes
+    Air, where we keep the TCB central but add a minimal, attested
+    display/input slice on the thin client.
 
 -->
 
