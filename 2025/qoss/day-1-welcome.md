@@ -7,12 +7,13 @@ class: text-center
 ---
 ## Welcome to Qubes OS Summit 2025 Day 1
 
-### Piotr Król and Marek Marczykowski-Górecki
+Piotr Król and Marek Marczykowski-Górecki
 
 <!-- markdownlint-disable MD022 MD003 -->
 ---
-layout: cover
-background: /@fs/repo/public/2025/QubesOSsummit/qubes-summit-2025.jpg
+layout: image
+image: /@fs/repo/public/2025/QubesOSsummit/qubes-summit-2025.jpg
+backgroundSize: 75%
 ---
 
 ---
@@ -20,7 +21,6 @@ layout: cover
 background: /intro.png
 class: text-center
 ---
-<!-- markdownlint-enable MD022 MD003 -->
 
 # Platinum Partners
 
@@ -35,9 +35,9 @@ class: text-center
 
 <!--
 
-We are grateful that the Freedom of the Press Foundation returns as a generous 
-Platinum Partner. Their continued support is crucial for our work. Their mission 
-to defend press freedom and privacy by building secure tools like SecureDrop 
+We are grateful that the Freedom of the Press Foundation returns as a generous
+Platinum Partner. Their continued support is crucial for our work. Their mission
+to defend press freedom and privacy by building secure tools like SecureDrop
 aligns directly with the core values of the Qubes OS project and this summit.
 
 -->
@@ -46,26 +46,27 @@ aligns directly with the core values of the Qubes OS project and this summit.
 
 <div style="display: flex; justify-content: center; align-items: center;
   margin-top:50px;">
-<center><img src="/@fs/repo/public/2025/QubesOSsummit/ExpressVPN logo-Vertical.png" width="1000"></center>
+  <center>
+    <img src="/@fs/repo/public/2025/QubesOSsummit/ExpressVPN logo-Vertical.png"
+      width="1000">
+  </center>
 </div>
 
 <!--
 
-We welcome ExpressVPN as a new Platinum Partner. Their commitment to privacy is 
-demonstrated through tangible actions: they subject their no-logs policy to 
-third-party audits and have open-sourced their Lightway protocol. This approach 
-to building trust is important in our field, and we thank them for their 
+We welcome ExpressVPN as a new Platinum Partner. Their commitment to privacy is
+demonstrated through tangible actions: they subject their no-logs policy to
+third-party audits and have open-sourced their Lightway protocol. This approach
+to building trust is important in our field, and we thank them for their
 support.
 
 -->
 
-<!-- markdownlint-disable MD022 MD003 -->
 ---
 layout: cover
 background: /intro.png
 class: text-center
 ---
-<!-- markdownlint-enable MD022 MD003 -->
 
 # Gold Partner
 
@@ -97,13 +98,19 @@ class: text-center
 
 ---
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 1rem; height: 20vh;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/novacustom_logo.png" style="max-width: 50%; height: auto;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/nitrokey_logo.png" style="max-width: 80%; height: auto;">
+<div style="display: flex; justify-content: center; align-items: center; gap:
+  1rem; height: 20vh;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/novacustom_logo.png"
+    style="max-width: 50%; height: auto;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/nitrokey_logo.png"
+    style="max-width: 80%; height: auto;">
 </div>
 
-<div style="display: flex; justify-content: center; align-items: center; height: 20vh;">
-  <img src="/@fs/repo/public/2025/QubesOSsummit/power-up-privacy-logo-light.png" style="max-width: 40%; height: auto;">
+<div style="display: flex; justify-content: center; align-items: center;
+  height: 20vh;">
+  <img
+    src="/@fs/repo/public/2025/QubesOSsummit/power-up-privacy-logo-light.png"
+    style="max-width: 40%; height: auto;">
 </div>
 
 <!--
@@ -156,7 +163,7 @@ chosen to support the Qubes OS project.
 
 <!--
 
-History
+TBD: we have to add 2025 graphics
 
 -->
 
@@ -278,24 +285,22 @@ Last Year's Overall Rating: 7.75 / 10
 Thank you for your valuable feedback! Your comments help us improve the event
 every year. Here are some key points we focused on based on your input:
 
-- Audio Quality: Based on your feedback about stationary microphones, we've made
+* **Audio Quality**: Based on your feedback about stationary microphones, we've made
   adjustments to the audio setup and look forward to hearing your thoughts on
   this year's solution.
-
-- Slide Readability: We heard your comments on hard-to-read slides. We have paid
+* **Slide Readability**: We heard your comments on hard-to-read slides. We have paid
   closer attention to this during our preparations and are hopeful this improves
   the experience this year.
-
-- Venue Comfort: We acknowledge the feedback on the hard wooden chairs. While
+* **Venue Comfort**: We acknowledge the feedback on the hard wooden chairs. While
   they are a fixed element of this venue, it's a point we'll keep in mind for
   future events.
-
-- And on a sweeter note: The "Krówki" are back by popular demand. You'll find
+* **And on a sweeter note**: The "Krówki" are back by popular demand. You'll find
   them on the tables with cookies, with ingredient lists available.
 
 We are always listening and look forward to your feedback for 2025!
 
 ---
+
 # What is our lineup this year?
 
 <br>
@@ -338,9 +343,10 @@ We are always listening and look forward to your feedback for 2025!
 
 ### 13:00-14:30
 
-#### **_Lunch_ (The Social Hub Restaurant (on-site))** 
+#### **_Lunch_ (The Social Hub Restaurant (on-site))**
+
 *Free for all attendees, speakers, and sponsors. The entire menu is vegan and
-gluten-free.*
+gluten-free._
 
 ---
 
@@ -378,13 +384,13 @@ gluten-free.*
 
 #### **_Afterparty_**
 
-- **Who:** Everyone is welcome to join!
-- **When:** 19:30 - 23:30
-- **Where:** [BRLO Biergarten](https://en.brlo.de/gastronomien/brlo-biergarten)
+* **Who:** Everyone is welcome to join!
+* **When:** 19:30 - 23:30
+* **Where:** [BRLO Biergarten](https://en.brlo.de/gastronomien/brlo-biergarten)
   at Gleisdreieck Park
-- **Travel:** Easiest way from The Social Hub is the U2 subway from
+* **Travel:** Easiest way from The Social Hub is the U2 subway from
   **Klosterstraße** to **Gleisdreieck**.
-- **Payment:** This is a self-funded event. To streamline payments, we're using
+* **Payment:** This is a self-funded event. To streamline payments, we're using
   a pre-paid wristband system:
   - Find **Mich** from the organization team to get a wristband. You can pay
     him with **cash or card**.
@@ -453,12 +459,12 @@ https://vpub.dasharo.com
 * Paid and free merchandise available (at location and in 3mdeb Shop).
 * There are also partners selling their merchandise.
 
-<!-- markdownlint-disable MD022 MD003 -->
 ---
 layout: cover
 background: /intro.png
 class: text-center
 ---
-<!-- markdownlint-enable MD022 MD003 -->
 
 # Q&A
+
+<!-- markdownlint-enable MD022 MD003 -->

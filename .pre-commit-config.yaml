@@ -40,7 +40,9 @@ repos:
     rev: v0.45.0
     hooks:
       - id: markdownlint
+        args: ["--ignore", "slides-template.md"]
       - id: markdownlint-fix
+        args: ["--ignore", "slides-template.md"]
 
   - repo: https://github.com/koalaman/shellcheck-precommit
     rev: v0.11.0
