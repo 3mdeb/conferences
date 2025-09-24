@@ -35,10 +35,10 @@ class: text-center
 
 <!--
 
-Freedom of the Press Foundation’s generous contribution and commitment to
-defending press freedom and digital privacy by building secure communication
-tools aligns with Qubes OS Summit goals of coordinating Qubes OS and associated
-projects development, like SecureDrop, with community.
+We are grateful that the Freedom of the Press Foundation returns as a generous 
+Platinum Partner. Their continued support is crucial for our work. Their mission 
+to defend press freedom and privacy by building secure tools like SecureDrop 
+aligns directly with the core values of the Qubes OS project and this summit.
 
 -->
 
@@ -51,11 +51,11 @@ projects development, like SecureDrop, with community.
 
 <!--
 
-Mullvad’s support for transparency and privacy enhancing technologies is known
-in our community. What is more important you can support those who support us
-by choosing their products in that way your getting great VPN with possibility
-for anonymous or cryptocurrency payment, which is well recognized by
-independent reviewers.
+We welcome ExpressVPN as a new Platinum Partner. Their commitment to privacy is 
+demonstrated through tangible actions: they subject their no-logs policy to 
+third-party audits and have open-sourced their Lightway protocol. This approach 
+to building trust is important in our field, and we thank them for their 
+support.
 
 -->
 
@@ -75,6 +75,17 @@ class: text-center
   margin-top:100px;">
 <center><img src="/@fs/repo/public/2025/QubesOSsummit/mullvad_logo.png" width="1000"></center>
 </div>
+
+<!--
+
+Mullvad's support for the community is well-known, and we're pleased to have
+them back as a Gold Partner. Their approach to privacy is not just theoretical;
+it's implemented through features like anonymous accounts and cash payments, and
+shown by their support for open-source projects like WireGuard. We appreciate
+their consistent and practical commitment to our shared goals.
+
+-->
+
 ---
 layout: cover
 background: /intro.png
@@ -97,24 +108,33 @@ class: text-center
 
 <!--
 
-NovaCustom’s deliver Qubes OS Certified Hardware maximizing transparency and
-trustworthiness of our computing.
+NovaCustom continues their support. NovaCustom delivers Qubes OS Certified
+Hardware, offering users machines that are tested and verified for compatibility
+and providing a solid foundation for a secure system.
 
-Nitrokey’s secure our digital life with USB FIDO-compliance tokens as well as
-hardware with Heads firmware.
+We're also happy to have Nitrokey back with us. Nitrokey develops open-source
+security hardware, including FIDO-compliant keys and devices compatible with
+Heads firmware, which helps secure the boot process.
 
-You can always thank them by recommending them and their products.
+We welcome Power Up Privacy, a non-profit organization dedicated to making
+privacy-enhancing technologies more accessible. They support projects and create
+educational resources to help advance online privacy and security.
 
 -->
 
 ---
 
-# Supporting Contributor
+# Supporting Contributors
 
 * ## StarApps Ltd
 
 We are grateful for the support from StarApps Ltd., company which use and rely
 on Qubes OS and support FOSS philosophy.
+
+* ## Paul Szabo
+
+We are grateful for the support from Paul Szabo, a private individual who has
+chosen to support the Qubes OS project.
 
 ---
 
@@ -142,7 +162,7 @@ History
 
 ---
 
-# Accomplishments - 2023-2024
+# Accomplishments - 2024-2025 [TBD]
 
 * Recap of vision and challenges presented last year.
 * We added 50% to Qubes OS Certified Hardware (from 6 to 9)
@@ -166,8 +186,16 @@ Qubes HCL snapshot date 18/09/2024
 -->
 ---
 
-# Accomplishments - 2023-2024
+# Accomplishments - 2024-2025 [TBD]
 
+* We successfully secured a larger and more diverse group of sponsors for this
+  year's summit. Ticket sales also met our expectations. This increased funding
+  is a significant factor in the project's sustainability and allows us to
+  better plan future development.
+* Thanks to this stronger financial position, we are able to fund lunch for all
+  attendees on both days of the conference, fostering more opportunities for
+  community interaction. More on the logistics for that will follow in the
+  upcoming slides.
 * Event organization improved:
   - A lot external talks in CfP, we had to reject some.
 * Coming soon:
@@ -188,13 +216,13 @@ transition: fade
 ---
 <!-- markdownlint-enable MD022 MD003 -->
 
-# Accomplishments - 2022-2023
+# Accomplishments - 2022-2023 [TBD?]
 
 <center><img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2023_stats.png" width="600"></center>
 
 ---
 
-# Accomplishments - 2023-2024
+# Accomplishments - 2023-2024 [TBD?]
 
 <center><img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2024_stats.png" width="600"></center>
 
@@ -218,7 +246,7 @@ transition: fade
 
 ---
 
-# Vision and challenges - 2024-2025
+# Vision and challenges - 2024-2025 [TBD]
 
 * Continue growth of number of Qubes OS Certified Hardware
   - Dell OptiPlex 7010/9010 with AEM
@@ -285,7 +313,9 @@ Not much changed since last year.
 
 ### 13:00-14:30
 
-#### **_Lunch_**
+#### **_Lunch_ (The Social Hub Restaurant (on-site))** 
+*Free for all attendees, speakers, and sponsors. The entire menu is vegan and
+gluten-free.*
 
 ---
 
@@ -315,9 +345,28 @@ Not much changed since last year.
 
 #### **_Closing Notes_** - Piotr (3mdeb)
 
+---
+
+# Day 1 agenda
+
 ### 19:30+
 
 #### **_Afterparty_**
+
+- **Who:** Everyone is welcome to join!
+- **When:** 19:30 - 23:30
+- **Where:** [BRLO Biergarten](https://en.brlo.de/gastronomien/brlo-biergarten)
+  at Gleisdreieck Park
+- **Travel:** Easiest way from The Social Hub is the U2 subway from
+  **Klosterstraße** to **Gleisdreieck**.
+- **Payment:** This is a self-funded event. To streamline payments, we're using
+  a pre-paid wristband system:
+  - Find **Mich** from the organization team to get a wristband. You can pay
+    him with **cash or card**.
+  - The minimum to load is **20 EUR**. This is your credit to spend at the
+    venue.
+  - If you plan to spend more, please load your wristband accordingly. We're
+    relying on an honor system here.
 
 <!-- markdownlint-disable MD022 MD003 -->
 ---
@@ -344,7 +393,6 @@ class: text-center
   style="max-width: 100%"></center>
 
 <div class="absolute left-30px bottom-30px">
-  <small>Photo by Maciej Klimiuk</small>
 </div>
 
 ---
@@ -361,7 +409,7 @@ https://vpub.dasharo.com
 * Respect Code of Conduct.
 * Please follow Safety and Health protocols and respect others.
 * Talks are streamed and recorded and will be published on Youtube.
-* Drinks and sweets are free.
+* Lunch, drinks and sweets are free.
 * Matrix `#qubes-summit:matrix.org` will be used for communication during event.
 * In case of any issues please contact with organizers.
 
