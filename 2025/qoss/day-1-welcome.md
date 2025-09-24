@@ -278,7 +278,7 @@ Not much changed since last year.
 
 ### 11:55-12:25
 
-#### **_Have your Qubes and keep it?_** - Matthias Ferdinand
+#### **_Have your Qubes and keep it?_** - Matthias ()
 
 ### 12:30-13:00
 
@@ -294,7 +294,7 @@ Not much changed since last year.
 
 ### 14:30-15:00
 
-#### **_Rethinking the compartmentalization experience_** - Alyssa Ross
+#### **_Rethinking the compartmentalization experience_** - Alyssa Ross ()
 
 ### 15:05-15:35
 
@@ -302,7 +302,7 @@ Not much changed since last year.
 
 ### 15:45-16:15
 
-#### **_Alternative options to signify qube ownership of windows/widgets/... (including more colors)_** - Ali Mirjamali
+#### **_Alternative options to signify qube ownership of windows/widgets/... (including more colors)_** - Ali ()
 
 ### 16:20-17:20
 
@@ -310,7 +310,7 @@ Not much changed since last year.
 
 ### 17:25-17:55
 
-#### **_Using segregation to hyper secure your development environment._** - Rene
+#### **_Using segregation to hyper secure your development environment._** - Rene ()
 
 ### 17:55-18:00
 
@@ -337,11 +337,11 @@ class: text-center
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center;
   align-items: center;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/sudblock.jpg" style="max-width:
-    50%; height: auto; margin: 10px;">
+  <img src="/@fs/repo/public/2025/QubesOSsummit/brlo.png" style="max-width:
+    100%; height: auto; margin: 10px;">
 </div>
 
-<center><img src="/@fs/repo/public/2024/QubesOSsummit/sudblock_address.png"
+<center><img src="/@fs/repo/public/2025/QubesOSsummit/brlo_address.png"
   style="max-width: 100%"></center>
 
 <div class="absolute left-30px bottom-30px">
@@ -372,9 +372,9 @@ https://vpub.dasharo.com
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center;
   align-items: center;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_front.png"
+  <img src="/@fs/repo/public/2025/QubesOSsummit/qubes_front.png"
     style="max-width: 35%; height: auto; margin: 10px;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_back.png"
+  <img src="/@fs/repo/public/2025/QubesOSsummit/qubes_back.png"
     style="max-width: 35%">
 </div>
 
