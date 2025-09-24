@@ -12,7 +12,7 @@ class: text-center
 <!-- markdownlint-disable MD022 MD003 -->
 ---
 layout: cover
-background: /@fs/repo/public/2024/QubesOSsummit/qoss_welcome.png
+background: /@fs/repo/public/2025/QubesOSsummit/qubes-summit-2025.jpg
 ---
 
 ---
@@ -22,7 +22,7 @@ class: text-center
 ---
 <!-- markdownlint-enable MD022 MD003 -->
 
-# Platinum Sponsors
+# Platinum Partners
 
 ---
 
@@ -45,8 +45,8 @@ projects development, like SecureDrop, with community.
 ---
 
 <div style="display: flex; justify-content: center; align-items: center;
-  margin-top:100px;">
-<center><img src="/@fs/repo/public/2024/QubesOSsummit/mullvad_logo.png" width="1200"></center>
+  margin-top:50px;">
+<center><img src="/@fs/repo/public/2025/QubesOSsummit/ExpressVPN logo-Vertical.png" width="1000"></center>
 </div>
 
 <!--
@@ -67,17 +67,34 @@ class: text-center
 ---
 <!-- markdownlint-enable MD022 MD003 -->
 
-# Silver Sponsors
+# Gold Partner
 
 ---
 
 <div style="display: flex; justify-content: center; align-items: center;
-  height: 40vh;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/novacustom_logo.png"
-    style="max-width: 50%; height: auto;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/nitrokey_logo.png"
-    style="max-width: 500%; height: auto;">
+  margin-top:100px;">
+<center><img src="/@fs/repo/public/2025/QubesOSsummit/mullvad_logo.png" width="1000"></center>
 </div>
+---
+layout: cover
+background: /intro.png
+class: text-center
+---
+<!-- markdownlint-enable MD022 MD003 -->
+
+# Silver Partners
+
+---
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 1rem; height: 20vh;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/novacustom_logo.png" style="max-width: 50%; height: auto;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/nitrokey_logo.png" style="max-width: 80%; height: auto;">
+</div>
+
+<div style="display: flex; justify-content: center; align-items: center; height: 20vh;">
+  <img src="/@fs/repo/public/2025/QubesOSsummit/power-up-privacy-logo-light.png" style="max-width: 40%; height: auto;">
+</div>
+
 
 <!--
 
@@ -231,15 +248,15 @@ Not much changed since last year.
 
 <br>
 
-* ## September 20th: Conference Day 1 and Afterparty
+* ## September 26th: Conference Day 1 and Afterparty
 
 <br>
 
-* ## September 21th: Conference Day 2
+* ## September 27th: Conference Day 2
 
 <br>
 
-* ## September 22th: Hackathon
+* ## September 28th: Hackathon
 
 <br>
 
@@ -249,23 +266,23 @@ Not much changed since last year.
 
 ### 10:00-10:25
 
-#### **_Welcome to Qubes OS Summit 2024 Day 1_** - Piotr (3mdeb), Marek (ITL)
+#### **_Welcome to Qubes OS Summit 2025 Day 1_** - Piotr (3mdeb), Marek (ITL)
 
 ### 10:30-11:00
 
-#### **_Qubes OS development status update_** - Marek (ITL)
+#### **_Qubes OS 4.3 development update_** - Marek (ITL)
 
-### 11:10-11:30
+### 11:05-11:50
 
-#### **_Qubes OS GUI Changes and Future Perspectives_** - Marta (ITL)
+#### **_Qubes OS: Design for Hackers and How To Contribute to GUI Tools_** - Marta (ITL)
 
-### 11:40-12:10
+### 11:55-12:25
 
-#### **_Enhancing OS Awareness of Hardware Security Capabilities in Qubes OS_** - Piotr (3mdeb)
+#### **_Have your Qubes and keep it?_** - Matthias Ferdinand
 
-### 12:15-13:00
+### 12:30-13:00
 
-#### **_Passwordless encrypted Qubes? Exploring some concepts_** - nestire (Nitrokey)
+#### **_Qubes Air: Hardware, Firmware, and Architectural Foundations_** - Michał (3mdeb)
 
 ### 13:00-14:30
 
@@ -277,25 +294,25 @@ Not much changed since last year.
 
 ### 14:30-15:00
 
-#### **_How to architect your Qubes OS with SaltStack_** - Ben (FOSS Maintainer)
+#### **_Rethinking the compartmentalization experience_** - Alyssa Ross
 
-### 15:10-15:40
+### 15:05-15:35
 
-#### **_FlashKeeper: where SpiSpy meets Stateless Laptop jaded dreams: A retrofit plan first_** - Thierry (Heads Maintainer)
+#### **_Qubes Air: Opinionated Value Proposition for Security-Conscious Technical Professionals_** - Piotr (3mdeb)
 
-### 15:50-16:20
+### 15:45-16:15
 
-#### **_Anti Evil Maid status and future plans_** - Michał (3mdeb)
+#### **_Alternative options to signify qube ownership of windows/widgets/... (including more colors)_** - Ali Mirjamali
 
-### 16:30-17:00
+### 16:20-17:20
 
-#### **_Rolling out Qubes_** - unman (Qubes OS Maintainer)
+#### **_The Future Of Qube Manager: Design Session_** - Christopher (?), Marta (ITL)
 
-### 17:10-17:40
+### 17:25-17:55
 
-#### **_Update on Qubes Air_** - Marek&Frédéric (ITL/Qubes Team)
+#### **_Using segregation to hyper secure your development environment._** - Rene
 
-### 17:50-18:00
+### 17:55-18:00
 
 #### **_Closing Notes_** - Piotr (3mdeb)
 
@@ -312,9 +329,9 @@ class: text-center
 
 ## Details on
 
-### https://cfp.3mdeb.com/qubes-os-summit-2024/
+### https://cfp.3mdeb.com/qubes-os-summit-2025/schedule/
 
-### https://vpub.dasharo.com/e/16/qubes-os-summit-2024#schedule
+### https://events.dasharo.com/event/2/qubes-os-summit-2025
 
 ---
 
