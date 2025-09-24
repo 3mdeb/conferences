@@ -271,6 +271,31 @@ Not much changed since last year.
 
 ---
 
+# Feedback from Qubes OS Summit 2024
+
+Last Year's Overall Rating: 7.75 / 10
+
+Thank you for your valuable feedback! Your comments help us improve the event
+every year. Here are some key points we focused on based on your input:
+
+- Audio Quality: Based on your feedback about stationary microphones, we've made
+  adjustments to the audio setup and look forward to hearing your thoughts on
+  this year's solution.
+
+- Slide Readability: We heard your comments on hard-to-read slides. We have paid
+  closer attention to this during our preparations and are hopeful this improves
+  the experience this year.
+
+- Venue Comfort: We acknowledge the feedback on the hard wooden chairs. While
+  they are a fixed element of this venue, it's a point we'll keep in mind for
+  future events.
+
+- And on a sweeter note: The "Krówki" are back by popular demand. You'll find
+  them on the tables with cookies, with ingredient lists available.
+
+We are always listening and look forward to your feedback for 2025!
+
+---
 # What is our lineup this year?
 
 <br>
