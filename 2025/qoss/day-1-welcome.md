@@ -95,7 +95,6 @@ class: text-center
   <img src="/@fs/repo/public/2025/QubesOSsummit/power-up-privacy-logo-light.png" style="max-width: 40%; height: auto;">
 </div>
 
-
 <!--
 
 NovaCustom’s deliver Qubes OS Certified Hardware maximizing transparency and
