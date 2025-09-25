@@ -145,14 +145,16 @@ chosen to support the Qubes OS project.
 
 ---
 
-<img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2024_logo.png">
+<img src="/@fs/repo/public/2025/QubesOSsummit/qubes_2025_logo.png">
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center;
   align-items: center;">
+  <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2024_logo.png" alt="Image
+    1" style="max-width: 80%; height: auto; margin: 10px;">
   <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2023_logo.png" alt="Image
     1" style="max-width: 50%; height: auto; margin: 10px;">
   <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2022_logo.png" alt="Image
-    2" style="max-width: 50%; height: auto; margin: 10px;">
+    2" style="max-width: 40%; height: auto; margin: 10px;">
   <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2021_logo.png" alt="Image
     3" style="max-width: 35%; height: auto; margin: 10px;">
   <img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2020_logo.jpeg" alt="Image
@@ -161,39 +163,32 @@ chosen to support the Qubes OS project.
     5" style="max-width: 25%; height: auto; margin: 10px;">
 </div>
 
-<!--
-
-TBD: we have to add 2025 graphics
-
--->
-
 ---
 
-# Accomplishments - 2024-2025 [TBD]
+# Accomplishments - 2024-2025
 
 * Recap of vision and challenges presented last year.
-* We added 50% to Qubes OS Certified Hardware (from 6 to 9)
-  - although we have to admit that some old certified hardware is no longer
-available,
-* Qubes HCL statistics: 1055 (+61)
-* Released Qubes OS 4.2 and three subsequent point releases
-* Greatly improved updates experience
-* Several UX improvements and new GUI tools - including new Qubes Global
-  Config, more to come
-* fwupd integration installed by default
-* Community projects:
-  - Automated configurability extended thanks to community contribution from Ben
-  Grande in form of [qusal](https://github.com/ben-grande/qusal) based on
-  previous unman work.
+* We added 20% to Qubes OS Certified Hardware (from 9 to 11)
+  - Although we have to admit that some old certified hardware is no longer sold.
+  - And there are also some platforms pending certification.
+* Qubes HCL statistics: 1195 (+140) last year (+61)
+* Qubes OS 4.1 reached EOL
+* Released Qubes OS 4.2.4 and 4.3-rc2
+* R4.2.4
+  - Qubes switched to Qubes Builder v2
+  - Mostly bug and security fixes
+* Qubes 4.3-rc
+  - Dom0 upgraded to Fedora 41 and Xen upgraded to version 4.19
+  - Defaults template updates and more, details in further presentations
 
 <!--
 
-Qubes HCL snapshot date 18/09/2024
+Qubes HCL snapshot date 25/09/2025
 
 -->
 ---
 
-# Accomplishments - 2024-2025 [TBD]
+# Accomplishments - 2024-2025
 
 * We successfully secured a larger and more diverse group of sponsors for this
   year's summit. Ticket sales also met our expectations. This increased funding
@@ -204,18 +199,12 @@ Qubes HCL snapshot date 18/09/2024
   community interaction. More on the logistics for that will follow in the
   upcoming slides.
 * Event organization improved:
-  - A lot external talks in CfP, we had to reject some.
+  - A lot external talks in CfP, we had to reject some. Agenda is fully packed.
 * Coming soon:
-  - UEFI Secure Boot integration - more about that in tomorrow's talk.
-    + TL;DR we are not there yet, but we are close. safeboot approach is still
-  alive.
-  - TrenchBoot AEM - we have some exciting news and demo for you.
-  - Certified Hardware with Intel Boot Guard and UEFI Capsule Update coming in
-  following months.
-  - As mentioned last year SMI Transfer Monitor was integrated for Qubes OS
-  Certified Hardware MSI PRO Z690-A by Brian Delgado.
-    + code is PoC, but it was presented at [vPub 0xB](https://youtu.be/3PmOcjQX-9Y)
-    + the challenge would be to make Xen and dom0 aware of that,
+  - We keep pushing UEFI Secure Boot integration
+  - TrenchBoot AEM - to some extent we can claim code complete, but we still miss
+    upstream and production ready polishing, upstream needs time to digest
+  - Certified Hardware with Intel Boot Guard and UEFI Capsule Update released.
 
 <!-- markdownlint-disable MD022 MD003 -->
 ---
@@ -223,58 +212,37 @@ transition: fade
 ---
 <!-- markdownlint-enable MD022 MD003 -->
 
-# Accomplishments - 2022-2023 [TBD?]
+# Accomplishments - 2022-2023
 
 <center><img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2023_stats.png" width="600"></center>
 
 ---
+transition: fade
+---
 
-# Accomplishments - 2023-2024 [TBD?]
+# Accomplishments - 2023-2024
 
 <center><img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2024_stats.png" width="600"></center>
 
 ---
+transition: fade
+---
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center;
-  align-items: center;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/secure_boot_main1.png"
-    alt="Image 1" style="max-width: 35%; height: auto; margin: 10px;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/secure_boot_main3.png"
-    alt="Image 2" style="max-width: 35%; height: auto; margin: 10px;">
-  <img src="/@fs/repo/public/2024/QubesOSsummit/secure_boot_main4.png"
-    alt="Image 3" style="max-width: 35%; height: auto; margin: 10px;">
-</div>
+# Accomplishments - 2024-2025
 
-<!--
-
-- PoC was created during Qubes OS Summit 2023 Hackathon
-
--->
+<center><img src="/@fs/repo/public/2025/QubesOSsummit/qubes_2025_stats.svg" width="600"></center>
 
 ---
 
-# Vision and challenges - 2024-2025 [TBD]
+# Vision and challenges - 2024-2025
 
 * Continue growth of number of Qubes OS Certified Hardware
-  - Dell OptiPlex 7010/9010 with AEM
-  - Odroid H4?
-  - Novacustom Laptops
-* Finalize Qubes AEM support for Intel
-  - Legacy BIOS (through SeaBIOS) is close to be completed.
-  - UEFI is planned and founded.
-* Finalize Qubes AEM for AMD
-  - Waiting for release of documentation by AMD
-  - If it would not happen early we have to rely on existing documentation and
-    will adjust after that.
-* UEFI Secure Boot have to become first-class citizen in Qubes OS.
-* Qubes Security Report - road to OSS security leadership.
+  - maybe some servers
+  - AMD laptops and desktops
+* Qubes Air adoption
+* User-controlled Root of Trust.
+* UEFI Secure Boot on the paths to user-controlled Chain of Trust in Qubes OS.
 * More in Marek's talk dedicated to Qubes OS Project plans.
-
-<!--
-
-Not much changed since last year.
-
--->
 
 ---
 
@@ -323,7 +291,7 @@ We are always listening and look forward to your feedback for 2025!
 
 ### 10:00-10:25
 
-#### **_Welcome to Qubes OS Summit 2025 Day 1_** - Piotr (3mdeb), Marek (ITL)
+#### **_Welcome to Qubes OS Summit 2025 Day 1_** - Piotr (3mdeb), Marek (ITL) **_<--- You are here_**
 
 ### 10:30-11:00
 
@@ -335,7 +303,7 @@ We are always listening and look forward to your feedback for 2025!
 
 ### 11:55-12:25
 
-#### **_Have your Qubes and keep it?_** - Matthias ()
+#### **_Have your Qubes and keep it?_** - Matthias
 
 ### 12:30-13:00
 
@@ -349,12 +317,14 @@ We are always listening and look forward to your feedback for 2025!
 gluten-free._
 
 ---
+zoom: 0.97
+---
 
 # Day 1 agenda
 
 ### 14:30-15:00
 
-#### **_Rethinking the compartmentalization experience_** - Alyssa Ross ()
+#### **_Rethinking the compartmentalization experience_** - Alyssa Ross (Spectrum)
 
 ### 15:05-15:35
 
@@ -362,15 +332,15 @@ gluten-free._
 
 ### 15:45-16:15
 
-#### **_Alternative options to signify qube ownership of windows/widgets/... (including more colors)_** - Ali ()
+#### **_Alternative options to signify qube ownership of windows/widgets/... (including more colors)_** - Ali (Qubes OS contributor)
 
 ### 16:20-17:20
 
-#### **_The Future Of Qube Manager: Design Session_** - Christopher (?), Marta (ITL)
+#### **_The Future Of Qube Manager: Design Session_** - Christopher, Marta (ITL)
 
 ### 17:25-17:55
 
-#### **_Using segregation to hyper secure your development environment._** - Rene ()
+#### **_Using segregation to hyper secure your development environment._** - Rene (Cyber-security analyst)
 
 ### 17:55-18:00
 
@@ -410,6 +380,12 @@ class: text-center
 
 ### https://cfp.3mdeb.com/qubes-os-summit-2025/schedule/
 
+<br>
+
+### https://events.3mdeb.com -> Qubes OS Summit 2025
+
+<br>
+
 ### https://events.dasharo.com/event/2/qubes-os-summit-2025
 
 ---
@@ -437,9 +413,9 @@ https://vpub.dasharo.com
 
 </center>
 
-* Respect Code of Conduct.
+* Respect [Qubes OS Code of Conduct](https://doc.qubes-os.org/en/latest/introduction/code-of-conduct.html).
 * Please follow Safety and Health protocols and respect others.
-* Talks are streamed and recorded and will be published on Youtube.
+* Talks are streamed and recorded and will be published on Youtube, if not marked otherwise.
 * Lunch, drinks and sweets are free.
 * Matrix `#qubes-summit:matrix.org` will be used for communication during event.
 * In case of any issues please contact with organizers.
