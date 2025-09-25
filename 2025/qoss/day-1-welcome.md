@@ -9,14 +9,15 @@ class: text-center
 
 Piotr Król and Marek Marczykowski-Górecki
 
-<!-- markdownlint-disable MD022 MD003 -->
 ---
+
 layout: image
 image: /@fs/repo/public/2025/QubesOSsummit/qubes-summit-2025.jpg
 backgroundSize: 75%
 ---
 
 ---
+
 layout: cover
 background: /intro.png
 class: text-center
@@ -63,6 +64,7 @@ support.
 -->
 
 ---
+
 layout: cover
 background: /intro.png
 class: text-center
@@ -88,11 +90,11 @@ their consistent and practical commitment to our shared goals.
 -->
 
 ---
+
 layout: cover
 background: /intro.png
 class: text-center
 ---
-<!-- markdownlint-enable MD022 MD003 -->
 
 # Silver Partners
 
@@ -206,17 +208,17 @@ Qubes HCL snapshot date 25/09/2025
     upstream and production ready polishing, upstream needs time to digest
   - Certified Hardware with Intel Boot Guard and UEFI Capsule Update released.
 
-<!-- markdownlint-disable MD022 MD003 -->
 ---
+
 transition: fade
 ---
-<!-- markdownlint-enable MD022 MD003 -->
 
 # Accomplishments - 2022-2023
 
 <center><img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2023_stats.png" width="600"></center>
 
 ---
+
 transition: fade
 ---
 
@@ -225,6 +227,7 @@ transition: fade
 <center><img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2024_stats.png" width="600"></center>
 
 ---
+
 transition: fade
 ---
 
@@ -317,6 +320,7 @@ We are always listening and look forward to your feedback for 2025!
 gluten-free._
 
 ---
+
 zoom: 0.97
 ---
 
@@ -369,8 +373,8 @@ zoom: 0.97
   - If you plan to spend more, please load your wristband accordingly. We're
     relying on an honor system here.
 
-<!-- markdownlint-disable MD022 MD003 -->
 ---
+
 layout: cover
 background: /intro.png
 class: text-center
@@ -413,9 +417,11 @@ https://vpub.dasharo.com
 
 </center>
 
-* Respect [Qubes OS Code of Conduct](https://doc.qubes-os.org/en/latest/introduction/code-of-conduct.html).
+* Respect [Qubes OS Code of
+Conduct](https://doc.qubes-os.org/en/latest/introduction/code-of-conduct.html).
 * Please follow Safety and Health protocols and respect others.
-* Talks are streamed and recorded and will be published on Youtube, if not marked otherwise.
+* Talks are streamed and recorded and will be published on Youtube, if not
+  marked otherwise.
 * Lunch, drinks and sweets are free.
 * Matrix `#qubes-summit:matrix.org` will be used for communication during event.
 * In case of any issues please contact with organizers.
@@ -436,11 +442,10 @@ https://vpub.dasharo.com
 * There are also partners selling their merchandise.
 
 ---
+
 layout: cover
 background: /intro.png
 class: text-center
 ---
 
 # Q&A
-
-<!-- markdownlint-enable MD022 MD003 -->
