@@ -10,14 +10,12 @@ class: text-center
 Piotr Król and Marek Marczykowski-Górecki
 
 ---
-
 layout: image
 image: /@fs/repo/public/2025/QubesOSsummit/qubes-summit-2025.jpg
 backgroundSize: 75%
 ---
 
 ---
-
 layout: cover
 background: /intro.png
 class: text-center
@@ -64,7 +62,6 @@ support.
 -->
 
 ---
-
 layout: cover
 background: /intro.png
 class: text-center
@@ -90,7 +87,6 @@ their consistent and practical commitment to our shared goals.
 -->
 
 ---
-
 layout: cover
 background: /intro.png
 class: text-center
@@ -209,7 +205,6 @@ Qubes HCL snapshot date 25/09/2025
   - Certified Hardware with Intel Boot Guard and UEFI Capsule Update released.
 
 ---
-
 transition: fade
 ---
 
@@ -218,7 +213,6 @@ transition: fade
 <center><img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2023_stats.png" width="600"></center>
 
 ---
-
 transition: fade
 ---
 
@@ -227,7 +221,6 @@ transition: fade
 <center><img src="/@fs/repo/public/2024/QubesOSsummit/qubes_2024_stats.png" width="600"></center>
 
 ---
-
 transition: fade
 ---
 
@@ -320,7 +313,6 @@ We are always listening and look forward to your feedback for 2025!
 gluten-free._
 
 ---
-
 zoom: 0.97
 ---
 
@@ -374,7 +366,6 @@ zoom: 0.97
     relying on an honor system here.
 
 ---
-
 layout: cover
 background: /intro.png
 class: text-center
@@ -442,7 +433,6 @@ Conduct](https://doc.qubes-os.org/en/latest/introduction/code-of-conduct.html).
 * There are also partners selling their merchandise.
 
 ---
-
 layout: cover
 background: /intro.png
 class: text-center
