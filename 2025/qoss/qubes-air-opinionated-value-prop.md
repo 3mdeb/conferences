@@ -185,6 +185,18 @@ Why them?
 
 ---
 
+<center>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <img src="/@fs/repo/public/2025/QubesOSsummit/power-up-privacy-logo-light.png" width="220px" style="margin-bottom: 40px; margin-top: -30px;">
+    <div style="display: flex; justify-content: center;">
+      <img src="/@fs/repo/public/2025/QubesOSsummit/Kicksecure-logo-text.svg" width="300px" style="margin-right:20px">
+      <img src="/@fs/repo/public/2025/QubesOSsummit/Whonix-logo-text.svg" width="300px">
+    </div>
+  </div>
+</center>
+
+<br>
+
 Documentation of
 [Threat Model Persona](https://github.com/3mdeb/verified-boot/blob/master/threat-model-persona.md)
 of **Expert** and
@@ -199,83 +211,188 @@ Some credits.
 -->
 
 ---
-
-# Friction #1
+clicks: 4
+---
 
 <center>
-    <img src="/@fs/repo/img/qoss2025/qoss2025_friction_1.excalidraw.svg" width="500px">
+    <img src="/@fs/repo/img/qoss2025/friction_1.excalidraw.png" width="500px">
 </center>
 
 <!--
+
+[click]
+* Key management is world class issue, or at least issue of those who are
+  responsible for security.
+
+[click]
+* Most of recent security issues are coming from key managment or rather
+  mismanagement. Intel Boot Guard key leaks from OEMS or provisioning systems
+  with sample Test key (famous PKFail).
+
+[click]
+* What we have today:
+  - key tree sprawls across laptops, USB sticks, and ad-hoc scripts;
+  - every new platform or release branch spawns another class of keys,
+  - Many orgs reliably prove when a key is allowed to be used or that the machine
+    holding it is in a known-good state, especially if we consider various levels
+    of key tree.
+  - Our secpacks growing and it is just matter of time, when it will cause
+    problems, not mentioning about workforce rotation which requires to certify and
+    revoke keys regularly across the systems
+  - HSMs help but add cost, workflow integration overhead, and despite there is
+    place and need for those, they have to be integrated in infrastructure if
+    expected value is on positive side.
+
+[click]
+* Those are serious issues and we will not solve all of them.
+  There are definitely solutions that fit ideally in solution chain, but I want
+  to discuss potential Qubes Air architecture may have in improving that part
+  slightly, so we can leverage ecosystem that we know and love.
+
+-->
+
+---
+clicks: 4
+---
+
+<center>
+    <img src="/@fs/repo/img/qoss2025/friction_2.excalidraw.png" width="500px">
+</center>
+
+<!--
+
+[click]
+* This is not what developers want to hear, but IMHO we should not build
+  software on our thin clients end points.
+  - there are workstations and servers for that and to those machines we should
+    delegate hard job
+
+[click]
+* In configuration with hypervisor we tend to destroy our storage, wearleveling
+  yada yada.
+
+[click]
+* But that is not the only problem with local builds:
+  - reproducibility or even distributed reproducibility is another issues
+  - Toolchains drift between developers and runners; base images and host kernels
+    change under us; timestamps, locale, file ordering, and network fetches leak
+    nondeterminism;
+  - we can save VMs or containers, and this is how most of us solve that problem
+* Building locally is bad for business.
+* We have to build architecture designed for reproducibility with fine grained
+  policies and who knows
+
+[click]
+* By no means Qubes Air is dedicated tool for such problem, but may be unified
+  interface and policy management improve overall operation.
+* This is not just building, that would be simple, let's consider building with
+  special souse.
 
 Some other use cases/workloads:
 - trasncoding, video/audio processing, streaming
 - search and indexing
 - CI/CD - we should not build on our thin clients
 
-Assumptions:
-
-It is trivial to say that Virtualization Based Security is future of Security,
-but so far it is adapted either by:
-1. Hyperscalers.
-2. Hosting/cloud ecosystem.
-3. Corporate Enterprise OSes.
-4. Niche group of enthusiasts.
-
-There is massive market with potential benefits from Virutalization Based
-Security especially in era of uncertainty, not-always-reasonable compliance
-requirements and return of PC/Destkop/Workstation era on the LLM hype wave.
-
-Visualization:
-- three racks: homelab, company lab/dev, company production
-- buying professional all-in-one rack -> expensive, economically infeasible,
-  also vendor lock-in
-- putting it together:
-  - this is what some of us doing as daily job, occasional system building or
-    professionally
-  - again we can choose ready to use building blocks, or try to glue something
-    our own
-
-In most cases it is not only about security, privacy or trustworthiness, it is
-also for cases, when incident will happen we really have ability to:
-- detect - quickly inspect, analyze and isolate to improve our detection
-- protect - also improve our protection
-- recover - get back to operation ASAP
-
-Why now?
-- rise of need for security because global power shift
-- first most likely is the cause of hard push for compliance, compliance means
-  auditability
-
-TBD:
-- KPI for proving problem is solved.
 -->
 
 ---
 
-# Friction #2
+<center>
+    <img src="/@fs/repo/img/qoss2025/friction_1_plus_2.excalidraw.png" width="900px">
+</center>
+
+<br>
+
+Of course, that equation computes under specific computation systems. In this
+case, I mean systems where trustworthiness for computing is not an option; it is
+a requirement. If that happens, controlling the Root of Trust and Chain of Trust is
+paramount.
 
 ---
-
-# Friction #3
-
+clicks: 4
 ---
 
-# Friction #4 and #5
+<center>
+    <img src="/@fs/repo/img/qoss2025/friction_3.excalidraw.png" width="600px">
+</center>
 
 <!--
 
+[click]
+* Provisioning RoT/CoT is still a maze.
+* Every platform and release family comes with a different recipe for key
+generation, fusing or Boot Guard policy, Secure Boot PK/KEK/DB updates, PCR
+policies, and update-signing semantics.
+* The tools live in different silos—ROM tools, board vendor flashers, OEM
+scripts, CI steps, field jigs—and none of them agree on formats, identities, or
+evidence.
+
+[click]
+* Each run turns into a bespoke ceremony: re-confirm the docs, re-approve the
+scripts, re-enroll the keys, hope the jig version matches, discover late that
+the ‘right key signs the wrong thing’ or that revocation lists drifted. 
+
+[click]
+* Auditors then ask who signed what, on which machine, and in what measured
+state—and we can’t reconstruct it without heroics.
+* The result is schedule slip, expensive appliances, creeping delegation
+lock-in, and a persistent doubt about whether the provisioned chain will
+actually verify in the field.
+
+-->
+---
+
+<center>
+    <img src="/@fs/repo/img/qoss2025/friction_4_and_5.excalidraw.png" width="900px">
+</center>
+
+<!--
+
+You are probably bored, but before we jump into Qubes Air two last cases.
+
 I know I should have just 3 frictions, but I could not resist adding last two
-which are very closely related to todays trends and giving pirch  is
+which are very closely related to todays trends and giving pitch  is
 essentially impossible without mentioning those two areas.
 
 I promise this is almost last time and we will focus on frictions #1-#3.
 
+Running LLMs on real project data keeps tripping the same alarms: I can’t prove
+the model is stateless, I can’t bound where prompts and embeddings travel, and
+I can’t enforce who gets compute or which model weights are even allowed for a
+given task. Caches, plugins, and silent telemetry create memory I never
+authorized. Model versions drift under me, so two runs on the ‘same’ input
+disagree, and I have no clean way to freeze context for review. Egress controls
+are porous—the model can synthesize or summarize its way around filters—and
+nothing ties a response to an attested environment. The net effect is legal
+exposure, accidental leakage, and irreproducible results that I can’t defend in
+a post-mortem or an audit.
+
+When something goes wrong, I cannot reconstruct who did what, on which machine,
+in what measured state. Logs live in runners, artifact stores, package
+registries, and ticketing systems that don’t agree on identities or time.
+Provenance breaks at the seams: the binary doesn’t cleanly map to the commit,
+the container SBOM disagrees with the base image SBOM, and the update-signing
+step sits in a different trust silo. Ephemeral infrastructure erases context,
+timestamps are squishy, and vendors gate the few tools that might help behind
+expensive appliances and lock-in. The result is slow, inconclusive root-cause
+analysis, weak evidence for compliance, and a lingering doubt about whether the
+thing we shipped is the thing we meant to ship.
+
 -->
 
 ---
 
 <!--
+
+We quickly get through some frictions experts may experience. Now its time to ...
+
+-->
+
+---
+
+<!--
+
+About Qubes Air
 
 Joanna writing is probably one of most influential among FOSS crowd when we
 touch space of privacy and security. We keep recalling here work related to x86
@@ -336,3 +453,62 @@ Qubes Air security considerations:
 -->
 
 ---
+
+<!--
+
+Assumptions:
+
+It is trivial to say that Virtualization Based Security is future of Security,
+but so far it is adapted either by:
+1. Hyperscalers.
+2. Hosting/cloud ecosystem.
+3. Corporate Enterprise OSes.
+4. Niche group of enthusiasts.
+
+There is massive market with potential benefits from Virutalization Based
+Security especially in era of uncertainty, not-always-reasonable compliance
+requirements and return of PC/Destkop/Workstation era on the LLM hype wave.
+
+Visualization:
+- three racks: homelab, company lab/dev, company production
+- buying professional all-in-one rack -> expensive, economically infeasible,
+  also vendor lock-in
+- putting it together:
+  - this is what some of us doing as daily job, occasional system building or
+    professionally
+  - again we can choose ready to use building blocks, or try to glue something
+    our own
+
+In most cases it is not only about security, privacy or trustworthiness, it is
+also for cases, when incident will happen we really have ability to:
+- detect - quickly inspect, analyze and isolate to improve our detection
+- protect - also improve our protection
+- recover - get back to operation ASAP
+
+Why now?
+- rise of need for security because global power shift
+- first most likely is the cause of hard push for compliance, compliance means
+  auditability
+
+TBD:
+- KPI for proving problem is solved.
+-->
+
+---
+
+<!--
+
+Friction #1 solution
+
+How Qubes Air could help?
+
+In Qubes Air the issuer is me. We keep a simple three-tier hierarchy: L1
+ephemeral local keys for everyday work, L2 release-family keys available only
+after attestation, and L3 product or organizational masters touched rarely
+under N-of-M. Measured boot binds unseal to TPM PCRs so secrets open only on
+attested state. Remote signing runs in attested service VMs via qrexec policy;
+an HSM or KMS can provide custody without owning the workflow. The outcome is
+fewer standing keys on endpoints, policy-gated use, and auditable, reversible
+actions when something goes wrong.
+
+-->
