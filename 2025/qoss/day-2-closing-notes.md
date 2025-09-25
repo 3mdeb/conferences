@@ -10,7 +10,6 @@ class: text-center
 Piotr Król
 
 ---
-
 layout: cover
 background: /intro.png
 class: text-center
@@ -57,7 +56,6 @@ support.
 -->
 
 ---
-
 layout: cover
 background: /intro.png
 class: text-center
@@ -83,7 +81,6 @@ their consistent and practical commitment to our shared goals.
 -->
 
 ---
-
 layout: cover
 background: /intro.png
 class: text-center
@@ -125,7 +122,6 @@ educational resources to help advance online privacy and security.
 -->
 
 ---
-
 layout: cover
 background: /intro.png
 class: text-center
