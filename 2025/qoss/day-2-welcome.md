@@ -10,14 +10,12 @@ class: text-center
 Piotr Król and Marek Marczykowski Górecki
 
 ---
-
 layout: image
 image: /@fs/repo/public/2025/QubesOSsummit/qubes-summit-2025.jpg
 backgroundSize: 75%
 ---
 
 ---
-
 layout: cover
 background: /intro.png
 class: text-center
@@ -64,7 +62,6 @@ support.
 -->
 
 ---
-
 layout: cover
 background: /intro.png
 class: text-center
@@ -90,7 +87,6 @@ their consistent and practical commitment to our shared goals.
 -->
 
 ---
-
 layout: cover
 background: /intro.png
 class: text-center
@@ -160,7 +156,6 @@ educational resources to help advance online privacy and security.
 #### **_Recent Advances in Device Management in Qubes OS_** - Piotr (ITL)
 
 ---
-
 zoom: 0.96
 ---
 
@@ -195,7 +190,6 @@ zoom: 0.96
 #### **_Closing Notes_** - Piotr (3mdeb)
 
 ---
-
 layout: cover
 background: /intro.png
 class: text-center
