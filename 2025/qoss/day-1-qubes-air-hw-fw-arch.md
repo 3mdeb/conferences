@@ -294,7 +294,7 @@ class: text-center
     <div style="float: left; width: 50%;">
       <img src="/@fs/repo/public/2025/QubesOSsummit/zarhus-logo-new.png" width="220px">
     </div>
-    <div style="float: left; width: 50%;">
+    <div style="float: right; width: 50%;">
       <img src="/@fs/repo/public/2025/QubesOSsummit/OpenBMC_logo.png" width="270px">
     </div>
   </div>
@@ -402,7 +402,258 @@ layout: two-cols-header
 
 ---
 
+# Secure Encrypted Virtualization (SEV)
+
+* Set of technologies improving the confidentiality and integrity protection
+  of guest VMs
+
+* First technology introduced in 2016 with later generations further adding
+  more features
+
+* **SEV** - guest memory isolation by one key per guest encryption
+
+* **SEV-ES** - Encrypted state of guest registers, even from the hypervisor
+
+* **SEV-SNP** - Secure Nested Paging, provides a protected private memory to guest
+
+* **SEV-TIO** - Trusted I/O, lets the guest choose whether it trusts a device
+  enough to allow the device access to guest private memory
+
+---
+
+# SEV Encrypted State
+
+<!-- markdownlint-disable MD033 -->
+
+<figure>
+  <img src="/@fs/repo/public/2025/QubesOSsummit/sev_es.png" width="95%">
+  <figcaption>
+    <a href= "https://www.amd.com/content/dam/amd/en/documents/epyc-business-docs/white-papers/Protecting-VM-Register-State-with-SEV-ES.pdf">
+      Protecting VM register state with SEV-ES Whitepaper
+    </a>
+  </figcaption>
+</figure>
+
+<!-- markdownlint-enable MD033 -->
+
+<!--
+
+Whenever a VM stops running, due to an interrupt or other event, its register
+contents are saved to hypervisor memory and this memory is readable by the
+hypervisor even if SEV is enabled. This information could allow a malicious or
+compromised hypervisor to steal information or alter critical values in guest
+state such as an instruction pointer, encryption key, etc.
+
+With SEV-ES, both the initial memory image as well as the initial CPU register
+state must be encrypted by the AMD Secure Processor (AMD-SP) before execution
+of the guest VM can start. During this initialization process, the memory
+image and initial CPU register state is measured cryptographically by the
+AMD-SP to generate a launch receipt that may be used for attestation of the
+guest. This attestation enables the owner of the guest VM to determine if the
+VM started successfully with the correct image and register state prior to
+releasing it secrets.
+
+Using SEV-ES may help in limiting the problems of "hypervisor as a single point
+of failure" and protect the AppVMs from compromised hypervisor.
+
+-->
+
+---
+
+# SEV Secure Nested Paging
+
+<!-- markdownlint-disable MD033 -->
+
+<figure>
+  <img src="/@fs/repo/public/2025/QubesOSsummit/sev_snp.png" width="100%">
+  <figcaption>
+    <a href="https://www.amd.com/content/dam/amd/en/documents/developer/sev-tio-whitepaper.pdf">
+      AMD SEV-TIO: Trusted I/O for Secure Encrypted Virtualization Whitepaper
+    </a>
+  </figcaption>
+</figure>
+
+<!-- markdownlint-enable MD033 -->
+
+<!--
+
+SEV-SNP allows a guest to separate its memory into shared and private memory.
+Shared memory is accessible to host software and is marked as hypervisor-owned
+in the Reverse Map Table (RMP), a data structure that stores the SEV-SNP
+security attributes of each page of memory in the system. Private memory is
+assigned to the guest in the RMP, writeable only by the guest, and encrypted
+with the guest’s unique memory encryption keys. The guest uses private memory
+to store sensitive data and its executable code. The CPU and IOMMU both
+enforce the access control policy for guest private memory by checking the RMP
+as required during address translation to ensure that the software or device
+accessing memory has sufficient privileges.
+
+SNP architecture protect guests from maliciously programmed devices by
+treating all device accesses as if they originated from host software
+and are therefore untrusted.
+
+If the guest needs data to flow between its private memory and the assigned
+device, the guest must copy the data in and out of a shared buffer that is
+accessible by both the guest and assigned devices. This method is called
+bounce buffering, depicted on the left portion of Figure 1, because the data
+bounces to and from the shared memory buffer. This may have performance
+impacts on I/O due to the extra memory movement required.
+
+Further, because all communication between the guest and the device, including
+device register access, must occur through shared memory, all traffic is
+visible to host software. To protect the confidentiality and integrity of
+device communication with the guest, device specific protocols must be
+established between the guest and device.
+
+It could serve as an enhancement to Qubes' vchan based on Xen Grant Tables.
+
+-->
+
+---
+
+# SEV Trusted I/O
+
+<!-- markdownlint-disable MD033 -->
+
+<figure>
+  <img src="/@fs/repo/public/2025/QubesOSsummit/sev_tio.png" width="500px">
+  <figcaption>
+    <a href="https://www.amd.com/content/dam/amd/en/documents/developer/sev-tio-whitepaper.pdf">
+      AMD SEV-TIO: Trusted I/O for Secure Encrypted Virtualization Whitepaper
+    </a>
+  </figcaption>
+</figure>
+
+<!-- markdownlint-enable MD033 -->
+
+<!--
+
+AMD has worked with PCI SIG and industry partners to develop and ratify the
+TEE Device Interface Security Protocol (TDISP), a standard intended to address
+the need for trust in devices by guests in confidential compute environments.
+TDISP defines new protocols and functions of devices that enable them to
+authenticate themselves, prevent traffic interception or masquerading on the
+PCIe fabric, attest to their configuration, and isolate guest workloads from
+device controls available to host drivers.
+
+The data path of a TDISP device to the guests it serves is protected with the
+PCI Integrity and Data Encryption (IDE) protocol. IDE encrypts and
+authenticates all device traffic in an end-to-end stream where only the root
+port and the TDISP device possess the IDE stream keys which prevents
+intervening PCIe switches, physical attackers, and maliciously designed
+devices on the PCIe fabric from mounting man-in-the middle or masquerading
+attacks on fabric traffic. Any bad actors in the fabric will only see
+ciphertext and cannot alter the stream without detection by the device and
+root port.
+
+The AMD Secure Processor (ASP) hosts the SEV firmware which plays a central
+role in orchestrating the lifecycle of secure guests. SEV-TIO brings new
+commands and guest request messages to configure the IOMMU, the PCIe root
+complex, and the architectural data structures necessary to bring TDIs into
+the trust boundary of guests. Further, to serve the role of TSM, the ASP also
+implements an SPDM responder which communicates with the DSMs of TDISP
+devices.
+
+As with SEV-SNP today, the IOMMU is responsible for address translation and
+performing RMP checks on DMA to protect the confidentiality and integrity of
+SEV-SNP guests. SEV-TIO enriches the RMP checks performed by the IOMMU to
+allow devices to access guest private memory directly after the guest
+indicates that it trusts the device and its configuration.
+
+Finally, SEV-TIO adds support to the PCIe controller to construct IDE streams
+for the purpose of protecting the confidentiality and integrity of guest data
+over the PCIe fabric between the root complex and the TDISP device. IDE
+streams also authenticate traffic to detect malicious agents on the PCIe
+fabric attempting to masquerade as a trusted device or as the root complex.
+
+Conventionally, the hypervisor is responsible for emulating IOMMU behavior to
+a guest. When a guest needs to send a command to th IOMMU, the hypervisor
+intercepts that access and submits the request to the IOMMU on behalf of the
+guest. To improve performance of the guest IOMMU access path, AMD offers a
+Virtualized IOMMU (vIOMMU). A vIOMMU is a virtual interface to the IOMMU’s
+command buffers, event log, and Peripheral Page Request (PPR) log. Through
+this interface, the guest interacts directly with the IOMMU instead of relying
+on hypervisor emulation.
+
+SEV TIO and TDISP PCI specification should help with malicious
+PCIe devices impersonating other device, type or class of the device.
+
+-->
+
+---
+
+# Qubes Air
+
+How this maps to the Qubes Air architecture?
+
+* Server virtualization security features may provide a stronger foundation
+  for confidential and privacy-sensitive qubes
+
+* Server virtualization security features can potentially limit the impact of
+  hypervisor vulnerabilities on the qubes
+
+* Applicable to all Qubes Air use cases:
+  - "Qubes in the cloud"
+  - "Qubes Hybrid Mode"
+  - Server as an "air-gapped" device with Qubes
+
+---
+
 # Roadmap to a certified Qubes OS server
+
+<!-- markdownlint-disable MD033 -->
+
+<center>
+  <div style="display: table">
+    <div style="float: left; width: 50%; padding: 30px;">
+      <img src="/@fs/repo/public/2025/QubesOSsummit/Qubes_OS_Logo.svg" width="200px">
+    </div>
+    <div style="float: right; width: 50%;">
+      <img src="/@fs/repo/public/2025/QubesOSsummit/gigabyte_mz33_ar1.png" width="200px">
+    </div>
+  </div>
+</center>
+
+<!-- markdownlint-enable MD033 -->
+
+GIGABYTE MZ33-AR1 as a first Qubes certified server?
+
+1. Open-source boot firmware.
+2. Support for new virtualization features introduced by silicon vendors.
+3. Creation of extended certification requirements for servers.
+4. Validation and testing (?)
+
+<!-- markdownlint-disable MD022 MD003 -->
+---
+layout: two-cols-header
+---
+<!-- markdownlint-enable MD022 MD003 -->
+
+# Additional certification requirements
+
+::left::
+
+<!-- markdownlint-disable MD033 -->
+
+<center><img src="/@fs/repo/public/2025/QubesOSsummit/Qubes_OS_Logo.svg" width="350px"></center>
+
+<!-- markdownlint-enable MD033 -->
+
+::right::
+
+### Server certification additional requirements
+
+<br>
+
+* Strong guest memory and state (SEV, SEV-ES)
+* Strong guest private memory protection (SEV-SNP)
+* Strong guest device I/O isolation (SEV-TIO/vIOMMU)
+* Any others?
+
+Needs further analysis:
+
+* Compute Express Link (CXL) - may pose challenges to protect against DMA
+  properly
 
 <!-- markdownlint-disable MD022 MD003 -->
 ---
