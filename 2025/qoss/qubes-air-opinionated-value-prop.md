@@ -14,20 +14,20 @@ class: text-center
 <!--
 
 Building on "Qubes Air: Hardware, Firmware, and Architectural Foundations":
-- [ ] outline opinionated vision of Qubes Air vertical integration
-- [ ] address the needs of security-conscious technical professionals
-  - [ ] define those professionals
+- [x] outline opinionated vision of Qubes Air vertical integration
+- [x] address the needs of security-conscious technical professionals
+  - [x] define those professionals
 - [ ] How Qubes Air aligns with the threat models and workflows of
   security-sensitive users including comparison with non-Qubes Air workflow.
-  - [ ] what workflows we talking about
+  - [x] what workflows we talking about
   - [ ] shim-review as dataset for problems mining, this is just shim and we
     have so many needs
     - mention some requirements for HSM, key material maintenance, signing
       process, CI/CD relation
-  - [ ] need for user-controlled root of trust and chain of trust
+  - [x] need for user-controlled root of trust and chain of trust
     - Intel Boot Guard or Arm-based key fusing as example
     - sealing/forward sealing
-- [ ] give clear reference to Kicksecure/Whonix and PUP
+- [x] give clear reference to Kicksecure/Whonix and PUP
 - [ ] what will be used to solve those problems?
   - [ ] obviously Dasharo and Qubes OS (in this case Qubes Air), but is there
     an alternative?
@@ -37,11 +37,12 @@ Building on "Qubes Air: Hardware, Firmware, and Architectural Foundations":
   - [ ] Qubes Air and RemoteVM novum that coming to Qubes OS R4.3
   - [ ] PoC demo it works in at least tested in some limited capacity
 - [ ] explain what workloads those components can satisfy
-  - [ ] enumerate workfloads and workflows based on threat model that can be
-    satisfied using compoents connected in our system Dasharo+Qubes Air on
+  - [ ] enumerate workloads and workflows based on threat model that can be
+    satisfied using components connected in our system Dasharo+Qubes Air on
     server and Dasharo+Qubes OS on thin client
-  - [ ] how those are executed now, how those would be used in future
+  - [x] how those are executed now,
     - nobody want to talk about ugly reality of today
+  - [ ] how those would be used in future
 - [ ] relation to attestation based authentication
   - [ ] TrenchBoot role
     - this is not AEM case, although AEM could be used at thin client
@@ -133,6 +134,14 @@ About 3mdeb.
 -->
 
 ---
+layout: cover
+background: /intro.png
+class: text-center
+---
+
+## Problem Statement (aka Frictions)
+
+---
 clicks: 2
 ---
 
@@ -144,9 +153,9 @@ clicks: 2
   - maintainers of security related software
   - incident response teams
 - Adversary
-  - intrenal or external
+  - internal or external
 - Auditor
-  - governament, certification/compilance org, insurer
+  - governments, certification/compliance org, insurer
 
 <!--
 
@@ -303,10 +312,10 @@ Some other use cases/workloads:
 
 <br>
 
-Of course, that equation computes under specific computation systems. In this
-case, I mean systems where trustworthiness for computing is not an option; it is
-a requirement. If that happens, controlling the Root of Trust and Chain of Trust is
-paramount.
+Of course, that equation works only under specific (_opinionated_) computation
+systems. In this case, I mean systems where trustworthiness for computing is
+not an option; it is a requirement. If that happens, controlling the Root of
+Trust and Chain of Trust is paramount.
 
 ---
 clicks: 4
@@ -381,36 +390,42 @@ thing we shipped is the thing we meant to ship.
 -->
 
 ---
+layout: cover
+background: /intro.png
+class: text-center
+---
+
+# Qubes Air
 
 <!--
 
-We quickly get through some frictions experts may experience. Now its time to ...
+We quickly get through some frictions experts may experience today. Now its
+time to recap Qubes Air from 2018.
 
 -->
 
 ---
+clicks: 4
+---
+
+<figure>
+  <img src="/@fs/repo/img/qoss2025/qubes-cloud-hybrid.png" width="500px">
+  <figcaption>
+    Qubes Air: Generalizing the Qubes Architecture, http://qubes-os.org/news/2018/01/22/qubes-air/
+  </figcaption>
+</figure>
 
 <!--
 
-About Qubes Air
+[click]
+* Joanna writing is probably one of most influential among FOSS crowd when we
+touch space of privacy and security.
+* We keep recalling her work related to x86 considered harmful or stateless
+laptop, but today I would like to talk about post published on 22 January 2018
+about Qubes Air, which generalize Qubes Architecture.
 
-Joanna writing is probably one of most influential among FOSS crowd when we
-touch space of privacy and security. We keep recalling here work related to x86
-considered harmful or stateless laptop, but today I would like to talk about
-post published on 22 January 2018 about Qubes Air, which according to here is
-generalization of Qubes Architecture.
-
-What were reasons for Qubes Air:
-
-- Deployment cost - to some extent still valid today, but OTOH we get great
-  powerful and memory rich laptops which seem to be sufficient for casual use
-  of and even for some daily drivers. So not so much issue today unless you are
-  compute (or certain type of compute) hungry professional.
-- Hypervisor or modern and powerful (cutting corners "x86") computer
-  architecture is the issue and source of bugs.
-
-What I don't want to talk about?
-
+[click]
+To make things clear. Following are out of scope out of scope:
 - old hardware - there is reason for that, EOL, lack of patches for uArch bugs,
   penny scrapping on hardware, unless we talking about high value ancient
   artifacts, with all due respect not every one can and should become Indiana
@@ -418,45 +433,94 @@ What I don't want to talk about?
   topic here
   - so we talking about modern and reasonably expensive hardware, it would be
     clearer when I will explain our persona
-- Qubes Air in public cloud, unless in some limited capacity for very narrowly
+- Qubes Air in public cloud - only in some limited capacity for very narrowly
   defined use cases, but with focus and foundation on self-hosted private
   cloud.
 - Situation where Platform Owner (individual or organization) do not put
   emphasis on reasonable control their Root of Trust and Chain of Trust.
 
-Idea for picture: schematic drawing of Qubes Air schemes and big red X on those
-which we discourage.
-
-What are other reasons?
-- distributed reproducibility
-- need for heavy but privacy respecting and secure computing
+[click]
+What were reasons for Qubes Air:
+- Deployment cost understand as problem with finding compatible hardware
+  - it is not that hard to find hardware which is Qubes OS Certified and works
+    our of the box
+  - our need for controlling hardware as well as requirements for domain specific
+    computing extend, that why we can redefine it
+  - Qubes Air still help satisfy that reason by offloading to cloud
+- Hypervisor or modern and powerful (cutting corners "x86") computer
+  architecture is the issue and source of bugs.
+  - it is still value although Xen has probably most solid security process among
+    open-source hypervisors
+  - Xen is also considered one of the most stable and minimal in context of
+    features it support
+  - pending MISRA  compliance and adoption in automotive prove that
+  - microarchitecture bugs are definitely issue predicted or marketed by Joanna,
+    but there are other processor architectures that coming (Arm, RISC-V) and x86
+    have to keep up to stay competitive, there is also a lot of side project which
+    try to address that: CHERI, memory tagging, control flow integrity
 
 Notes about Joanna approach to security of Qubes:
 - it is about minimizing and controlling interfaces between components
 - more isolated components with well defined interfaces are better than unified
   bloated solution
 
-Qubes Air security considerations:
-- Is local laptops computing worse than remote server? Why?
-- Is travelling with USB token that keeps your private key better than keeping
-  it under the physical security control guard in a vault?
-- The problem is sending things over intrenet?
-  - What if we sending only through intranet?
-- Some may say this is coming back to mainframe security model.
-  - Classic mainframe/MLS concentrates the TCB on the host. Terminals are I/O
-    only and outside the TCB; they do not enforce policy. Any controller or
-    link encryptor on the path enters the TCB only if the system relies on it
-    for security properties. This sets the baseline for our contrast with Qubes
-    Air, where we keep the TCB central but add a minimal, attested
-    display/input slice on the thin client.
+
+[click]
+- There are some things on this picture which still remain a dream, but we
+slowly leaning toward those: Qubes GUI VM, Qubes GUI protocol, or fully
+featured Admin VM with dom0less or minimal dom0 architecture.
+- We are far from exhausting Joanna vision, here we talking only hybrid
+architecture, but there are also Qubes on air-gapped devices as well as Qubes
+Zones. We don't have time to dive into those here. Maybe at different occasion.
+
+-->
+---
+
+<figure>
+  <img src="/@fs/repo/img/qoss2025/qubes-zones.png" width="425px">
+  <figcaption>
+    Qubes Air: Generalizing the Qubes Architecture, http://qubes-os.org/news/2018/01/22/qubes-air/
+  </figcaption>
+</figure>
+
+<!--
+
+Qubes Zones is another concept build on top of Qubes Air, which could bring
+very interesting topic of distributed reproducibility as proof of correctness,
+as well as multiple signed reproduction proofs in order to satisfy the criteria
+of reasonably secure supply chain strategy.
+
+Closely resembles Friction #2.
 
 -->
 
 ---
 
+<center>
+    <img src="/@fs/repo/img/qoss2025/qubes_air_motivation_today.excalidraw.png" width="800px">
+</center>
+
 <!--
 
-Assumptions:
+So today motivation for Qubes Air is:
+- distributed reproducibility (stagex)
+- self-hosted user-controlled Root of Trust and Chain of Trust management systems (Zarhus Provisioning Box/VM)
+- MAC LLM inferencing (arthurrasmusson/bsd3-mac-llm-ui)
+- Compliance evidence gathering (CISO Assistant?)
+
+There can be more, but as I said this is opinionated.
+
+-->
+
+---
+
+<center>
+    <img src="/@fs/repo/img/qoss2025/state_of_qubes_air.excalidraw.png" width="900px">
+</center>
+
+---
+
+<!--
 
 It is trivial to say that Virtualization Based Security is future of Security,
 but so far it is adapted either by:
@@ -512,3 +576,25 @@ fewer standing keys on endpoints, policy-gated use, and auditable, reversible
 actions when something goes wrong.
 
 -->
+
+---
+
+<!--
+
+Qubes Air security considerations:
+- Is local laptops computing worse than remote server? Why?
+- Is travelling with USB token that keeps your private key better than keeping
+  it under the physical security control guard in a vault?
+- The problem is sending things over intrenet?
+  - What if we sending only through intranet?
+- Some may say this is coming back to mainframe security model.
+  - Classic mainframe/MLS concentrates the TCB on the host. Terminals are I/O
+    only and outside the TCB; they do not enforce policy. Any controller or
+    link encryptor on the path enters the TCB only if the system relies on it
+    for security properties. This sets the baseline for our contrast with Qubes
+    Air, where we keep the TCB central but add a minimal, attested
+    display/input slice on the thin client.
+
+-->
+---
+
