@@ -73,18 +73,13 @@ Bullets split to cover slide page evenly.
 
 Some of the points we will discuss along with the presentation.
 
--->
-
-<!-- markdownlint-disable MD022 MD003 -->
+<!-- markdownlint-disable MD022 MD003 MD033 -->
 ---
 layout: two-cols-header
 class: text-center
 ---
-<!-- markdownlint-enable MD022 MD003 -->
 
 # Introduction to modern server platforms
-
-<!-- markdownlint-disable MD033 -->
 
 ::left::
 
@@ -106,9 +101,7 @@ class: text-center
   </figcaption>
 </figure>
 
-<!-- markdownlint-enable MD033 -->
-
-<!--
+<!-- markdownlint-enable MD022 MD003 MD033
 
 The pictures represent server platforms that are going to be available with
 Dasharo firmware.
@@ -121,8 +114,6 @@ basically made from scratch.
 
 As you can see the board may have lots of DIMM slots. The GIGABYTE MZ33-AR1
 has 24 DIMM slots and can support up to 6TB of RAM (this is per socket).
-
--->
 
 <!-- markdownlint-disable MD022 MD003 -->
 
@@ -175,8 +166,6 @@ Each board and silicon it is made of has some pros and cons.
 On AMD the boot time is strictly dependent on memory capacity. Servers do not
 seem to support any fast-boot with previously trained memory settings saved in
 non-volatile storage.
-
--->
 
 <!-- markdownlint-disable MD022 MD003 -->
 
@@ -244,9 +233,7 @@ class: text-center
   </figcaption>
 </figure>
 
-<!-- markdownlint-enable MD033 -->
-
-<!--
+<!-- markdownlint-enable MD033
 
 Turin CPU has almost all line with Gen 5 speed.
 There are couple Gen3 lines for less demanding connections.
@@ -256,8 +243,6 @@ Hard to obtain from non-China sources.
 Also the length of cables may affect the PCIe bandwidth.
 
 There are also PCIe to MCIO adapter with PCIe retimers for signal conditioning.
-
--->
 
 <!-- markdownlint-disable MD022 MD003 -->
 
@@ -434,9 +419,7 @@ layout: two-cols-header
   </figcaption>
 </figure>
 
-<!-- markdownlint-enable MD033 -->
-
-<!--
+<!-- markdownlint-enable MD033
 
 Whenever a VM stops running, due to an interrupt or other event, its register
 contents are saved to hypervisor memory and this memory is readable by the
@@ -473,9 +456,7 @@ of failure" and protect the AppVMs from compromised hypervisor.
   </figcaption>
 </figure>
 
-<!-- markdownlint-enable MD033 -->
-
-<!--
+<!-- markdownlint-enable MD033
 
 SEV-SNP allows a guest to separate its memory into shared and private memory.
 Shared memory is accessible to host software and is marked as hypervisor-owned
@@ -582,6 +563,48 @@ PCIe devices impersonating other device, type or class of the device.
 
 ---
 
+# Smart Data Cache Injection
+
+<!-- markdownlint-disable MD033 -->
+
+<figure>
+  <img src="/@fs/repo/public/2025/QubesOSsummit/amd_sdci.png" width="380px">
+  <figcaption>
+    <a href="https://www.amd.com/content/dam/amd/en/documents/epyc-technical-docs/white-papers/58725.pdf">
+      AMD Smart Data Cache Injection (SDCI) White Paper Whitepaper
+    </a>
+  </figcaption>
+</figure>
+
+<!-- markdownlint-enable MD033 -->
+
+```bash
+lspci |grep SDXI
+01:00.1 SNIA Smart Data Accelerator Interface (SDXI) controller: Advanced Micro Devices, Inc. [AMD] SDXI
+42:00.1 SNIA Smart Data Accelerator Interface (SDXI) controller: Advanced Micro Devices, Inc. [AMD] SDXI
+a4:00.1 SNIA Smart Data Accelerator Interface (SDXI) controller: Advanced Micro Devices, Inc. [AMD] SDXI
+e1:00.1 SNIA Smart Data Accelerator Interface (SDXI) controller: Advanced Micro Devices, Inc. [AMD] SDXI
+```
+
+<!--
+
+Smart Data Cache Injection (SDCI) allows preloading of data in processor
+caches by steering applicable I/O data directly to a core’s L2 cache.
+
+Cache residency of critical code is key to overall application performance.
+Unlike alternative cache injection solutions, SDCI enables endpoints to
+control which data are injected into caches and thus reduces cache pollution
+and enhances system performance.
+
+Both host and endpoints must support the TPH feature; TLP Hints (TH) in the
+TLP header identifies data that are candidates for cache insertion. In a
+typical implementation, the host driver and endpoint firmware collaborate on
+device settings to direct I/O packets to the correct cache locations.
+
+-->
+
+---
+
 # Qubes Air
 
 How this maps to the Qubes Air architecture?
@@ -593,8 +616,11 @@ How this maps to the Qubes Air architecture?
   hypervisor vulnerabilities on the qubes
 
 * Applicable to all Qubes Air use cases:
+
   - "Qubes in the cloud"
+
   - "Qubes Hybrid Mode"
+
   - Server as an "air-gapped" device with Qubes
 
 ---
@@ -654,6 +680,15 @@ Needs further analysis:
 
 * Compute Express Link (CXL) - may pose challenges to protect against DMA
   properly
+
+<!-- markdownlint-disable MD022 MD003 -->
+---
+layout: cover
+class: text-center
+---
+<!-- markdownlint-enable MD022 MD003 -->
+
+# Demo time
 
 <!-- markdownlint-disable MD022 MD003 -->
 ---
