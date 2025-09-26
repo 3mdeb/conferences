@@ -13,49 +13,34 @@ class: text-center
 
 ---
 
-# whoami
+# $ whoami
 
-<!--
+<div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+  <img src="/@fs/repo/img/macpijan.png" style="width: 100px; border-radius: 50%;" alt="Profile Picture">
+  <div>
+    <b style="font-size: 1.5em;">Maciej Pijanowski</b><br>
+    <i style="font-size: 1.2em;">Engineering Manager</i>
+  </div>
+</div>
 
-.center[<img
-src="/remark-templates/3mdeb-presentation-template/images/maciej_pijanowski.png"
-width="220px" style="margin-top:-50px"> ]
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 1.2em;">
+  <div>
+    🔑 <code>A766 C895 6989 5C0B 86D5  98D0 9963 C36A AC3B 2B46</code><br>
+    ✉️ <a href="mailto:maciej.pijanowski@3mdeb.com">maciej.pijanowski@3mdeb.com</a><br>
+    🐦 <a href="https://x.com/macpijan">@macpijan</a><br>
+    🔗 <a href="https://www.linkedin.com/in/maciej-pijanowski-9868ab120">LinkedIn</a><br>
+    🌐 <a href="https://www.3mdeb.com">3mdeb.com</a><br>
+    💻 <a href="https://github.com/macpijan">GitHub</a><br>
+  </div>
+</div>
 
-.center[Maciej Pijanowski] .center[_Engineering Manager_] .right-column50[
+::: footer
 
-- Over 8 years in 3mdeb
-- Open-source contributor
-- Interested in:
-  + build systems (e.g., Yocto)
-  + embedded, OSS, OSF
-  + firmware/OS security
+<div style="color: black; font-size: 0.8em; text-align: center; margin-top: 20px;">
+  🌟 Reach out for collaborations or inquiries!
+</div>
+:::
 
-]
-
-.left-column50[
-
-- <a href="https://twitter.com/macpijan">
-    <img
-      src="/remark-templates/3mdeb-presentation-template/images/x.png"
-      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
-      @macpijan
-    </a>
-- <a href="mailto:maciej.pijanowski@3mdeb.com">
-    <img
-      src="/remark-templates/3mdeb-presentation-template/images/email.png"
-      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
-      maciej.pijanowski@3mdeb.com
-    </a>
-- <a href="https://www.linkedin.com/in/maciej-pijanowski-9868ab120">
-    <img
-      src="/remark-templates/3mdeb-presentation-template/images/linkedin.png"
-      width="24px" style="margin-bottom:-5px; margin-left:-15px"/>
-      linkedin.com/in/maciej-pijanowski-9868ab120
-  </a>
-
-]
-
--->
 ---
 
 # Agenda
@@ -63,6 +48,12 @@ width="220px" style="margin-top:-50px"> ]
 - QubesOS AEM
 - TrenchBoot
 - Hardware requirements
+  + DRTM
+- TrenchBoot HCL 
+- Project status
+  + Completed milestones
+  + Upstream status
+  + Planned work
 
 ---
 
@@ -105,15 +96,26 @@ presented when unlocking the disk (after giving a proper TPM SRK password).
 
 # TrenchBoot
 
-- A framework that allows individuals and projects to build security engines to
+A framework that allows individuals and projects to build security engines to
 perform launch integrity actions for their systems.
-- Delivers us the DRTM support for our system (Qubes OS)
+
+Delivers the DRTM support for Qubes OS AEM.
 
 <div style="display: flex; justify-content: center; align-items: center;">
   <center>
-    <img src="/@fs/repo/img/trenchboot_logo.png" width="400">
+    <img src="/@fs/repo/img/trenchboot_logo.png" width="300">
   </center>
 </div>
+
+<br>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+  <img src="/@fs/repo/img/logo/apertus.svg" width="150">
+  <img src="/@fs/repo/img/logo/oracle.svg" width="150">
+  <img src="/@fs/repo/img/logo/3mdeb.png" width="175">
+</div>
+
+<br>
 
 [https://trenchboot.org/](https://trenchboot.org/)
 
@@ -130,9 +132,9 @@ presentation - TB
   + fTPM - integrated into CPU/chipset
   + dTPM - additional chip connected via LPC/I2C/SPI bus
 - **Dynamic Root of Trust for Measurement (DRTM)**
-  + technology from silicon vendor
-  + needs to be present in hardware and supported by the firmware
-  + creates a new, dynamic Root of Trust beyond the static one established by
+  + Technology from silicon vendor
+  + Needs to be present in hardware and supported by the firmware
+  + Creates a new, dynamic Root of Trust beyond the static one established by
    the firmware
 
 <div style="display: flex; justify-content: center; align-items: center;">
@@ -149,21 +151,6 @@ protection and policy input to seal secrets.
 
 ---
 
-# TPM
-
-- fTPM
-  + Intel
-    * implemented in ME
-    * no limitations known so far
-  + AMD
-    * implemented in PSP??
-    * old: TBD, new: to be checked?
-- dTPM
-  + 1.2 and 2.0 already supported
-  + no limiatatinos known so far 
-
----
-
 # DRTM
 
 - Intel
@@ -173,6 +160,8 @@ protection and policy input to seal secrets.
   + AMD SVM (Secure Virtual Machine)
   + SKINIT CPU instruction
 
+---
+layout: two-cols
 ---
 
 # Intel TXT
@@ -187,15 +176,28 @@ protection and policy input to seal secrets.
 
 Source: https://www.intel.com/content/dam/www/public/us/en/documents/guides/intel-one-stop-txt-activation-guide.pdf
 
+::right::
+
+<br><br>
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  <center>
+    <img src="/@fs/repo/img/txt_stars.jpg" width="400">
+  </center>
+</div>
+
 ---
 
 # AMD SVM
 
-- Simply present
+- SKINIT is part of the AMD virtualization instruction set
+- It is not segmented - present on basically all ADM CPUs
+
+<br>
 
 <div style="display: flex; justify-content: center; align-items: center;">
   <center>
-    <img src="/@fs/repo/img/intel_amd_meme.jpg" width="450">
+    <img src="/@fs/repo/img/intel_amd_meme.jpg" width="350">
   </center>
 </div>
 
@@ -203,9 +205,13 @@ Source: https://www.intel.com/content/dam/www/public/us/en/documents/guides/inte
 
 # So, can it run TrenchBoot? 
 
-- Once all requirements are in place, you have a chance that TrenchBoot works
-for you
-  + other times, you end up with unknown TXT errors, hoping BIOS update helps
+- Once all requirements are in place, **you have a chance** that DRTM /
+TrenchBoot works for you
+  + others include:
+    * undocumented TXT errors
+    * reboots with no information whatsoever
+    * disappearing TPM devices
+    * ...
 - The only way to know for sure is to try it out
 - But how?
 
@@ -230,10 +236,10 @@ for you
  +----------------------------------------------------------------------------+
  |*Boot Linux normally                                                        |
  | Boot Linux with TrenchBoot                                                 |
- | Boot Xen normally                                                          |
- | Boot Xen with TrenchBoot                                                   |
- |                                                                            |
- |                                                                            |
+ | Boot Xen normally (MB2)                                                    |
+ | Boot Xen with TrenchBoot (MB2)                                             |
+ | Boot Xen normally (UEFI)                                                   |
+ | Boot Xen with TrenchBoot (UEFI)                                            |
  |                                                                            |
  +----------------------------------------------------------------------------+
 
@@ -241,13 +247,11 @@ for you
       Press enter to boot the selected OS, `e' to edit the commands
 ```
 
-TBD: update grub menu
-
 ---
 
 # trenchboot-hcl
 
-- Heavily inspired by QubesOS HCL
+- Heavily inspired by QubesOS HCL (only selected YAML fields are presented here)
 
 ```yaml
 tpm:
@@ -275,9 +279,65 @@ versions:
 
 ---
 
+# trenchboot-hcl
+
+Dumping various logs to help diagnosing failures
+
+- Standard Linux, Xen, TPM logs
+- Tools from [tboot](TBD) project, such as `txt-stat`
+- `txt-suite` from [converged-security-suite](https://github.com/9elements/converged-security-suite)
+  + The latest (2.8.0/2.8.1) version does not work
+    * https://github.com/9elements/converged-security-suite/issues/406
+  + Cannot be build locally
+    * https://github.com/9elements/converged-security-suite/issues/408
+  + Version 2,6.0 produces results thate are helpful in diagnosis for us
+
+<!--
+some PRs tried to fix that, unmberged
+-->
+
+---
+
+# trenchboot-hcl
+
++ In [this discussion](https://github.com/zarhus/meta-trenchboot/issues/53#issuecomment-3109323608)
+  we are working narrowing down the list of tests
+  critical for our use-case
+
+```bash
+04 - CPU supports SMX                        : PASS
+05 - CPU supports VMX                        : PASS
+[...]
+07 - TXT not disabled by BIOS                : PASS
+08 - BIOS ACM has run                        : PASS
+[...]
+12 - TPM connection                          : PASS
+13 - TPM is present                          : PASS
+14 - TPM NVRAM is locked                     : PASS
+21 - PCR 0 is set correctly                  : PASS
+23 - TXT mode is valid                       : PASS
+36 - TXT not disabled by LCP Policy          : PASS
+44 - TXT heap ranges valid                   : PASS
+45 - TXT public area reserved in e820        : PASS
+[...]
+48 - MMIO TPMDecode space reserved in e820   : PASS
+59 - CPU supports MTRRs                      : PASS
+65 - ACPI RSDP exists and has valid checksum : PASS
+66 - ACPI MCFG is present                    : PASS
+67 - ACPI DMAR is present                    : PASS
+```
+
+---
+
 # trenchboot-hcl - results summary
 
-TBD - table with HW and Linux / Xen results
+Results for meta-trenhboot v0.5.2
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  <center>
+    <img src="/@fs/repo/img/tb_aem_hcl_results.png" width="700">
+  </center>
+</div>
 
 ---
 
@@ -287,14 +347,16 @@ TBD - table with HW and Linux / Xen results
   + We (3mdeb) have been focused on this area the most so far
 - We do not support "modern" AMD (most likely Zen and newer)
   + DRTM flow is changed here, PSP is involved
-  + there's been some work in this area by Oracle regarding AMD servers
+  + There's been some work in this area by Oracle regarding AMD servers
+  + It needs to be integrated, and applied to "modern" AMD clients as well
 - We need proper integration of Intel and AMD Linux patches
   + Linux series should work on Intel, our integrated branch works only on AMD
   + We (3mdeb) have been focused more on AMD in case of Linux
 - We **need much more testing**, especially on more modern units
-  - somewhat recent Intel vPro Essentials as a possible indication of
+  + Somewhat recent Intel vPro Essentials as a possible indication of
   broadening TXT availability
-
+  + Help needed! (we could use hackaton on Sunday as well)
+  
 ---
 
 # Failure examples
@@ -310,6 +372,8 @@ booting normally. No useful logs produced on serial.
   </center>
 </div>
 
+Needs further investigation.
+
 ---
 
 # Failure examples
@@ -317,13 +381,7 @@ booting normally. No useful logs produced on serial.
 Lenovo m920 Tiny - TPM device disappears when booting Xen with TrenchBoot. Xen
 boots fine (and TPM is present) when booting normally.
 
----
-
-# trenchboot hcl logs
-
-slide on txt-suite
-
-https://github.com/zarhus/meta-trenchboot/issues/53
+Needs further investigation.
 
 ---
 
@@ -331,16 +389,16 @@ https://github.com/zarhus/meta-trenchboot/issues/53
 
 - Follow the README:
   + https://github.com/TrenchBoot/trenchboot-hcl
-- Enable TXT
-- Run meta-trechboot release image
-- Select GRUB entry
-- Run `trenchboot-hcl-report`
-- Publish results from USB stick to GitHub
-- Ideas
-  + simplify contribution by uploading directly from booted image
-  + would need to be somewhere else than GH
 
-TBD: graphics, steps?
+<div style="display: flex; justify-content: center; align-items: center;">
+  <center>
+    <img src="/@fs/repo/img/tb_hcl_contributing.png" width="550">
+  </center>
+</div>
+
+- Improvement ideas
+  + Simplify contribution by uploading directly after report is generated
+  + Would need to be stored somewhere else than GH (?)
 
 <!-- markdownlint-disable MD022 MD003 -->
 ---
@@ -354,11 +412,42 @@ class: text-center
 
 ---
 
-# NLnet milestones 
+# Major milestones 
 
-Chagned since FOSDEM 2025 status report
+Completed since FOSDEM 2025 status report
+
 - P4 (AMD): https://blog.3mdeb.com/2024/2024-04-11-aem_phase4/ 
+
+<br>
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  <center>
+    <img src="/@fs/repo/img/tb_aem_phase_4_completed.png" width="600">
+    <img src="/@fs/repo/img/logo/nlnet.svg" width="150">
+  </center>
+</div>
+
+<!--
+- AMD has been initially implemented years ago
+- needed to be rebased on top of the updated trenchboot approach
+-->
+
+---
+
+# Major milestones
+
+Completed since FOSDEM 2025 status report
+
 - P5 (UEFI): https://blog.3mdeb.com/2025/2025-06-10-aem-uefi/
+
+<br>
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  <center>
+    <img src="/@fs/repo/img/tb_aem_phase_uefi_completed.png" width="600">
+    <img src="/@fs/repo/img/logo/nlnet.svg" width="150">
+  </center>
+</div>
 
 <!-- markdownlint-disable MD022 MD003 -->
 ---
@@ -382,8 +471,6 @@ class: text-center
   </center>
 </div>
 
-TBD: logos of contributors?
-
 ---
 
 # Relation chain
@@ -392,7 +479,7 @@ TBD: logos of contributors?
 
 <div style="display: flex; justify-content: center; align-items: center;">
   <center>
-    <img src="/@fs/repo/img/tb_upstream_deps.drawio.png" width="500">
+    <img src="/@fs/repo/img/tb_upstream_deps.drawio.png" width="600">
   </center>
 </div>
 
@@ -400,7 +487,7 @@ TBD: logos of contributors?
 
 # Xen
 
-Possibly the first one to be merged
+Possibly the greatest chance being merged?
 
 - All TrenchBoot patch series are CCed to
   [trenchboot-devel list](https://groups.google.com/g/trenchboot-devel)
@@ -426,11 +513,11 @@ Needs to wait if/when Linux is merged
 
 # Linux
 
+Current situation is rather complex
+
 - Intel
-  + v14
+  + v14 already - a lot of effort from Ross (Oracle)!
   + https://lore.kernel.org/lkml/20250421162712.77452-1-ross.philipson@oracle.com/
-  + Not in the best spot right now
-  + Maintainers questioning merging these patches
 - AMD
   + RFC on top of the Intel patches
   + https://lore.kernel.org/lkml/cover.1734008878.git.sergii.dmytruk@3mdeb.com/
@@ -441,7 +528,7 @@ Needs to wait if/when Linux is merged
 
 - About QubesOS?
   + Perhaps worth responding here with QubesOS numbers?
-  + Note: we do not need Linux support for QubesOS
+  + Note: we do not **directly** need Linux support for QubesOS AEM
   + https://lkml.org/lkml/2025/4/22/1637
 
 <br>
@@ -478,27 +565,24 @@ https://github.com/TrenchBoot/trenchboot-issues/milestone/16
 
 # DRTM between coreboot and UEFI payload
 
-https://camo.githubusercontent.com/aaf8708e3ca99122a50cc3ee8a5797a2bc9e0c34cec218dfcb26160deba1f2de/68747470733a2f2f696d672e706c616e74756d6c2e62697a2f706c616e74756d6c2f7376672f5a4c4e315258656e3442747841715266444a486a7171434c384847324134423935574752444c394c4c4d4f7a6d3059704868514e62624a767a75777a42366d574833615073735f6370526e7651777754627a4f4e496f7351706379716a694a37664c3471394c4a6d4a6d33536f366e6e51717348677578486e6941376f735f67772d4b646c68636437444376504f6953644f4646737643494454345339667635797341524c365953556c3036424374633758485070336f504e385a434d396d4f752d34416d5a424858594468587a4f696b5347503269364248735764744c574f4742615f677831643831724b637a794963697367614c51685a585f56744b5365686f536e6731505638595a79454370724e394e49707074677a6e483366756c66562d2d6471457561434f334e71724e474b484b78624867444c6772704b4845317a5045625662536c5a6e6b575a4c4757536d4e75357845322d4f385762336b46563677634f37354d51366258394a53315558572d395173584d37366a6a6958794f48366346465947477176437551696d6669626163374961536c4934587561694568486858324b6b5a54743442447248636130774a30334e63376a45434846726744306b3475623054574c63584e64336353396332424853514c6e6f5a327044354830314e4f7648524153504d314c775463316167587a4642454d70713550642d453357335f61765a466c335658736f7575332d3834615547356251656e4b4c6641387844487549444c6b794558757743507841416b79514b666261424a4d6675414e71434f4c43686b493444376232546d5943716d6f57455368514a387a6d41796a6f4d787131586e77495433486f534d3053554f48346f70544251302d766f357058717a654b78666e6870744958576958396365763236692d52387676695a6a6132513166544732786d6869646e4a4662507358415537794f5336326265487062746f6e657975546b55655a595a794661355656616265626e6f596959676337416f414a7a7334557a745a59416e5f4a38336c4c486742717a71464753637a787157674d4133724131377667444a7661693646464a31413348706d4d74567a6a396e685f4670485f6b6b7a7033794c4f7a7a71764d71415f6462366e396c4f705a63536738484b3852596b71617854454242397a686a4b4d4c4e4b5464326c49786667712d4e4153696d64364a4f772d7974745356555664464a374d7942736b626848374b545a5750795679724d32647a4d5f6d3430
+https://github.com/TrenchBoot/trenchboot-issues/milestone/15
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  <center>
+    <img src="/@fs/repo/img/tb_aem_plans_payload.png" width="500">
+  </center>
+</div>
 
 ---
 
 # Others
 
-- New hardware support for QubesOS AEM
+- More hardware support for QubesOS AEM
   + MSI PRO B650-A
-  + Intel and AMD server baords (?)
+  + Dasharo-supported hardware (NovaCustom ADL/MTL laptops?)
+  + Intel and AMD server boards (?)
 - Testing
 - Move forward upstream
-
----
-
-# Bonus
-
-OpenQA:
-
-AEM setup: https://openqa.3mdeb.com/tests/416
-AEM first run: https://openqa.3mdeb.com/tests/417
-AEM second run: https://openqa.3mdeb.com/tests/418
 
 <!-- markdownlint-disable MD022 MD003 -->
 ---
