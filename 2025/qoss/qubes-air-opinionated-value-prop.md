@@ -52,11 +52,11 @@ Building on "Qubes Air: Hardware, Firmware, and Architectural Foundations":
   - this could resolve problems of account management, but could be hard to
     implement
   - auditability and compliance, so providing evidence stack is running in
-    knwon good state - there is a lot of to consider if that would have to be
+    known good state - there is a lot of to consider if that would have to be
     made in scale
-  - Mendatory Access Control based access to resources e.g. LLM compute,
+  - Mandatory Access Control based access to resources e.g. LLM compute,
     models, etc.
-  - can given infomation be kept only in vm
+  - can given information be kept only in vm
 - [ ] business value of vertically integrating mentioned components
 - [ ] CTA for investors and customers
 
@@ -150,12 +150,12 @@ clicks: 2
 </center>
 
 - Expert
-  - maintainers of security related software
-  - incident response teams
+  + maintainers of security related software
+  + incident response teams
 - Adversary
-  - internal or external
+  + internal or external
 - Auditor
-  - governments, certification/compliance org, insurer
+  + governments, certification/compliance org, insurer
 
 <!--
 
@@ -188,7 +188,6 @@ Why them?
   - Need for custom services (backup, router, NAS, air-gapped operations)
 - Assuming we are experts only by creating solutions that work for us we can
   really create solutions for others
-
 
 -->
 
@@ -339,7 +338,7 @@ evidence.
 [click]
 * Each run turns into a bespoke ceremony: re-confirm the docs, re-approve the
 scripts, re-enroll the keys, hope the jig version matches, discover late that
-the ‘right key signs the wrong thing’ or that revocation lists drifted. 
+the ‘right key signs the wrong thing’ or that revocation lists drifted.
 
 [click]
 * Auditors then ask who signed what, on which machine, and in what measured
@@ -464,7 +463,6 @@ Notes about Joanna approach to security of Qubes:
 - more isolated components with well defined interfaces are better than unified
   bloated solution
 
-
 [click]
 - There are some things on this picture which still remain a dream, but we
 slowly leaning toward those: Qubes GUI VM, Qubes GUI protocol, or fully
@@ -518,20 +516,123 @@ There can be more, but as I said this is opinionated.
     <img src="/@fs/repo/img/qoss2025/state_of_qubes_air.excalidraw.png" width="900px">
 </center>
 
+<!--
+
+Completed components mean that those can be bought in 3mdeb shop directory or
+through inquiry, or can be obtained on our Githubs.
+
+-->
 ---
+
+<center>
+    <img src="/@fs/repo/img/qoss2025/state_of_qubes_air2.excalidraw.png" width="900px">
+</center>
+
+---
+
+<center>
+    <img src="/@fs/repo/img/qoss2025/remotevm_qrexec_poc.excalidraw.png" width="900px">
+</center>
+
+---
+
+<center>
+    <img src="/@fs/repo/img/qoss2025/20250923_133840_7331634571389238541.jpg" width="640px">
+</center>
+
+<!--
+This picture show:
+1. Policy in dom0 on Qubes OS R4.3 client
+2. Green window show ssh config to prove how bastion is reached by relay
+3. red window show vm1 qvm-copy-to-vm
+4. is journalctl which show execution of qrexec-policy-daemon
+-->
+
+---
+
+<center>
+    <img src="/@fs/repo/img/qoss2025/20250923_133928_2621363651679297674.jpg" width="640px">
+</center>
+
+<!--
+1. This windows show laptop with Qubes OS R4.2 which receive qubes.Filecopy operation execution notification.
+2. Backgroun show how qubes.Filecopy policy is configured
+3. We choose not vm2 but work as target in notification widnow
+-->
+
+---
+
+<center>
+    <img src="/@fs/repo/img/qoss2025/20250923_134117_2004996325932768191.jpg" width="350px">
+</center>
+
+<!--
+This window show that work really received the file.
+-->
+
+---
+
+- This proves that upcoming to R4.3 contain working service call to a RemoteVM.
+- Reference materials
+  + [Service call to a RemoteVM](https://dev.qubes-os.org/projects/qubes-core-qrexec/en/latest/qrexec-remotevm.html) documentation
+  + [Matrix thread](https://matrix.to/#/!WtRrlYUTHOQjqGcSnn:invisiblethingslab.com/$UqxJhSaoM_EoyV5FFLWF1bba0_VfHKguyZcNb0GOljE?via=invisiblethingslab.com&via=matrix.org&via=nitro.chat)
+  + [Gist with instructions](https://gist.github.com/pietrushnic/53efd2923a87ee0c738f45958ead6c15)
+
+---
+
+# Conclusion
+
+- Hardware, firmware and software are reasonably mature for development of
+  vertically integrated applications.
+- For hardware vendors it is time to think how to deliver certified hardware
+  that will meet requirements of most valuable applications.
+  + Not in as single unit, but as a set of units
+- For firmware vendors how to deliver reasonably trustworthy code to fulfill
+  certification criteria, building on top of bleeding edge modern hardware
+  features.
+- For software developers it is to deliver applications which are ready to
+  accommodate to compartmentalized and distributed computing.
 
 <!--
 
-It is trivial to say that Virtualization Based Security is future of Security,
-but so far it is adapted either by:
-1. Hyperscalers.
-2. Hosting/cloud ecosystem.
-3. Corporate Enterprise OSes.
-4. Niche group of enthusiasts.
+Here’s the core: we keep trust under the user’s control, not a vendor
+appliance. We bind actions to attested state so secrets and compute are
+unavailable on a bad platform. We run everything through a single policy gate
+(qrexec)—no side doors. Those principles directly reduce friction in five
+places you care about: keys, builds, provisioning RoT/CoT, LLM use, and
+evidence. The shape is composable and auditable: a tiny, attestable I/O slice
+on the client; centralized, policy-driven enforcement on the server.
+Status-wise: PoC is real today; TrenchBoot, Dasharo+OpenSIL, and OpenBMC are in
+progress; service VMs and evidence/MAC are next; silicon-specific guards and
+Zones-quorum are our vision line.
 
-There is massive market with potential benefits from Virutalization Based
-Security especially in era of uncertainty, not-always-reasonable compliance
-requirements and return of PC/Destkop/Workstation era on the LLM hype wave.
+-->
+
+---
+
+<center>
+    <img src="/@fs/repo/img/qoss2025/call_to_action.excalidraw.png" width="850px">
+</center>
+
+---
+layout: cover
+background: /intro.png
+class: text-center
+---
+
+# Q&A
+
+---
+layout: cover
+background: /intro.png
+class: text-center
+---
+
+# Backup
+
+---
+
+<!--
 
 Visualization:
 - three racks: homelab, company lab/dev, company production
@@ -549,18 +650,8 @@ also for cases, when incident will happen we really have ability to:
 - protect - also improve our protection
 - recover - get back to operation ASAP
 
-Why now?
-- rise of need for security because global power shift
-- first most likely is the cause of hard push for compliance, compliance means
-  auditability
-
 TBD:
 - KPI for proving problem is solved.
--->
-
----
-
-<!--
 
 Friction #1 solution
 
@@ -574,12 +665,6 @@ attested state. Remote signing runs in attested service VMs via qrexec policy;
 an HSM or KMS can provide custody without owning the workflow. The outcome is
 fewer standing keys on endpoints, policy-gated use, and auditable, reversible
 actions when something goes wrong.
-
--->
-
----
-
-<!--
 
 Qubes Air security considerations:
 - Is local laptops computing worse than remote server? Why?
@@ -596,5 +681,3 @@ Qubes Air security considerations:
     display/input slice on the thin client.
 
 -->
----
-
