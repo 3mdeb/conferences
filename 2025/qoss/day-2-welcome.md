@@ -171,7 +171,7 @@ zoom: 0.96
 
 ### 15:40-16:10
 
-#### **_Ansible in Qubes OS_** - Frédéric
+#### **_Ansible in Qubes OS_** - Frédéric and Guillaume (ITL)
 
 ### 16:15-16:45
 
@@ -179,7 +179,7 @@ zoom: 0.96
 
 ### 16:50-17:20
 
-#### **_Update on Qubes Air_** - Ben (ITL)
+#### **__Fast and fresh disposable qubes** - Ben (ITL)
 
 ### 17:25-17:55
 
