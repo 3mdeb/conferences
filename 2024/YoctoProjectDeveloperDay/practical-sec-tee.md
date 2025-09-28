@@ -564,11 +564,9 @@ Micro-Hypervisor Framework.
 <br>
 <br>
 <br>
-<!-- markdownlint-disable no-inline-html -->
 <span style="font-size: 40px;">
     Integration might not be as trivial as you think!
 </span>
-<!-- markdownlint-enable no-inline-html -->
 ]]
 
 ???
@@ -593,11 +591,9 @@ Micro-Hypervisor Framework.
 
 .center[ <img src="./img/TEE_ARM_Cortex-a_with_SM_and_apps.svg"> ]
 
-<!-- markdownlint-disable no-inline-html -->
 .center[<span style="font-size: 30px;">
             A bunch of stuff to integrate, huh?
         </span>]
-<!-- markdownlint-enable no-inline-html -->
 
 ???
 
@@ -736,9 +732,7 @@ meta-arm-bsp
 
 .center[ <img src="./img/vendor-binaries-meme.png" height="350px"> ]
 
-<!-- markdownlint-disable no-inline-html -->
 .center[ <span style="font-size:30px;">There's some kind of mess here!</span>]
-<!-- markdownlint-enable no-inline-html -->
 
 ???
 
