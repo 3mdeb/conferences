@@ -123,7 +123,7 @@ MD030:
 # MD033/no-inline-html - Inline HTML
 MD033:
   # Allowed elements
-  allowed_elements: ["br", "center", "img", "script", "form", "input", "a", "div", "center","small","v-clicks"]
+  allowed_elements: ["br", "center", "img", "script", "form", "input", "a", "div", "center","small","v-clicks", "b", "i", "code"]
 
 # MD034/no-bare-urls - Bare URL used
 MD034: false
