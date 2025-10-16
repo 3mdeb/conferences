@@ -1,0 +1,13 @@
+slides:
+  - input_file: "2025/qoss/day-1-welcome.md"
+    range: "1-28"
+    output_file: "day-1-welcome.pdf"
+  - input_file: "2025/qoss/day-1-closing-notes.md"
+    range: "1-12"
+    output_file: "day-1-closing-notes.pdf"
+  - input_file: "2025/qoss/day-2-welcome.md"
+    range: "1-13"
+    output_file: "day-2-welcome.pdf"
+  - input_file: "2025/qoss/day-2-closing-notes.md"
+    range: "1-10"
+    output_file: "day-2-closing-notes.pdf"
