@@ -3,9 +3,11 @@ import MdItAdmon from 'markdown-it-admon';
 
 export default defineConfig({
   server: {
-    fs: {
-      strict: false,
-    },
+    // make the dev server listen on all network interfaces
+    host: true,              // or '0.0.0.0'
+    // all hosts are allowed
+    allowedHosts: true,
+    fs: { strict: false },
   },
   slidev: {
     vue: {
