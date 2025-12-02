@@ -415,7 +415,8 @@ Conduct](https://doc.qubes-os.org/en/latest/introduction/code-of-conduct.html).
 * Please follow Safety and Health protocols and respect others.
 * Talks are streamed and recorded and will be published on Youtube, if not
   marked otherwise.
-* Lunch, drinks and sweets are free. Coffee machine is in the hallway. The code is on internal side of the doors.
+* Lunch, drinks and sweets are free. Coffee machine is in the hallway. The code
+  is on internal side of the doors.
 * Matrix `#qubes-summit:matrix.org` will be used for communication during event.
 * In case of any issues please contact with organizers.
 
