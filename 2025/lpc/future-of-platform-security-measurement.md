@@ -297,27 +297,27 @@ class: text-center
 
 # Intel Boot Guard and Management Engine
 
-Intel Boot Guard status reporting with disabled ME
-
-* open-source firmware users typically prefers the ME to stay disabled
-* If IBG is configured correctly, firmware is still verified on boot
-* fwupd is lacking an interface to confirm this correct configuration
-
 ::left::
 
 <figure>
-  <img src="/slides/img/hsi_me_enabled.png" width="200">
+  <img src="/slides/img/hsi_me_enabled.png" width="300">
   <figcaption>ME enabled</figcaption>
 </figure>
 
 ::right::
 
 <figure>
-  <img src="/slides/img/hsi_me_disabled.png" width="200">
+  <img src="/slides/img/hsi_me_disabled.png" width="420">
   <figcaption>ME disabled</figcaption>
 </figure>
 
 <!--
+
+Intel Boot Guard status reporting with disabled ME
+
+* open-source firmware users typically prefers the ME to stay disabled
+* If IBG is configured correctly, firmware is still verified on boot
+* fwupd is lacking an interface to confirm this correct configuration
 
 The HSI score is radically different.
 
