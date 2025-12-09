@@ -187,7 +187,7 @@ Sources for screenshots:
 # Linux (KDE)
 
 <figure>
-  <img src="/slides/img/firmware-security.png" width="500px">
+  <img src="/slides/img/firmware-security.png" width="700px">
 </figure>
 
 <!--
