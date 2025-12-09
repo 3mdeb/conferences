@@ -56,7 +56,7 @@ class: text-center
 
 <br>
 
-**1. Firmware is the new attack target**
+**1. Firmware is the new attack surface**
 
 * Runs before OS with highest privileges
 * OS security relies on it (e.g. Secure Boot)
@@ -320,7 +320,7 @@ Intel Boot Guard status reporting with disabled ME
 The HSI score is radically different.
 
 In reality, the security posture is the same - or one could argue the one with
-ME disabled is even better due to reduced surface.
+ME disabled is even better due to reduced attack surface.
 
 References:
 - https://github.com/Dasharo/dasharo-issues/issues/463
