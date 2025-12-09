@@ -7,7 +7,7 @@ class: text-center
 ---
 ## The Future of Platform Security Measurement in Linux
 
-### Linux Plumbers Conference 2025
+Linux Plumbers Conference 2025
 
 ---
 
