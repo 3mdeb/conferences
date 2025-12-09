@@ -151,7 +151,7 @@ TBD: get up-to-date graphic from NovaCustom MTL release
 # Linux (GNOME)
 
 <figure>
-  <img src="/slides/img/gnome_device_security_hsi.png" width="500px">
+  <img src="/slides/img/gnome_device_security_hsi.png" width="600px">
 </figure>
 
 <!--
