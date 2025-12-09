@@ -14,7 +14,7 @@ Linux Plumbers Conference 2025
 # $ whoami
 
 <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
-  <img src="/@fs/repo/img/macpijan.png" style="width: 100px; border-radius: 50%;"
+  <img src="/slides/img/macpijan.png" style="width: 100px; border-radius: 50%;"
     alt="Profile Picture">
   <div>
     <b style="font-size: 1.5em;">Maciej Pijanowski</b><br>
@@ -101,7 +101,7 @@ that was previously impossible / difficult for end users.
 # Windows
 
 <figure>
-  <img src="/@fs/repo/img/qos_sec_report.png" width="450px">
+  <img src="/slides/img/qos_sec_report.png" width="450px">
 </figure>
 
 <!--
@@ -137,7 +137,7 @@ Emphasis on whether the device meets Microsoft's security baseline.
 # QubesOS
 
 <figure>
-  <img src="/@fs/repo/img/qos_sec_report.png" width="450px">
+  <img src="/slides/img/qos_sec_report.png" width="450px">
 </figure>
 
 <!--
@@ -151,7 +151,7 @@ TBD: get up-to-date graphic from NovaCustom MTL release
 # Linux (GNOME)
 
 <figure>
-  <img src="/@fs/repo/img/gnome_device_security_hsi.png" width="500px">
+  <img src="/slides/img/gnome_device_security_hsi.png" width="500px">
 </figure>
 
 <!--
@@ -187,7 +187,7 @@ Sources for screenshots:
 # Linux (KDE)
 
 <figure>
-  <img src="/@fs/repo/img/firmware-security.png" width="500px">
+  <img src="/slides/img/firmware-security.png" width="500px">
 </figure>
 
 <!--
@@ -206,8 +206,8 @@ TBD: get up-to-date graphic from NovaCustom MTL release
 * Users generate reports: `fwupdmgr security` or `fwupdtool security`
 
 <figure style="display: flex; gap: 1px;">
-  <img src="/@fs/repo/img/fwupd_logo.svg" width="250">
-  <img src="/@fs/repo/img/lvfs_avatar.png" width="250">
+  <img src="/slides/img/fwupd_logo.svg" width="250">
+  <img src="/slides/img/lvfs_avatar.png" width="250">
 </figure>
 
 <!--
@@ -306,14 +306,14 @@ Intel Boot Guard status reporting with disabled ME
 ::left::
 
 <figure>
-  <img src="/@fs/repo/img/hsi_me_enabled.png" width="200">
+  <img src="/slides/img/hsi_me_enabled.png" width="200">
   <figcaption>ME enabled</figcaption>
 </figure>
 
 ::right::
 
 <figure>
-  <img src="/@fs/repo/img/hsi_me_disabled.png" width="200">
+  <img src="/slides/img/hsi_me_disabled.png" width="200">
   <figcaption>ME disabled</figcaption>
 </figure>
 
