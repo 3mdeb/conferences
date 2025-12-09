@@ -59,13 +59,13 @@ Linux Plumbers Conference 2025
 **1. Firmware is the new attack surface**
 
 * Runs before OS with highest privileges
-* OS security relies on it (e.g. Secure Boot)
+* OS security relies on it (e.g. UEFI Secure Boot)
 * Persistent across OS reinstalls
 
 **2. Complex security landscape**
 
 * Modern platforms: dozens of complex security features
-* BootGuard, TPM 2.0, IOMMU, Memory Encryption, SPI Protection...
+* Intel Boot Guard, TPM 2.0, IOMMU, Memory Encryption, SPI Protections, ...
 * Each must be configured correctly
 * One misconfiguration = security gap
 
@@ -243,9 +243,9 @@ distributions.
 * Evaluates various security attributes
   + Firmware update mechanisms and integrity
   + TPM functionality and PCR measurements
-  + Intel BootGuard and measured boot
+  + Intel Boot Guard and measured boot
   + IOMMU and DMA protection
-  + Secure Boot configuration
+  + UEFI Secure Boot configuration
   + Memory encryption support
   + Control-flow enforcement technology
 
@@ -276,15 +276,17 @@ adds more sophisticated protections.
 
 # Intel Boot Guard
 
-* A processor feature
+* Hardware-based boot integrity protection
 * Prevents the machine from running firmware images not released (signed) by
   the system vendor
-* It forms a Root of Trust (RoT) by fusing in cryptographic keys into the
-  processor itself
+* It forms a Root of Trust for Verification (RTV) and Static Root of Trust
+  for Measurement (S-RTM) by fusing cryptographic keys into hardware
 
 <!--
 
 TBD: Extend  or drop?
+
+https://edc.intel.com/content/www/us/en/design/ipla/software-development-platforms/client/platforms/alder-lake-desktop/12th-generation-intel-core-processors-datasheet-volume-1-of-2/010/boot-guard-technology/
 
 -->
 
@@ -359,7 +361,7 @@ Alternative ways of checking the failing checks
 
 **ME not in manufacturing mode**
 * check IFD is locked ?
-  + cannot be done with kernel lockdown (Secure Boot) - opporunity for
+  + cannot be done with kernel lockdown (UEFI Secure Boot) - opporunity for
   an in-kernel implementation?
 * more ???
 
@@ -412,7 +414,7 @@ Uses several different low-level interfaces to have an overview of platform's se
 
 Requires registers / bit manipulation in userspace
 
-**Example: Reading BootGuard OTP Fuse Status**
+**Example: Reading Intel Boot Guard OTP Fuse Status**
 
 ```c
 const guint hfs_cfg_addrs[] = {0x0, 0x40, 0x48, 0x60, 0x64, 0x68, 0x6c}
@@ -537,7 +539,7 @@ cat /sys/firmware/security/srtm/verified_boot/key_hash
 Key Hash Exposure: Critical for Modern Security
 
 Current Problem:
-- BootGuard Key Manifest is in SPI flash, complex to parse
+- Boot Guard Key Manifest is in SPI flash, complex to parse
 - AMD PSP root key hash is in fuses (?), no standard interface
 - ARM implementations vary wildly
 - No way to (easily) verify which key is fused
