@@ -45,7 +45,10 @@ Linux Plumbers Conference 2025
 
 # Agenda
 
-* TBD
+* Why should we care?
+* Overview across ecosystem
+* fwupd / HSI
+* Problems and possible improvements
 
 <!--
 -->
@@ -54,7 +57,19 @@ Linux Plumbers Conference 2025
 
 # Why platform security measurement matters
 
-<br>
+* Firmware is the new attack surface
+  - Runs before OS, OS security relies on it (e.g. UEFI Secure Boot)
+* Complex security landscape
+  - Dozens of complex security features, must be configured correctly
+* User awareness gap
+  - Users don't know how how secure are their platforms
+* Enterprise compliance
+  - IT policies mandate specific security configurations
+
+**There is a need for OS-enforced firmware quality assessment presenting simple
+metrics to end user.**
+
+<!--
 
 **1. Firmware is the new attack surface**
 
@@ -69,12 +84,6 @@ Linux Plumbers Conference 2025
 * Each must be configured correctly
 * One misconfiguration = security gap
 
----
-
-# Why platform security measurement matters
-
-<br>
-
 **3. User awareness gap**
 
 * Users don't know these features exist and/or how they work
@@ -87,8 +96,6 @@ Linux Plumbers Conference 2025
 * IT policies mandate specific security configurations
 * Manual verification doesn't scale
 * There is a need for compliance tooling
-
-<!--
 
 The Solution: Automated, standardized platform security measurement This is why
 HSI and similar tools are critical - they provide visibility and verification
@@ -237,28 +244,11 @@ distributions.
 
 # HSI overview
 
-* Hierarchical framework with multiple levels
-* Each level builds upon previous ones
-* Cannot achieve higher level without meeting all lower level requirements
-* Evaluates various security attributes
-  + Firmware update mechanisms and integrity
-  + TPM functionality and PCR measurements
-  + Intel Boot Guard and measured boot
-  + IOMMU and DMA protection
-  + UEFI Secure Boot configuration
-  + Memory encryption support
-  + Control-flow enforcement technology
-
-<!--
--->
-
----
-
-# HSI overview #2
+Hierarchical framework with multiple levels
 
 * **HSI-0:** HSI-1 requirements not met
 * **HSI-1:** Least restrictive - non-permanent features
-  + BIOS update capability, TPM presence, SPI write protection, Secure Boot
+  + BIOS update capability, TPM presence, SPI write protection, UEFI Secure Boot
 * **HSI-2:** Hardware-based firmware verification
   + "Fusing" - irreversible hardware changes enforcing firmware authorization
 * **HSI-3:** Advanced protections
