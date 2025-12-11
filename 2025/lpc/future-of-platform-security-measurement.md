@@ -101,7 +101,7 @@ that was previously impossible / difficult for end users.
 # Windows
 
 <figure>
-  <img src="/slides/img/qos_sec_report.png" width="450px">
+  <img src="/slides/img/windows_device_security.avif" width="550px">
 </figure>
 
 <!--
