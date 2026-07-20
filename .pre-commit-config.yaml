@@ -24,20 +24,20 @@ repos:
       - id: mixed-line-ending
 
   - repo: https://github.com/talos-systems/conform
-    rev: v0.1.0-alpha.30
+    rev: v0.1.0-alpha.31
     hooks:
       - id: conform
         stages:
           - commit-msg
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.1
+    rev: v2.4.3
     hooks:
       - id: codespell
         args: ["--ignore-words=codespell-ignore-dictionary.txt"]
 
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.46.0
+    rev: v0.49.1
     hooks:
       - id: markdownlint
         args: ["--ignore", "slides-template.md"]
